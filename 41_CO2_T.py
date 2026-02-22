@@ -1,3 +1,10 @@
+# 41_CO2_T.py
+# Thomas Boettcher
+# version 1.1.1
+# part 0 variables
+# part 1 plot CO2 Mauna Loa
+# part 7 plot temperature with right y axis
+# part 9 print legend
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
