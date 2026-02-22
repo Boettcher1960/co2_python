@@ -5,6 +5,9 @@
 # part 1 plot CO2 Mauna Loa
 # part 7 plot temperature with right y axis
 # part 9 print legend
+
+# part 0 variables
+# 0.1 imports
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -13,9 +16,7 @@ from matplotlib.ticker import MultipleLocator
 import os
 import sys
 
-# 0.2 Parameter Kurve abschalten
-
-
+# 0.2 Parameter decide which curves to plot
 plot1_Mauna_Loa_ = 1 # 2 print in line 2, 0 keine Kurve 1 Mauna Loa 4 save png
 c1 = "blue" # plot1 color
 Kurve2_population_on = 0 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
