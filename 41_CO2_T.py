@@ -27,7 +27,7 @@ y_max = 700 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 8 # 40 # max value C
 
-x_anf = 1980 # 1960 geht, 2000 geht
+x_anf = 1990 # 1960 geht, 2000 geht
 x_end = 2100 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
