@@ -31,14 +31,14 @@ parameter8_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
 y_min = 300 # min value 280
-y_max = 700 # min value 440 70
+y_max = 500 # min value 440 70
 
 # 0.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 8 # 40 # max value C
+y_Tmax = 4 # 40 # max value C
 
 x_anf = 1990 # 1960 geht, 2000 geht
-x_end = 2100 # 2026 geht
+x_end = 2050 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
