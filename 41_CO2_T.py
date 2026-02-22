@@ -7,6 +7,8 @@ import os
 import sys
 
 # 0.2 Parameter Kurve abschalten
+
+
 plot1_Mauna_Loa_ = 1 # 2 print in line 2, 0 keine Kurve 1 Mauna Loa 4 save png
 c1 = "blue" # plot1 color
 Kurve2_population_on = 0 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
