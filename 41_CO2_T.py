@@ -17,7 +17,7 @@ import os
 import sys
 
 # 0.2 Parameter decide which curves to plot
-plot1_Mauna_Loa_ = 1 # 2 print in line 2, 0 keine Kurve 1 Mauna Loa 4 save png
+plot1_Mauna_Loa_ = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
 Kurve2_population_on = 0 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
 plot3_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -86,9 +86,6 @@ yr0 = int(yr0+0.49) # cast to integer result = 2 (int)
 yr1=ydiff-yr0
 yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
-
-
-
 # 0.8 Parameter strig
 header_parameter = f"{plot1_Mauna_Loa_}" # 1960 number inside string
 header_parameter = header_parameter + f"{Kurve2_population_on}" # Kurve2_population_on number inside string
@@ -99,6 +96,10 @@ header_parameter = header_parameter + f"{plot6_Glen_CO2_on} " # Kurve2_populatio
 header_parameter = header_parameter + f"{plot7_temperature}" 
 header_parameter = header_parameter + f"{parameter8_save_png} " 
 # header_parameter = f" parameter= {plot1_Mauna_Loa_}" # 1960 number inside string
+
+
+# -----------------------------
+#  part 1 plot CO2 Mauna Loa
 # -----------------------------
 # 1.1 Kurve1 Jahre 1960–2025
 # -----------------------------
