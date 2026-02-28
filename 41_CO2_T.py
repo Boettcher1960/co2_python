@@ -19,7 +19,7 @@ import sys
 # 0.2 Parameter decide which curves to plot
 plot1_Mauna_Loa_ = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
-Kurve2_population_on = 0 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
+Kurve2_population_on = 5 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
 plot3_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot4_CO2_orange2025
 Kurve5_Glen_delta_on = 0 # 3, 4, 0 print row 4 # green Glen diff print in line 4
@@ -37,7 +37,7 @@ y_max = 500 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 4 # 40 # max value C
 
-x_anf = 1990 # 1960 geht, 2000 geht
+x_anf = 1960 # 1960 geht, 2000 geht
 x_end = 2050 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
