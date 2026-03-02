@@ -1,5 +1,27 @@
 Welcome to the python_CO2_chart wiki!
 
+#CO2 232
+Population growth is less than increase of CO2
+CO2 growths more than population
+41e7_CO2_T.py
+28 4 2
+https://bsky.app/profile/thomas-boettcher.bsky.social/post/3mg3ncssf4s2s
+https://bsky.app/profile/thomas-boettcher.bsky.social/post/3mg3ngy3pec2s
+
+#CO2 232 2
+purple dashed CO2 line is quadratic.
+green Population gets lower
+blue CO2 Mauna Loa growth needs bigger Y axis????
+41e8_CO2_T.py
+Population growth is less than increase of CO2
+https://github.com/Boettcher1960/co2_python
+https://bsky.app/profile/thomas-boettcher.bsky.social/post/3mg3po33qwc2l
+
+
+
+
+
+
 start Visual Studio Code
 open folder with Visual Studio Code
 open file 41d_CO2_T master.py
