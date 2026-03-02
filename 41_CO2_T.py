@@ -19,7 +19,7 @@ import sys
 # 0.2 Parameter decide which curves to plot
 plot1_Mauna_Loa_ = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
-Kurve2_population_on = 5 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
+plot2_population_on = 5 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
 plot3_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot4_CO2_orange2025
 Kurve5_Glen_delta_on = 0 # 3, 4, 0 print row 4 # green Glen diff print in line 4
@@ -30,14 +30,14 @@ c7 = "red" # plot7 color
 parameter8_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
-y_min = 250 # min value 280
-y_max = 450 # min value 440 70
+y_min = 330 # min value 280
+y_max = 430 # min value 440 70
 
 # 0.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 4 # 40 # max value C
+y_Tmax = 2 # 4 # max value C
 
-x_anf = 1960 # 1960 geht, 2000 geht
+x_anf = 1980 # 1960 geht, 2000 geht
 x_end = 2030 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
@@ -88,11 +88,11 @@ yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
 # 0.8 Parameter strig
 header_parameter = f"{plot1_Mauna_Loa_}" # 1960 number inside string
-header_parameter = header_parameter + f"{Kurve2_population_on}" # Kurve2_population_on number inside string
+header_parameter = header_parameter + f"{plot2_population_on}" # plot2_population_on number inside string
 header_parameter = header_parameter + f"{plot3_delta_CO2_red_bars} " # plot3_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot4_CO2_orange2025}" # plot4_CO2_orange2025 number inside string
 header_parameter = header_parameter + f"{Kurve5_Glen_delta_on}" # Kurve5_Glen_delta_on number inside string
-header_parameter = header_parameter + f"{plot6_Glen_CO2_on} " # Kurve2_population_on number inside string
+header_parameter = header_parameter + f"{plot6_Glen_CO2_on} " # plot2_population_on number inside string
 header_parameter = header_parameter + f"{plot7_temperature}" 
 header_parameter = header_parameter + f"{parameter8_save_png} " 
 # header_parameter = f" parameter= {plot1_Mauna_Loa_}" # 1960 number inside string
@@ -186,7 +186,7 @@ else:
 # url = "https://ourworldindata.org/grapher/population.csv"
 # -----------------------------
 
-if Kurve2_population_on > 0:
+if plot2_population_on > 0:
    pop_df = pd.read_csv("population4.csv")
    pop_world = (
          pop_df[pop_df["Entity"] == "World"][["Year", "Population"]]
@@ -197,10 +197,10 @@ if Kurve2_population_on > 0:
    pop_world_subset = pop_world[start:end]
    # 2.3 in Milliarden
    pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
-   #end Kurve2_population_on=1 - print population
+   #end plot2_population_on=1 - print population
 
-# 2.3 Kurve2_population_on=1
-if Kurve2_population_on > 0:
+# 2.3 plot2_population_on=1
+if plot2_population_on > 0:
    ax2 = ax1.twinx()
    ax2.spines.right.set_position(("outward", 50))
    ax2.set_ylabel("Earth Population in Billion", color="green")
@@ -208,13 +208,14 @@ if Kurve2_population_on > 0:
    ax2.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
    ax2.set_ylabel("Earth Population in Billion", color="green")
    ax2.tick_params(axis="y", labelcolor="green")
-   ax2.set_ylim(1, 9) #8
+   # ax2.set_ylim(1, 9) #8
+   ax2.set_ylim(4, 9)
    #end print_y2=1 - print population
 
-if Kurve2_population_on == 2: ax2.set_ylim(6.5, 8.5) # andere Skala
-#end Kurve2_population_on=1 - print population
+if plot2_population_on == 2: ax2.set_ylim(6.5, 8.5) # andere Skala
+#end plot2_population_on=1 - print population
 
-# 2.4 Kurve2_population_on=1
+# 2.4 plot2_population_on=1
 
 # -----Kurve 3------------------------
 # 3.1 ΔCO₂ berechnen (per pandas) Balken
@@ -429,8 +430,8 @@ if plot7_temperature > 0: # one temperature active
      f"- - CO2 quadratic",
      color=c6, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
    plt.text(0.48, 1.05,
-     f"--> Δ Temperature calculated °C year 2100",
-     color=c7, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
+     f"--> Δ Temperature calculated °C year {x_end}",
+    color=c7, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
 else:   
    header = f"CO2 measured at Mauna Loa up to 2024. Print {x_anf}" # 1960 number inside string
    header = header + f" to {x_end} " # 2026 number inside string
@@ -448,9 +449,9 @@ if plot1_Mauna_Loa_ > 6: # 8.5.1 legende world data plot1_Mauna_Loa_
    plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
    transform=plt.gca().transAxes)
    ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
-# 8.5 Kurve2_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
+# 8.5 plot2_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
 if plot1_Mauna_Loa_ > 8:
-   if Kurve2_population_on > 0:
+   if plot2_population_on > 0:
       plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
 # 8.6 legende
@@ -512,8 +513,8 @@ plt.text(tr2x, tr2y, blue_text, color="blue", fontname="Arial", fontsize=trs,
 transform=plt.gca().transAxes)
 
 # 9.3 print line 3 below the plot explainations
-# 9.3.2 print line 3 Kurve2_population_on marker="s"
-if Kurve2_population_on == 3: # 8.5.1 legende world data plot1_Mauna_Loa_
+# 9.3.2 print line 3 plot2_population_on marker="s"
+if plot2_population_on == 3: # 8.5.1 legende world data plot1_Mauna_Loa_
    line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -579,8 +580,8 @@ if plot6_Glen_CO2_on == 3: # print in line 3
 
 # 9.4 print line 4 below the plot explainations
 # 9.4 print line 4 below the plot explainations
-# 9.4.2 print line 4 Kurve2_population_on marker="s"
-if Kurve2_population_on == 4:
+# 9.4.2 print line 4 plot2_population_on marker="s"
+if plot2_population_on == 4:
    line1 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -649,8 +650,8 @@ elif plot7_temperature == 4:
    transform=plt.gca().transAxes)
 
 
-# 9.5.2 print line 5 Kurve2_population_on marker="s"
-if Kurve2_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
+# 9.5.2 print line 5 plot2_population_on marker="s"
+if plot2_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
    line1 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -665,7 +666,7 @@ if Kurve2_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
 else: # 9.2.2 draw bue line as legend
    plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-# 9.5 print line 5 Kurve2_population_on
+# 9.5 print line 5 plot2_population_on
 # 9.6 print line 6
 
 header_black = " CO2 in ppm  Parameter="
