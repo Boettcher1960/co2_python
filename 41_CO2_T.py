@@ -30,7 +30,7 @@ plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in 
 plot5_Glen_delta_on = 4 # 3, 4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
-plot7_temperature = 5 # 4, 0
+plot7_temperature = 4 # 4, 0
 c7 = "red" # plot7 color
 parameter8_save_png = 8 # save png
 
@@ -384,10 +384,16 @@ if plot7_temperature > 0:
 # 7.1.7 plot7 Achse und Beschriftung
 if plot7_temperature > 0:
    if plot5_Glen_delta_on > 2:
-      ax7.spines.right.set_position(("outward", 25))
+      ax7.spines.right.set_position(("outward", 35))
    else:
       ax7.spines.right.set_position(("outward", 5))
-   ax7.set_ylabel("Δ Temperature in °C", color=c7, fontname="Arial",fontsize=20) # fontweight="bold"
+   #ax7.set_ylabel("Δ Temperature in °C", color=c7, fontname="Arial",fontsize=20) # fontweight="bold"
+   ax7.set_ylabel(
+      "Δ Temperature in °C",
+      color=c7,
+      fontname="Arial",fontsize=20,
+      labelpad=7   # smaller = closer
+   )
    ax7.tick_params(axis="y", labelcolor=c7, labelsize=20)
 
 
