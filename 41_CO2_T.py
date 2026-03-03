@@ -314,7 +314,7 @@ if plot5_Glen_delta_on > 0:
       "5 Difference Mauna Loa - Glen-parabol (ppm)",
       color="green",
       fontsize=12,
-      labelpad=-10   # smaller = closer
+      labelpad=-4   # smaller = closer
 )
 
 
