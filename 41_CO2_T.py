@@ -315,8 +315,7 @@ if plot5_Glen_delta_on > 0:
       color="green",
       fontsize=12,
       labelpad=-4   # smaller = closer
-)
-
+      )
 
    ax5.tick_params(axis="y", labelcolor="green")
    #ax5.set_ylim(-1, 13) # scale
@@ -392,7 +391,7 @@ if plot7_temperature > 0:
       "Δ Temperature in °C",
       color=c7,
       fontname="Arial",fontsize=20,
-      labelpad=7   # smaller = closer
+      labelpad=-3   # smaller = closer
    )
    ax7.tick_params(axis="y", labelcolor=c7, labelsize=20)
 
