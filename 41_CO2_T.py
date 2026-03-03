@@ -704,15 +704,10 @@ else: # 9.5.9 draw bue line as legend
    transform=plt.gca().transAxes)
 # 9.5 print line 5 plot2_population_on
 # 9.6 print line 6
-
-header_black = " CO2 in ppm  Parameter="
-header_black = header_black + header_parameter
-
-# plt.text(0.6, 1.08, header_black, color="black", fontname="Arial", fontsize=14,
-text6 = f" y_max= {y_max}ppm" # y_max number inside string
-text6 = text6 + f" y_min= {y_min} " # y_max number inside string
-text6 = text6 + f" T_max= {y_Tmax}°C " # y_max number inside string
-text6 = text6 + header_black
+text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
+text6 = text6 + f" CO2_max= {y_max} " # y_max number inside string
+text6 = text6 + f"  T_max= {y_Tmax}°C    Parameter=" # y_max number inside string
+text6 = text6 + header_parameter
 
 # 9.6 plot line 6
 plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
