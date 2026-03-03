@@ -1,4 +1,4 @@
-# 41f2_CO2_T.py plot 7 T as line 4
+# 41f3_CO2_T.py plot 7 T as line 4
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -152,12 +152,7 @@ df = pd.DataFrame({
 # 1.5 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 
-# fig.text(0.5, 0.05, "This is extra text below the figure",
-# ha="center", va="center", fontsize=12, color="gray")
-# 1.6 Legende oben links
-#ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label="Mauna Loa CO₂ in ppm 2025 = 424.61 + 3.69 ppm K1")
-# 1.7 print blue Mauna Loa
-
+# 1.6 print blue Mauna Loa
 ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 ax1.set_xlabel("year", fontsize=16 )
 plt.xticks(fontsize=16)
@@ -171,13 +166,14 @@ ax1.grid(True)
 
 # 1.8 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
+   # y_grid_CO2 = 10
    ax1.set_ylim(y_min, y_max)
    ax1.yaxis.set_major_locator(MultipleLocator(y_grid_CO2))   # Hauptstriche
    ax1.yaxis.set_minor_locator(MultipleLocator(10))   # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 1.8 scale the X value time = 20
-   ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
+   ax1.xaxis.set_major_locator(MultipleLocator(10))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2)
    ax1.xaxis.set_minor_locator(MultipleLocator(2))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=4,  width=1)
@@ -465,10 +461,6 @@ else:
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
             
-#  Interpret the x and y coordinates in axis-relative units, not data values.
-# transform=plt.gca().transAxes) # x = 0 → left edge of the plot  x = 1 → right edge of the plot
-
-
 # 8.4 legende Mauna Loa blau plot1_Mauna_Loa_
 if plot1_Mauna_Loa_ > 6: # 8.5.1 legende world data plot1_Mauna_Loa_
    K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
