@@ -1,15 +1,16 @@
-# 41e12_CO2_T.py
+# 41e13_CO2_T.py
 # Thomas Boettcher
-# version 1.5.9
+# version 1.5.13
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
 # part 2 human earth population 
-# part 3 
-#
-# part 4
-# part 5
+# part 3 delta_CO2_red_bars
+# part 4 plot4_CO2_orange2025
+# part 5 plot5_Glen_delta_on
+# part 6 plot6_Glen_CO2_on = 3
 # part 7 plot temperature with right y axis
-# part 9 print legend
+# part 8 print headline in figue
+# part 9 print line 1 to 5 below the figure
 
 # part 0 variables
 # 0.1 imports
