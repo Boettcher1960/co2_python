@@ -1,6 +1,5 @@
-# 41e14_CO2_T.py
+# 41e15_CO2_T.py
 # Thomas Boettcher
-# version 1.5.13
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
 # part 2 human earth population 
@@ -25,13 +24,13 @@ import sys
 # 0.2 Parameter decide which curves to plot
 plot1_Mauna_Loa_ = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
-plot2_population_on = 5 # 5 3, 4, 5 0 row 5 # 0=no print , 1 = Bevölkerung in grün
+plot2_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot3_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot4_CO2_orange2025
 plot5_Glen_delta_on = 4 # 3, 4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
-plot7_temperature = 0 # 4, 0
+plot7_temperature = 4 # 4, 0
 c7 = "red" # plot7 color
 parameter8_save_png = 8 # save png
 
