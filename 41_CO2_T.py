@@ -1,4 +1,4 @@
-# 41e17_CO2_T.py plot 7 T as line 5
+# 41e18_CO2_T.py plot 7 T as line 5
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -309,12 +309,11 @@ if plot4_CO2_orange2025 > 0:
 if plot5_Glen_delta_on > 0:
    ax5 = ax1.twinx()
    ax5.bar(df4["Year"], df4["Difference"], color="green", alpha=0.4, label="Diff (Actual − Model)")
-   # ax5.set_ylabel("5 Difference Mauna Loa - Glen-parabol (ppm)", color="green", fontsize=12)
    ax5.set_ylabel(
-      "5 Difference Mauna Loa - Glen-parabol (ppm)",
+      "Difference Mauna Loa - Glen-parabol (ppm)  (plot 5)",
       color="green",
-      fontsize=12,
-      labelpad=-4   # smaller = closer
+      fontsize=14,
+      labelpad=-4   # smaller = closer to axis
       )
 
    ax5.tick_params(axis="y", labelcolor="green")
@@ -383,15 +382,14 @@ if plot7_temperature > 0:
 # 7.1.7 plot7 Achse und Beschriftung
 if plot7_temperature > 0:
    if plot5_Glen_delta_on > 2:
-      ax7.spines.right.set_position(("outward", 35))
+      ax7.spines.right.set_position(("outward", 50))
    else:
       ax7.spines.right.set_position(("outward", 5))
-   #ax7.set_ylabel("Δ Temperature in °C", color=c7, fontname="Arial",fontsize=20) # fontweight="bold"
-   ax7.set_ylabel(
-      "Δ Temperature in °C",
-      color=c7,
-      fontname="Arial",fontsize=20,
-      labelpad=-3   # smaller = closer
+   ax7.set_ylabel (
+         "Δ Temperature calc in  °C ",
+         color=c7,
+         fontname="Arial",fontsize=20,
+         labelpad=-3   # smaller = closer to y axis
    )
    ax7.tick_params(axis="y", labelcolor=c7, labelsize=20)
 
