@@ -1,4 +1,4 @@
-# 41f6_CO2_T.py work 1.7 grid
+# 41f7_CO2_T.py work 1.8 grid
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -166,7 +166,7 @@ ax1.grid(True)
 
 # 1.8 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
-   # y_grid_CO2 = 10
+   y_grid_CO2 = 20
    ax1.set_ylim(y_min, y_max)
    ax1.yaxis.set_major_locator(MultipleLocator(y_grid_CO2))   # Hauptstriche
    ax1.yaxis.set_minor_locator(MultipleLocator(5))   # Nebenstriche
@@ -181,16 +181,15 @@ if scale_mode == 10:
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
    # Separate horizontal and vertical grid lines
    for line in ax1.get_xgridlines():   # vertical lines
-       line.set_color('black')            # vertical color
+       line.set_color('grey')            # vertical color
        line.set_alpha(0.9)
-       line.set_linestyle('--')         # optional
+       line.set_linestyle('-')         # optional '--'
        line.set_linewidth(1.3)   # <-- thickness
    for line in ax1.get_ygridlines():   # horizontal lines
        line.set_color('blue')           # horizontal color
-       line.set_alpha(0.5)
+       line.set_alpha(0.4)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
-
    y_block = (y_max - y_min) / y_grid_CO2  # 120 / 20 = 6 y_block
 else:
   ax1.set_ylim(y_min, y_max)
