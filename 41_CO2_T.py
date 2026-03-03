@@ -1,4 +1,4 @@
-# 41e15_CO2_T.py
+# 41e16_CO2_T.py plot 7 T as line 5
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -30,7 +30,7 @@ plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in 
 plot5_Glen_delta_on = 4 # 3, 4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
-plot7_temperature = 4 # 4, 0
+plot7_temperature = 5 # 4, 0
 c7 = "red" # plot7 color
 parameter8_save_png = 8 # save png
 
@@ -676,8 +676,18 @@ if plot2_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
    # 9.5.5 plot the blue text
    plt.text(tr2x, tr5y, blue_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-   # elif plot1_Mauna_Loa_ == 1:
-else: # 9.2.2 draw bue line as legend
+elif plot7_temperature == 5:
+   line7 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c7, linewidth=2)
+   # 9.5.7 draw bue line as legend
+   fig.add_artist(line7)
+   # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
+   red_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
+   # 9.5.9 plot the blue text
+   plt.text(tr2x, tr5y, red_text, color=c7, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+else: # 9.5.9 draw bue line as legend
    plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.5 print line 5 plot2_population_on
