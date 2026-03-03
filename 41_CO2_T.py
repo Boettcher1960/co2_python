@@ -1,4 +1,4 @@
-# 41f1_CO2_T.py plot 7 T as line 5
+# 41f2_CO2_T.py plot 7 T as line 4
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -27,10 +27,10 @@ c1 = "blue" # plot1 color
 plot2_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot3_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot4_CO2_orange2025
-plot5_Glen_delta_on = 4 # 3, 4, 0 print row 4 # green Glen diff print in line 4
+plot5_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
-plot7_temperature = 5 # 5,4, 0
+plot7_temperature = 4 # 5,4, 0
 c7 = "red" # plot7 color
 parameter8_save_png = 8 # save png
 
