@@ -1,4 +1,4 @@
-# 41f7_CO2_T.py work 1.8 grid
+# 41f8_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -35,15 +35,15 @@ c7 = "red" # plot7 color
 parameter8_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
-y_min = 330 # min value 280
-y_max = 430 # min value 440 70
+y_min = 350 # min value 280
+y_max = 550 # min value 440 70
 
 # 0.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 2 # 4 # max value C
+y_Tmax = 3 # 4 # max value C
 
-x_anf = 1980 # 1960 geht, 2000 geht
-x_end = 2026 # 2026 geht
+x_anf = 1990 # 1960 geht, 2000 geht
+x_end = 2050 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
@@ -166,7 +166,6 @@ ax1.grid(True)
 
 # 1.8 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
-   y_grid_CO2 = 20
    ax1.set_ylim(y_min, y_max)
    ax1.yaxis.set_major_locator(MultipleLocator(y_grid_CO2))   # Hauptstriche
    ax1.yaxis.set_minor_locator(MultipleLocator(5))   # Nebenstriche
