@@ -1,4 +1,4 @@
-# 41f4_CO2_T.py work 1.7 grid
+# 41f5_CO2_T.py work 1.7 grid
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -174,11 +174,11 @@ if scale_mode == 10:
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 1.8 scale the X value time = 20
    ax1.xaxis.set_major_locator(MultipleLocator(10))   # Hauptstriche
-   ax1.tick_params(axis='x', which='major', length=12, width=2)
+   ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
    ax1.xaxis.set_minor_locator(MultipleLocator(2))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=4,  width=1)
-   ax1.grid(True, which="major") # grosses Netz 20 ppm
-   ax1.grid(True, which="minor", alpha=0.20) # Netz 
+   ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
+   ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
    y_block = (y_max - y_min) / y_grid_CO2  # 120 / 20 = 6 y_block
 else:
   ax1.set_ylim(y_min, y_max)
