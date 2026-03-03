@@ -1,4 +1,4 @@
-# 41f3_CO2_T.py plot 7 T as line 4
+# 41f4_CO2_T.py work 1.7 grid
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -169,7 +169,7 @@ if scale_mode == 10:
    # y_grid_CO2 = 10
    ax1.set_ylim(y_min, y_max)
    ax1.yaxis.set_major_locator(MultipleLocator(y_grid_CO2))   # Hauptstriche
-   ax1.yaxis.set_minor_locator(MultipleLocator(10))   # Nebenstriche
+   ax1.yaxis.set_minor_locator(MultipleLocator(5))   # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 1.8 scale the X value time = 20
