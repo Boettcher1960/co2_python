@@ -1,4 +1,4 @@
-# 41e21_CO2_T.py plot 7 T as line 5
+# 41e22_CO2_T.py plot 7 T as line 5
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
