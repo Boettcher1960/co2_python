@@ -1,4 +1,4 @@
-# 41f11_CO2_T.py 
+# 41f12_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -36,11 +36,11 @@ parameter8_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
 y_min = 300 # min value 280
-y_max = 650 # min value 440 70
+y_max = 700 # min value 440 70
 
 # 0.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 7 # 4 # max value C
+y_Tmax = 8 # 4 # max value C
 
 x_anf = 1960 # 1960 geht, 2000 geht
 x_end = 2100 # 2026 geht
