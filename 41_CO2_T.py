@@ -1,4 +1,4 @@
-# 41f8_CO2_T.py 
+# 41f9_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -40,7 +40,7 @@ y_max = 550 # min value 440 70
 
 # 0.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 3 # 4 # max value C
+y_Tmax = 4 # 4 # max value C
 
 x_anf = 1990 # 1960 geht, 2000 geht
 x_end = 2050 # 2026 geht
@@ -395,11 +395,9 @@ if plot7_temperature > 0:
          "Δ Temperature calc in  °C ",
          color=c7,
          fontname="Arial",fontsize=20,
-         labelpad=-3   # smaller = closer to y axis
+         labelpad=10   # smaller = closer to y axis
    )
    ax7.tick_params(axis="y", labelcolor=c7, labelsize=20)
-
-
 
 # 7.1.8 plot7_temperature
 if plot7_temperature > 0:
