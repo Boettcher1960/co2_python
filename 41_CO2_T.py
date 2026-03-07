@@ -441,8 +441,8 @@ if plot72_AESS_T > 0:
    ax8.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
    ax8.set_ylim(y_Tmin, 3 ) # scale
   
-# 7.2.7 plot7 Achse und Beschriftung
-if plot72_AESS_T > 0:
+# 7.2.7 plot7 Achse und Beschriftung if plot71_temperature > 0:
+if plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot5_Glen_delta_on > 2:
       ax8.spines.right.set_position(("outward", 50))
    else:
