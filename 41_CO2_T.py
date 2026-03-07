@@ -1,4 +1,4 @@
-# 41g1_CO2_T.py 
+# 41g2_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -32,7 +32,7 @@ plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 5
 c6 = "purple" # plot6 color
 plot71_temperature = 4 # 5,4, 0
 c7 = "red" # plot7 color
-plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 5 # apparent Earth system sensitivity (AESS=7.7°C)
 parameter18_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
@@ -408,7 +408,7 @@ if plot71_temperature > 0:
    ax7.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax7.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
 
-plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
+# plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
 # 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
 # AESS=7.7°C  # (Judd 2024)
 # https://www.science.org/doi/10.1126/science.adk3705) 
@@ -420,31 +420,43 @@ def T_model72(t):
 years72 = np.arange(x_anf, x_end + 1 )
 T_72values = T_model72(years72)
 
-# -- 7.1.4. Create DataFrame for convenience
+# -- 7.2.4. Create DataFrame for convenience
 df72 = pd.DataFrame({
 "Year72": years72,
-"Modeled712": T_72values
+"Modeled72": T_72values
 })
 
+# 7.2.6 plot72_temperature
+if plot72_AESS_T > 0:
+   ax8 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax8.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c7, linewidth=3)
+   ax8.tick_params(axis="y", labelcolor=c7)
+   ax8.set_ylim(y_Tmin, y_Tmax) # scale
+   Tax1 = 1 # 0.1))   # Hauptstriche
+   Tax2 = 0.2 # 0.1))   # Nebenstriche
+   ax8.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
+   ax8.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax8.set_ylim(y_Tmin, 3 ) # scale
+  
+# 7.2.7 plot7 Achse und Beschriftung
+if plot72_AESS_T > 0:
+   if plot5_Glen_delta_on > 2:
+      ax8.spines.right.set_position(("outward", 50))
+   else:
+      ax8.spines.right.set_position(("outward", 5))
+   ax8.set_ylabel (
+         "Δ72 Temperature calc in  °C ",
+         color=c7,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+   )
+   ax8.tick_params(axis="y", labelcolor=c7, labelsize=20)
 
-
-
-# 7.9 KurveX – Global annual temperature anomaly (°C, relative to baseline)
-dataT = {
-1880: -0.16, 1881: -0.08, 1882: -0.10, 1883: -0.17, 1884: -0.28,
-1885: -0.33, 1886: -0.31, 1887: -0.36, 1888: -0.18, 1889: -0.11,
-1890: -0.35, 1891: -0.22, 1892: -0.27, 1893: -0.31, 1894: -0.30,
-1895: -0.23, 1896: -0.11, 1897: -0.11, 1898: -0.27, 1899: -0.17,
-1900: -0.09,
-# …
-2000:  0.42, 2001:  0.54, 2002:  0.63, 2003:  0.62, 2004:  0.54,
-2005:  0.67, 2006:  0.63, 2007:  0.66, 2008:  0.54, 2009:  0.64,
-2010:  0.71, 2011:  0.59, 2012:  0.63, 2013:  0.66, 2014:  0.74,
-2015:  0.87, 2016:  1.00, 2017:  0.92, 2018:  0.85, 2019:  0.98,
-2020:  1.02, 2021:  0.85, 2022:  0.89, 2023:  1.18
-}
-yearsT = np.array(list(dataT.keys()))
-tempsT = np.array(list(dataT.values()))
+# 7.2.8 plot71_temperature
+if plot72_AESS_T > 0:
+   ax8.set_ylim(y_Tmin, y_Tmax) # scale
+   ax8.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
+   ax8.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
 
 
 
@@ -704,6 +716,19 @@ elif plot71_temperature == 5:
    # 9.5.9 plot the blue text
    plt.text(tr2x, tr5y, red_text, color=c7, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+elif plot72_AESS_T == 5:
+   line72 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c7, linewidth=2)
+   # 9.5.7 draw bue line as legend
+   fig.add_artist(line72)
+   # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
+   red72_text="red plot72_AESS_T  Temperature "
+   # 9.5.5 plot the blue text
+   plt.text(tr2x, tr5y, red72_text, color=c7, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+
+
 else: # 9.5.9 draw bue line as legend
    plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
@@ -737,6 +762,25 @@ if parameter18_save_png > 0:
    fig.savefig(path, dpi=300, bbox_inches="tight")
 # 9.9 close the plotted figure
 plt.close(fig)
+
+# 7.9 KurveX – Global annual temperature anomaly (°C, relative to baseline)
+dataT79 = {
+1880: -0.16, 1881: -0.08, 1882: -0.10, 1883: -0.17, 1884: -0.28,
+1885: -0.33, 1886: -0.31, 1887: -0.36, 1888: -0.18, 1889: -0.11,
+1890: -0.35, 1891: -0.22, 1892: -0.27, 1893: -0.31, 1894: -0.30,
+1895: -0.23, 1896: -0.11, 1897: -0.11, 1898: -0.27, 1899: -0.17,
+1900: -0.09,
+# …
+2000:  0.42, 2001:  0.54, 2002:  0.63, 2003:  0.62, 2004:  0.54,
+2005:  0.67, 2006:  0.63, 2007:  0.66, 2008:  0.54, 2009:  0.64,
+2010:  0.71, 2011:  0.59, 2012:  0.63, 2013:  0.66, 2014:  0.74,
+2015:  0.87, 2016:  1.00, 2017:  0.92, 2018:  0.85, 2019:  0.98,
+2020:  1.02, 2021:  0.85, 2022:  0.89, 2023:  1.18
+}
+yearsT79 = np.array(list(dataT79.keys()))
+tempsT79 = np.array(list(dataT79.values()))
+
+
 
 
 """
