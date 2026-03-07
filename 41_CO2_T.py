@@ -1,4 +1,4 @@
-# 41h1_CO2_T.py 
+# 41h2_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -108,6 +108,7 @@ header_parameter = header_parameter + f"{plot5_Glen_delta_on}" # plot5_Glen_delt
 header_parameter = header_parameter + f"{plot6_Glen_CO2_on} " # plot2_population_on number inside string
 header_parameter = header_parameter + f"{plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
+header_parameter = header_parameter + f" {plot73_ECS_T} " 
 header_parameter = header_parameter + f"{parameter18_save_png} " 
 # header_parameter = f" parameter= {plot1_Mauna_Loa_}" # 1960 number inside string
 
