@@ -1,4 +1,4 @@
-# 41g4_CO2_T.py 
+# 41g5_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -7,7 +7,8 @@
 # part 4 plot4_CO2_orange2025
 # part 5 plot5_Glen_delta_on
 # part 6 plot6_Glen_CO2_on = 3
-# part 7 plot temperature with right y axis
+# part 71 plot temperature with right y axis
+# part 72 plot temperature with right y axis
 # part 8 print headline in figue
 # part 9 print line 1 to 5 below the figure 
 
@@ -394,7 +395,7 @@ if plot71_temperature > 0:
    else:
       ax7.spines.right.set_position(("outward", 5))
    ax7.set_ylabel (
-         "Δ Temperature calc in  °C ",
+         "Δ Temperature calc71 in °C ",
          color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
@@ -416,7 +417,7 @@ if plot71_temperature > 0:
 # 
 def T_model72(t):
    temp72 = 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-   temp72 = temp72 + 2
+   temp72 = temp72 + 0.5
    return temp72
 
 # 7.2.2 years scale x axis
@@ -448,7 +449,7 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
    else:
       ax8.spines.right.set_position(("outward", 5))
    ax8.set_ylabel (
-         "Δ72 Temperature calc in  °C ",
+         "Δ Temperature calc72 in  °C ",
          color=c72,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
