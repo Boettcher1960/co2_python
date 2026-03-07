@@ -1,4 +1,4 @@
-# 41h5_CO2_T.py 2200
+# 41h7_CO2_T.py 2200
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -476,6 +476,8 @@ if plot72_AESS_T > 0:
    ax8.set_ylim(y_Tmin, y_Tmax) # scale
    ax8.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax8.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
+   ax1.axhspan(1115, 1125, color="red", alpha=0.25, zorder=0)      # 1120 ppm stripe
+   ax1.axhspan(555, 565, color="red", alpha=0.25, zorder=0)        # 560 ppm stripe
 
 # plot73_ECS_T Earth Climate sensitivity 
 # 7.3  dT=ECS*log2(C/C0) # T560ppm=ECS*log2(560/280) 
