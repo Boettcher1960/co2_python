@@ -1,4 +1,4 @@
-# 41h3_CO2_T.py 2200
+# 41h5_CO2_T.py 2200
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -405,7 +405,7 @@ if plot71_temperature > 0:
    else:
       ax7.spines.right.set_position(("outward", 5))
    ax7.set_ylabel (
-         "Δ Temperature calc71 in °C ",
+         "Δ Temperature in °C ",
          color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
@@ -538,41 +538,6 @@ else:
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
             
-# 8.4 legende Mauna Loa blau plot1_Mauna_Loa_
-if plot1_Mauna_Loa_ > 6: # 8.5.1 legende world data plot1_Mauna_Loa_
-   K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
-   plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
-   transform=plt.gca().transAxes)
-   ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
-# 8.5 plot2_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
-if plot1_Mauna_Loa_ > 8:
-   if plot2_population_on > 0:
-      plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-# 8.6 legende
-if plot1_Mauna_Loa_ > 8:
-   if plot3_delta_CO2_red_bars > 0:
-      plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -21, y_max -21], marker="_", markersize=5, color="red", linewidth=8)
-# 8.7 legende '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
-if plot1_Mauna_Loa_ > 8:
-   if plot4_CO2_orange2025 > 0:
-      plt.text(0.02, 0.80," orange: Glen formula ppm = 0.0132 t² - 51 t + 49,536 ", color="orange", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -30.5, y_max -30.5], marker="_", markersize=5, color="orange", linewidth=3)
-# 8.8 legend in the plot
-if plot1_Mauna_Loa_ > 8:
-   if plot5_Glen_delta_on > 0:
-      plt.text(0.02, 0.29," green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling", color="green", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
-# 8.9 legend in the plot
-if plot1_Mauna_Loa_ > 8:
-   if plot6_Glen_CO2_on > 0:
-      plt.text(0.02, 0.85," Red: Glen formula ppm = 0.0132251t² - 51.0337t + 49,536", color="red", fontname="Arial", fontsize=16,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -12, y_max -12], marker="_", markersize=5, color="red", linewidth=3)
 
 
 # 9 part 9 print information below the plot field
@@ -819,8 +784,8 @@ if parameter18_save_png > 0:
    filename = filename + "_"
    filename = filename + header_parameter
    filename = filename + str(x_end)
-   path = f"/Users/thomasboettcher/Desktop/python/{filename}"
-   fig.savefig(path, dpi=300, bbox_inches="tight")
+   #path = f"/Users/thomasboettcher/Desktop/python/{filename}"
+   #fig.savefig(path, dpi=300, bbox_inches="tight")
    path = f"/Users/thomasboettcher/documents/Python/4_Python_CO2/41_CO2_T.png"
    fig.savefig(path, dpi=300, bbox_inches="tight")
 # 9.9 close the plotted figure
@@ -863,6 +828,41 @@ plt.ylabel("Temperature Anomaly (°C)")
 plt.grid(True)
 plt.show()
 """
+# 8.4 legende Mauna Loa blau plot1_Mauna_Loa_
+if plot1_Mauna_Loa_ > 6: # 8.5.1 legende world data plot1_Mauna_Loa_
+   K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
+   plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
+   transform=plt.gca().transAxes)
+   ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
+# 8.5 plot2_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
+if plot1_Mauna_Loa_ > 8:
+   if plot2_population_on > 0:
+      plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
+      transform=plt.gca().transAxes)
+# 8.6 legende
+if plot1_Mauna_Loa_ > 8:
+   if plot3_delta_CO2_red_bars > 0:
+      plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
+      transform=plt.gca().transAxes)
+      ax1.plot([x_anf+1, x_anf +2], [y_max -21, y_max -21], marker="_", markersize=5, color="red", linewidth=8)
+# 8.7 legende '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
+if plot1_Mauna_Loa_ > 8:
+   if plot4_CO2_orange2025 > 0:
+      plt.text(0.02, 0.80," orange: Glen formula ppm = 0.0132 t² - 51 t + 49,536 ", color="orange", fontname="Arial", fontsize=14,
+      transform=plt.gca().transAxes)
+      ax1.plot([x_anf+1, x_anf +2], [y_max -30.5, y_max -30.5], marker="_", markersize=5, color="orange", linewidth=3)
+# 8.8 legend in the plot
+if plot1_Mauna_Loa_ > 8:
+   if plot5_Glen_delta_on > 0:
+      plt.text(0.02, 0.29," green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling", color="green", fontname="Arial", fontsize=14,
+      transform=plt.gca().transAxes)
+      ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
+# 8.9 legend in the plot
+if plot1_Mauna_Loa_ > 8:
+   if plot6_Glen_CO2_on > 0:
+      plt.text(0.02, 0.85," Red: Glen formula ppm = 0.0132251t² - 51.0337t + 49,536", color="red", fontname="Arial", fontsize=16,
+      transform=plt.gca().transAxes)
+      ax1.plot([x_anf+1, x_anf +2], [y_max -12, y_max -12], marker="_", markersize=5, color="red", linewidth=3)
 
 
 # Datenquellen:
