@@ -1,4 +1,4 @@
-# 41g13_CO2_T.py 
+# 41h1_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -498,7 +498,7 @@ df73 = pd.DataFrame({
 "Modeled73": T_73values
 })
 
-# 7.3.6 plot72_temperature
+# 7.3.6 plot73_temperature
 if plot73_ECS_T > 0:
    ax9 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax9.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
@@ -774,15 +774,26 @@ elif plot72_AESS_T == 5:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line72)
    # 9.5.8 write  text 
-   red72_text="AESS_T 72 apparent Earth system sensitivity = 7.7°C * log2(CO2/C0)"
+   red72_text="AESS_T apparent Earth sys sensitivity=7.7°C*log2(CO2/C0)"
    # 9.5.8 plot the text
    plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-
-
 else: # 9.5.9 draw bue line as legend
    plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+if plot73_ECS_T > 0:
+   line73 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c72, linewidth=2)
+   # 9.5.8 draw line72 as legend
+   fig.add_artist(line72)
+   # 9.5.8 write  text 
+   red73_text="ECS=4.5°C*log2(CO2/C0)"
+   # 9.5.8 plot the text
+   plt.text(0.72, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+
+
 # 9.5 print line 5 plot2_population_on
 # 9.6 print line 6
 text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
