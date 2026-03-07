@@ -1,4 +1,4 @@
-# 41f12_CO2_T.py 
+# 41g1_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -30,9 +30,10 @@ plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in 
 plot5_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
-plot7_temperature = 4 # 5,4, 0
+plot71_temperature = 4 # 5,4, 0
 c7 = "red" # plot7 color
-parameter8_save_png = 8 # save png
+plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
+parameter18_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
 y_min = 300 # min value 280
@@ -99,8 +100,8 @@ header_parameter = header_parameter + f"{plot3_delta_CO2_red_bars} " # plot3_del
 header_parameter = header_parameter + f"{plot4_CO2_orange2025}" # plot4_CO2_orange2025 number inside string
 header_parameter = header_parameter + f"{plot5_Glen_delta_on}" # plot5_Glen_delta_on number inside string
 header_parameter = header_parameter + f"{plot6_Glen_CO2_on} " # plot2_population_on number inside string
-header_parameter = header_parameter + f"{plot7_temperature}" 
-header_parameter = header_parameter + f"{parameter8_save_png} " 
+header_parameter = header_parameter + f"{plot71_temperature}" 
+header_parameter = header_parameter + f"{parameter18_save_png} " 
 # header_parameter = f" parameter= {plot1_Mauna_Loa_}" # 1960 number inside string
 
 
@@ -357,7 +358,7 @@ if plot6_Glen_CO2_on > 0:
    ax6.spines.right.set_position(("outward", 60))
 
 # 7 part 1
-# 7.1 plot7_temperature @reescatophuls.bsky.social
+# 7.1 plot71_temperature @reescatophuls.bsky.social
 # https://parisagreementtemperatureindex.com/gwfs-2-quadratic/
 # (0.000617965091650558 * date*date) – (2.45858656778789*date) + 2446.05792853123
 def T_model7(t):
@@ -373,8 +374,8 @@ df7 = pd.DataFrame({
 "Modeled7": T_values
 })
 
-# 7.1.6 plot7_temperature
-if plot7_temperature > 0:
+# 7.1.6 plot71_temperature
+if plot71_temperature > 0:
    ax7 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax7.plot(df7["Year7"], df7["Modeled7"], '--', label="T formula CO2=  K6", color=c7, linewidth=3)
    ax7.tick_params(axis="y", labelcolor=c7)
@@ -386,7 +387,7 @@ if plot7_temperature > 0:
    ax7.set_ylim(y_Tmin, 3 ) # scale
   
 # 7.1.7 plot7 Achse und Beschriftung
-if plot7_temperature > 0:
+if plot71_temperature > 0:
    if plot5_Glen_delta_on > 2:
       ax7.spines.right.set_position(("outward", 50))
    else:
@@ -399,32 +400,36 @@ if plot7_temperature > 0:
    )
    ax7.tick_params(axis="y", labelcolor=c7, labelsize=20)
 
-# 7.1.8 plot7_temperature
-if plot7_temperature > 0:
+# 7.1.8 plot71_temperature
+if plot71_temperature > 0:
    ax7.set_ylim(y_Tmin, y_Tmax) # scale
    # ax7.axhline(1.5, color="red", linestyle="--", linewidth=1.5, alpha=0.7)
    # ax7.axhline(2, color="grey", linestyle="--", linewidth=1.5, alpha=0.7)
    ax7.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax7.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
 
-"""
-# Load the annual GISTEMP data
-url = "https://datahub.io/core/global-temp/r/annual.csv"
-df = pd.read_csv(url)
+plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
+# 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
+# AESS=7.7°C  # (Judd 2024)
+# https://www.science.org/doi/10.1126/science.adk3705) 
+# 
+def T_model72(t):
+   return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
 
-# Inspect the first rows
-print(df.head())
+# 7.2.2 years scale x axis
+years72 = np.arange(x_anf, x_end + 1 )
+T_72values = T_model72(years72)
 
-# Plot
-plt.figure(figsize=(10,5))
-plt.plot(df["Year"], df["Mean"], marker="o")
-plt.title("Global Annual Temperature Anomalies (GISTEMP)")
-plt.xlabel("Year")
-plt.ylabel("Temperature Anomaly (°C)")
-plt.grid(True)
-plt.show()
-"""
-# 4.x KurveX – Global annual temperature anomaly (°C, relative to baseline)
+# -- 7.1.4. Create DataFrame for convenience
+df72 = pd.DataFrame({
+"Year72": years72,
+"Modeled72": T_72values
+})
+
+
+
+
+# 7.9 KurveX – Global annual temperature anomaly (°C, relative to baseline)
 dataT = {
 1880: -0.16, 1881: -0.08, 1882: -0.10, 1883: -0.17, 1884: -0.28,
 1885: -0.33, 1886: -0.31, 1887: -0.36, 1888: -0.18, 1889: -0.11,
@@ -450,7 +455,7 @@ plt.xlim(x_anf, x_end)
 # 8.2.1 blue headline part
 trs = 20
 # header_black = f"CO2 concentration in the atmosphere {x_anf}" # 1960 number inside string
-if plot7_temperature > 0: # one temperature active
+if plot71_temperature > 0: # one temperature active
    # 8.2.3 plot the headline
    # plt.text(-0.1, 1.05, header, color="blue", fontname="Arial", fontsize=18, transform=plt.gca().transAxes)
    plt.text(-0.1, 1.05,
@@ -663,7 +668,7 @@ elif plot6_Glen_CO2_on == 4: # print in line 3
    # 9.2.5 plot the blue text
    plt.text(tr2x, tr4y, red_text, color=c6, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-elif plot7_temperature == 4:
+elif plot71_temperature == 4:
    line7 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c7, linewidth=2)
@@ -688,7 +693,7 @@ if plot2_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
    # 9.5.5 plot the blue text
    plt.text(tr2x, tr5y, blue_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-elif plot7_temperature == 5:
+elif plot71_temperature == 5:
    line7 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c7, linewidth=2)
@@ -717,11 +722,11 @@ plt.tight_layout()
 plt.show()
 
 # 9.7 save the plot line 6
-if parameter8_save_png > 0:
+if parameter18_save_png > 0:
    filename = ""
    filename2 = os.path.basename(__file__) # "1234test.py"
    # take only the first 5 characters
-   first5 = filename2[:parameter8_save_png]
+   first5 = filename2[:parameter18_save_png]
    filename = filename + first5
    filename = filename + "_"
    filename = filename + header_parameter
@@ -732,6 +737,26 @@ if parameter8_save_png > 0:
    fig.savefig(path, dpi=300, bbox_inches="tight")
 # 9.9 close the plotted figure
 plt.close(fig)
+
+
+"""
+# Load the annual GISTEMP data
+url = "https://datahub.io/core/global-temp/r/annual.csv"
+df = pd.read_csv(url)
+
+# Inspect the first rows
+print(df.head())
+
+# Plot
+plt.figure(figsize=(10,5))
+plt.plot(df["Year"], df["Mean"], marker="o")
+plt.title("Global Annual Temperature Anomalies (GISTEMP)")
+plt.xlabel("Year")
+plt.ylabel("Temperature Anomaly (°C)")
+plt.grid(True)
+plt.show()
+"""
+
 
 # Datenquellen:
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
