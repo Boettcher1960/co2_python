@@ -1,4 +1,4 @@
-# 41g6_CO2_T.py 
+# 41g8_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -45,7 +45,7 @@ y_max = 700 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 12 # 4 # max value C
 
-x_anf = 1960 # 1960 geht, 2000 geht
+x_anf = 1900 # 1960 geht, 2000 geht
 x_end = 2100 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
@@ -116,9 +116,13 @@ header_parameter = header_parameter + f"{parameter18_save_png} "
 jahre1 = list(range(1960, x_end))
 
 # Select only 2018–2025
-start = jahre1.index(x_anf)
+if x_anf < 1960:
+   start = jahre1.index(1960)
+else:
+   start = jahre1.index(x_anf)    
 end = jahre1.index(2025) + 1
 jahre1_subset = jahre1[start:end]
+
 
 # -----------------------------
 # 1.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
@@ -175,7 +179,7 @@ if scale_mode == 10:
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 1.8 scale the X value time = 20
-   ax1.xaxis.set_major_locator(MultipleLocator(10))   # Hauptstriche
+   ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
    ax1.xaxis.set_minor_locator(MultipleLocator(2))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=4,  width=1)
