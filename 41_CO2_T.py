@@ -1,4 +1,4 @@
-# 41g2_CO2_T.py 
+# 41g3_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -33,6 +33,7 @@ c6 = "purple" # plot6 color
 plot71_temperature = 4 # 5,4, 0
 c7 = "red" # plot7 color
 plot72_AESS_T= 5 # apparent Earth system sensitivity (AESS=7.7°C)
+c72 = "orange" # plot72 color
 parameter18_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
@@ -429,8 +430,8 @@ df72 = pd.DataFrame({
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
    ax8 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax8.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c7, linewidth=3)
-   ax8.tick_params(axis="y", labelcolor=c7)
+   ax8.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
+   ax8.tick_params(axis="y", labelcolor=c72)
    ax8.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 1 # 0.1))   # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
@@ -446,7 +447,7 @@ if plot72_AESS_T > 0:
       ax8.spines.right.set_position(("outward", 5))
    ax8.set_ylabel (
          "Δ72 Temperature calc in  °C ",
-         color=c7,
+         color=c72,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
    )
@@ -717,15 +718,15 @@ elif plot71_temperature == 5:
    plt.text(tr2x, tr5y, red_text, color=c7, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot72_AESS_T == 5:
-   line72 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   line72 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c7, linewidth=2)
+   marker="o", markersize=3, color=c72, linewidth=2)
    # 9.5.7 draw bue line as legend
    fig.add_artist(line72)
    # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
    red72_text="red plot72_AESS_T  Temperature "
    # 9.5.5 plot the blue text
-   plt.text(tr2x, tr5y, red72_text, color=c7, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 
 
