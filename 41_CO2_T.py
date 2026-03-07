@@ -1,4 +1,4 @@
-# 41g12_CO2_T.py 
+# 41g13_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -8,7 +8,8 @@
 # part 5 plot5_Glen_delta_on
 # part 6 plot6_Glen_CO2_on = 3
 # part 71 plot temperature with right y axis
-# part 72 plot temperature with right y axis
+# part 72 plot temperature ECS = 7.7°C with right y axis
+# part 73 plot temperature ECS = 4.5°C with right y axis
 # part 8 print headline in figue
 # part 9 print line 1 to 5 below the figure 
 
@@ -35,6 +36,9 @@ plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
+plot73_ECS_T= 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
+c73 = "green" # plot73 color
+
 parameter18_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
@@ -419,7 +423,9 @@ if plot71_temperature > 0:
 # 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
 # AESS=7.7°C  # (Judd 2024)
 # https://www.science.org/doi/10.1126/science.adk3705) 
-# 
+# 2025
+# https://www.annualreviews.org/content/journals/10.1146/annurev-earth-032320-064209
+#
 def T_model72(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
    C0=280
@@ -464,15 +470,48 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
    )
    ax8.tick_params(axis="y", labelcolor=c72, labelsize=20)
 
-# 7.2.8 plot71_temperature
+# 7.2.8 plot712_temperature
 if plot72_AESS_T > 0:
    ax8.set_ylim(y_Tmin, y_Tmax) # scale
    ax8.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax8.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
 
+# plot73_ECS_T Earth Climate sensitivity 
+# 7.3  dT=ECS*log2(C/C0) # T560ppm=ECS*log2(560/280) 
+# 
+def T_model73(t):
+   CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
+   C0=280
+   log2_value = np.log2(CO2/C0)
+   # AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
+   ECS = 4.5
+   temp73 = ECS * log2_value
+   return temp73
 
+# 7.3.2 years scale x axis
+years73 = np.arange(x_anf, x_end + 1 )
+T_73values = T_model73(years73)
 
-# Telil 8.1 plot
+# -- 7.3.4. Create DataFrame for convenience
+df73 = pd.DataFrame({
+"Year73": years73,
+"Modeled73": T_73values
+})
+
+# 7.3.6 plot72_temperature
+if plot73_ECS_T > 0:
+   ax9 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax9.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
+   ax9.tick_params(axis="y", labelcolor=c73)
+   ax9.set_ylim(y_Tmin, y_Tmax) # scale
+   Tax1 = 1 # 0.1))   # Hauptstriche
+   Tax2 = 0.2 # 0.1))   # Nebenstriche
+   ax9.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
+   ax9.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax9.set_ylim(y_Tmin, y_Tmax ) # scale
+   
+
+# Teil 8.1 plot
 plt.xlim(x_anf, x_end)
 
 # 8.2 headline part print ablove the plot aerea
