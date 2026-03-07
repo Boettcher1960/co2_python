@@ -1,4 +1,4 @@
-# 41h2_CO2_T.py 
+# 41h3_CO2_T.py 2200
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -43,14 +43,14 @@ parameter18_save_png = 8 # save png
 
 # 0.3.1 scale the left Y axis
 y_min = 300 # min value 280
-y_max = 700 # min value 440 70
+y_max = 1300 # min value 440 70
 
 # 0.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 8 # 4 # max value C
+y_Tmax = 20 # 4 # max value C
 
 x_anf = 1960 # 1960 geht, 2000 geht
-x_end = 2080 # 2026 geht
+x_end = 2200 # 2026 geht
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
@@ -180,8 +180,8 @@ ax1.grid(True)
 # 1.8 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
-   ax1.yaxis.set_major_locator(MultipleLocator(y_grid_CO2))   # Hauptstriche
-   ax1.yaxis.set_minor_locator(MultipleLocator(5))   # Nebenstriche
+   ax1.yaxis.set_major_locator(MultipleLocator(100))   # Hauptstriche
+   ax1.yaxis.set_minor_locator(MultipleLocator(20))   # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 1.8 scale the X value time = 20
@@ -392,7 +392,7 @@ if plot71_temperature > 0:
    ax7.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
    ax7.tick_params(axis="y", labelcolor=c71)
    ax7.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 1 # 0.1))   # Hauptstriche
+   Tax1 = 2 # 0.1))   # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
    ax7.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
    ax7.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
