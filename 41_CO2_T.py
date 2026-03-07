@@ -361,23 +361,23 @@ if plot6_Glen_CO2_on > 0:
 # 7.1 plot71_temperature @reescatophuls.bsky.social
 # https://parisagreementtemperatureindex.com/gwfs-2-quadratic/
 # (0.000617965091650558 * date*date) – (2.45858656778789*date) + 2446.05792853123
-def T_model7(t):
+def T_model71(t):
    return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
 
 # 7.1.2 years scale x axis
-years7 = np.arange(x_anf, x_end + 1 )
-T_values = T_model7(years7)
+years71 = np.arange(x_anf, x_end + 1 )
+T_71values = T_model71(years71)
 
 # -- 7.1.4. Create DataFrame for convenience
 df7 = pd.DataFrame({
-"Year7": years7,
-"Modeled7": T_values
+"Year71": years71,
+"Modeled71": T_71values
 })
 
 # 7.1.6 plot71_temperature
 if plot71_temperature > 0:
    ax7 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax7.plot(df7["Year7"], df7["Modeled7"], '--', label="T formula CO2=  K6", color=c7, linewidth=3)
+   ax7.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c7, linewidth=3)
    ax7.tick_params(axis="y", labelcolor=c7)
    ax7.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 1 # 0.1))   # Hauptstriche
@@ -423,7 +423,7 @@ T_72values = T_model72(years72)
 # -- 7.1.4. Create DataFrame for convenience
 df72 = pd.DataFrame({
 "Year72": years72,
-"Modeled72": T_72values
+"Modeled712": T_72values
 })
 
 
