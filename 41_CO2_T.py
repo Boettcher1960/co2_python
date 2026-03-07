@@ -1,4 +1,4 @@
-# 41g3_CO2_T.py 
+# 41g4_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -31,8 +31,8 @@ plot5_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
 plot71_temperature = 4 # 5,4, 0
-c7 = "red" # plot7 color
-plot72_AESS_T= 5 # apparent Earth system sensitivity (AESS=7.7°C)
+c71 = "red" # plot7 color
+plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
 parameter18_save_png = 8 # save png
 
@@ -378,8 +378,8 @@ df7 = pd.DataFrame({
 # 7.1.6 plot71_temperature
 if plot71_temperature > 0:
    ax7 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax7.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c7, linewidth=3)
-   ax7.tick_params(axis="y", labelcolor=c7)
+   ax7.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
+   ax7.tick_params(axis="y", labelcolor=c71)
    ax7.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 1 # 0.1))   # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
@@ -395,11 +395,11 @@ if plot71_temperature > 0:
       ax7.spines.right.set_position(("outward", 5))
    ax7.set_ylabel (
          "Δ Temperature calc in  °C ",
-         color=c7,
+         color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
    )
-   ax7.tick_params(axis="y", labelcolor=c7, labelsize=20)
+   ax7.tick_params(axis="y", labelcolor=c71, labelsize=20)
 
 # 7.1.8 plot71_temperature
 if plot71_temperature > 0:
@@ -415,7 +415,9 @@ if plot71_temperature > 0:
 # https://www.science.org/doi/10.1126/science.adk3705) 
 # 
 def T_model72(t):
-   return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
+   temp72 = 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
+   temp72 = temp72 + 2
+   return temp72
 
 # 7.2.2 years scale x axis
 years72 = np.arange(x_anf, x_end + 1 )
@@ -430,7 +432,7 @@ df72 = pd.DataFrame({
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
    ax8 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax8.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
+   ax8.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax8.tick_params(axis="y", labelcolor=c72)
    ax8.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 1 # 0.1))   # Hauptstriche
@@ -451,7 +453,7 @@ if plot72_AESS_T > 0:
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
    )
-   ax8.tick_params(axis="y", labelcolor=c7, labelsize=20)
+   ax8.tick_params(axis="y", labelcolor=c72, labelsize=20)
 
 # 7.2.8 plot71_temperature
 if plot72_AESS_T > 0:
@@ -479,7 +481,7 @@ if plot71_temperature > 0: # one temperature active
      color=c6, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
    plt.text(0.48, 1.05,
      f"--> Δ Temperature calculated °C year {x_end}",
-    color=c7, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
+    color=c71, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
 else:   
    header = f"CO2 measured at Mauna Loa up to 2024. Print {x_anf}" # 1960 number inside string
    header = header + f" to {x_end} " # 2026 number inside string
@@ -684,13 +686,13 @@ elif plot6_Glen_CO2_on == 4: # print in line 3
 elif plot71_temperature == 4:
    line7 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c7, linewidth=2)
+   marker="o", markersize=3, color=c71, linewidth=2)
    # 9.4.7 draw bue line as legend
    fig.add_artist(line7)
    # 9.4.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
    red_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
    # 9.2.5 plot the blue text
-   plt.text(tr2x, tr4y, red_text, color=c7, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, red_text, color=c71, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 
 
@@ -709,23 +711,23 @@ if plot2_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
 elif plot71_temperature == 5:
    line7 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c7, linewidth=2)
+   marker="o", markersize=3, color=c71, linewidth=2)
    # 9.5.7 draw bue line as legend
    fig.add_artist(line7)
    # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
    red_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
-   # 9.5.9 plot the blue text
-   plt.text(tr2x, tr5y, red_text, color=c7, fontname="Arial", fontsize=trs,
+   # 9.5.7 plot the blue text
+   plt.text(tr2x, tr5y, red_text, color=c71, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot72_AESS_T == 5:
    line72 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c72, linewidth=2)
-   # 9.5.7 draw bue line as legend
+   # 9.5.8 draw line72 as legend
    fig.add_artist(line72)
-   # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-   red72_text="red plot72_AESS_T  Temperature "
-   # 9.5.5 plot the blue text
+   # 9.5.8 write  text 
+   red72_text="AESS_T 72 apparent Earth system sensitivity = 7.7°C"
+   # 9.5.8 plot the text
    plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 
