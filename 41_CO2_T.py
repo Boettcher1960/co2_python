@@ -1,4 +1,4 @@
-# 41g5_CO2_T.py 
+# 41g6_CO2_T.py 
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -416,8 +416,11 @@ if plot71_temperature > 0:
 # https://www.science.org/doi/10.1126/science.adk3705) 
 # 
 def T_model72(t):
-   temp72 = 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-   temp72 = temp72 + 0.5
+   CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
+   C0=280
+   log2_value = np.log2(CO2/C0)
+   AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
+   temp72=AESS * log2_value
    return temp72
 
 # 7.2.2 years scale x axis
@@ -727,7 +730,7 @@ elif plot72_AESS_T == 5:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line72)
    # 9.5.8 write  text 
-   red72_text="AESS_T 72 apparent Earth system sensitivity = 7.7°C"
+   red72_text="AESS_T 72 apparent Earth system sensitivity = 7.7°C * log2(CO2/C0)"
    # 9.5.8 plot the text
    plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
