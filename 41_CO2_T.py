@@ -1,4 +1,4 @@
-# 41m4_CO2_T.py 
+# 41m5_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -33,6 +33,7 @@ plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa
 c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c3 = "green" # plot3_Glen_CO2 color
+c3 = "#4554A8C6"
 # c3 = "#4B3FD1"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -40,12 +41,12 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 5,4, 0
+plot71_temperature = 0 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
-plot73_ECS_T= 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
-c73 = "#4B3FD1" # plot73 color
+plot73_ECS_T= 4.5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
+c73 = "#2AC99E84" # plot73 color
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
