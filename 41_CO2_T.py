@@ -1,4 +1,4 @@
-# 41k14_CO2_T.py plot 52, 53, 54, 55
+# 41m1_CO2_T.py lines 560 1120 ppm
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -16,7 +16,9 @@
 # part 8 print headline in figue
 # part 9 print line 1 to 5 below the figure 
 
-# part 1 variables
+# -----------------------------
+# part 1 configure  variables
+# -----------------------------
 # 1.1 imports
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -44,8 +46,7 @@ plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
 plot73_ECS_T= 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
 c73 = "green" # plot73 color
-
-parameter18_save_png = 8 # save png
+parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
 y_min = 300 # min value 280
@@ -117,7 +118,7 @@ header_parameter = header_parameter + f"{plot55_population_on}" # plot55_populat
 header_parameter = header_parameter + f"{plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f" {plot73_ECS_T} " 
-header_parameter = header_parameter + f"{parameter18_save_png} " 
+header_parameter = header_parameter + f"{parameter84_save_png} " 
 # header_parameter = f" parameter= {plot1_CO2_Mauna_Loa}" # 1960 number inside string
 # end part 1
 
@@ -125,7 +126,6 @@ header_parameter = header_parameter + f"{parameter18_save_png} "
 #  part 2 plot CO2 Mauna Loa
 # -----------------------------
 # 2.1 years 1960–2025
-# -----------------------------
 years21 = list(range(1960, x_end))
 
 # 2.1.2 Select only 2018–2025
@@ -242,7 +242,13 @@ if plot3_Glen_CO2 > 0:
 
 # no part 4
 
-# -----Kurve 5.2 ------------------------
+# -----------------------------
+# part 5.2 plot52_delta_CO2_red_bars
+# part 5.3 plot53_CO2_orange2025
+# part 5.4 plot54_Glen_delta_on
+# part 5.5 plot55_population_on human earth population 
+# -----------------------------
+# part 5.2 plot52_delta_CO2_red_bars
 # 5.2.2 ΔCO₂ berechnen (per pandas) Balken
 # df["CO2"].diff() Calculates the difference between consecutive CO₂ values
 # -----------------------------
@@ -262,7 +268,7 @@ if plot52_delta_CO2_red_bars > 0:
 if plot52_delta_CO2_red_bars > 6:
    ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
 
-# part 5.3.1 -- Quadratic model function
+# part 5.3 plot53_CO2_orange2025
 # part 5.3.1 -- Quadratic model function
 def co53_model(t):
    return 0.0132251 * t**2 - 51.0337 * t + 49536.7
@@ -308,8 +314,9 @@ if plot53_CO2_orange2025 > 0:
    ax53.set_ylim(y_min, y_max) # scale glen curve same as Mauna loa
    ax53.spines.right.set_position(("outward", 90))
 
+# part 5.4 plot54_Glen_delta_on
 # 5.4 difference Mauna Loa minus Glen_CO2
-# 5.4 print y axis 5 on right side Twin axis for difference
+# 5.4.2 print y axis 5 on right side Twin axis for difference
 if plot54_Glen_delta_on > 0:
    ax54 = ax1.twinx()
    ax54.bar(df53["Year"], df53["Difference"], color="green", alpha=0.4, label="Diff (Actual − Model)")
@@ -327,8 +334,7 @@ if plot54_Glen_delta_on > 0:
       ax54.spines.right.set_position(("axes", 1))
 
 
-
-# ------Kurve 5.5 -----------------------
+# part 5.5 plot55_population_on human earth population 
 # 5.5.1 population up to 2023 (UN WPP 2024 via OWID)
 # url = "https://ourworldindata.org/grapher/population.csv"
 # population4.csv
@@ -782,11 +788,11 @@ plt.tight_layout()
 plt.show()
 
 # 9.7 save the plot line 6
-if parameter18_save_png > 0:
+if parameter84_save_png > 0:
    filename = ""
    filename2 = os.path.basename(__file__) # "1234test.py"
    # take only the first 5 characters
-   first5 = filename2[:parameter18_save_png]
+   first5 = filename2[:parameter84_save_png]
    filename = filename + first5
    filename = filename + "_"
    filename = filename + header_parameter
