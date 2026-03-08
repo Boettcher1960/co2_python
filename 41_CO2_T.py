@@ -1,4 +1,4 @@
-# 41m8_CO2_T.py 
+# 41m9_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -461,9 +461,9 @@ if plot72_AESS_T > 0:
    ax72.tick_params(axis="y", labelcolor=c72)
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 5 # 0.1))     # Hauptstriche
-   Tax55 = 0.2 # 0.1))   # Nebenstriche
+   Tax55 = 1 # 0.1))   # Nebenstriche
    ax72.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax72.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
+   ax72.yaxis.set_minor_locator(MultipleLocator(Tax55))  # Nebenstriche
    ax72.set_ylim(y_Tmin, 3 ) # scale
    ax72.minorticks_off()
 
@@ -481,7 +481,7 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
    )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
 
-# 7.2.8 plot712_temperature
+# 7.2.8 plot72_temperature
 if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
@@ -490,7 +490,6 @@ if plot72_AESS_T > 0:
    ax1.axhspan(558, 562, color="green", alpha=0.25, zorder=0)        # 560 ppm horicontal stripe
    ax72.axvspan(2068, 2069, color="green", alpha=0.25, zorder=0) # vertical bar'
    ax72.axvspan(2177, 2178, color="green", alpha=0.25, zorder=0) # vertical bar'
-   
    ax72.minorticks_off()
 
 # plot73_ECS_T Earth Climate sensitivity 
@@ -508,8 +507,7 @@ def T_model73(t):
 # 7.3.2 years scale x axis
 years73 = np.arange(x_anf, x_end + 1 )
 T_73values = T_model73(years73)
-
-# -- 7.3.4. Create DataFrame for convenience
+# 7.3.4. Create DataFrame for convenience
 df73 = pd.DataFrame({
 "Year73": years73,
 "Modeled73": T_73values
@@ -521,7 +519,7 @@ if plot73_ECS_T > 0:
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 10 # 0.1))    # Hauptstriche
+   Tax1 = 1 # 0.1))    # Hauptstriche
    Tax55 = 0.2 # 0.1))   # Nebenstriche
    ax73.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
    ax73.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
