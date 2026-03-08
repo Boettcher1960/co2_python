@@ -1,4 +1,4 @@
-# 41k11_CO2_T.py plot 51, 52, 53, 54
+# 41k12_CO2_T.py plot 52, 53, 54, 55
 # Thomas Boettcher
 # part 0 imports
 # part 1 configure the figure
@@ -235,60 +235,9 @@ if plot3_Glen_CO2 > 0:
    ax3.tick_params(axis="y", labelcolor="green")
    ax3.set_ylim(y_min, y_max) # scale
    ax3.spines.right.set_position(("outward", 60))
+# end part 3
 
-
-
-
-
-
-
-
-
-
-
-
-# ------Kurve 2-----------------------
-# 3.1.1 population up to 2023 (UN WPP 2024 via OWID)
-# url = "https://ourworldindata.org/grapher/population.csv"
-# population4.csv
-# -----------------------------
-# 3.1.2 population 2023 to 2026 
-# https://www.worldometers.info/world-population/world-population-by-year/
-# 2026	8,300,678,395	0.84%	69,065,325	56
-# 2025	8,231,613,070	0.85%	69,640,498	55
-# 2024	8,161,972,572	0.87%	70,237,642	55
-# 2023	8,091,734,930	0.88%	70,327,738	54
-# population1.csv
-
-if plot55_population_on > 0:
-   pop_df = pd.read_csv("population1.csv")
-   pop_world = (
-         pop_df[pop_df["Entity"] == "World"][["Year", "Population"]]
-         .query("1960 <= Year <= 2026")
-         .sort_values("Year")
-         .reset_index(drop=True)
-      )
-   pop_world_subset = pop_world[start:end]
-   # 3.1.4 in Milliarden
-   pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
-   #end plot55_population_on=1 - print population
-
-# 3.1.5 plot55_population_on=1
-if plot55_population_on > 0:
-   ax2 = ax1.twinx()
-   ax2.spines.right.set_position(("outward", 50))
-   ax2.set_ylabel("Earth Population in Billion", color="green")
-   # 2.5 Legende oben links
-   ax2.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
-   ax2.set_ylabel("Earth Population in Billion", color="green")
-   ax2.tick_params(axis="y", labelcolor="green")
-   # ax2.set_ylim(1, 9) #8
-   ax2.set_ylim(4, 9)
-   #end print_y2=1 - print population
-
-if plot55_population_on == 2: ax2.set_ylim(6.5, 8.5) # andere Skala
-#end plot55_population_on=1 - print population
-
+# no part 4
 
 # -----Kurve 5.2 ------------------------
 # 5.2.2 ΔCO₂ berechnen (per pandas) Balken
@@ -374,6 +323,58 @@ if plot54_Glen_delta_on > 0:
    if plot54_Glen_delta_on > 2:
       ax54.spines.right.set_position(("axes", 1))
 
+
+
+
+
+
+
+
+# ------Kurve 5.5 -----------------------
+# 5.5.1 population up to 2023 (UN WPP 2024 via OWID)
+# url = "https://ourworldindata.org/grapher/population.csv"
+# population4.csv
+# -----------------------------
+# 5.5.2 population 2023 to 2026 
+# https://www.worldometers.info/world-population/world-population-by-year/
+# 2026	8,300,678,395	0.84%	69,065,325	56
+# 2025	8,231,613,070	0.85%	69,640,498	55
+# 2024	8,161,972,572	0.87%	70,237,642	55
+# 2023	8,091,734,930	0.88%	70,327,738	54
+# population1.csv
+
+if plot55_population_on > 0:
+   pop_df = pd.read_csv("population1.csv")
+   pop_world = (
+         pop_df[pop_df["Entity"] == "World"][["Year", "Population"]]
+         .query("1960 <= Year <= 2026")
+         .sort_values("Year")
+         .reset_index(drop=True)
+      )
+   pop_world_subset = pop_world[start:end]
+   # 5.5.4 in Milliarden
+   pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
+   #end plot55_population_on=1 - print population
+
+# 5.5.5 plot55_population_on=1
+if plot55_population_on > 0:
+   ax55 = ax1.twinx()
+   ax55.spines.right.set_position(("outward", 50))
+   ax55.set_ylabel("Earth Population in Billion", color="green")
+   # 2.5 Legende oben links
+   ax55.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
+   ax55.set_ylabel("Earth Population in Billion", color="green")
+   ax55.tick_params(axis="y", labelcolor="green")
+   # ax55.set_ylim(1, 9) #8
+   ax55.set_ylim(4, 9)
+   #end print_y2=1 - print population
+
+if plot55_population_on == 2: ax55.set_ylim(6.5, 8.5) # andere Skala
+#end 5.5.9 plot55_population_on=1 - print population
+
+
+
+
 # 7 part 1
 # 7.1 plot71_temperature @reescatophuls.bsky.social
 # https://parisagreementtemperatureindex.com/gwfs-2-quadratic/
@@ -398,9 +399,9 @@ if plot71_temperature > 0:
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 2 # 0.1))   # Hauptstriche
-   Tax2 = 0.2 # 0.1))   # Nebenstriche
+   Tax55 = 0.2 # 0.1))   # Nebenstriche
    ax71.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax71.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax71.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
    ax71.set_ylim(y_Tmin, 3 ) # scale
   
 # 7.1.7 plot71 Achse und Beschriftung
@@ -455,9 +456,9 @@ if plot72_AESS_T > 0:
    ax72.tick_params(axis="y", labelcolor=c72)
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 5 # 0.1))     # Hauptstriche
-   Tax2 = 0.2 # 0.1))   # Nebenstriche
+   Tax55 = 0.2 # 0.1))   # Nebenstriche
    ax72.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax72.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax72.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
    ax72.set_ylim(y_Tmin, 3 ) # scale
    ax72.minorticks_off()
 
@@ -513,9 +514,9 @@ if plot73_ECS_T > 0:
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 10 # 0.1))    # Hauptstriche
-   Tax2 = 0.2 # 0.1))   # Nebenstriche
+   Tax55 = 0.2 # 0.1))   # Nebenstriche
    ax73.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax73.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax73.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
    ax73.set_ylim(y_Tmin, y_Tmax ) # scale
    ax73.minorticks_off()
 
