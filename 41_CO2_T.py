@@ -1,4 +1,4 @@
-# 41m6_CO2_T.py 
+# 41m7_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -43,7 +43,7 @@ plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 5,4, 0
 c71 = "red" # plot7 color
-plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 4 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
 plot73_ECS_T= 5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
 c73 = "#2AC99E84" # plot73 color
@@ -724,6 +724,17 @@ elif plot71_temperature == 4:
    red_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
    # 9.2.5 plot the blue text
    plt.text(tr2x, tr4y, red_text, color=c71, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+elif plot72_AESS_T == 4:
+   line72 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c72, linewidth=2)
+   # 9.5.8 draw line72 as legend
+   fig.add_artist(line72)
+   # 9.5.8 write  text 
+   red72_text="AESS_T apparent Earth sys sensitivity=7.7°C*log2(CO2/C0)"
+   # 9.5.8 plot the text
+   plt.text(tr2x, tr4y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 
 
