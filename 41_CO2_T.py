@@ -33,14 +33,10 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c3 = "purple" # plot6 color
 c3 = "#4B3FD1"
-
 plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-
-plot31_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
-
-
+plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -110,11 +106,11 @@ yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
 # 0.8 Parameter strig
 header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
-header_parameter = header_parameter + f"{plot31_population_on}" # plot31_population_on number inside string
+header_parameter = header_parameter + f"{plot55_population_on}" # plot55_population_on number inside string
 header_parameter = header_parameter + f"{plot52_delta_CO2_red_bars} " # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
 header_parameter = header_parameter + f"{plot54_Glen_delta_on}" # plot54_Glen_delta_on number inside string
-header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot31_population_on number inside string
+header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot55_population_on number inside string
 header_parameter = header_parameter + f"{plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f" {plot73_ECS_T} " 
@@ -264,7 +260,7 @@ if plot3_Glen_CO2 > 0:
 # 2023	8,091,734,930	0.88%	70,327,738	54
 # population1.csv
 
-if plot31_population_on > 0:
+if plot55_population_on > 0:
    pop_df = pd.read_csv("population1.csv")
    pop_world = (
          pop_df[pop_df["Entity"] == "World"][["Year", "Population"]]
@@ -275,10 +271,10 @@ if plot31_population_on > 0:
    pop_world_subset = pop_world[start:end]
    # 3.1.4 in Milliarden
    pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
-   #end plot31_population_on=1 - print population
+   #end plot55_population_on=1 - print population
 
-# 3.1.5 plot31_population_on=1
-if plot31_population_on > 0:
+# 3.1.5 plot55_population_on=1
+if plot55_population_on > 0:
    ax2 = ax1.twinx()
    ax2.spines.right.set_position(("outward", 50))
    ax2.set_ylabel("Earth Population in Billion", color="green")
@@ -290,8 +286,8 @@ if plot31_population_on > 0:
    ax2.set_ylim(4, 9)
    #end print_y2=1 - print population
 
-if plot31_population_on == 2: ax2.set_ylim(6.5, 8.5) # andere Skala
-#end plot31_population_on=1 - print population
+if plot55_population_on == 2: ax2.set_ylim(6.5, 8.5) # andere Skala
+#end plot55_population_on=1 - print population
 
 
 # -----Kurve 5.2 ------------------------
@@ -584,8 +580,8 @@ plt.text(tr2x, tr2y, blue_text, color="blue", fontname="Arial", fontsize=trs,
 transform=plt.gca().transAxes)
 
 # 9.3 print line 3 below the plot explainations
-# 9.3.2 print line 3 plot31_population_on marker="s"
-if plot31_population_on == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
+# 9.3.2 print line 3 plot55_population_on marker="s"
+if plot55_population_on == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -652,8 +648,8 @@ if plot3_Glen_CO2 == 3: # print in line 3
 
 # 9.4 print line 4 below the plot explainations
 # 9.4 print line 4 below the plot explainations
-# 9.4.2 print line 4 plot31_population_on marker="s"
-if plot31_population_on == 4:
+# 9.4.2 print line 4 plot55_population_on marker="s"
+if plot55_population_on == 4:
    line1 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -722,8 +718,8 @@ elif plot71_temperature == 4:
    transform=plt.gca().transAxes)
 
 
-# 9.5.2 print line 5 plot31_population_on marker="s"
-if plot31_population_on == 5: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
+# 9.5.2 print line 5 plot55_population_on marker="s"
+if plot55_population_on == 5: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -772,7 +768,7 @@ if plot73_ECS_T > 0:
    transform=plt.gca().transAxes)
 
 
-# 9.5 print line 5 plot31_population_on
+# 9.5 print line 5 plot55_population_on
 # 9.6 print line 6
 text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
 text6 = text6 + f" CO2_max= {y_max} " # y_max number inside string
@@ -846,9 +842,9 @@ if plot1_CO2_Mauna_Loa > 6: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
    transform=plt.gca().transAxes)
    ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
-# 8.5 plot31_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
+# 8.5 plot55_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
 if plot1_CO2_Mauna_Loa > 8:
-   if plot31_population_on > 0:
+   if plot55_population_on > 0:
       plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
 # 8.6 legende
