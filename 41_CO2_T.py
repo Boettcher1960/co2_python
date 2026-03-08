@@ -1,4 +1,4 @@
-# 41m9_CO2_T.py 
+# 41m11_CO2_T.py 480 blue bars
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -486,10 +486,11 @@ if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax72.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
-   ax1.axhspan(1118, 1122, color="green", alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-   ax1.axhspan(558, 562, color="green", alpha=0.25, zorder=0)        # 560 ppm horicontal stripe
-   ax72.axvspan(2068, 2069, color="green", alpha=0.25, zorder=0) # vertical bar'
-   ax72.axvspan(2177, 2178, color="green", alpha=0.25, zorder=0) # vertical bar'
+   # c3 = "#4554A8C6"
+   ax1.axhspan(1118, 1122, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+   ax1.axhspan(558, 562, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
+   ax72.axvspan(2068, 2069, color=c3, alpha=0.4, zorder=0) # vertical bar'
+   ax72.axvspan(2177, 2178, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
 
 # plot73_ECS_T Earth Climate sensitivity 
