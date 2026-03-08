@@ -42,7 +42,7 @@ plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
-plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
 plot73_ECS_T= 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
 c73 = "#4B3FD1" # plot73 color
@@ -768,7 +768,7 @@ if plot73_ECS_T > 0:
    transform=fig.transFigure,
    marker="o", markersize=3, color=c72, linewidth=2)
    # 9.5.8 draw line72 as legend
-   fig.add_artist(line72)
+   fig.add_artist(line73)
    # 9.5.8 write  text 
    red73_text="ECS=4.5°C*log2(CO2/C0)"
    # 9.5.8 plot the text
