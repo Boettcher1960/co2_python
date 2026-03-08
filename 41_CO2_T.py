@@ -1,12 +1,12 @@
-# 41k9_CO2_T.py plot 61, 62 64
+# 41k11_CO2_T.py plot 51, 52, 53, 54
 # Thomas Boettcher
 # part 0 imports
 # part 1 configure the figure
 # part 2 plot CO2 Mauna Loa
 # part 3 plot3_Glen_CO2 = 3
 # delta_CO2_red_bars
-# part 4 plot4_CO2_orange2025
-# part 5 plot5_Glen_delta_on
+# part 4 plot53_CO2_orange2025
+# part 5 plot54_Glen_delta_on
 # part 6 plot3_Glen_CO2 = 3
 # part 2 human earth population 
 # part 71 plot temperature with right y axis
@@ -32,10 +32,13 @@ plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t 
 c3 = "purple" # plot6 color
 c3 = "#4B3FD1"
 
+plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
+plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
+
 plot31_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
-plot32_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
-plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot4_CO2_orange2025
-plot5_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
+
+
 plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -106,9 +109,9 @@ yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 # 0.8 Parameter strig
 header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot31_population_on}" # plot31_population_on number inside string
-header_parameter = header_parameter + f"{plot32_delta_CO2_red_bars} " # plot32_delta_CO2_red_bars number inside string
-header_parameter = header_parameter + f"{plot4_CO2_orange2025}" # plot4_CO2_orange2025 number inside string
-header_parameter = header_parameter + f"{plot5_Glen_delta_on}" # plot5_Glen_delta_on number inside string
+header_parameter = header_parameter + f"{plot52_delta_CO2_red_bars} " # plot52_delta_CO2_red_bars number inside string
+header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
+header_parameter = header_parameter + f"{plot54_Glen_delta_on}" # plot54_Glen_delta_on number inside string
 header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot31_population_on number inside string
 header_parameter = header_parameter + f"{plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
@@ -289,36 +292,34 @@ if plot31_population_on == 2: ax2.set_ylim(6.5, 8.5) # andere Skala
 #end plot31_population_on=1 - print population
 
 
-# -----Kurve 3.2 ------------------------
-# 3.2 ΔCO₂ berechnen (per pandas) Balken
+# -----Kurve 5.2 ------------------------
+# 5.2.2 ΔCO₂ berechnen (per pandas) Balken
 # df["CO2"].diff() Calculates the difference between consecutive CO₂ values
 # -----------------------------
-
-if plot32_delta_CO2_red_bars > 0:
+if plot52_delta_CO2_red_bars > 0:
    df["Delta_CO2"] = df["CO2"].diff().fillna(0)  # This line creates a new column in your DataFrame called Delta_CO2.
-   ax32 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax32.spines.right.set_position(("outward", 20))
+   ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax52.spines.right.set_position(("outward", 20))
+# 5.2.5
+if plot52_delta_CO2_red_bars > 0:
+   bars = ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   ax52.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
+   ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
+   ax52.set_ylim(-yr0, yr1) # scale y axis3 right red
 
-if plot32_delta_CO2_red_bars > 0:
-   bars = ax32.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
-   ax32.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
-   ax32.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
-   ax32.tick_params(axis="y", labelcolor="red", labelsize=16)
-   ax32.set_ylim(-yr0, yr1) # scale y axis3 right red
-   #ax32.set_ylim(-2, 14)
+# 5.2.8 Add numbers on top of delta CO2 bars
+if plot52_delta_CO2_red_bars > 6:
+   ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
 
-# 3.2. 5 Add numbers on top of delta CO2 bars
-if plot32_delta_CO2_red_bars > 6:
-   ax32.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
-
-# 4 part 4
-# 4.1 Kurve4 -- 2. Quadratic model function
-def co2_model4(t):
+# part 5.3.1 -- Quadratic model function
+# part 5.3.1 -- Quadratic model function
+def co53_model(t):
    return 0.0132251 * t**2 - 51.0337 * t + 49536.7
 
-# 4.2 Kurve4 . Real Mauna Loa CO₂ annual data 1960–2023
+# 5.3.2 Kurve4 . Real Mauna Loa CO₂ annual data 1960–2023
 # 2025 = 424.61 + 3.69 ppm = 428.26
-data4 = {
+data53 = {
 1960: 316.91, 1961: 317.64, 1962: 318.45, 1963: 318.99, 1964: 319.62,
 1965: 320.04, 1966: 321.37, 1967: 322.18, 1968: 323.05, 1969: 324.62,
 1970: 325.68, 1971: 326.32, 1972: 327.46, 1973: 329.68, 1974: 330.19,
@@ -333,52 +334,47 @@ data4 = {
 2015: 401.01, 2016: 404.41, 2017: 406.76, 2018: 408.72, 2019: 411.66, # 2025 = 424.61 + 3.69 ppm
 2020: 414.24, 2021: 417.41, 2022: 418.52, 2023: 421.24, 2024: 424.61 , 2025: 428.26
 }
-years4 = np.array(list(data4.keys()))
-
-# 4.3
-co2_actual4 = np.array(list(data4.values()))
-co2_modeled4 = co2_model4(years4)
-
-# 4.3. Calculate difference (actual minus model)
-difference4 = co2_actual4 - co2_modeled4
-
-# -- 4.4. Create DataFrame for convenience
-df4 = pd.DataFrame({
-"Year": years4,
-"Actual": co2_actual4,
-"Modeled": co2_modeled4,
-"Difference": difference4
+years53 = np.array(list(data53.keys()))
+# 5.3.4
+co53_actual = np.array(list(data53.values()))
+co53_modeled = co53_model(years53)
+# 5.3.5 Calculate difference (actual minus model)
+difference53 = co53_actual - co53_modeled
+# 5.3.6 Create DataFrame for convenience
+df53 = pd.DataFrame({
+"Year": years53,
+"Actual": co53_actual,
+"Modeled": co53_modeled,
+"Difference": difference53
 })
+# 5.3.7
+if plot53_CO2_orange2025 > 0:
+   ax53 = ax1.twinx()
+   ax53.tick_params(labelright=False) # removes the right-side numbers
+   ax53.set_ylabel("") # removes the axis label
+# 5.3.8 Legende oben links
+if plot53_CO2_orange2025 > 0:
+   ax53.plot(df53["Year"], df53["Modeled"], '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
+   ax53.set_ylim(y_min, y_max) # scale glen curve same as Mauna loa
+   ax53.spines.right.set_position(("outward", 90))
 
-# 4.6
-if plot4_CO2_orange2025 > 0:
-   ax4 = ax1.twinx()
-   ax4.tick_params(labelright=False) # removes the right-side numbers
-   ax4.set_ylabel("") # removes the axis label
-
-# 4.5 Legende oben links
-if plot4_CO2_orange2025 > 0:
-   ax4.plot(df4["Year"], df4["Modeled"], '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
-   ax4.set_ylim(y_min, y_max) # scale glen curve same as Mauna loa
-   ax4.spines.right.set_position(("outward", 90))
-
-# 5 part 5 difference Mauna Loa minus Glen_CO2
+# 5.4 difference Mauna Loa minus Glen_CO2
 # 5.4 print y axis 5 on right side Twin axis for difference
-if plot5_Glen_delta_on > 0:
-   ax5 = ax1.twinx()
-   ax5.bar(df4["Year"], df4["Difference"], color="green", alpha=0.4, label="Diff (Actual − Model)")
-   ax5.set_ylabel(
+if plot54_Glen_delta_on > 0:
+   ax54 = ax1.twinx()
+   ax54.bar(df53["Year"], df53["Difference"], color="green", alpha=0.4, label="Diff (Actual − Model)")
+   ax54.set_ylabel(
       "Difference Mauna Loa - Glen-parabol (ppm)  (plot 5)",
       color="green",
       fontsize=14,
       labelpad=-4   # smaller = closer to axis
       )
 
-   ax5.tick_params(axis="y", labelcolor="green")
-   #ax5.set_ylim(-1, 13) # scale
-   ax5.set_ylim(-yr0, yr1) # scale
-   if plot5_Glen_delta_on > 2:
-      ax5.spines.right.set_position(("axes", 1))
+   ax54.tick_params(axis="y", labelcolor="green")
+   #ax54.set_ylim(-1, 13) # scale
+   ax54.set_ylim(-yr0, yr1) # scale
+   if plot54_Glen_delta_on > 2:
+      ax54.spines.right.set_position(("axes", 1))
 
 # 7 part 1
 # 7.1 plot71_temperature @reescatophuls.bsky.social
@@ -411,7 +407,7 @@ if plot71_temperature > 0:
   
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
-   if plot5_Glen_delta_on > 2:
+   if plot54_Glen_delta_on > 2:
       ax71.spines.right.set_position(("outward", 50))
    else:
       ax71.spines.right.set_position(("outward", 5))
@@ -469,7 +465,7 @@ if plot72_AESS_T > 0:
 
 # 7.2.7 plot7 Achse und Beschriftung if plot71_temperature > 0:
 if plot72_AESS_T > 0 and plot71_temperature < 1:
-   if plot5_Glen_delta_on > 2:
+   if plot54_Glen_delta_on > 2:
       ax72.spines.right.set_position(("outward", 50))
    else:
       ax72.spines.right.set_position(("outward", 5))
@@ -599,7 +595,7 @@ if plot31_population_on == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    plt.text(tr2x, tr3y, blue_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.3.3 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
-elif plot32_delta_CO2_red_bars == 3 or plot32_delta_CO2_red_bars == 7:
+elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
    line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
    marker="_", markersize=5, color="red", linewidth=8)
@@ -611,7 +607,7 @@ elif plot32_delta_CO2_red_bars == 3 or plot32_delta_CO2_red_bars == 7:
    plt.text(tr2x, tr3y, text4, color="red", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.3.4 work_ print line 3 orange Glen data below the figure
-elif plot4_CO2_orange2025 == 3: # print in line 3 up to 2025
+elif plot53_CO2_orange2025 == 3: # print in line 3 up to 2025
    line3 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color="orange", linewidth=2)
@@ -624,7 +620,7 @@ elif plot4_CO2_orange2025 == 3: # print in line 3 up to 2025
    transform=plt.gca().transAxes)
    # 9.3.5 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 # 9.3.5  print line 3 green Glen 
-elif plot5_Glen_delta_on == 3: # print in line4
+elif plot54_Glen_delta_on == 3: # print in line4
    line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1 lr3y
    transform=fig.transFigure,
    marker="_", markersize=5, color="green", linewidth=8)
@@ -664,7 +660,7 @@ if plot31_population_on == 4:
    plt.text(tr2x, tr4y, blue_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.4.3 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
-if plot32_delta_CO2_red_bars == 4 or plot32_delta_CO2_red_bars == 8:
+if plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
    marker="_", markersize=5, color="red", linewidth=8)
@@ -676,7 +672,7 @@ if plot32_delta_CO2_red_bars == 4 or plot32_delta_CO2_red_bars == 8:
    plt.text(tr2x, tr4y, text4, color="red", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.4.4 work_ print line 4 orange Glen data below the figure
-if plot4_CO2_orange2025 == 4: # print in line 3 up to 2025
+if plot53_CO2_orange2025 == 4: # print in line 3 up to 2025
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color="orange", linewidth=2)
@@ -688,7 +684,7 @@ if plot4_CO2_orange2025 == 4: # print in line 3 up to 2025
    plt.text(tr2x, tr4y, red_text, color="orange", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.4.5 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
-elif plot5_Glen_delta_on == 4: # print in line4
+elif plot54_Glen_delta_on == 4: # print in line4
    line5 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1 lr3y
    transform=fig.transFigure,
    marker="_", markersize=5, color="green", linewidth=8)
@@ -855,19 +851,19 @@ if plot1_CO2_Mauna_Loa > 8:
       transform=plt.gca().transAxes)
 # 8.6 legende
 if plot1_CO2_Mauna_Loa > 8:
-   if plot32_delta_CO2_red_bars > 0:
+   if plot52_delta_CO2_red_bars > 0:
       plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -21, y_max -21], marker="_", markersize=5, color="red", linewidth=8)
 # 8.7 legende '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
 if plot1_CO2_Mauna_Loa > 8:
-   if plot4_CO2_orange2025 > 0:
+   if plot53_CO2_orange2025 > 0:
       plt.text(0.02, 0.80," orange: Glen formula ppm = 0.0132 t² - 51 t + 49,536 ", color="orange", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -30.5, y_max -30.5], marker="_", markersize=5, color="orange", linewidth=3)
 # 8.8 legend in the plot
 if plot1_CO2_Mauna_Loa > 8:
-   if plot5_Glen_delta_on > 0:
+   if plot54_Glen_delta_on > 0:
       plt.text(0.02, 0.29," green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
