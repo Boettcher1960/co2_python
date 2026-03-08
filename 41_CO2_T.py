@@ -4,14 +4,16 @@
 # part 1 configure the figure
 # part 2 plot CO2 Mauna Loa
 # part 3 plot3_Glen_CO2 = 3
-# delta_CO2_red_bars
-# part 4 plot53_CO2_orange2025
-# part 5 plot54_Glen_delta_on
-# part 6 plot3_Glen_CO2 = 3
+#
+# part 5.2 plot52_delta_CO2_red_bars
+# part 5.3 plot53_CO2_orange2025
+# part 5.4 plot54_Glen_delta_on
 # part 2 human earth population 
+#
 # part 71 plot temperature with right y axis
 # part 72 plot temperature ECS = 7.7°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
+#
 # part 8 print headline in figue
 # part 9 print line 1 to 5 below the figure 
 
