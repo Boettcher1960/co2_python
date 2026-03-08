@@ -1,4 +1,4 @@
-# 41m2_CO2_T.py lines 560=2068, 2069    1120 ppm 2177
+# 41m4_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -32,8 +32,8 @@ import sys
 plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
-c3 = "purple" # plot6 color
-c3 = "#4B3FD1"
+c3 = "green" # plot3_Glen_CO2 color
+# c3 = "#4B3FD1"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -45,7 +45,7 @@ c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
 plot73_ECS_T= 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
-c73 = "green" # plot73 color
+c73 = "#4B3FD1" # plot73 color
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
@@ -485,10 +485,10 @@ if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax72.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
-   ax1.axhspan(1118, 1122, color="red", alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-   ax1.axhspan(558, 562, color="red", alpha=0.25, zorder=0)        # 560 ppm horicontal stripe
-   ax72.axvspan(2068, 2069, color="red", alpha=0.25, zorder=0) # vertical bar'
-   ax72.axvspan(2177, 2178, color="red", alpha=0.25, zorder=0) # vertical bar'
+   ax1.axhspan(1118, 1122, color="green", alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+   ax1.axhspan(558, 562, color="green", alpha=0.25, zorder=0)        # 560 ppm horicontal stripe
+   ax72.axvspan(2068, 2069, color="green", alpha=0.25, zorder=0) # vertical bar'
+   ax72.axvspan(2177, 2178, color="green", alpha=0.25, zorder=0) # vertical bar'
    
    ax72.minorticks_off()
 
@@ -646,7 +646,7 @@ if plot3_Glen_CO2 == 3: # print in line 3
    # 9.2.3 draw bue line as legend
    fig.add_artist(line6)
    # 9.2.4 write blue text
-   red_text="purple dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
+   red_text="green dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
    # c3 = "#4B3FD1"
    plt.text(tr2x, tr3y, red_text, color=c3, fontname="Arial", fontsize=trs,
