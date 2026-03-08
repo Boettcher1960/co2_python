@@ -1,14 +1,13 @@
-# 41k12_CO2_T.py plot 52, 53, 54, 55
+# 41k14_CO2_T.py plot 52, 53, 54, 55
 # Thomas Boettcher
-# part 0 imports
-# part 1 configure the figure
+# part 1 configure 
 # part 2 plot CO2 Mauna Loa
 # part 3 plot3_Glen_CO2 = 3
 #
 # part 5.2 plot52_delta_CO2_red_bars
 # part 5.3 plot53_CO2_orange2025
 # part 5.4 plot54_Glen_delta_on
-# part 2 human earth population 
+# part 5.5 plot55_population_on human earth population 
 #
 # part 71 plot temperature with right y axis
 # part 72 plot temperature ECS = 7.7°C with right y axis
@@ -17,8 +16,8 @@
 # part 8 print headline in figue
 # part 9 print line 1 to 5 below the figure 
 
-# part 0 variables
-# 0.1 imports
+# part 1 variables
+# 1.1 imports
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -27,16 +26,18 @@ from matplotlib.ticker import MultipleLocator
 import os
 import sys
 
-# 0.2 Parameter decide which curves to plot
+# 1.2 Parameter decide which curves to plot
 plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c3 = "purple" # plot6 color
 c3 = "#4B3FD1"
+# no part 4
 plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
+# no part 6
 plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -46,11 +47,11 @@ c73 = "green" # plot73 color
 
 parameter18_save_png = 8 # save png
 
-# 0.3.1 scale the left Y axis
+# 1.3.1 scale the left Y axis
 y_min = 300 # min value 280
 y_max = 1300 # min value 440 70
 
-# 0.3.2 scale the right Y axis
+# 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 20 # 4 # max value C
 
@@ -62,7 +63,7 @@ xdiff = (x_end - x_anf) / 10 # for legend print
 
 scale_mode = 10 # 0 7 8 10 hansen 10
 # -----------------------------
-# 0.4 Plot (x-width, y-width) Size of the figure in inches 
+# 1.4 Plot (x-width, y-width) Size of the figure in inches 
 # -----------------------------
 y_grid_CO2 = 10
 if scale_mode == 7:
@@ -76,20 +77,20 @@ else:
    fig, ax1 = plt.subplots(figsize=(13, 7))
 
 
-# 0.4 scale the text rows below the plot field
+# 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
 tr1y = -.16 # text row 1 y end value -.3...1 -.15
 tr2x = 0.01 # text row 2 x value -.3...1 -0.08
 tr2y = -.24 # text row 2 y end value -.3...1 -.24
 
-# 0.5 scale the text rows below the plot field
+# 1.5 scale the text rows below the plot field
 tr3y = -.32 # text row 1 y end value -.3...1 -.32
 tr4y = -.40 # text row 1 y end value -.3...1 -.40
 tr5y = -.48 # text row 1 y end value -.3...1 -.48
 tr6y = -.56 # text row 1 y end value -.3...1 -.56
 trs = 20 # trs = 16 # fontsize=14
 
-# 0.6 scale the legend lines below the plot field
+# 1.6 scale the legend lines below the plot field
 lr2x1 = 0.065 # line row 2 x value begin 0.065
 lr2x2 = 0.085 # line row 2 x value end 0.085
 lr2y = 0.215 # line row 2 y value begin 0.215
@@ -97,26 +98,28 @@ lr3y = 0.17 # line row 3 y value begin 0.17
 lr4y = 0.124 # line row 4 y value begin 0.124
 lr5y = 0.078 # line row 5 y value begin 0.08
 
-# 0.7 scale the right y axis
+# 1.7 scale the right y axis
 yr0=ydiff/8
 yr0 = int(yr0+0.49) # cast to integer result = 2 (int)
 yr1=ydiff-yr0
 yr1=4
 yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
-# 0.8 Parameter strig
+# 1.8 Parameter strig
 header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
-header_parameter = header_parameter + f"{plot55_population_on}" # plot55_population_on number inside string
+header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot55_population_on number inside string
+
 header_parameter = header_parameter + f"{plot52_delta_CO2_red_bars} " # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
 header_parameter = header_parameter + f"{plot54_Glen_delta_on}" # plot54_Glen_delta_on number inside string
-header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot55_population_on number inside string
+header_parameter = header_parameter + f"{plot55_population_on}" # plot55_population_on number inside string
+
 header_parameter = header_parameter + f"{plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f" {plot73_ECS_T} " 
 header_parameter = header_parameter + f"{parameter18_save_png} " 
 # header_parameter = f" parameter= {plot1_CO2_Mauna_Loa}" # 1960 number inside string
-
+# end part 1
 
 # -----------------------------
 #  part 2 plot CO2 Mauna Loa
@@ -125,7 +128,7 @@ header_parameter = header_parameter + f"{parameter18_save_png} "
 # -----------------------------
 years21 = list(range(1960, x_end))
 
-# Select only 2018–2025
+# 2.1.2 Select only 2018–2025
 if x_anf < 1960:
    start = years21.index(1960)
 else:
@@ -171,20 +174,20 @@ fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 ax1.set_xlabel("year", fontsize=16 )
 plt.xticks(fontsize=16)
-# 2.4.6 write "CO₂ in ppm" left Axis upwards
+# write "CO₂ in ppm" left Axis upwards
 ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
-# 2.4.7 write the numbers left of plot field
+# 2.6 write the numbers left of plot field
 ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
 ax1.grid(True)
 
-# 2.5 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
+# 2.7 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
    ax1.yaxis.set_major_locator(MultipleLocator(100))   # Hauptstriche
    ax1.yaxis.set_minor_locator(MultipleLocator(20))   # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-   # 2.6 scale the X value time = 20
+   # 2.8 scale the X value time = 20
    ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
    ax1.xaxis.set_minor_locator(MultipleLocator(2))   # Nebenstriche
@@ -219,7 +222,7 @@ years3 = np.arange(x_anf, x_end +1 )
 co3_values = co3_ppm(years3)
 
 # -- 3.3. Create DataFrame for convenience
-df6 = pd.DataFrame({
+df3 = pd.DataFrame({
 "Year3": years3,
 "Modeled3": co3_values
 })
@@ -231,7 +234,7 @@ if plot3_Glen_CO2 > 0:
    ax3.tick_params(right=False, labelright=False) # remove Zahlen
 # 3.5
 if plot3_Glen_CO2 > 0:
-   ax3.plot(df6["Year3"], df6["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c3, linewidth=3)
+   ax3.plot(df3["Year3"], df3["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c3, linewidth=3)
    ax3.tick_params(axis="y", labelcolor="green")
    ax3.set_ylim(y_min, y_max) # scale
    ax3.spines.right.set_position(("outward", 60))
@@ -322,11 +325,6 @@ if plot54_Glen_delta_on > 0:
    ax54.set_ylim(-yr0, yr1) # scale
    if plot54_Glen_delta_on > 2:
       ax54.spines.right.set_position(("axes", 1))
-
-
-
-
-
 
 
 
