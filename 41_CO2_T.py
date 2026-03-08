@@ -1,14 +1,14 @@
-# 41k7_CO2_T.py plot 61, 62 64
+# 41k9_CO2_T.py plot 61, 62 64
 # Thomas Boettcher
-# part 0 variables
-# part 1 
+# part 0 imports
+# part 1 configure the figure
 # part 2 plot CO2 Mauna Loa
 # part 2 human earth population 
 # part 3 
 # delta_CO2_red_bars
 # part 4 plot4_CO2_orange2025
 # part 5 plot5_Glen_delta_on
-# part 6 plot6_Glen_CO2_on = 3
+# part 6 plot3_Glen_CO2 = 3
 # part 71 plot temperature with right y axis
 # part 72 plot temperature ECS = 7.7°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
@@ -28,9 +28,9 @@ import sys
 # 0.2 Parameter decide which curves to plot
 plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
-plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
-c6 = "purple" # plot6 color
-c6 = "#4B3FD1"
+plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
+c3 = "purple" # plot6 color
+c3 = "#4B3FD1"
 
 plot31_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot32_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -109,7 +109,7 @@ header_parameter = header_parameter + f"{plot31_population_on}" # plot31_populat
 header_parameter = header_parameter + f"{plot32_delta_CO2_red_bars} " # plot32_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot4_CO2_orange2025}" # plot4_CO2_orange2025 number inside string
 header_parameter = header_parameter + f"{plot5_Glen_delta_on}" # plot5_Glen_delta_on number inside string
-header_parameter = header_parameter + f"{plot6_Glen_CO2_on} " # plot31_population_on number inside string
+header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot31_population_on number inside string
 header_parameter = header_parameter + f"{plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f" {plot73_ECS_T} " 
@@ -205,6 +205,37 @@ if scale_mode == 10:
 else:
   ax1.set_ylim(y_min, y_max)
 # end part 2 Mauna Loa
+
+# -----------------------------
+# 3.1 Kurve6 Jahre 1960–3025
+# -----------------------------
+# CO₂ Funktion
+def co3_ppm(t):
+   return 0.0132251 * t**2 - 51.0337 * t + 49536.7
+
+# 3.2 Jahre von 1960 bis 3000
+years3 = np.arange(x_anf, x_end +1 )
+co3_values = co3_ppm(years3)
+
+# -- 3.3. Create DataFrame for convenience
+df6 = pd.DataFrame({
+"Year3": years3,
+"Modeled3": co3_values
+})
+# 3.4
+if plot3_Glen_CO2 > 0:
+   ax3 = ax1.twinx()
+   ax3.spines.right.set_position(("outward", 90))
+   ax3.spines["right"].set_visible(False) # remove right y-Achse
+   ax3.tick_params(right=False, labelright=False) # remove Zahlen
+# 3.5
+if plot3_Glen_CO2 > 0:
+   ax3.plot(df6["Year3"], df6["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c3, linewidth=3)
+   ax3.tick_params(axis="y", labelcolor="green")
+   ax3.set_ylim(y_min, y_max) # scale
+   ax3.spines.right.set_position(("outward", 60))
+
+
 
 
 
@@ -348,34 +379,6 @@ if plot5_Glen_delta_on > 0:
    ax5.set_ylim(-yr0, yr1) # scale
    if plot5_Glen_delta_on > 2:
       ax5.spines.right.set_position(("axes", 1))
-# -----------------------------
-# 6.1 Kurve6 Jahre 1960–3025
-# -----------------------------
-# CO₂ Funktion
-def co6_ppm(t):
-   return 0.0132251 * t**2 - 51.0337 * t + 49536.7
-
-# 6.2 Jahre von 1960 bis 3000
-years6 = np.arange(x_anf, x_end +1 )
-co6_values = co6_ppm(years6)
-
-# -- 6.4. Create DataFrame for convenience
-df6 = pd.DataFrame({
-"Year6": years6,
-"Modeled6": co6_values
-})
-
-if plot6_Glen_CO2_on > 0:
-   ax6 = ax1.twinx()
-   ax6.spines.right.set_position(("outward", 90))
-   ax6.spines["right"].set_visible(False) # remove right y-Achse
-   ax6.tick_params(right=False, labelright=False) # remove Zahlen
-
-if plot6_Glen_CO2_on > 0:
-   ax6.plot(df6["Year6"], df6["Modeled6"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c6, linewidth=3)
-   ax6.tick_params(axis="y", labelcolor="green")
-   ax6.set_ylim(y_min, y_max) # scale
-   ax6.spines.right.set_position(("outward", 60))
 
 # 7 part 1
 # 7.1 plot71_temperature @reescatophuls.bsky.social
@@ -537,7 +540,7 @@ if plot71_temperature > 0: # one temperature active
      color="blue", fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
    plt.text(0.24, 1.05,
      f"- - CO2 quadratic",
-     color=c6, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
+     color=c3, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
    plt.text(0.48, 1.05,
      f"--> Δ Temperature calculated °C year {x_end}",
     color=c71, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
@@ -634,17 +637,17 @@ elif plot5_Glen_delta_on == 3: # print in line4
    transform=plt.gca().transAxes)
    # 9.3.6_ print line 3 red Glen data below the figure
 # 9.3.6  print line 6 red Glen 
-if plot6_Glen_CO2_on == 3: # print in line 3
+if plot3_Glen_CO2 == 3: # print in line 3
    line6 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c6, linewidth=2)
+   marker="o", markersize=3, color=c3, linewidth=2)
    # 9.2.3 draw bue line as legend
    fig.add_artist(line6)
    # 9.2.4 write blue text
    red_text="purple dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
-   # c6 = "#4B3FD1"
-   plt.text(tr2x, tr3y, red_text, color=c6, fontname="Arial", fontsize=trs,
+   # c3 = "#4B3FD1"
+   plt.text(tr2x, tr3y, red_text, color=c3, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.3 end print line 3 below the plot explainations
 
@@ -697,16 +700,16 @@ elif plot5_Glen_delta_on == 4: # print in line4
    plt.text(tr2x, tr4y, green_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.4.6_ print line 3 red Glen data below the figure
-elif plot6_Glen_CO2_on == 4: # print in line 3
+elif plot3_Glen_CO2 == 4: # print in line 3
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c6, linewidth=2)
+   marker="o", markersize=3, color=c3, linewidth=2)
    # 9.2.3 draw bue line as legend
    fig.add_artist(line4)
    # 9.2.4 write blue text
    red_text=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
-   plt.text(tr2x, tr4y, red_text, color=c6, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, red_text, color=c3, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot71_temperature == 4:
    line7 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
@@ -870,7 +873,7 @@ if plot1_CO2_Mauna_Loa > 8:
       ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
 # 8.9 legend in the plot
 if plot1_CO2_Mauna_Loa > 8:
-   if plot6_Glen_CO2_on > 0:
+   if plot3_Glen_CO2 > 0:
       plt.text(0.02, 0.85," Red: Glen formula ppm = 0.0132251t² - 51.0337t + 49,536", color="red", fontname="Arial", fontsize=16,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -12, y_max -12], marker="_", markersize=5, color="red", linewidth=3)
