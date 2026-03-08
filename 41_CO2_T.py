@@ -49,15 +49,15 @@ c73 = "green" # plot73 color
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
-y_min = 1110 # 300 # min value 280
-y_max = 1130 # 1300 # min value 440 70
+y_min = 300 # 300 # min value 280
+y_max = 1300 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 20 # 4 # max value C
 
-x_anf = 2170 # 1960 2000 
-x_end = 2180 # 2200 2026 
+x_anf = 1960 # 1960 2000 
+x_end = 2200 # 2200 2026 
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
@@ -183,14 +183,14 @@ ax1.grid(True)
 # 2.7 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
-   ax1.yaxis.set_major_locator(MultipleLocator(10))   # Hauptstriche
-   ax1.yaxis.set_minor_locator(MultipleLocator(2))    # Nebenstriche
+   ax1.yaxis.set_major_locator(MultipleLocator(100))   # Hauptstriche
+   ax1.yaxis.set_minor_locator(MultipleLocator(20))    # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 2.8 scale the X value time = 20
-   ax1.xaxis.set_major_locator(MultipleLocator(2))   # Hauptstriche
+   ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
-   ax1.xaxis.set_minor_locator(MultipleLocator(1))   # Nebenstriche
+   ax1.xaxis.set_minor_locator(MultipleLocator(10))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=4,  width=1)
    # ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
