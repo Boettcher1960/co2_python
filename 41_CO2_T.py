@@ -1,4 +1,4 @@
-# 41m1_CO2_T.py lines 560 1120 ppm
+# 41m2_CO2_T.py lines 560=2068, 2069    1120 ppm 2177
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -49,15 +49,15 @@ c73 = "green" # plot73 color
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
-y_min = 300 # min value 280
-y_max = 1300 # min value 440 70
+y_min = 1110 # 300 # min value 280
+y_max = 1130 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 20 # 4 # max value C
 
-x_anf = 1960 # 1960 geht, 2000 geht
-x_end = 2200 # 2026 geht
+x_anf = 2170 # 1960 2000 
+x_end = 2180 # 2200 2026 
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
@@ -183,14 +183,14 @@ ax1.grid(True)
 # 2.7 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
-   ax1.yaxis.set_major_locator(MultipleLocator(100))   # Hauptstriche
-   ax1.yaxis.set_minor_locator(MultipleLocator(20))   # Nebenstriche
+   ax1.yaxis.set_major_locator(MultipleLocator(10))   # Hauptstriche
+   ax1.yaxis.set_minor_locator(MultipleLocator(2))    # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 2.8 scale the X value time = 20
-   ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
+   ax1.xaxis.set_major_locator(MultipleLocator(2))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
-   ax1.xaxis.set_minor_locator(MultipleLocator(2))   # Nebenstriche
+   ax1.xaxis.set_minor_locator(MultipleLocator(1))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=4,  width=1)
    # ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
@@ -485,8 +485,11 @@ if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax72.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
-   ax1.axhspan(1115, 1125, color="red", alpha=0.25, zorder=0)      # 1120 ppm stripe
-   ax1.axhspan(555, 565, color="red", alpha=0.25, zorder=0)        # 560 ppm stripe
+   ax1.axhspan(1118, 1122, color="red", alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+   ax1.axhspan(558, 562, color="red", alpha=0.25, zorder=0)        # 560 ppm horicontal stripe
+   ax72.axvspan(2068, 2069, color="red", alpha=0.25, zorder=0) # vertical bar'
+   ax72.axvspan(2177, 2178, color="red", alpha=0.25, zorder=0) # vertical bar'
+   
    ax72.minorticks_off()
 
 # plot73_ECS_T Earth Climate sensitivity 
