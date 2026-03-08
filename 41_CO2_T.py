@@ -1,9 +1,11 @@
-# 41k5_CO2_T.py plot 31, 32 34
+# 41k6_CO2_T.py plot 61, 62 64
 # Thomas Boettcher
 # part 0 variables
-# part 1 plot CO2 Mauna Loa
+# part 1 
+# part 2 plot CO2 Mauna Loa
 # part 2 human earth population 
-# part 3 delta_CO2_red_bars
+# part 3 
+# delta_CO2_red_bars
 # part 4 plot4_CO2_orange2025
 # part 5 plot5_Glen_delta_on
 # part 6 plot6_Glen_CO2_on = 3
@@ -24,7 +26,7 @@ import os
 import sys
 
 # 0.2 Parameter decide which curves to plot
-plot1_Mauna_Loa_ = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
 plot31_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot32_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -101,7 +103,7 @@ yr1=4
 yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
 # 0.8 Parameter strig
-header_parameter = f"{plot1_Mauna_Loa_}" # 1960 number inside string
+header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot31_population_on}" # plot31_population_on number inside string
 header_parameter = header_parameter + f"{plot32_delta_CO2_red_bars} " # plot32_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot4_CO2_orange2025}" # plot4_CO2_orange2025 number inside string
@@ -111,24 +113,23 @@ header_parameter = header_parameter + f"{plot71_temperature}"
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f" {plot73_ECS_T} " 
 header_parameter = header_parameter + f"{parameter18_save_png} " 
-# header_parameter = f" parameter= {plot1_Mauna_Loa_}" # 1960 number inside string
+# header_parameter = f" parameter= {plot1_CO2_Mauna_Loa}" # 1960 number inside string
 
 
 # -----------------------------
-#  part 1 plot CO2 Mauna Loa
+#  part 2 plot CO2 Mauna Loa
 # -----------------------------
-# 1.1 Kurve1 Jahre 1960–2025
+# 2.1 years 1960–2025
 # -----------------------------
-
-jahre1 = list(range(1960, x_end))
+years21 = list(range(1960, x_end))
 
 # Select only 2018–2025
 if x_anf < 1960:
-   start = jahre1.index(1960)
+   start = years21.index(1960)
 else:
-   start = jahre1.index(x_anf)    
-end = jahre1.index(2025) + 1
-jahre1_subset = jahre1[start:end]
+   start = years21.index(x_anf)    
+end = years21.index(2025) + 1
+years21_subset = years21[start:end]
 
 
 # -----------------------------
@@ -158,7 +159,7 @@ co2_values1 = [
 # 1.3 subset skip the old years
 co2_values1_subset = co2_values1[start:end]
 df = pd.DataFrame({
-"Jahr": jahre1_subset,
+"Jahr": years21_subset,
 "CO2": co2_values1_subset
 })
 
@@ -557,11 +558,11 @@ plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
 
 # 9.2 print line 1 blue Mauna Loa data below the figure
 # 9.2 print line 2 below the plot explainations
-if plot1_Mauna_Loa_ == 3: # 8.5.1 legende world data plot1_Mauna_Loa_
+if plot1_CO2_Mauna_Loa == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color="blue", fontname="Arial", fontsize=18,
    transform=plt.gca().transAxes)
-   # elif plot1_Mauna_Loa_ == 1:
+   # elif plot1_CO2_Mauna_Loa == 1:
 else: # 9.2.2 draw bue line as legend
    line1 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
@@ -576,7 +577,7 @@ transform=plt.gca().transAxes)
 
 # 9.3 print line 3 below the plot explainations
 # 9.3.2 print line 3 plot31_population_on marker="s"
-if plot31_population_on == 3: # 8.5.1 legende world data plot1_Mauna_Loa_
+if plot31_population_on == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -714,7 +715,7 @@ elif plot71_temperature == 4:
 
 
 # 9.5.2 print line 5 plot31_population_on marker="s"
-if plot31_population_on == 5: # 8.5.1 legende world data plot1_Mauna_Loa_
+if plot31_population_on == 5: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -831,37 +832,37 @@ plt.ylabel("Temperature Anomaly (°C)")
 plt.grid(True)
 plt.show()
 """
-# 8.4 legende Mauna Loa blau plot1_Mauna_Loa_
-if plot1_Mauna_Loa_ > 6: # 8.5.1 legende world data plot1_Mauna_Loa_
+# 8.4 legende Mauna Loa blau plot1_CO2_Mauna_Loa
+if plot1_CO2_Mauna_Loa > 6: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
    plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
    transform=plt.gca().transAxes)
    ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
 # 8.5 plot31_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
-if plot1_Mauna_Loa_ > 8:
+if plot1_CO2_Mauna_Loa > 8:
    if plot31_population_on > 0:
       plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
 # 8.6 legende
-if plot1_Mauna_Loa_ > 8:
+if plot1_CO2_Mauna_Loa > 8:
    if plot32_delta_CO2_red_bars > 0:
       plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -21, y_max -21], marker="_", markersize=5, color="red", linewidth=8)
 # 8.7 legende '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
-if plot1_Mauna_Loa_ > 8:
+if plot1_CO2_Mauna_Loa > 8:
    if plot4_CO2_orange2025 > 0:
       plt.text(0.02, 0.80," orange: Glen formula ppm = 0.0132 t² - 51 t + 49,536 ", color="orange", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -30.5, y_max -30.5], marker="_", markersize=5, color="orange", linewidth=3)
 # 8.8 legend in the plot
-if plot1_Mauna_Loa_ > 8:
+if plot1_CO2_Mauna_Loa > 8:
    if plot5_Glen_delta_on > 0:
       plt.text(0.02, 0.29," green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
 # 8.9 legend in the plot
-if plot1_Mauna_Loa_ > 8:
+if plot1_CO2_Mauna_Loa > 8:
    if plot6_Glen_CO2_on > 0:
       plt.text(0.02, 0.85," Red: Glen formula ppm = 0.0132251t² - 51.0337t + 49,536", color="red", fontname="Arial", fontsize=16,
       transform=plt.gca().transAxes)
