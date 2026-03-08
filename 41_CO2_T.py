@@ -1,4 +1,4 @@
-# 41h7_CO2_T.py 2200
+# 41k1_CO2_T.py 2200
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -388,37 +388,37 @@ df7 = pd.DataFrame({
 
 # 7.1.6 plot71_temperature
 if plot71_temperature > 0:
-   ax7 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax7.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
-   ax7.tick_params(axis="y", labelcolor=c71)
-   ax7.set_ylim(y_Tmin, y_Tmax) # scale
+   ax71 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax71.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
+   ax71.tick_params(axis="y", labelcolor=c71)
+   ax71.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 2 # 0.1))   # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
-   ax7.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax7.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
-   ax7.set_ylim(y_Tmin, 3 ) # scale
+   ax71.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
+   ax71.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax71.set_ylim(y_Tmin, 3 ) # scale
   
 # 7.1.7 plot7 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot5_Glen_delta_on > 2:
-      ax7.spines.right.set_position(("outward", 50))
+      ax71.spines.right.set_position(("outward", 50))
    else:
-      ax7.spines.right.set_position(("outward", 5))
-   ax7.set_ylabel (
+      ax71.spines.right.set_position(("outward", 5))
+   ax71.set_ylabel (
          "Δ Temperature in °C ",
          color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
    )
-   ax7.tick_params(axis="y", labelcolor=c71, labelsize=20)
+   ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
 
 # 7.1.8 plot71_temperature
 if plot71_temperature > 0:
-   ax7.set_ylim(y_Tmin, y_Tmax) # scale
-   # ax7.axhline(1.5, color="red", linestyle="--", linewidth=1.5, alpha=0.7)
-   # ax7.axhline(2, color="grey", linestyle="--", linewidth=1.5, alpha=0.7)
-   ax7.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
-   ax7.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
+   ax71.set_ylim(y_Tmin, y_Tmax) # scale
+   # ax71.axhline(1.5, color="red", linestyle="--", linewidth=1.5, alpha=0.7)
+   # ax71.axhline(2, color="grey", linestyle="--", linewidth=1.5, alpha=0.7)
+   ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
+   ax71.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
 
 # plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
 # 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
@@ -501,17 +501,17 @@ df73 = pd.DataFrame({
 "Modeled73": T_73values
 })
 
-# 7.3.6 plot73_temperature
+# 7.3.6 plot_ax73_temperature
 if plot73_ECS_T > 0:
-   ax9 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax9.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
-   ax9.tick_params(axis="y", labelcolor=c73)
-   ax9.set_ylim(y_Tmin, y_Tmax) # scale
+   ax73 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
+   ax73.tick_params(axis="y", labelcolor=c73)
+   ax73.set_ylim(y_Tmin, y_Tmax) # scale
    Tax1 = 1 # 0.1))   # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
-   ax9.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax9.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
-   ax9.set_ylim(y_Tmin, y_Tmax ) # scale
+   ax73.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
+   ax73.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax73.set_ylim(y_Tmin, y_Tmax ) # scale
    
 
 # Teil 8.1 plot
