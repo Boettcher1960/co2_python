@@ -1,4 +1,4 @@
-# 41m5_CO2_T.py 
+# 41m6_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -45,7 +45,7 @@ plot71_temperature = 0 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 c72 = "orange" # plot72 color
-plot73_ECS_T= 4.5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
 c73 = "#2AC99E84" # plot73 color
 parameter84_save_png = 8 # save png
 
@@ -767,14 +767,18 @@ else: # 9.5.9 draw bue line as legend
 if plot73_ECS_T > 0:
    line73 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c72, linewidth=2)
+   marker="o", markersize=3, color=c73, linewidth=2)
    # 9.5.8 draw line72 as legend
    fig.add_artist(line73)
    # 9.5.8 write  text 
-   red73_text="ECS=4.5°C*log2(CO2/C0)"
-   # 9.5.8 plot the text
-   plt.text(0.72, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
-   transform=plt.gca().transAxes)
+   if plot72_AESS_T > 0:
+      red73_text="ECS=4.5°C*log2(CO2/C0)"
+      plt.text(0.72, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+      transform=plt.gca().transAxes)
+   else:            
+       red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
+       plt.text(tr2x, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+       transform=plt.gca().transAxes)
 
 
 # 9.5 print line 5 plot55_population_on
