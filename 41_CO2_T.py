@@ -1,4 +1,4 @@
-# 41k2_CO2_T.py 2200
+# 41k4_CO2_T.py 2200
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -24,7 +24,7 @@ import os
 import sys
 
 # 0.2 Parameter decide which curves to plot
-plot1_Mauna_Loa_ = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot1_Mauna_Loa_ = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
 plot2_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot3_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -32,6 +32,7 @@ plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in 
 plot5_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
 c6 = "purple" # plot6 color
+c6 = "#4B3FD1"
 plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -635,6 +636,7 @@ if plot6_Glen_CO2_on == 3: # print in line 3
    # 9.2.4 write blue text
    red_text="purple dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
+   c6 = "#4B3FD1"
    plt.text(tr2x, tr3y, red_text, color=c6, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.3 end print line 3 below the plot explainations
