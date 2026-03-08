@@ -1,4 +1,4 @@
-# 41m7_CO2_T.py 
+# 41m8_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -782,7 +782,7 @@ if plot73_ECS_T > 0:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line73)
    # 9.5.8 write  text 
-   if plot72_AESS_T > 0:
+   if plot72_AESS_T == 5:
       red73_text="ECS=4.5°C*log2(CO2/C0)"
       plt.text(0.72, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
       transform=plt.gca().transAxes)
