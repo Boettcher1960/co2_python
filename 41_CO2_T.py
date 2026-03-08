@@ -1,4 +1,4 @@
-# 41k6_CO2_T.py plot 61, 62 64
+# 41k7_CO2_T.py plot 61, 62 64
 # Thomas Boettcher
 # part 0 variables
 # part 1 
@@ -28,13 +28,14 @@ import sys
 # 0.2 Parameter decide which curves to plot
 plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
+plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
+c6 = "purple" # plot6 color
+c6 = "#4B3FD1"
+
 plot31_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot32_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot4_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot4_CO2_orange2025
 plot5_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot6_Glen_CO2_on = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
-c6 = "purple" # plot6 color
-c6 = "#4B3FD1"
 plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -133,7 +134,7 @@ years21_subset = years21[start:end]
 
 
 # -----------------------------
-# 1.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+# 2.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # https://gml.noaa.gov/ccgg/trends/mlo.html
 # https://gml.noaa.gov/ccgg/trends/global.html
 # -----------------------------
@@ -151,12 +152,11 @@ co2_values1 = [
 424.61, # 2024
 428.26 # 2025 = 424.61 + 3.69 ppm
 ]
-
-# 1.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
-# 1.2.2 world data not found
+# 2.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
+# 2.2.2 world data not found
 # https://gml.noaa.gov/ccgg/trends/global.html
 
-# 1.3 subset skip the old years
+# 2.3 subset skip the old years
 co2_values1_subset = co2_values1[start:end]
 df = pd.DataFrame({
 "Jahr": years21_subset,
@@ -164,29 +164,26 @@ df = pd.DataFrame({
 })
 
 
-# 1.5 add more space below plot
+# 2.4.1 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
-
-# 1.6 print blue Mauna Loa
+# 2.4.2 print blue Mauna Loa
 ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 ax1.set_xlabel("year", fontsize=16 )
 plt.xticks(fontsize=16)
-
-# 1.7.2 write "CO₂ in ppm" left Axis upwards
+# 2.4.6 write "CO₂ in ppm" left Axis upwards
 ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
-
-# 1.7.4 write the numbers left of plot field
+# 2.4.7 write the numbers left of plot field
 ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
 ax1.grid(True)
 
-# 1.8 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
+# 2.5 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
    ax1.yaxis.set_major_locator(MultipleLocator(100))   # Hauptstriche
    ax1.yaxis.set_minor_locator(MultipleLocator(20))   # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-   # 1.8 scale the X value time = 20
+   # 2.6 scale the X value time = 20
    ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
    ax1.xaxis.set_minor_locator(MultipleLocator(2))   # Nebenstriche
@@ -207,6 +204,16 @@ if scale_mode == 10:
    y_block = (y_max - y_min) / y_grid_CO2  # 120 / 20 = 6 y_block
 else:
   ax1.set_ylim(y_min, y_max)
+# end part 2 Mauna Loa
+
+
+
+
+
+
+
+
+
 
 # ------Kurve 2-----------------------
 # 3.1.1 population up to 2023 (UN WPP 2024 via OWID)
