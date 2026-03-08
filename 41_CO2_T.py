@@ -1,4 +1,4 @@
-# 41k1_CO2_T.py 2200
+# 41k2_CO2_T.py 2200
 # Thomas Boettcher
 # part 0 variables
 # part 1 plot CO2 Mauna Loa
@@ -398,7 +398,7 @@ if plot71_temperature > 0:
    ax71.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
    ax71.set_ylim(y_Tmin, 3 ) # scale
   
-# 7.1.7 plot7 Achse und Beschriftung
+# 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot5_Glen_delta_on > 2:
       ax71.spines.right.set_position(("outward", 50))
@@ -415,8 +415,6 @@ if plot71_temperature > 0:
 # 7.1.8 plot71_temperature
 if plot71_temperature > 0:
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
-   # ax71.axhline(1.5, color="red", linestyle="--", linewidth=1.5, alpha=0.7)
-   # ax71.axhline(2, color="grey", linestyle="--", linewidth=1.5, alpha=0.7)
    ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax71.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
 
@@ -447,37 +445,39 @@ df72 = pd.DataFrame({
 
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
-   ax8 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax8.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
-   ax8.tick_params(axis="y", labelcolor=c72)
-   ax8.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 1 # 0.1))   # Hauptstriche
+   ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
+   ax72.tick_params(axis="y", labelcolor=c72)
+   ax72.set_ylim(y_Tmin, y_Tmax) # scale
+   Tax1 = 5 # 0.1))     # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
-   ax8.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax8.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
-   ax8.set_ylim(y_Tmin, 3 ) # scale
-  
+   ax72.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
+   ax72.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
+   ax72.set_ylim(y_Tmin, 3 ) # scale
+   ax72.minorticks_off()
+
 # 7.2.7 plot7 Achse und Beschriftung if plot71_temperature > 0:
 if plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot5_Glen_delta_on > 2:
-      ax8.spines.right.set_position(("outward", 50))
+      ax72.spines.right.set_position(("outward", 50))
    else:
-      ax8.spines.right.set_position(("outward", 5))
-   ax8.set_ylabel (
+      ax72.spines.right.set_position(("outward", 5))
+   ax72.set_ylabel (
          "Δ Temperature calc72 in  °C ",
          color=c72,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
    )
-   ax8.tick_params(axis="y", labelcolor=c72, labelsize=20)
+   ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
 
 # 7.2.8 plot712_temperature
 if plot72_AESS_T > 0:
-   ax8.set_ylim(y_Tmin, y_Tmax) # scale
-   ax8.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
-   ax8.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
+   ax72.set_ylim(y_Tmin, y_Tmax) # scale
+   ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
+   ax72.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
    ax1.axhspan(1115, 1125, color="red", alpha=0.25, zorder=0)      # 1120 ppm stripe
    ax1.axhspan(555, 565, color="red", alpha=0.25, zorder=0)        # 560 ppm stripe
+   ax72.minorticks_off()
 
 # plot73_ECS_T Earth Climate sensitivity 
 # 7.3  dT=ECS*log2(C/C0) # T560ppm=ECS*log2(560/280) 
@@ -507,12 +507,12 @@ if plot73_ECS_T > 0:
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 1 # 0.1))   # Hauptstriche
+   Tax1 = 10 # 0.1))    # Hauptstriche
    Tax2 = 0.2 # 0.1))   # Nebenstriche
    ax73.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
    ax73.yaxis.set_minor_locator(MultipleLocator(Tax2))   # Nebenstriche
    ax73.set_ylim(y_Tmin, y_Tmax ) # scale
-   
+   ax73.minorticks_off()
 
 # Teil 8.1 plot
 plt.xlim(x_anf, x_end)
