@@ -1,4 +1,4 @@
-# 41r2_CO2_T.py scale y axis lines
+# 41r3_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -58,7 +58,7 @@ parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
 y_min = 300 # 300 # min value 280
-y_max = 500 # 1300 # min value 440 70
+y_max = 600 # 1300 # min value 440 70
 if y_max - y_min < 11:
    y_mayor_ticks = 2
    y_minor_ticks = 0.2
@@ -83,12 +83,12 @@ else:
    y_minor_ticks = 50
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 8 # 4 # max value C
+y_Tmax = 6 # 4 # max value C
 if y_Tmax - y_Tmin < 1:
    y_Tmayor_ticks = 2
    y_Tminor_ticks = 0.2
-elif y_Tmax - y_Tmin < 6:
-   y_Tmayor_ticks = 2
+elif y_Tmax - y_Tmin < 7:
+   y_Tmayor_ticks = 1
    y_Tminor_ticks = 0.2
 elif y_Tmax - y_Tmin < 11:
    y_Tmayor_ticks = 2
