@@ -773,7 +773,7 @@ if plot73_ECS_T > 0:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line73)
    # 9.5.8 write  text 
-   if plot72_AESS_T == 5:
+   if plot72_AESS_T == 5 and plot73_ECS_T == 5:
       red73_text="ECS=4.5°C*log2(CO2/C0)"
       plt.text(0.72, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
       transform=plt.gca().transAxes)
@@ -802,11 +802,11 @@ else: # plot73_ECS_T = 6
    fig.add_artist(line73)
    # 9.6.8 write  text 
    red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
-   text6 = f"."
+   text6 = f".text6..."
    plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
-       transform=plt.gca().transAxes)
-   plt.text(tr2x, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
-       transform=plt.gca().transAxes)
+      transform=plt.gca().transAxes)
+   #plt.text(-0.12, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+   #    transform=plt.gca().transAxes)
 
 
 plt.show()
