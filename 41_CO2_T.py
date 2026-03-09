@@ -10,7 +10,7 @@
 # part 5.5 plot55_population_on human earth population 
 #
 # part 71 plot temperature with right y axis
-# part 72 plot temperature ECS = 7.7°C with right y axis
+# part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
 #
 # part 8 print headline in figue
@@ -41,9 +41,9 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 5,4, 0
+plot71_temperature = 4 # 5,4, 0
 c71 = "red" # plot71 color
-plot72_AESS_T= 4 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:
    c72 = "red" # plot72 color
 else:   
@@ -452,7 +452,7 @@ df72 = pd.DataFrame({
 })
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
-   red72_text="AESS_T apparent Earth sys sensitivity = 8°C*log2(CO2/C0)"
+   red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0)"
    ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
