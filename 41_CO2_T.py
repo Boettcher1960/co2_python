@@ -1,4 +1,4 @@
-# 41p8_CO2_T.py scale y axis lines
+# 41p9_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -58,16 +58,17 @@ parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
 y_min = 300 # 300 # min value 280
-y_max = 1300 # 1300 # min value 440 70
+y_max = 700 # 1300 # min value 440 70
 if y_max - y_min < 100:
    y_mayor_ticks = 10
-   y_minor_ticks = 1
+   y_minor_ticks = 2
 elif y_max - y_min < 500:
    y_mayor_ticks = 50
    y_minor_ticks = 10
 elif y_max - y_min < 1100:
    y_mayor_ticks = 100
-   y_minor_ticks = 10
+   y_minor_ticks = 20
+   y_minor_grid  = 10
 else: 
    y_mayor_ticks = 200 # Hauptstriche y axis
    y_minor_ticks = 50
@@ -77,6 +78,15 @@ y_Tmax = 20 # 4 # max value C
 
 x_anf = 1960 # 1960 2000 
 x_end = 2200 # 2200 2026 
+if x_end - x_anf < 10:
+   x_mayor_ticks = 1
+   x_minor_ticks = 1
+if x_end - x_anf < 50:
+   x_mayor_ticks = 10
+   x_minor_ticks = 2
+else:
+   x_mayor_ticks = 20
+   x_minor_ticks = 10
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
@@ -182,9 +192,8 @@ co2_values1 = [
 # 2.3 subset skip the old years
 co2_values1_subset = co2_values1[start:end]
 df = pd.DataFrame({
-"Jahr": years21_subset,
-"CO2": co2_values1_subset
-})
+     "Jahr": years21_subset,
+     "CO2": co2_values1_subset })
 # 2.4.1 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # 2.4.2 print blue Mauna Loa
@@ -204,9 +213,9 @@ if scale_mode == 10:
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 2.8 scale the X value time = 20
-   ax1.xaxis.set_major_locator(MultipleLocator(20))   # Hauptstriche
+   ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))   # Hauptstriche
    ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
-   ax1.xaxis.set_minor_locator(MultipleLocator(10))   # Nebenstriche
+   ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=4,  width=1)
    # ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
