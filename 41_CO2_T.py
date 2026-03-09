@@ -1,4 +1,4 @@
-# 41p1_CO2_T.py line 6
+# 41p2_CO2_T.py line 6
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -761,6 +761,7 @@ elif plot72_AESS_T == 5:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line72)
    # 9.5.8 write  text 
+   red72_text="AESS_T Apparent Earth Sensitivity=8°C*log2(CO2/C0)"
    plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 else: # 9.5.9 draw bue line as legend
@@ -775,7 +776,7 @@ if plot73_ECS_T > 0:
    # 9.5.8 write  text 
    if plot72_AESS_T == 5 and plot73_ECS_T == 5:
       red73_text="ECS=4.5°C*log2(CO2/C0)"
-      plt.text(0.72, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+      plt.text(0.71, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
       transform=plt.gca().transAxes)
    else:            
        red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
