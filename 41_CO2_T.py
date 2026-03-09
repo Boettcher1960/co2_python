@@ -1,4 +1,4 @@
-# 41p6_CO2_T.py 550 1100 ppm lines
+# 41p7_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -59,6 +59,14 @@ parameter84_save_png = 8 # save png
 # 1.3.1 scale the left Y axis
 y_min = 300 # 300 # min value 280
 y_max = 1300 # 1300 # min value 440 70
+y_mayor_line = 200 # Hauptstriche y axis
+if y_max - y_min < 100:
+   y_mayor_line = 10
+elif y_max - y_min < 500:
+   y_mayor_line = 50
+elif y_max - y_min < 1100:
+   y_mayor_line = 100
+else: y_mayor_line = 200 # Hauptstriche y axis
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
@@ -188,7 +196,7 @@ ax1.grid(True)
 # 2.7 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
-   ax1.yaxis.set_major_locator(MultipleLocator(100))   # Hauptstriche
+   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_line))   # Hauptstriche
    ax1.yaxis.set_minor_locator(MultipleLocator(20))    # Nebenstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
