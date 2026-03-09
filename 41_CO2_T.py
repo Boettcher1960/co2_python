@@ -1,4 +1,4 @@
-# 41p9_CO2_T.py scale y axis lines
+# 41r1_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -57,9 +57,18 @@ else:
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
-y_min = 300 # 300 # min value 280
-y_max = 700 # 1300 # min value 440 70
-if y_max - y_min < 100:
+y_min = 545 # 300 # min value 280
+y_max = 554 # 1300 # min value 440 70
+if y_max - y_min < 11:
+   y_mayor_ticks = 2
+   y_minor_ticks = 0.2
+elif y_max - y_min < 21:
+   y_mayor_ticks = 5
+   y_minor_ticks = 1
+elif y_max - y_min < 50:
+   y_mayor_ticks = 10
+   y_minor_ticks = 2
+elif y_max - y_min < 101:
    y_mayor_ticks = 10
    y_minor_ticks = 2
 elif y_max - y_min < 500:
@@ -76,14 +85,17 @@ else:
 y_Tmin = 0 # min value °C
 y_Tmax = 20 # 4 # max value C
 
-x_anf = 1960 # 1960 2000 
-x_end = 2200 # 2200 2026 
-if x_end - x_anf < 10:
+x_anf = 2065 # 1960 2000 
+x_end = 2069 # 2200 2026 
+if x_end - x_anf < 5:
+   x_mayor_ticks = 1
+   x_minor_ticks = 0.5
+elif x_end - x_anf < 10:
    x_mayor_ticks = 1
    x_minor_ticks = 1
-if x_end - x_anf < 50:
-   x_mayor_ticks = 10
-   x_minor_ticks = 2
+elif x_end - x_anf < 50:
+   x_mayor_ticks = 5
+   x_minor_ticks = 1
 else:
    x_mayor_ticks = 20
    x_minor_ticks = 10
@@ -230,7 +242,6 @@ if scale_mode == 10:
        line.set_alpha(0.4)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
-   y_block = (y_max - y_min) / y_grid_CO2  # 120 / 20 = 6 y_block
 else:
    ax1.set_ylim(y_min, y_max)
    # end part 2 Mauna Loa
@@ -503,7 +514,7 @@ if plot72_AESS_T > 0:
    # c3 = "#4554A8C6"
    ax1.axhspan(1098, 1102, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
    ax1.axhspan(548, 552, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-   ax72.axvspan(2068, 2069, color=c3, alpha=0.4, zorder=0) # vertical bar'
+   ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
    ax72.axvspan(2177, 2178, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
    # end 7.2
