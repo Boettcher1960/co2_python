@@ -1,4 +1,4 @@
-# 41n2_CO2_T.py 275ppm basis
+# 41n4_CO2_T.py AESS=8
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -117,14 +117,14 @@ yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot55_population_on number inside string
 
-header_parameter = header_parameter + f"{plot52_delta_CO2_red_bars} " # plot52_delta_CO2_red_bars number inside string
+header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
 header_parameter = header_parameter + f"{plot54_Glen_delta_on}" # plot54_Glen_delta_on number inside string
 header_parameter = header_parameter + f"{plot55_population_on}" # plot55_population_on number inside string
 
-header_parameter = header_parameter + f"{plot71_temperature}" 
+header_parameter = header_parameter + f" 7({plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
-header_parameter = header_parameter + f" {plot73_ECS_T} " 
+header_parameter = header_parameter + f"{plot73_ECS_T} " 
 header_parameter = header_parameter + f"{parameter84_save_png} " 
 # header_parameter = f" parameter= {plot1_CO2_Mauna_Loa}" # 1960 number inside string
 # end part 1
@@ -333,12 +333,12 @@ if plot54_Glen_delta_on > 0:
       fontsize=14,
       labelpad=-4   # smaller = closer to axis
       )
-
    ax54.tick_params(axis="y", labelcolor="green")
    #ax54.set_ylim(-1, 13) # scale
    ax54.set_ylim(-yr0, yr1) # scale
    if plot54_Glen_delta_on > 2:
       ax54.spines.right.set_position(("axes", 1))
+   # end 5.4
 
 
 # part 5.5 plot55_population_on human earth population 
@@ -353,7 +353,6 @@ if plot54_Glen_delta_on > 0:
 # 2024	8,161,972,572	0.87%	70,237,642	55
 # 2023	8,091,734,930	0.88%	70,327,738	54
 # population1.csv
-
 if plot55_population_on > 0:
    pop_df = pd.read_csv("population1.csv")
    pop_world = (
@@ -366,7 +365,6 @@ if plot55_population_on > 0:
    # 5.5.4 in Milliarden
    pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
    #end plot55_population_on=1 - print population
-
 # 5.5.5 plot55_population_on=1
 if plot55_population_on > 0:
    ax55 = ax1.twinx()
@@ -379,7 +377,6 @@ if plot55_population_on > 0:
    # ax55.set_ylim(1, 9) #8
    ax55.set_ylim(4, 9)
    #end print_y2=1 - print population
-
 if plot55_population_on == 2: ax55.set_ylim(6.5, 8.5) # andere Skala
 #end 5.5.9 plot55_population_on=1 - print population
 
@@ -445,22 +442,20 @@ def T_model72(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
    C0=275
    log2_value = np.log2(CO2/C0)
-   AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
+   AESS=8 # apparent Earth system sensitivity (AESS=7.7°C)
    temp72=AESS * log2_value
    return temp72
-
 # 7.2.2 years scale x axis
 years72 = np.arange(x_anf, x_end + 1 )
 T_72values = T_model72(years72)
-
-# -- 7.2.4. Create DataFrame for convenience
+# 7.2.4. Create DataFrame for convenience
 df72 = pd.DataFrame({
 "Year72": years72,
 "Modeled72": T_72values
 })
-
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
+   red72_text="AESS_T apparent Earth sys sensitivity = 8°C*log2(CO2/C0)"
    ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
@@ -495,6 +490,7 @@ if plot72_AESS_T > 0:
    ax72.axvspan(2068, 2069, color=c3, alpha=0.4, zorder=0) # vertical bar'
    ax72.axvspan(2177, 2178, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
+   # end 7.2
 
 
 # plot73_ECS_T Earth Climate sensitivity 
@@ -735,8 +731,6 @@ elif plot72_AESS_T == 4:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line72)
    # 9.5.8 write  text 
-   red72_text="AESS_T apparent Earth sys sensitivity=7.7°C*log2(CO2/C0)"
-   # 9.5.8 plot the text
    plt.text(tr2x, tr4y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 
@@ -771,8 +765,6 @@ elif plot72_AESS_T == 5:
    # 9.5.8 draw line72 as legend
    fig.add_artist(line72)
    # 9.5.8 write  text 
-   red72_text="AESS_T apparent Earth sys sensitivity=7.7°C*log2(CO2/C0)"
-   # 9.5.8 plot the text
    plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 else: # 9.5.9 draw bue line as legend
