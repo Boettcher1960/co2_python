@@ -1,4 +1,4 @@
-# 41p4_CO2_T.py line 6
+# 41p5_CO2_T.py 550 1100 ppm lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -353,6 +353,7 @@ if plot54_Glen_delta_on > 0:
 # 2023	8,091,734,930	0.88%	70,327,738	54
 # population1.csv
 if plot55_population_on > 0:
+   green55_text="Green line: Earth Population in billion"
    pop_df = pd.read_csv("population1.csv")
    pop_world = (
          pop_df[pop_df["Entity"] == "World"][["Year", "Population"]]
@@ -379,26 +380,23 @@ if plot55_population_on > 0:
 if plot55_population_on == 2: ax55.set_ylim(6.5, 8.5) # andere Skala
 #end 5.5.9 plot55_population_on=1 - print population
 
-
-
+# no part 6
 
 # 7 part 1
+# red71_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
+red71_text="red quadratic Temperature = 0.000618t² - 2.459 t + 2446.0579 in °C"
 # 7.1 plot71_temperature @reescatophuls.bsky.social
 # https://parisagreementtemperatureindex.com/gwfs-2-quadratic/
 # (0.000617965091650558 * date*date) – (2.45858656778789*date) + 2446.05792853123
 def T_model71(t):
    return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-
 # 7.1.2 years scale x axis
 years71 = np.arange(x_anf, x_end + 1 )
 T_71values = T_model71(years71)
-
 # -- 7.1.4. Create DataFrame for convenience
 df7 = pd.DataFrame({
-"Year71": years71,
-"Modeled71": T_71values
-})
-
+      "Year71": years71,
+      "Modeled71": T_71values })
 # 7.1.6 plot71_temperature
 if plot71_temperature > 0:
    ax71 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
@@ -449,9 +447,8 @@ years72 = np.arange(x_anf, x_end + 1 )
 T_72values = T_model72(years72)
 # 7.2.4. Create DataFrame for convenience
 df72 = pd.DataFrame({
-"Year72": years72,
-"Modeled72": T_72values
-})
+       "Year72":      years72,
+       "Modeled72": T_72values })
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
    red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0)"
@@ -581,9 +578,9 @@ else: # 9.2.2 draw bue line as legend
 # 9.2.3 draw bue line as legend
 fig.add_artist(line1)
 # 9.2.4 write blue text
-blue_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
+blue2_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
 # 9.2.5 plot the blue text
-plt.text(tr2x, tr2y, blue_text, color="blue", fontname="Arial", fontsize=trs,
+plt.text(tr2x, tr2y, blue2_text, color="blue", fontname="Arial", fontsize=trs,
 transform=plt.gca().transAxes)
 
 # 9.3 print line 3 below the plot explainations
@@ -594,10 +591,8 @@ if plot55_population_on == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    marker="s", markersize=5, color="green", linewidth=2)
    # 9.5.2 draw bue line as legend
    fig.add_artist(line1)
-   # 9.5.4 write blue text
-   blue_text="Green line: Earth Population in billion"
-   # 9.5.5 plot the blue text
-   plt.text(tr2x, tr3y, blue_text, color="green", fontname="Arial", fontsize=trs,
+   # 9.5.4 write green text
+   plt.text(tr2x, tr3y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.3.3 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
@@ -619,9 +614,9 @@ elif plot53_CO2_orange2025 == 3: # print in line 3 up to 2025
    # 9.2.3 draw bue line as legend
    fig.add_artist(line3)
    # 9.2.4 write blue text
-   red_text="Orange dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
+   red53_text="Orange dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
-   plt.text(tr2x, tr3y, red_text, color="orange", fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr3y, red53_text, color="orange", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.3.5 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 # 9.3.5  print line 3 green Glen 
@@ -658,10 +653,9 @@ if plot55_population_on == 4:
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
    fig.add_artist(line1)
-   blue_text="Green line: Earth Population in billion"
-   plt.text(tr2x, tr4y, blue_text, color="green", fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-   # 9.4.3 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
+   # 9.4.52 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 if plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
@@ -681,9 +675,9 @@ if plot53_CO2_orange2025 == 4: # print in line 3 up to 2025
    # 9.2.3 draw bue line as legend
    fig.add_artist(line4)
    # 9.2.4 write blue text
-   red_text="Orange dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
+   red53_text="Orange dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
-   plt.text(tr2x, tr4y, red_text, color="orange", fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, red53_text, color="orange", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.4.5 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 elif plot54_Glen_delta_on == 4: # print in line4
@@ -716,9 +710,8 @@ elif plot71_temperature == 4:
    # 9.4.7 draw bue line as legend
    fig.add_artist(line7)
    # 9.4.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-   red_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
    # 9.2.5 plot the blue text
-   plt.text(tr2x, tr4y, red_text, color=c71, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, red71_text, color=c71, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot72_AESS_T == 4:
    line72 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
@@ -738,10 +731,8 @@ if plot55_population_on == 5: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
    marker="s", markersize=5, color="green", linewidth=2)
    # 9.5.2 draw bue line as legend
    fig.add_artist(line1)
-   # 9.5.4 write blue text
-   blue_text="Green line: Earth Population in billion"
-   # 9.5.5 plot the blue text
-   plt.text(tr2x, tr5y, blue_text, color="green", fontname="Arial", fontsize=trs,
+   # 9.5.4 write green text
+   plt.text(tr2x, tr5y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot71_temperature == 5:
    line7 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
@@ -750,9 +741,9 @@ elif plot71_temperature == 5:
    # 9.5.7 draw bue line as legend
    fig.add_artist(line7)
    # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-   red_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
+   red71_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
    # 9.5.7 plot the blue text
-   plt.text(tr2x, tr5y, red_text, color=c71, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr5y, red71_text, color=c71, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot72_AESS_T == 5:
    line72 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
