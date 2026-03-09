@@ -1,4 +1,4 @@
-# 41r3_CO2_T.py scale y axis lines
+# 41r4_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -112,6 +112,9 @@ elif x_end - x_anf < 10:
 elif x_end - x_anf < 50:
    x_mayor_ticks = 5
    x_minor_ticks = 1
+elif x_end - x_anf < 120:
+   x_mayor_ticks = 20
+   x_minor_ticks = 5
 else:
    x_mayor_ticks = 20
    x_minor_ticks = 10
@@ -241,21 +244,23 @@ if scale_mode == 10:
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # 2.8 scale the X value time = 20
-   ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))   # Hauptstriche
-   ax1.tick_params(axis='x', which='major', length=12, width=2) # all 2 years
+   ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
+   ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
+
    ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # Nebenstriche
-   ax1.tick_params(axis='x', which='minor', length=4,  width=1)
-   # ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
+   ax1.tick_params(axis='x', which='minor', length=14,  width=4)
+
+   ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
    # Separate horizontal and vertical grid lines
    for line in ax1.get_xgridlines():   # vertical lines
-       line.set_color('grey')            # vertical color
-       line.set_alpha(0.9)
-       line.set_linestyle('-')         # optional '--'
-       line.set_linewidth(1.3)   # <-- thickness
+       line.set_color('grey')          # vertical color
+       line.set_alpha(0.5)
+       line.set_linestyle('--')        # optional '--'
+       line.set_linewidth(1.6)   # <-- thickness
    for line in ax1.get_ygridlines():   # horizontal lines
        line.set_color('blue')           # horizontal color
-       line.set_alpha(0.4)
+       line.set_alpha(0.5)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
 else:
