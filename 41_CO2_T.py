@@ -1,4 +1,4 @@
-# 41r4_CO2_T.py scale y axis lines
+# 41r5_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -457,7 +457,6 @@ if plot71_temperature > 0:
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
    ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
    ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
-   ax71.set_ylim(y_Tmin, 3 ) # scale
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
@@ -506,12 +505,10 @@ if plot72_AESS_T > 0:
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
-   # Tax1 = 5 # 0.1))     # Hauptstriche y_Tmayor_ticks
-   Tax55 = 1 # 0.1))   # Nebenstriche
-   ax72.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
-   ax72.yaxis.set_minor_locator(MultipleLocator(Tax55))  # Nebenstriche
-   ax72.set_ylim(y_Tmin, 3 ) # scale
-   ax72.minorticks_off()
+   if plot71_temperature < 1: # make y axis right only if not exist
+      ax72.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))  # Hauptstriche
+      ax72.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))  # Nebenstriche
+      ax72.minorticks_off()
 # 7.2.7 plot7 Achse und Beschriftung if plot71_temperature > 0:
 if plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot54_Glen_delta_on > 2:
