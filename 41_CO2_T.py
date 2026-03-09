@@ -1,4 +1,4 @@
-# 41n4_CO2_T.py AESS=8
+# 41n5_CO2_T.py AESS=8
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -31,7 +31,7 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
-plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in rot  
+plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "green" # plot3_Glen_CO2 color
 c3 = "#4554A8C6"
 # c3 = "#4B3FD1"
@@ -125,9 +125,9 @@ header_parameter = header_parameter + f"{plot55_population_on}" # plot55_populat
 header_parameter = header_parameter + f" 7({plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f"{plot73_ECS_T} " 
-header_parameter = header_parameter + f"{parameter84_save_png} " 
-# header_parameter = f" parameter= {plot1_CO2_Mauna_Loa}" # 1960 number inside string
+# header_parameter = header_parameter + f"{parameter84_save_png} " 
 # end part 1
+
 
 # -----------------------------
 #  part 2 plot CO2 Mauna Loa
@@ -166,15 +166,12 @@ co2_values1 = [
 # 2.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
 # 2.2.2 world data not found
 # https://gml.noaa.gov/ccgg/trends/global.html
-
 # 2.3 subset skip the old years
 co2_values1_subset = co2_values1[start:end]
 df = pd.DataFrame({
 "Jahr": years21_subset,
 "CO2": co2_values1_subset
 })
-
-
 # 2.4.1 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # 2.4.2 print blue Mauna Loa
@@ -186,7 +183,6 @@ ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
 # 2.6 write the numbers left of plot field
 ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
 ax1.grid(True)
-
 # 2.7 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
    ax1.set_ylim(y_min, y_max)
@@ -214,25 +210,26 @@ if scale_mode == 10:
        line.set_linewidth(1.1)   # <-- thickness
    y_block = (y_max - y_min) / y_grid_CO2  # 120 / 20 = 6 y_block
 else:
-  ax1.set_ylim(y_min, y_max)
-# end part 2 Mauna Loa
+   ax1.set_ylim(y_min, y_max)
+   # end part 2 Mauna Loa
+
 
 # -----------------------------
-# 3.1 Kurve6 Jahre 1960–3025
+# 3.1 plot3_Glen_CO2 = 0.013t² - 51t + 49,536 in dark blue 
 # -----------------------------
-# CO₂ Funktion
+# text_plot3_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
+text_plot3_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t + 49,536"
+# CO₂ function CO2 = 0.013t² - 51t + 49,536
 def co3_ppm(t):
    return 0.0132251 * t**2 - 51.0337 * t + 49536.7
-
-# 3.2 Jahre von 1960 bis 3000
+# 3.2 years as x values 1960 to 3000
 years3 = np.arange(x_anf, x_end +1 )
 co3_values = co3_ppm(years3)
-
-# -- 3.3. Create DataFrame for convenience
+# 3.3. Create DataFrame for convenience
 df3 = pd.DataFrame({
-"Year3": years3,
-"Modeled3": co3_values
-})
+      "Year3": years3,
+      "Modeled3": co3_values
+       })
 # 3.4
 if plot3_Glen_CO2 > 0:
    ax3 = ax1.twinx()
@@ -646,10 +643,7 @@ if plot3_Glen_CO2 == 3: # print in line 3
    # 9.2.3 draw bue line as legend
    fig.add_artist(line6)
    # 9.2.4 write blue text
-   red_text="green dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
-   # 9.2.5 plot the blue text
-   # c3 = "#4B3FD1"
-   plt.text(tr2x, tr3y, red_text, color=c3, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr3y, text_plot3_Glen, color=c3, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.3 end print line 3 below the plot explainations
 
@@ -709,9 +703,9 @@ elif plot3_Glen_CO2 == 4: # print in line 3
    # 9.2.3 draw bue line as legend
    fig.add_artist(line4)
    # 9.2.4 write blue text
-   red_text=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
+   text_plot3_Glen=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.2.5 plot the blue text
-   plt.text(tr2x, tr4y, red_text, color=c3, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, text_plot3_Glen, color=c3, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot71_temperature == 4:
    line7 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
