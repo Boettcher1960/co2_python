@@ -48,7 +48,7 @@ if plot71_temperature < 1:
    c72 = "red" # plot72 color
 else:   
    c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 6 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 5 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
@@ -565,6 +565,7 @@ if plot73_ECS_T > 0:
       ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
       ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
       ax73.minorticks_off()
+      ax73.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax73.set_ylabel (
          "Δ Temperature in °C (ECS = 4.5°C)",
          color=c71,
