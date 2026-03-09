@@ -1,4 +1,4 @@
-# 41r6_CO2_T.py scale y axis lines
+# 41r7_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -41,9 +41,9 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 5,4, 0
+plot71_temperature = 0 # 4,5, 0
 c71 = "red" # plot71 color
-plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:
    c72 = "red" # plot72 color
 else:   
@@ -565,6 +565,12 @@ if plot73_ECS_T > 0:
       ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
       ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
       ax73.minorticks_off()
+      ax73.set_ylabel (
+         "Δ Temperature in °C (ECS = 4.5°C)",
+         color=c71,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+   )
 
 # Teil 8.1 plot
 plt.xlim(x_anf, x_end)
