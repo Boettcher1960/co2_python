@@ -57,8 +57,8 @@ else:
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
-y_min = 545 # 300 # min value 280
-y_max = 554 # 1300 # min value 440 70
+y_min = 1000 # 300 # min value 280
+y_max = 1300 # 1300 # min value 440 70
 if y_max - y_min < 11:
    y_mayor_ticks = 2
    y_minor_ticks = 0.2
@@ -85,8 +85,8 @@ else:
 y_Tmin = 0 # min value °C
 y_Tmax = 20 # 4 # max value C
 
-x_anf = 2065 # 1960 2000 
-x_end = 2069 # 2200 2026 
+x_anf = 2170 # 1960 2000 
+x_end = 2180 # 2200 2026 
 if x_end - x_anf < 5:
    x_mayor_ticks = 1
    x_minor_ticks = 0.5
@@ -515,7 +515,7 @@ if plot72_AESS_T > 0:
    ax1.axhspan(1098, 1102, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
    ax1.axhspan(548, 552, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
    ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
-   ax72.axvspan(2177, 2178, color=c3, alpha=0.25, zorder=0) # vertical bar'
+   ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
    # end 7.2
 
