@@ -1,4 +1,4 @@
-# 41m11_CO2_T.py 480 blue bars
+# 41n1_CO2_T.py 275ppm basis
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -44,9 +44,9 @@ plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 plot71_temperature = 0 # 5,4, 0
 c71 = "red" # plot7 color
 plot72_AESS_T= 4 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
-c72 = "orange" # plot72 color
+c72 = "#DD3646A3" # plot72 color
 plot73_ECS_T= 5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
-c73 = "#2AC99E84" # plot73 color
+c73 = "#B9184E84" # plot73 color
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
@@ -408,7 +408,6 @@ if plot71_temperature > 0:
    ax71.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
    ax71.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
    ax71.set_ylim(y_Tmin, 3 ) # scale
-  
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
@@ -422,12 +421,12 @@ if plot71_temperature > 0:
          labelpad=10   # smaller = closer to y axis
    )
    ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
-
 # 7.1.8 plot71_temperature
 if plot71_temperature > 0:
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
    ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax71.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
+
 
 # plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
 # 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
@@ -438,7 +437,7 @@ if plot71_temperature > 0:
 #
 def T_model72(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   C0=280
+   C0=275
    log2_value = np.log2(CO2/C0)
    AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
    temp72=AESS * log2_value
@@ -466,7 +465,6 @@ if plot72_AESS_T > 0:
    ax72.yaxis.set_minor_locator(MultipleLocator(Tax55))  # Nebenstriche
    ax72.set_ylim(y_Tmin, 3 ) # scale
    ax72.minorticks_off()
-
 # 7.2.7 plot7 Achse und Beschriftung if plot71_temperature > 0:
 if plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot54_Glen_delta_on > 2:
@@ -480,7 +478,6 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
          labelpad=10   # smaller = closer to y axis
    )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
-
 # 7.2.8 plot72_temperature
 if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
@@ -493,12 +490,13 @@ if plot72_AESS_T > 0:
    ax72.axvspan(2177, 2178, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
 
+
 # plot73_ECS_T Earth Climate sensitivity 
 # 7.3  dT=ECS*log2(C/C0) # T560ppm=ECS*log2(560/280) 
 # 
 def T_model73(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   C0=280
+   C0=275
    log2_value = np.log2(CO2/C0)
    # AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
    ECS = 4.5
