@@ -1,4 +1,4 @@
-# 41p2_CO2_T.py line 6
+# 41p3_CO2_T.py line 6
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -48,7 +48,7 @@ if plot71_temperature < 1:
    c72 = "red" # plot72 color
 else:   
    c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 6 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
@@ -767,7 +767,7 @@ elif plot72_AESS_T == 5:
 else: # 9.5.9 draw bue line as legend
    plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-if plot73_ECS_T > 0:
+if plot73_ECS_T == 5:
    line73 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c73, linewidth=2)
@@ -782,9 +782,8 @@ if plot73_ECS_T > 0:
        red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
        plt.text(tr2x, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
        transform=plt.gca().transAxes)
+# 9.5 end print line 5 
 
-
-# 9.5 print line 5 plot55_population_on
 # 9.6 print line 6 
 if plot73_ECS_T < 6:
    text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
@@ -803,12 +802,13 @@ else: # plot73_ECS_T = 6
    fig.add_artist(line73)
    # 9.6.8 write  text 
    red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
-   text6 = f".text6..."
-   plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
-      transform=plt.gca().transAxes)
-   #plt.text(-0.12, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
-   #    transform=plt.gca().transAxes)
-
+   # text6 = f".text6..."
+   #plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
+   #   transform=plt.gca().transAxes)
+   plt.text(-0.12, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+       transform=plt.gca().transAxes)
+   fig.tight_layout()
+   plt.tight_layout()
 
 plt.show()
 
