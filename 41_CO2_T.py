@@ -1,4 +1,4 @@
-# 41r5_CO2_T.py scale y axis lines
+# 41r6_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -561,12 +561,10 @@ if plot73_ECS_T > 0:
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 1 # 0.1))    # Hauptstriche
-   Tax55 = 0.2 # 0.1))   # Nebenstriche
-   ax73.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax73.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
-   ax73.set_ylim(y_Tmin, y_Tmax ) # scale
-   ax73.minorticks_off()
+   if plot71_temperature < 1: # make y axis right only if not exist
+      ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+      ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+      ax73.minorticks_off()
 
 # Teil 8.1 plot
 plt.xlim(x_anf, x_end)
