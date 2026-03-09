@@ -1,4 +1,4 @@
-# 41p3_CO2_T.py line 6
+# 41p4_CO2_T.py line 6
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -102,11 +102,11 @@ trs = 20 # trs = 16 # fontsize=14
 # 1.6 scale the legend lines below the plot field
 lr2x1 = 0.065 # line row 2 x value begin 0.065
 lr2x2 = 0.085 # line row 2 x value end 0.085
-lr2y = 0.215 # line row 2 y value begin 0.215
-lr3y = 0.17 # line row 3 y value begin 0.17
-lr4y = 0.124 # line row 4 y value begin 0.124
-lr5y = 0.078 # line row 5 y value begin 0.08
-lr6y = 0.028 # line row 6 y value begin 0.08
+lr2y = 0.223 # line row 2 y value begin 0.215
+lr3y = 0.173 # line row 3 y value begin 0.17
+lr4y = 0.129 # line row 4 y value begin 0.124
+lr5y = 0.082 # line row 5 y value begin 0.08
+lr6y = 0.034 # line row 6 y value begin 0.08
 
 # 1.7 scale the right y axis
 yr0=ydiff/8
@@ -802,10 +802,7 @@ else: # plot73_ECS_T = 6
    fig.add_artist(line73)
    # 9.6.8 write  text 
    red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
-   # text6 = f".text6..."
-   #plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
-   #   transform=plt.gca().transAxes)
-   plt.text(-0.12, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
        transform=plt.gca().transAxes)
    fig.tight_layout()
    plt.tight_layout()
