@@ -1,4 +1,4 @@
-# 41r1_CO2_T.py scale y axis lines
+# 41r2_CO2_T.py scale y axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -57,8 +57,8 @@ else:
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
-y_min = 1000 # 300 # min value 280
-y_max = 1300 # 1300 # min value 440 70
+y_min = 300 # 300 # min value 280
+y_max = 500 # 1300 # min value 440 70
 if y_max - y_min < 11:
    y_mayor_ticks = 2
    y_minor_ticks = 0.2
@@ -83,10 +83,26 @@ else:
    y_minor_ticks = 50
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 20 # 4 # max value C
+y_Tmax = 8 # 4 # max value C
+if y_Tmax - y_Tmin < 1:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 6:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 11:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 21:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.5
+else:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
 
-x_anf = 2170 # 1960 2000 
-x_end = 2180 # 2200 2026 
+
+x_anf = 1960 # 1960 2000 
+x_end = 2070 # 2200 2026 
 if x_end - x_anf < 5:
    x_mayor_ticks = 1
    x_minor_ticks = 0.5
@@ -434,10 +450,8 @@ if plot71_temperature > 0:
    ax71.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 2 # 0.1))   # Hauptstriche
-   Tax55 = 0.2 # 0.1))   # Nebenstriche
-   ax71.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
-   ax71.yaxis.set_minor_locator(MultipleLocator(Tax55))   # Nebenstriche
+   ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+   ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
    ax71.set_ylim(y_Tmin, 3 ) # scale
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
@@ -487,9 +501,9 @@ if plot72_AESS_T > 0:
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
-   Tax1 = 5 # 0.1))     # Hauptstriche
+   # Tax1 = 5 # 0.1))     # Hauptstriche y_Tmayor_ticks
    Tax55 = 1 # 0.1))   # Nebenstriche
-   ax72.yaxis.set_major_locator(MultipleLocator(Tax1))   # Hauptstriche
+   ax72.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
    ax72.yaxis.set_minor_locator(MultipleLocator(Tax55))  # Nebenstriche
    ax72.set_ylim(y_Tmin, 3 ) # scale
    ax72.minorticks_off()
