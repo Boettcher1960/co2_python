@@ -1,4 +1,4 @@
-# 41n5_CO2_T.py AESS=8
+# 41p1_CO2_T.py line 6
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -48,11 +48,12 @@ if plot71_temperature < 1:
    c72 = "red" # plot72 color
 else:   
    c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 0 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 5 # 4.5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
    c73 = "#B9184E84" # plot73 color
+   c73 = "orange"
 parameter84_save_png = 8 # save png
 
 # 1.3.1 scale the left Y axis
@@ -105,6 +106,7 @@ lr2y = 0.215 # line row 2 y value begin 0.215
 lr3y = 0.17 # line row 3 y value begin 0.17
 lr4y = 0.124 # line row 4 y value begin 0.124
 lr5y = 0.078 # line row 5 y value begin 0.08
+lr6y = 0.028 # line row 6 y value begin 0.08
 
 # 1.7 scale the right y axis
 yr0=ydiff/8
@@ -782,17 +784,31 @@ if plot73_ECS_T > 0:
 
 
 # 9.5 print line 5 plot55_population_on
-# 9.6 print line 6
-text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
-text6 = text6 + f" CO2_max= {y_max} " # y_max number inside string
-text6 = text6 + f"  T_max= {y_Tmax}°C    Parameter=" # y_max number inside string
-text6 = text6 + header_parameter
+# 9.6 print line 6 
+if plot73_ECS_T < 6:
+   text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
+   text6 = text6 + f" CO2_max= {y_max} " # y_max number inside string
+   text6 = text6 + f"  T_max= {y_Tmax}°C    Parameter=" # y_max number inside string
+   text6 = text6 + header_parameter
+   # 9.6.2 plot line 6
+   plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
+       transform=plt.gca().transAxes)
+   fig.tight_layout()
+   plt.tight_layout()
+else: # plot73_ECS_T = 6
+   line73 = Line2D([lr2x1, lr2x2], [lr6y, lr6y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c73, linewidth=2)
+   fig.add_artist(line73)
+   # 9.6.8 write  text 
+   red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
+   text6 = f"."
+   plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
+       transform=plt.gca().transAxes)
+   plt.text(tr2x, tr6y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+       transform=plt.gca().transAxes)
 
-# 9.6 plot line 6
-plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
-    transform=plt.gca().transAxes)
-fig.tight_layout()
-plt.tight_layout()
+
 plt.show()
 
 # 9.7 save the plot line 6
