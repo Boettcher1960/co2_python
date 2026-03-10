@@ -1,4 +1,4 @@
-# 41s2_CO2_T.py x axis
+# 41s3_CO2_T.py x axis
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -233,28 +233,38 @@ fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 ax1.set_xlabel("year", fontsize=16 )
 plt.xticks(fontsize=16)
-# write "CO₂ in ppm" left Axis upwards
+# 2.4.5 write "CO₂ in ppm" left Axis upwards
 ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
-# 2.6 write the numbers left of plot field
+# 2.4.6 write the numbers left of plot field
 ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
 ax1.grid(True)
-# 2.7 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
+# 2.5 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
 if scale_mode == 10:
+   # 2.5.1 scale the Y axis
    ax1.set_ylim(y_min, y_max)
-   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # Hauptstriche
-   ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))    # Nebenstriche
+   # 2.5.2 scale the Y axis 50ppm main items
+   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
+   # 2.5.3 scale the Y axis 10ppm minor items
+   ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-   # 2.8 scale the X value time = 20
+
+   # 2.5.4 scale the x axis major 20 years
    ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
    ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
 
-   ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # Nebenstriche
-   ax1.tick_params(axis='x', which='minor', length=14,  width=4)
+   # 2.5.5 scale the x axis minor 5 years
+   ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
+   ax1.tick_params(axis='x', which='minor', length=7,  width=1)
+   
+   # 2.5.6 horizontal line at 1120 ppm
    ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+   # 2.5.6 horizontal line at 560 ppm
    ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-   ax1.axvspan(2024, 2026, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
+   # 2.5.7 vertical line at year 2026
+   ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
  
+   # 2.5.8 grid
    ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
    # Separate horizontal and vertical grid lines
@@ -263,7 +273,7 @@ if scale_mode == 10:
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.6)   # <-- thickness
-   for line in ax1.get_ygridlines():   # horizontal lines
+   for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
        line.set_alpha(0.5)
        line.set_linestyle('-')          # optional
