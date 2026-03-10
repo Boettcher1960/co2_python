@@ -1,4 +1,4 @@
-# 41s4_CO2_T.py x axis
+# 41s5_CO2_T.py x axis ok with plot71_temperature = 4
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -41,14 +41,15 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0
-c71 = "red" # plot71 color
+plot71_temperature = 4 # 4,5, 0
+c71 = "red" # plot71 color 
+c71 = "green" 
 plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:
    c72 = "red" # plot72 color
 else:   
    c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 5 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 0 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
@@ -269,7 +270,7 @@ if scale_mode == 10:
        line.set_color('black')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
-       line.set_linewidth(1.6)   # <-- thickness
+       line.set_linewidth(1.9)   # <-- thickness
    # 2.6.2 vertical minor grid all 2 years
    ax1.grid(True, which="minor", axis="x", color="red", alpha=0.64)   # no work vertical
    # 2.6.3 horizontal major grid all 50ppm
@@ -462,17 +463,19 @@ def T_model71(t):
 # 7.1.2 years scale x axis
 years71 = np.arange(x_anf, x_end + 1 )
 T_71values = T_model71(years71)
-# -- 7.1.4. Create DataFrame for convenience
+# 7.1.3. Create DataFrame for convenience
 df7 = pd.DataFrame({
       "Year71": years71,
       "Modeled71": T_71values })
-# 7.1.6 plot71_temperature
+# 7.1.4 plot71_temperature
 if plot71_temperature > 0:
    ax71 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax71.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
+    # big ticks 2°C
    ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+   # small ticks 0.2°C
    ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
@@ -487,11 +490,9 @@ if plot71_temperature > 0:
          labelpad=10   # smaller = closer to y axis
    )
    ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
-# 7.1.8 plot71_temperature
+# 7.1.9 draw blue 1.5°C bar
 if plot71_temperature > 0:
-   ax71.set_ylim(y_Tmin, y_Tmax) # scale
-   ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
-   ax71.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
+   ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 
 
 # plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
