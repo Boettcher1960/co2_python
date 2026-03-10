@@ -1,4 +1,4 @@
-# 41s1_CO2_T.py C280=275 ppm
+# 41s2_CO2_T.py x axis
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -111,14 +111,14 @@ if x_end - x_anf < 5:
 elif x_end - x_anf < 10:
    x_mayor_ticks = 1
    x_minor_ticks = 1
-elif x_end - x_anf < 50:
-   x_mayor_ticks = 5
-   x_minor_ticks = 1
+elif x_end - x_anf < 70:
+   x_mayor_ticks = 10
+   x_minor_ticks = 2
 elif x_end - x_anf < 120:
    x_mayor_ticks = 20
    x_minor_ticks = 5
 else:
-   x_mayor_ticks = 20
+   x_mayor_ticks = 50
    x_minor_ticks = 10
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
@@ -253,7 +253,8 @@ if scale_mode == 10:
    ax1.tick_params(axis='x', which='minor', length=14,  width=4)
    ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
    ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-
+   ax1.axvspan(2024, 2026, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
+ 
    ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
    # Separate horizontal and vertical grid lines
@@ -529,7 +530,6 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
 if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
-   ax72.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
    # c3 = "#4554A8C6"
    ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
    ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
