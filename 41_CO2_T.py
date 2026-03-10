@@ -266,7 +266,7 @@ if scale_mode == 10:
  
    # 2.6.1 vertical major grid all 20 years
    for line in ax1.get_xgridlines():   # vertical lines
-       line.set_color('grey')          # vertical color
+       line.set_color('black')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.6)   # <-- thickness
