@@ -1,4 +1,4 @@
-# 41r8_CO2_T.py C280=275 ppm
+# 41r9_CO2_T.py C280=275 ppm
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -268,6 +268,16 @@ if scale_mode == 10:
 else:
    ax1.set_ylim(y_min, y_max)
    # end part 2 Mauna Loa
+
+#ax73.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
+#ax73.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
+# c3 = "#4554A8C6"
+ax1.axhspan(1098, 1102, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+ax1.axhspan(548, 552, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
+#ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
+#ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
+
+
 
 
 # -----------------------------
