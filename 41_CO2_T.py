@@ -1,4 +1,4 @@
-# 41s5_CO2_T.py x axis ok with plot71_temperature = 4
+# 41s6_CO2_T.py x axis ok with plot71_temperature = 4
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -42,8 +42,7 @@ plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 4 # 4,5, 0
-c71 = "red" # plot71 color 
-c71 = "green" 
+c71 = "red" # plot71 color c71 = "green" 
 plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:
    c72 = "red" # plot72 color
@@ -272,7 +271,7 @@ if scale_mode == 10:
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.9)   # <-- thickness
    # 2.6.2 vertical minor grid all 2 years
-   ax1.grid(True, which="minor", axis="x", color="red", alpha=0.64)   # no work vertical
+   ax1.grid(True, which="minor", axis="x", color="orange", alpha=0.64)   # no work vertical
    # 2.6.3 horizontal major grid all 50ppm
    for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
