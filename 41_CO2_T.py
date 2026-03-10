@@ -1,4 +1,4 @@
-# 41s3_CO2_T.py x axis
+# 41s4_CO2_T.py x axis
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -264,20 +264,22 @@ if scale_mode == 10:
    # 2.5.7 vertical line at year 2026
    ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
  
-   # 2.5.8 grid
-   ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
-   ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
-   # Separate horizontal and vertical grid lines
+   # 2.6.1 vertical major grid all 20 years
    for line in ax1.get_xgridlines():   # vertical lines
        line.set_color('grey')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.6)   # <-- thickness
+   # 2.6.2 vertical minor grid all 2 years
+   ax1.grid(True, which="minor", axis="x", color="red", alpha=0.64)   # no work vertical
+   # 2.6.3 horizontal major grid all 50ppm
    for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
        line.set_alpha(0.5)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
+   # 2.6.4 horizontal minor grid all 10ppm
+   ax1.grid(True, which="minor", axis="y", color="lightblue", alpha=0.64)   # horizontal
 else:
    ax1.set_ylim(y_min, y_max)
    # end part 2 Mauna Loa
