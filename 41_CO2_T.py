@@ -1,4 +1,4 @@
-# 41s8_CO2_T.py part 8.2 grids
+# 41t1_CO2_T.py part 8.2 grids
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -231,17 +231,7 @@ df = pd.DataFrame({
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # 2.4.2 print blue Mauna Loa
 ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
-ax1.set_xlabel("year", fontsize=16 )
-plt.xticks(fontsize=16)
-# 2.4.5 write "CO₂ in ppm" left Axis upwards
-ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
-# 2.4.6 write the numbers left of plot field
-ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
-ax1.grid(True)
-# 2.5 scale the Y value 280 ppm to 440 ppm y_grid_CO2 = 20
-# 2.5.1 scale the Y axis
-ax1.set_ylim(y_min, y_max)
-   # end part 2 Mauna Loa
+# end part 2 Mauna Loa CO2 measurements
 
 
 # -----------------------------
@@ -543,10 +533,16 @@ if plot73_ECS_T > 0:
          labelpad=10   # smaller = closer to y axis
    )
 
-# Teil 8.1 plot
+# part 8
+# 8.1 plot
+# 8.2 print the headline above the plot
+# 8.3 print the left y axis and vertical lines
+# 8.4 print the x axis and horizontal lines
+
+# 8.1 plot
 plt.xlim(x_anf, x_end)
 
-# 8.2 headline part print ablove the plot aerea
+# 8.2 print the headline above the plot
 # 8.2.1 blue headline part
 trs = 20
 # header_black = f"CO2 concentration in the atmosphere {x_anf}" # 1960 number inside string
@@ -569,49 +565,57 @@ else:
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
 
-# 8.3 make the grid and or axis   
 
-
-
-# 8.9.5 vertical minorlines all 5 years        
-ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
-# 2.5.2 scale the Y axis 50ppm main items
+# 8.3 print the left y axis and vertical lines
+# 8.3.1 write "CO₂ in ppm" left Axis upwards
+ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
+# 8.3.2 write the numbers left of plot field
+ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
+# 8.3.3 scale the Y axis
+ax1.set_ylim(y_min, y_max)
+ax1.grid(True)
+# 8.3.4 scale the Y axis 50ppm main items
 ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
 ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 2.5.3 scale the Y axis 10ppm minor items
+# 8.3.5 scale the Y axis 10ppm minor items
 ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
 ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-   # 2.5.4 scale the x axis major 20 years
+
+# 8.4 print the x axis and horizontal lines
+# 8.4.1 print year below the year numbers 
+ax1.set_xlabel("year", fontsize=20 )
+plt.xticks(fontsize=20)
+ax1.tick_params(axis="x", labelcolor="black", labelsize=20) # 1960 2020 Achsenbeschriftung
+# 8.4.2 scale the x axis major 20 years
 ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
 ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
-
-   # 2.5.5 scale the x axis minor 5 years
+# 8.4.3 scale the x axis minor 5 years
 ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
 ax1.tick_params(axis='x', which='minor', length=7,  width=1)
-   
-   # 2.5.6 horizontal line at 1120 ppm
+# 8.4.4 vertical minorlines all 5 years        
+ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
+  
+# 8.4.6 horizontal line at 1120 ppm
 ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-   # 2.5.6 horizontal line at 560 ppm
+# 8.4.7 horizontal line at 560 ppm
 ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-   # 2.5.7 vertical line at year 2026
+# 8.4.8 vertical line at year 2026
 ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
- # 2.6.1 vertical major grid all 20 years
+# 8.4.9 vertical major grid all 20 years
 for line in ax1.get_xgridlines():   # vertical lines
        line.set_color('black')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.9)   # <-- thickness
-   # 2.6.2 vertical minor grid all 2 years
-   # ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
-   # 2.6.3 horizontal major grid all 50ppm
+# 8.4.10 horizontal major grid all 50ppm
 for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
        line.set_alpha(0.5)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
-   # 2.6.4 horizontal minor grid all 10ppm
+# 8.4.11 horizontal minor grid all 10ppm
 ax1.grid(True, which="minor", axis="y", color="lightblue", alpha=0.64)   # horizontal
-
+# end part 8
 
 
 
