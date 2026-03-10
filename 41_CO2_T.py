@@ -1,4 +1,4 @@
-# 41s6_CO2_T.py x axis ok with plot71_temperature = 4
+# 41s7_CO2_T.py part 8.2 grids
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -242,28 +242,8 @@ ax1.grid(True)
 if scale_mode == 10:
    # 2.5.1 scale the Y axis
    ax1.set_ylim(y_min, y_max)
-   # 2.5.2 scale the Y axis 50ppm main items
-   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
-   ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 2.5.3 scale the Y axis 10ppm minor items
-   ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
-   ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-
-   # 2.5.4 scale the x axis major 20 years
-   ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
-   ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
-
-   # 2.5.5 scale the x axis minor 5 years
-   ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
-   ax1.tick_params(axis='x', which='minor', length=7,  width=1)
    
-   # 2.5.6 horizontal line at 1120 ppm
-   ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-   # 2.5.6 horizontal line at 560 ppm
-   ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-   # 2.5.7 vertical line at year 2026
-   ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
- 
+   
    # 2.6.1 vertical major grid all 20 years
    for line in ax1.get_xgridlines():   # vertical lines
        line.set_color('black')          # vertical color
@@ -271,7 +251,7 @@ if scale_mode == 10:
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.9)   # <-- thickness
    # 2.6.2 vertical minor grid all 2 years
-   ax1.grid(True, which="minor", axis="x", color="orange", alpha=0.64)   # no work vertical
+   # ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
    # 2.6.3 horizontal major grid all 50ppm
    for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
@@ -472,9 +452,9 @@ if plot71_temperature > 0:
    ax71.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
-    # big ticks 2°C
+    # y axis big ticks 2°C
    ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
-   # small ticks 0.2°C
+   # y axis small ticks 0.2°C
    ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
@@ -609,7 +589,32 @@ else:
    # 8.3.3 plot the headline
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
-            
+
+# 8.9 make the grid and or axis   
+# 8.9.5 vertical minorlines all 5 years        
+ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
+# 2.5.2 scale the Y axis 50ppm main items
+ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
+ax1.tick_params(axis='y', which='major', length=12, width=1.5)
+   # 2.5.3 scale the Y axis 10ppm minor items
+ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
+ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
+   # 2.5.4 scale the x axis major 20 years
+ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
+ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
+
+   # 2.5.5 scale the x axis minor 5 years
+ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
+ax1.tick_params(axis='x', which='minor', length=7,  width=1)
+   
+   # 2.5.6 horizontal line at 1120 ppm
+ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+   # 2.5.6 horizontal line at 560 ppm
+ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
+   # 2.5.7 vertical line at year 2026
+ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
+ 
+
 
 
 # 9 part 9 print information below the plot field
