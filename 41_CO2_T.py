@@ -1,4 +1,4 @@
-# 41r9_CO2_T.py C280=275 ppm
+# 41s1_CO2_T.py C280=275 ppm
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -56,7 +56,7 @@ else:
    c73 = "orange"
 parameter84_save_png = 8 # save png
 
-C280=275 # CO2 concentration 1750 275 ppm
+C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
 y_min = 300 # 300 # min value 280
@@ -169,7 +169,7 @@ yr1=ydiff-yr0
 yr1=4
 yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
-# 1.8 Parameter strig
+# 1.9 Parameter strig
 header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot55_population_on number inside string
 
@@ -251,6 +251,8 @@ if scale_mode == 10:
 
    ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # Nebenstriche
    ax1.tick_params(axis='x', which='minor', length=14,  width=4)
+   ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+   ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
 
    ax1.grid(True, which="major", color="darkblue", alpha=1) # big net 20 ppm
    ax1.grid(True, which="minor", color="lightblue", alpha=0.64)
@@ -268,16 +270,6 @@ if scale_mode == 10:
 else:
    ax1.set_ylim(y_min, y_max)
    # end part 2 Mauna Loa
-
-#ax73.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
-#ax73.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
-# c3 = "#4554A8C6"
-ax1.axhspan(1098, 1102, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-ax1.axhspan(548, 552, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-#ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
-#ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
-
-
 
 
 # -----------------------------
@@ -490,6 +482,7 @@ if plot71_temperature > 0:
 
 
 # plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
+red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0)"
 # 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
 # AESS=7.7°C  # (Judd 2024)
 # https://www.science.org/doi/10.1126/science.adk3705) 
@@ -498,8 +491,7 @@ if plot71_temperature > 0:
 #
 def T_model72(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   C0=C280
-   log2_value = np.log2(CO2/C0)
+   log2_value = np.log2(CO2/C280)
    AESS=8 # apparent Earth system sensitivity (AESS=7.7°C)
    temp72=AESS * log2_value
    return temp72
@@ -512,7 +504,6 @@ df72 = pd.DataFrame({
        "Modeled72": T_72values })
 # 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
-   red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0)"
    ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
@@ -540,8 +531,6 @@ if plot72_AESS_T > 0:
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
    ax72.axvspan(2024, 2026, color="#B3D9FF", alpha=0.25, zorder=0) # vertical bar'
    # c3 = "#4554A8C6"
-   ax1.axhspan(1098, 1102, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-   ax1.axhspan(548, 552, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
    ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
    ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
@@ -553,9 +542,7 @@ if plot72_AESS_T > 0:
 # 
 def T_model73(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   C0=C280
-   log2_value = np.log2(CO2/C0)
-   # AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
+   log2_value = np.log2(CO2/C280)
    ECS = 4.5
    temp73 = ECS * log2_value
    return temp73
