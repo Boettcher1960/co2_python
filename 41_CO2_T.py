@@ -1,4 +1,4 @@
-# 41r7_CO2_T.py scale y axis lines
+# 41r8_CO2_T.py C280=275 ppm
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -55,6 +55,8 @@ else:
    c73 = "#B9184E84" # plot73 color
    c73 = "orange"
 parameter84_save_png = 8 # save png
+
+C280=275 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
 y_min = 300 # 300 # min value 280
@@ -486,7 +488,7 @@ if plot71_temperature > 0:
 #
 def T_model72(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   C0=275
+   C0=C280
    log2_value = np.log2(CO2/C0)
    AESS=8 # apparent Earth system sensitivity (AESS=7.7°C)
    temp72=AESS * log2_value
@@ -541,7 +543,7 @@ if plot72_AESS_T > 0:
 # 
 def T_model73(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   C0=275
+   C0=C280
    log2_value = np.log2(CO2/C0)
    # AESS=7.7 # apparent Earth system sensitivity (AESS=7.7°C)
    ECS = 4.5
