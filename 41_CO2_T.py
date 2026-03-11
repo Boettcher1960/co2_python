@@ -1,4 +1,4 @@
-# 41v7_CO2_T.py 72 T
+# 41w1_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -39,18 +39,19 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 5 # 4,5, 0
+plot71_temperature = 0 # 4,5, 0
+plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+parameter84_save_png = 8 # save png
+
 c71 = "red" # plot71 color c71 = "green" 
-plot72_AESS_T= 0 # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:    c72 = "red" # plot72 color
 else:                         c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 4 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
    c73 = "#B9184E84" # plot73 color
    c73 = "orange"
-parameter84_save_png = 8 # save png
 
 C280=280 # CO2 concentration 1750 275 ppm
 
