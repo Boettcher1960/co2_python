@@ -1,4 +1,4 @@
-# 41v3_CO2_T.py 72 T
+# 41v4_CO2_T.py 72 T
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -44,7 +44,7 @@ c71 = "red" # plot71 color c71 = "green"
 plot72_AESS_T= 4 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:    c72 = "red" # plot72 color
 else:                         c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 0 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 5 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
@@ -360,19 +360,6 @@ if plot71_temperature > 0:
    ax71.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
-# 7.1.7 plot71 Achse und Beschriftung
-if plot71_temperature > 0:
-   if plot54_Glen_delta_on > 2:
-      ax71.spines.right.set_position(("outward", 50))
-   else:
-      ax71.spines.right.set_position(("outward", 5))
-   ax71.set_ylabel (
-         "Δ Temperature in °C ",
-         color=c71,
-         fontname="Arial",fontsize=20,
-         labelpad=10   # smaller = closer to y axis
-   )
-   ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
 # end 7.1 
 
 
@@ -437,14 +424,14 @@ df73 = pd.DataFrame({
        "Year73": years73,
        "Modeled73": T_73values })
 # 7.3.6 plot_ax73_temperature
-if plot73_ECS_T > 0:
+if plot73_ECS_T > 20:
    ax73 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
    if plot71_temperature < 1: # make y axis right only if not exist
-      ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
-      ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+      #ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+      #ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
       ax73.minorticks_off()
       ax73.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax73.set_ylabel (
@@ -459,8 +446,9 @@ if plot73_ECS_T > 0:
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
 # 8.4 print the vertical lines CO2=constant
-# 8.5 print the x axis 
-# 8.6 print the horizontal lines year 2026
+# 8.5 print the right y axis
+# 8.6 print the x axis 
+# 8.7 print the horizontal lines year 2026
 
 # 8.1 scale the plot area
 # 8.1.2 scale the x axis
@@ -565,14 +553,46 @@ if plot71_temperature > 0:
 elif plot72_AESS_T > 0:
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 
+# 8.5 print the right y axis
+# 8.5.1 plot71 Achse und Beschriftung
+if plot71_temperature > 0:
+   if plot54_Glen_delta_on > 2:
+      ax71.spines.right.set_position(("outward", 50))
+   else:
+      ax71.spines.right.set_position(("outward", 5))
+   ax71.set_ylabel (
+         "Δ Temperature in °C ",
+         color=c71,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+   )
+   ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
+
+elif plot73_ECS_T > 0:
+   ax73 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
+   ax73.tick_params(axis="y", labelcolor=c73)
+   ax73.set_ylim(y_Tmin, y_Tmax) # scale
+   if plot71_temperature < 1: # make y axis right only if not exist
+      #ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+      #ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+      ax73.minorticks_off()
+      ax73.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
+      ax73.set_ylabel (
+         "Δ Temperature in °C (ECS = 4.5°C)",
+         color=c71,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+       )
 
 
-# 8.5 print the x axis 
-# 8.5.1 print year below the year numbers 
+
+# 8.6 print the x axis 
+# 8.6.1 print year below the year numbers 
 ax1.set_xlabel("year", fontsize=20 )
 plt.xticks(fontsize=20)
 ax1.tick_params(axis="x", labelcolor="black", labelsize=20) # 1960 2020 Achsenbeschriftung
-# 8.5.2 scale the x axis major 20 years
+# 8.6.2 scale the x axis major 20 years
 if x_end - x_anf < 5:
    x_mayor_ticks = 1
    x_minor_ticks = 0.5
@@ -588,27 +608,30 @@ elif x_end - x_anf < 120:
 else:
    x_mayor_ticks = 50
    x_minor_ticks = 10
-# 8.5.8 scale the x axis major 20 years
+# 8.6.8 scale the x axis major 20 years
 ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
 ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
-# 8.5.9 scale the x axis minor 5 years
+# 8.6.9 scale the x axis minor 5 years
 ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
 ax1.tick_params(axis='x', which='minor', length=7,  width=1)
   
-# 8.6 print the horizontal lines year 2026
-# 8.6.1 vertical major grid all 20 years
+# 8.7 print the horizontal lines year 2026
+# 8.7.1 vertical major grid all 20 years
 for line in ax1.get_xgridlines():   # vertical lines
        line.set_color('black')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.9)   # <-- thickness
-# 8.6.2 vertical minorlines all 5 years        
+# 8.7.2 vertical minorlines all 5 years        
 ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
-# 8.6.3 vertical line at year 2026
+# 8.7.3 vertical line at year 2026
 ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
-# 8.6.4
+# 8.7.4
 ax1.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
 ax1.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
+
+
+
 # end part 8
 
 
@@ -627,7 +650,7 @@ plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
 
 # 9.2 print line 1 blue Mauna Loa data below the figure
 # 9.2 print line 2 below the plot explainations
-if plot1_CO2_Mauna_Loa == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
+if plot1_CO2_Mauna_Loa == 3: #  legende world data plot1_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color="blue", fontname="Arial", fontsize=18,
    transform=plt.gca().transAxes)
@@ -646,7 +669,7 @@ transform=plt.gca().transAxes)
 
 # 9.3 print line 3 below the plot explainations
 # 9.3.2 print line 3 plot55_population_on marker="s"
-if plot55_population_on == 3: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
+if plot55_population_on == 3: #  legende world data plot1_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -786,7 +809,7 @@ elif plot72_AESS_T == 4:
 
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
-if plot55_population_on == 5: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
+if plot55_population_on == 5: #  legende world data plot1_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -916,17 +939,17 @@ plt.grid(True)
 plt.show()
 """
 # 8.4 legende Mauna Loa blau plot1_CO2_Mauna_Loa
-if plot1_CO2_Mauna_Loa > 6: # 8.5.1 legende world data plot1_CO2_Mauna_Loa
+if plot1_CO2_Mauna_Loa > 6: # 8.15.1 legende world data plot1_CO2_Mauna_Loa
    K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
    plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
    transform=plt.gca().transAxes)
    ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
-# 8.5 plot55_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
+# 8.15 plot55_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
 if plot1_CO2_Mauna_Loa > 8:
    if plot55_population_on > 0:
       plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
-# 8.6 legende
+# 8.16 legende
 if plot1_CO2_Mauna_Loa > 8:
    if plot52_delta_CO2_red_bars > 0:
       plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
