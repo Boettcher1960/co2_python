@@ -1,4 +1,4 @@
-# 41t4_CO2_T.py part 8 axis lines
+# 41t5_CO2_T.py part 8 axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -61,47 +61,10 @@ C280=280 # CO2 concentration 1750 275 ppm
 # 1.3.1 scale the left Y axis
 y_min = 300 # 300 # min value 280
 y_max = 600 # 1300 # min value 440 70
-if y_max - y_min < 11:
-   y_mayor_ticks = 2
-   y_minor_ticks = 0.2
-elif y_max - y_min < 21:
-   y_mayor_ticks = 5
-   y_minor_ticks = 1
-elif y_max - y_min < 50:
-   y_mayor_ticks = 10
-   y_minor_ticks = 2
-elif y_max - y_min < 101:
-   y_mayor_ticks = 10
-   y_minor_ticks = 2
-elif y_max - y_min < 500:
-   y_mayor_ticks = 50
-   y_minor_ticks = 10
-elif y_max - y_min < 1100:
-   y_mayor_ticks = 100
-   y_minor_ticks = 20
-   y_minor_grid  = 10
-else: 
-   y_mayor_ticks = 200 # Hauptstriche y axis
-   y_minor_ticks = 50
+
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 6 # 4 # max value C
-if y_Tmax - y_Tmin < 1:
-   y_Tmayor_ticks = 2
-   y_Tminor_ticks = 0.2
-elif y_Tmax - y_Tmin < 7:
-   y_Tmayor_ticks = 1
-   y_Tminor_ticks = 0.2
-elif y_Tmax - y_Tmin < 11:
-   y_Tmayor_ticks = 2
-   y_Tminor_ticks = 0.2
-elif y_Tmax - y_Tmin < 21:
-   y_Tmayor_ticks = 2
-   y_Tminor_ticks = 0.5
-else:
-   y_Tmayor_ticks = 2
-   y_Tminor_ticks = 0.2
-
 
 x_anf = 1960 # 1960 2000 
 x_end = 2070 # 2200 2026 
@@ -422,9 +385,9 @@ if plot71_temperature > 0:
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
     # y axis big ticks 2°C
-   ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+   #ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
    # y axis small ticks 0.2°C
-   ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+   #ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
@@ -572,6 +535,47 @@ else:
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
             # end 8.2
+
+# 1.3.1 scale the left Y axis
+if y_max - y_min < 11:
+   y_mayor_ticks = 2
+   y_minor_ticks = 0.2
+elif y_max - y_min < 21:
+   y_mayor_ticks = 5
+   y_minor_ticks = 1
+elif y_max - y_min < 50:
+   y_mayor_ticks = 10
+   y_minor_ticks = 2
+elif y_max - y_min < 101:
+   y_mayor_ticks = 10
+   y_minor_ticks = 2
+elif y_max - y_min < 500:
+   y_mayor_ticks = 50
+   y_minor_ticks = 10
+elif y_max - y_min < 1100:
+   y_mayor_ticks = 100
+   y_minor_ticks = 20
+   y_minor_grid  = 10
+else: 
+   y_mayor_ticks = 200 # Hauptstriche y axis
+   y_minor_ticks = 50
+# 1.3.2 scale the right Y axis
+if y_Tmax - y_Tmin < 1:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 7:
+   y_Tmayor_ticks = 1
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 11:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 21:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.5
+else:
+   y_Tmayor_ticks = 2
+   y_Tminor_ticks = 0.2
+
 
 # 8.3 print the left y axis 
 # 8.3.1 write "CO₂ in ppm" left Axis upwards
