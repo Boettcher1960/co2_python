@@ -1,4 +1,4 @@
-# 41t7_CO2_T.py part 8 axis lines
+# 41t8_CO2_T.py part 8 axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -69,26 +69,6 @@ y_Tmax = 6 # 4 # max value C
 x_anf = 1960 # 1960 2000 
 x_end = 2070 # 2200 2026 
 
-
-ydiff = (y_max - y_min) / 10 # for y axis scale print
-xdiff = (x_end - x_anf) / 10 # for legend print
-
-scale_mode = 10 # 0 7 8 10 hansen 10
-# -----------------------------
-# 1.4 Plot (x-width, y-width) Size of the figure in inches 
-# -----------------------------
-y_grid_CO2 = 10
-if scale_mode == 7:
-   fig, ax1 = plt.subplots(figsize=(13, 7))
-elif scale_mode == 8:
-   fig, ax1 = plt.subplots(figsize=(13, 8))
-elif scale_mode == 10:
-   fig, ax1 = plt.subplots(figsize=(13, 10))
-   y_grid_CO2 = 50
-else:
-   fig, ax1 = plt.subplots(figsize=(13, 7))
-
-
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
 tr1y = -.16 # text row 1 y end value -.3...1 -.15
@@ -111,7 +91,21 @@ lr4y = 0.129 # line row 4 y value begin 0.124
 lr5y = 0.082 # line row 5 y value begin 0.08
 lr6y = 0.034 # line row 6 y value begin 0.08
 
-# 1.7 scale the right y axis
+# 1.7 Plot (x-width, y-width) Size of the figure in inches
+scale_mode = 10 # 10 inches high. 13 inches wide
+if scale_mode == 7:
+   fig, ax1 = plt.subplots(figsize=(13, 7))
+elif scale_mode == 8:
+   fig, ax1 = plt.subplots(figsize=(13, 8))
+elif scale_mode == 10:
+   fig, ax1 = plt.subplots(figsize=(13, 10))
+else:
+   fig, ax1 = plt.subplots(figsize=(13, 7))
+
+# 1.8 old scaling items to be deleted
+# 1.8 scale the right y axis
+ydiff = (y_max - y_min) / 10 # for y axis scale print
+xdiff = (x_end - x_anf) / 10 # for legend print
 yr0=ydiff/8
 yr0 = int(yr0+0.49) # cast to integer result = 2 (int)
 yr1=ydiff-yr0
