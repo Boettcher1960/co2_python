@@ -1,4 +1,4 @@
-# 41t8_CO2_T.py part 8 axis lines
+# 41v1_CO2_T.py 72 T
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -32,22 +32,18 @@ import sys
 plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
-c3 = "green" # plot3_Glen_CO2 color
-c3 = "#4554A8C6"
-# c3 = "#4B3FD1"
+c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 4,5, 0
+plot71_temperature = 0 # 4,5, 0
 c71 = "red" # plot71 color c71 = "green" 
-plot72_AESS_T= 0 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
-if plot71_temperature < 1:
-   c72 = "red" # plot72 color
-else:   
-   c72 = "#DD3646A3" # plot72 color
+plot72_AESS_T= 4 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+if plot71_temperature < 1:    c72 = "red" # plot72 color
+else:                         c72 = "#DD3646A3" # plot72 color
 plot73_ECS_T= 0 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
@@ -380,7 +376,7 @@ if plot71_temperature > 0:
 # 7.1.9 draw blue 1.5°C bar
 if plot71_temperature > 0:
    ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
-
+# end 7.1 
 
 # plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
 red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0)"
@@ -399,21 +395,17 @@ def T_model72(t):
 # 7.2.2 years scale x axis
 years72 = np.arange(x_anf, x_end + 1 )
 T_72values = T_model72(years72)
-# 7.2.4. Create DataFrame for convenience
+# 7.2.3. Create DataFrame for convenience
 df72 = pd.DataFrame({
        "Year72":      years72,
        "Modeled72": T_72values })
-# 7.2.6 plot72_temperature
+# 7.2.4 plot72_temperature
 if plot72_AESS_T > 0:
    ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
-   if plot71_temperature < 1: # make y axis right only if not exist
-      ax72.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))  # Hauptstriche
-      ax72.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))  # Nebenstriche
-      ax72.minorticks_off()
-# 7.2.7 plot7 Achse und Beschriftung if plot71_temperature > 0:
+# 7.2.5 plot7 Achse und Beschriftung if plot71_temperature > 0:
 if plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot54_Glen_delta_on > 2:
       ax72.spines.right.set_position(("outward", 50))
@@ -426,7 +418,7 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
          labelpad=10   # smaller = closer to y axis
    )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
-# 7.2.8 plot72_temperature
+# 7.2.6 plot72_temperature
 if plot72_AESS_T > 0:
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.25, zorder=0) # color="lightblue" 2°C streifen
@@ -434,7 +426,7 @@ if plot72_AESS_T > 0:
    ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
    ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
    ax72.minorticks_off()
-   # end 7.2
+   # end 7.2 plot72_AESS_T
 
 
 # plot73_ECS_T Earth Climate sensitivity 
