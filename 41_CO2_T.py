@@ -1,4 +1,4 @@
-# 41v6_CO2_T.py 72 T
+# 41v7_CO2_T.py 72 T
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -39,12 +39,12 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 4,5, 0
+plot71_temperature = 5 # 4,5, 0
 c71 = "red" # plot71 color c71 = "green" 
-plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 0 # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:    c72 = "red" # plot72 color
 else:                         c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 6 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 4 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
@@ -542,7 +542,7 @@ if plot71_temperature > 0:
          color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
-   )
+          )
    ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
 # 7.2.5 plot7 Achse und Beschriftung if plot71_temperature > 0:
 elif plot72_AESS_T > 0 and plot71_temperature < 1:
@@ -572,7 +572,6 @@ elif plot73_ECS_T > 0:
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
        )
-
 
 
 # 8.6 print the x axis 
@@ -617,9 +616,6 @@ ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
 # 8.7.4
 ax1.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
 ax1.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
-
-
-
 # end part 8
 
 
@@ -794,7 +790,16 @@ elif plot72_AESS_T == 4:
    # 9.5.8 write  text 
    plt.text(tr2x, tr4y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-
+elif plot73_ECS_T == 4:
+   line73 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c73, linewidth=2)
+   # 9.5.8 draw line72 as legend
+   fig.add_artist(line73)
+   # 9.5.8 write  text         
+   red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0) 73"
+   plt.text(tr2x, tr4y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
 if plot55_population_on == 5: #  legende world data plot1_CO2_Mauna_Loa
@@ -827,10 +832,10 @@ elif plot72_AESS_T == 5:
    red72_text="AESS_T Apparent Earth Sensitivity=8°C*log2(CO2/C0)"
    plt.text(tr2x, tr5y, red72_text, color=c72, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-else: # 9.5.9 draw bue line as legend
-   plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
-   transform=plt.gca().transAxes)
-if plot73_ECS_T == 5:
+   #else: # 9.5.9 draw bue line as legend
+   #plt.text(tr2x, tr5y, "Line 5 -0.48", color="white", fontname="Arial", fontsize=trs,
+   #transform=plt.gca().transAxes)
+elif plot73_ECS_T == 5:
    line73 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c73, linewidth=2)
