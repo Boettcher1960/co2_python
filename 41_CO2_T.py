@@ -1,4 +1,4 @@
-# 41t1_CO2_T.py part 8.2 grids
+# 41t2_CO2_T.py part 8.2 grids
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -13,7 +13,7 @@
 # part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
 #
-# part 8 print headline in figue
+# part 8 print headline, axis numbers. around figue
 # part 9 print line 1 to 5 below the figure 
 
 # -----------------------------
@@ -536,8 +536,10 @@ if plot73_ECS_T > 0:
 # part 8
 # 8.1 plot
 # 8.2 print the headline above the plot
-# 8.3 print the left y axis and vertical lines
-# 8.4 print the x axis and horizontal lines
+# 8.3 print the left y axis 
+# 8.4 print the vertical lines CO2=constant
+# 8.5 print the x axis 
+# 8.6 print the horizontal lines year 2026
 
 # 8.1 plot
 plt.xlim(x_anf, x_end)
@@ -565,8 +567,7 @@ else:
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
 
-
-# 8.3 print the left y axis and vertical lines
+# 8.3 print the left y axis 
 # 8.3.1 write "CO₂ in ppm" left Axis upwards
 ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
 # 8.3.2 write the numbers left of plot field
@@ -581,40 +582,46 @@ ax1.tick_params(axis='y', which='major', length=12, width=1.5)
 ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
 ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
-# 8.4 print the x axis and horizontal lines
-# 8.4.1 print year below the year numbers 
-ax1.set_xlabel("year", fontsize=20 )
-plt.xticks(fontsize=20)
-ax1.tick_params(axis="x", labelcolor="black", labelsize=20) # 1960 2020 Achsenbeschriftung
-# 8.4.2 scale the x axis major 20 years
-ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
-ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
-# 8.4.3 scale the x axis minor 5 years
-ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
-ax1.tick_params(axis='x', which='minor', length=7,  width=1)
-# 8.4.4 vertical minorlines all 5 years        
-ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
-  
-# 8.4.6 horizontal line at 1120 ppm
+
+
+# 8.4 print the vertical lines CO2=constant
+# 8.4.1 horizontal line at 1120 ppm
 ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-# 8.4.7 horizontal line at 560 ppm
+# 8.4.2 horizontal line at 560 ppm
 ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-# 8.4.8 vertical line at year 2026
-ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
-# 8.4.9 vertical major grid all 20 years
-for line in ax1.get_xgridlines():   # vertical lines
-       line.set_color('black')          # vertical color
-       line.set_alpha(0.5)
-       line.set_linestyle('--')        # optional '--'
-       line.set_linewidth(1.9)   # <-- thickness
-# 8.4.10 horizontal major grid all 50ppm
+# 8.4.3 horizontal major grid all 50ppm
 for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
        line.set_alpha(0.5)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
-# 8.4.11 horizontal minor grid all 10ppm
-ax1.grid(True, which="minor", axis="y", color="lightblue", alpha=0.64)   # horizontal
+# 8.4.4 horizontal minor grid all 10ppm
+ax1.grid(True, which="minor", axis="y", color="lightblue", alpha=0.94)   # horizontal
+
+
+# 8.5 print the x axis 
+# 8.5.1 print year below the year numbers 
+ax1.set_xlabel("year", fontsize=20 )
+plt.xticks(fontsize=20)
+ax1.tick_params(axis="x", labelcolor="black", labelsize=20) # 1960 2020 Achsenbeschriftung
+# 8.5.2 scale the x axis major 20 years
+ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
+ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
+# 8.5.3 scale the x axis minor 5 years
+ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
+ax1.tick_params(axis='x', which='minor', length=7,  width=1)
+# 8.5.4 vertical minorlines all 5 years        
+ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
+  
+# 8.6 print the horizontal lines year 2026
+# 8.6.3 vertical line at year 2026
+ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
+# 8.6.4 vertical major grid all 20 years
+for line in ax1.get_xgridlines():   # vertical lines
+       line.set_color('black')          # vertical color
+       line.set_alpha(0.5)
+       line.set_linestyle('--')        # optional '--'
+       line.set_linewidth(1.9)   # <-- thickness
 # end part 8
 
 
