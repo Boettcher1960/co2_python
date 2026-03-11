@@ -1,4 +1,4 @@
-# 41t2_CO2_T.py part 8.2 grids
+# 41t4_CO2_T.py part 8 axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -534,15 +534,20 @@ if plot73_ECS_T > 0:
    )
 
 # part 8
-# 8.1 plot
+# 8.1 scale the plot area
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
 # 8.4 print the vertical lines CO2=constant
 # 8.5 print the x axis 
 # 8.6 print the horizontal lines year 2026
 
-# 8.1 plot
+# 8.1 scale the plot area
+# 8.1.2 scale the x axis
 plt.xlim(x_anf, x_end)
+# 8.1.3 scale the Y axis
+ax1.set_ylim(y_min, y_max)
+# 8.1.4 enable grid
+ax1.grid(True)
 
 # 8.2 print the headline above the plot
 # 8.2.1 blue headline part
@@ -566,23 +571,19 @@ else:
    # 8.2.8 plot the headline
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
             transform=plt.gca().transAxes)
+            # end 8.2
 
 # 8.3 print the left y axis 
 # 8.3.1 write "CO₂ in ppm" left Axis upwards
 ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
 # 8.3.2 write the numbers left of plot field
 ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
-# 8.3.3 scale the Y axis
-ax1.set_ylim(y_min, y_max)
-ax1.grid(True)
-# 8.3.4 scale the Y axis 50ppm main items
+# 8.3.3 scale the Y axis 50ppm main items
 ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
 ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-# 8.3.5 scale the Y axis 10ppm minor items
+# 8.3.4 scale the Y axis 10ppm minor items
 ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
 ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-
-
 
 # 8.4 print the vertical lines CO2=constant
 # 8.4.1 horizontal line at 1120 ppm
@@ -598,7 +599,6 @@ for line in ax1.get_ygridlines():    # horizontal lines
 # 8.4.4 horizontal minor grid all 10ppm
 ax1.grid(True, which="minor", axis="y", color="lightblue", alpha=0.94)   # horizontal
 
-
 # 8.5 print the x axis 
 # 8.5.1 print year below the year numbers 
 ax1.set_xlabel("year", fontsize=20 )
@@ -610,20 +610,19 @@ ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
 # 8.5.3 scale the x axis minor 5 years
 ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
 ax1.tick_params(axis='x', which='minor', length=7,  width=1)
-# 8.5.4 vertical minorlines all 5 years        
-ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
   
 # 8.6 print the horizontal lines year 2026
-# 8.6.3 vertical line at year 2026
-ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
-# 8.6.4 vertical major grid all 20 years
+# 8.6.1 vertical major grid all 20 years
 for line in ax1.get_xgridlines():   # vertical lines
        line.set_color('black')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.9)   # <-- thickness
+# 8.6.2 vertical minorlines all 5 years        
+ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
+# 8.6.3 vertical line at year 2026
+ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
 # end part 8
-
 
 
 # 9 part 9 print information below the plot field
