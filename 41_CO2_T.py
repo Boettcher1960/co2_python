@@ -1,4 +1,4 @@
-# 41w3_CO2_T.py work on 52
+# 41w4_CO2_T.py work on 52
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -34,7 +34,7 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 4 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 8 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
@@ -63,7 +63,7 @@ y_max = 440 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 6 # 4 # max value C
 
-x_anf = 1960 # 1960 2000 
+x_anf = 2000 # 1960 2000 
 x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -220,10 +220,7 @@ if plot52_delta_CO2_red_bars > 0:
    df["Delta_CO2"] = df["CO2"].diff().fillna(0)  # This line creates a new column in your DataFrame called Delta_CO2.
    ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax52.spines.right.set_position(("outward", 20))
-# 5.2.5
-# 5.2.8 Add numbers on top of delta CO2 bars
-if plot52_delta_CO2_red_bars > 6:
-   ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
+
 
 # part 5.3 plot53_CO2_orange2025
 # part 5.3.1 -- Quadratic model function
@@ -566,6 +563,9 @@ elif plot52_delta_CO2_red_bars > 0:
    ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
    #ax52.set_ylim(-yr0, yr1) # scale y axis3 right red
    ax52.set_ylim(0, 4) # scale y axis3 right red   
+   # 5.2.8 Add numbers on top of delta CO2 bars
+   if plot52_delta_CO2_red_bars > 6:
+      ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
 
 
 # 8.5.9 
