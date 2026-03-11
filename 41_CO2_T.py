@@ -1,4 +1,4 @@
-# 41w1_CO2_T.py 
+# 41w2_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -37,9 +37,9 @@ c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
+plot55_population_on = 5 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0
+plot71_temperature = 4 # 4,5, 0
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
@@ -309,7 +309,7 @@ if plot54_Glen_delta_on > 0:
 # 2025	8,231,613,070	0.85%	69,640,498	55
 # 2024	8,161,972,572	0.87%	70,237,642	55
 # 2023	8,091,734,930	0.88%	70,327,738	54
-# population1.csv
+# 5.5.3 read population1.csv
 if plot55_population_on > 0:
    green55_text="Green line: Earth Population in billion"
    pop_df = pd.read_csv("population1.csv")
@@ -322,21 +322,10 @@ if plot55_population_on > 0:
    pop_world_subset = pop_world[start:end]
    # 5.5.4 in Milliarden
    pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
-   #end plot55_population_on=1 - print population
 # 5.5.5 plot55_population_on=1
 if plot55_population_on > 0:
    ax55 = ax1.twinx()
-   ax55.spines.right.set_position(("outward", 50))
-   ax55.set_ylabel("Earth Population in Billion", color="green")
-   # 2.5 Legende oben links
-   ax55.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
-   ax55.set_ylabel("Earth Population in Billion", color="green")
-   ax55.tick_params(axis="y", labelcolor="green")
-   # ax55.set_ylim(1, 9) #8
-   ax55.set_ylim(4, 9)
-   #end print_y2=1 - print population
-if plot55_population_on == 2: ax55.set_ylim(6.5, 8.5) # andere Skala
-#end 5.5.9 plot55_population_on=1 - print population
+   #end 5.5. plot55_population_on
 
 # no part 6
 
@@ -545,7 +534,7 @@ if plot71_temperature > 0:
          labelpad=10   # smaller = closer to y axis
           )
    ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
-# 7.2.5 plot7 Achse und Beschriftung if plot71_temperature > 0:
+# 8.5.2 plot72
 elif plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot54_Glen_delta_on > 2:
       ax72.spines.right.set_position(("outward", 50))
@@ -558,6 +547,7 @@ elif plot72_AESS_T > 0 and plot71_temperature < 1:
          labelpad=10   # smaller = closer to y axis
          )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
+# 8.5.3 plot73
 elif plot73_ECS_T > 0:
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
@@ -573,6 +563,16 @@ elif plot73_ECS_T > 0:
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
        )
+# 8.5.9 
+if plot55_population_on > 0:
+   ax55.spines.right.set_position(("outward", 80))
+   ax55.set_ylabel("Earth Population in Billion", color="green")
+   ax55.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
+   ax55.set_ylabel("Earth Population in Billion", color="green")
+   ax55.tick_params(axis="y", labelcolor="green")
+   ax55.set_ylim(1, 9) #8
+   # ax55.set_ylim(4, 9)
+   #end print_y2=1 - print population
 
 
 # 8.6 print the x axis 
@@ -973,4 +973,6 @@ if plot1_CO2_Mauna_Loa > 8:
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
 # https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # ppm CO2 = 0.0132251t² - 51.0337t + 49,536.7
-
+#
+# https://github.com/zmlabe 
+#
