@@ -1,4 +1,4 @@
-# 41t5_CO2_T.py part 8 axis lines
+# 41t6_CO2_T.py part 8 axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -384,10 +384,6 @@ if plot71_temperature > 0:
    ax71.plot(df7["Year71"], df7["Modeled71"], '--', label="T formula CO2=  K6", color=c71, linewidth=3)
    ax71.tick_params(axis="y", labelcolor=c71)
    ax71.set_ylim(y_Tmin, y_Tmax) # scale
-    # y axis big ticks 2°C
-   #ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
-   # y axis small ticks 0.2°C
-   #ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
 # 7.1.7 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
@@ -536,7 +532,13 @@ else:
             transform=plt.gca().transAxes)
             # end 8.2
 
-# 1.3.1 scale the left Y axis
+
+# 8.3 print the left y axis 
+# 8.3.1 write "CO₂ in ppm" left Axis upwards
+ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
+# 8.3.2 write the numbers left of plot field
+ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
+# 8.3.3 scale the left Y axis
 if y_max - y_min < 11:
    y_mayor_ticks = 2
    y_minor_ticks = 0.2
@@ -559,7 +561,7 @@ elif y_max - y_min < 1100:
 else: 
    y_mayor_ticks = 200 # Hauptstriche y axis
    y_minor_ticks = 50
-# 1.3.2 scale the right Y axis
+# 8.3.5  scale the right Y axis
 if y_Tmax - y_Tmin < 1:
    y_Tmayor_ticks = 2
    y_Tminor_ticks = 0.2
@@ -575,17 +577,10 @@ elif y_Tmax - y_Tmin < 21:
 else:
    y_Tmayor_ticks = 2
    y_Tminor_ticks = 0.2
-
-
-# 8.3 print the left y axis 
-# 8.3.1 write "CO₂ in ppm" left Axis upwards
-ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
-# 8.3.2 write the numbers left of plot field
-ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
-# 8.3.3 scale the Y axis 50ppm main items
+# 8.3.8 scale the Y axis 50ppm main items
 ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
 ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-# 8.3.4 scale the Y axis 10ppm minor items
+# 8.3.9 scale the Y axis 10ppm minor items
 ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
 ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
