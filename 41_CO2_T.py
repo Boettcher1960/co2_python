@@ -1,4 +1,4 @@
-# 41t6_CO2_T.py part 8 axis lines
+# 41t7_CO2_T.py part 8 axis lines
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -68,21 +68,7 @@ y_Tmax = 6 # 4 # max value C
 
 x_anf = 1960 # 1960 2000 
 x_end = 2070 # 2200 2026 
-if x_end - x_anf < 5:
-   x_mayor_ticks = 1
-   x_minor_ticks = 0.5
-elif x_end - x_anf < 10:
-   x_mayor_ticks = 1
-   x_minor_ticks = 1
-elif x_end - x_anf < 70:
-   x_mayor_ticks = 10
-   x_minor_ticks = 2
-elif x_end - x_anf < 120:
-   x_mayor_ticks = 20
-   x_minor_ticks = 5
-else:
-   x_mayor_ticks = 50
-   x_minor_ticks = 10
+
 
 ydiff = (y_max - y_min) / 10 # for y axis scale print
 xdiff = (x_end - x_anf) / 10 # for legend print
@@ -604,9 +590,25 @@ ax1.set_xlabel("year", fontsize=20 )
 plt.xticks(fontsize=20)
 ax1.tick_params(axis="x", labelcolor="black", labelsize=20) # 1960 2020 Achsenbeschriftung
 # 8.5.2 scale the x axis major 20 years
+if x_end - x_anf < 5:
+   x_mayor_ticks = 1
+   x_minor_ticks = 0.5
+elif x_end - x_anf < 10:
+   x_mayor_ticks = 1
+   x_minor_ticks = 1
+elif x_end - x_anf < 70:
+   x_mayor_ticks = 10
+   x_minor_ticks = 2
+elif x_end - x_anf < 120:
+   x_mayor_ticks = 20
+   x_minor_ticks = 5
+else:
+   x_mayor_ticks = 50
+   x_minor_ticks = 10
+# 8.5.8 scale the x axis major 20 years
 ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
 ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
-# 8.5.3 scale the x axis minor 5 years
+# 8.5.9 scale the x axis minor 5 years
 ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
 ax1.tick_params(axis='x', which='minor', length=7,  width=1)
   
