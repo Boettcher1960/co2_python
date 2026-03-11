@@ -1,4 +1,4 @@
-# 41v2_CO2_T.py 72 T
+# 41v3_CO2_T.py 72 T
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -416,12 +416,6 @@ if plot72_AESS_T > 0 and plot71_temperature < 1:
          labelpad=10   # smaller = closer to y axis
    )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
-# 7.2.6 plot72_temperature
-if plot72_AESS_T > 9:
-   ax72.set_ylim(y_Tmin, y_Tmax) # scale
-   ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
-   ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
-   ax72.minorticks_off()
    # end 7.2 plot72_AESS_T
 
 
@@ -613,8 +607,8 @@ ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work ver
 # 8.6.3 vertical line at year 2026
 ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
 # 8.6.4
-ax72.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
-ax72.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
+ax1.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
+ax1.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
 # end part 8
 
 
