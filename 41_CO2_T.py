@@ -1,4 +1,4 @@
-# 41v5_CO2_T.py 72 T
+# 41v6_CO2_T.py 72 T
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -39,12 +39,12 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0
+plot71_temperature = 4 # 4,5, 0
 c71 = "red" # plot71 color c71 = "green" 
-plot72_AESS_T= 4 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot72_AESS_T= 5 # 5,0 apparent Earth system sensitivity (AESS=7.7°C)
 if plot71_temperature < 1:    c72 = "red" # plot72 color
 else:                         c72 = "#DD3646A3" # plot72 color
-plot73_ECS_T= 5 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 6 # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 if plot71_temperature < 1 and plot72_AESS_T < 1:
    c73 = "red" # plot73 color
 else:   
@@ -411,22 +411,12 @@ df73 = pd.DataFrame({
        "Year73": years73,
        "Modeled73": T_73values })
 # 7.3.6 plot_ax73_temperature
-if plot73_ECS_T > 20:
+if plot73_ECS_T > 0:
    ax73 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
-   if plot71_temperature < 1: # make y axis right only if not exist
-      #ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
-      #ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
-      ax73.minorticks_off()
-      ax73.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
-      ax73.set_ylabel (
-         "Δ Temperature in °C (ECS = 4.5°C)",
-         color=c71,
-         fontname="Arial",fontsize=20,
-         labelpad=10   # smaller = closer to y axis
-   )
+   
 
 # part 8
 # 8.1 scale the plot area
@@ -548,7 +538,7 @@ if plot71_temperature > 0:
    else:
       ax71.spines.right.set_position(("outward", 5))
    ax71.set_ylabel (
-         "Δ Temperature in °C ",
+         "Δ Temperature in °C 71",
          color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
@@ -565,11 +555,9 @@ elif plot72_AESS_T > 0 and plot71_temperature < 1:
          color=c72,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
-   )
+         )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
-
 elif plot73_ECS_T > 0:
-   ax73 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
@@ -579,7 +567,7 @@ elif plot73_ECS_T > 0:
       ax73.minorticks_off()
       ax73.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax73.set_ylabel (
-         "Δ Temperature in °C (ECS = 4.5°C)",
+         "Δ Temperature in °C (ECS = 4.5°C)73",
          color=c71,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
