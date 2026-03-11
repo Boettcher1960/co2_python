@@ -1,4 +1,4 @@
-# 41w2_CO2_T.py 
+# 41w3_CO2_T.py work on 52
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -34,12 +34,12 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 4 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot55_population_on = 5 # 4, 5 row 5 # 0=no print , 1 = population in green
+plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 4,5, 0
+plot71_temperature = 0 # 4,5, 0
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
@@ -56,15 +56,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 300 # 300 # min value 280
-y_max = 600 # 1300 # min value 440 70
+y_min = 280 # 300 # min value 280
+y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 6 # 4 # max value C
 
 x_anf = 1960 # 1960 2000 
-x_end = 2070 # 2200 2026 
+x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -221,13 +221,6 @@ if plot52_delta_CO2_red_bars > 0:
    ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax52.spines.right.set_position(("outward", 20))
 # 5.2.5
-if plot52_delta_CO2_red_bars > 0:
-   bars = ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
-   ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
-   ax52.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
-   ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
-   ax52.set_ylim(-yr0, yr1) # scale y axis3 right red
-
 # 5.2.8 Add numbers on top of delta CO2 bars
 if plot52_delta_CO2_red_bars > 6:
    ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
@@ -468,6 +461,9 @@ elif y_max - y_min < 50:
 elif y_max - y_min < 101:
    y_mayor_ticks = 10
    y_minor_ticks = 2
+elif y_max - y_min < 201:
+   y_mayor_ticks = 20
+   y_minor_ticks = 5
 elif y_max - y_min < 500:
    y_mayor_ticks = 50
    y_minor_ticks = 10
@@ -563,6 +559,15 @@ elif plot73_ECS_T > 0:
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
        )
+elif plot52_delta_CO2_red_bars > 0:
+   bars = ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   ax52.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
+   ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
+   #ax52.set_ylim(-yr0, yr1) # scale y axis3 right red
+   ax52.set_ylim(0, 4) # scale y axis3 right red   
+
+
 # 8.5.9 
 if plot55_population_on > 0:
    ax55.spines.right.set_position(("outward", 80))
@@ -653,91 +658,94 @@ plt.text(tr2x, tr2y, blue2_text, color="blue", fontname="Arial", fontsize=trs,
 transform=plt.gca().transAxes)
 
 # 9.3 print line 3 below the plot explainations
-# 9.3.2 print line 3 plot55_population_on marker="s"
-if plot55_population_on == 3: #  legende world data plot1_CO2_Mauna_Loa
-   line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
-   transform=fig.transFigure,
-   marker="s", markersize=5, color="green", linewidth=2)
-   # 9.5.2 draw bue line as legend
-   fig.add_artist(line1)
-   # 9.5.4 write green text
-   plt.text(tr2x, tr3y, green55_text, color="green", fontname="Arial", fontsize=trs,
-   transform=plt.gca().transAxes)
-# 9.3.3 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
-elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
-   line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
-   transform=fig.transFigure,
-   marker="_", markersize=5, color="red", linewidth=8)
-   # 9.2.3 draw bue line as legend
-   fig.add_artist(line4)
-   # 9.2.4 write red text
-   text4="red bars: Mauna Loa yearly CO2 increase //see right larger ppm scaling"
-   # 9.2.5 plot the red text
-   plt.text(tr2x, tr3y, text4, color="red", fontname="Arial", fontsize=trs,
-   transform=plt.gca().transAxes)
-# 9.3.4 work_ print line 3 orange Glen data below the figure
-elif plot53_CO2_orange2025 == 3: # print in line 3 up to 2025
-   line3 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
-   transform=fig.transFigure,
-   marker="o", markersize=3, color="orange", linewidth=2)
-   # 9.2.3 draw bue line as legend
-   fig.add_artist(line3)
-   # 9.2.4 write blue text
-   red53_text="Orange dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
-   # 9.2.5 plot the blue text
-   plt.text(tr2x, tr3y, red53_text, color="orange", fontname="Arial", fontsize=trs,
-   transform=plt.gca().transAxes)
-   # 9.3.5 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
-# 9.3.5  print line 3 green Glen 
-elif plot54_Glen_delta_on == 3: # print in line4
-   line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1 lr3y
-   transform=fig.transFigure,
-   marker="_", markersize=5, color="green", linewidth=8)
-   # 9.3.5 draw bue line as legend
-   fig.add_artist(line4)
-   # 9.3.5 write blue text
-   green_text="Green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling"
-   # 9.3.5 plot the green text
-   plt.text(tr2x, tr3y, green_text, color="green", fontname="Arial", fontsize=trs,
-   transform=plt.gca().transAxes)
-   # 9.3.6_ print line 3 red Glen data below the figure
-# 9.3.6  print line 6 red Glen 
+# 9.3.3  print line red Glen 
 if plot3_Glen_CO2 == 3: # print in line 3
    line6 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c3, linewidth=2)
-   # 9.2.3 draw bue line as legend
+   # 9.3.3 draw bue line as legend
    fig.add_artist(line6)
-   # 9.2.4 write blue text
+   # 9.3.3 write blue text
    plt.text(tr2x, tr3y, text_plot3_Glen, color=c3, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+# 9.3.4 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
+elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
+   line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="_", markersize=5, color="red", linewidth=8)
+   # 9.3.4 draw bue line as legend
+   fig.add_artist(line4)
+   # 9.3.4 write red text
+   text4="red bars: Mauna Loa yearly CO2 increase //see right larger ppm scaling"
+   # 9.3.4 plot the red text
+   plt.text(tr2x, tr3y, text4, color="red", fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+# 9.3.5 print line 3 orange Glen data below the figure
+elif plot53_CO2_orange2025 == 3: # print in line 3 up to 2025
+   line3 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color="orange", linewidth=2)
+   # 9.3.5 draw bue line as legend
+   fig.add_artist(line3)
+   # 9.3.5 write blue text
+   red53_text="Orange dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
+   # 9.3.5 plot the blue text
+   plt.text(tr2x, tr3y, red53_text, color="orange", fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   # 9.3.5 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
+# 9.3.6  print line 3 green Glen 
+elif plot54_Glen_delta_on == 3: # print in line4
+   line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1 lr3y
+   transform=fig.transFigure,
+   marker="_", markersize=5, color="green", linewidth=8)
+   # 9.3.6 draw bue line as legend
+   fig.add_artist(line4)
+   # 9.3.6 write blue text
+   green_text="Green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling"
+   # 9.3.6 plot the green text
+   plt.text(tr2x, tr3y, green_text, color="green", fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   # 9.3.6_ print line 3 red Glen data below the figure
+# 9.3.7 print line 3 plot55_population_on marker="s"
+elif plot55_population_on == 3: #  legende world data plot1_CO2_Mauna_Loa
+   line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="s", markersize=5, color="green", linewidth=2)
+   # 9.3.7 draw bue line as legend
+   fig.add_artist(line1)
+   # 9.3.7 write green text
+   plt.text(tr2x, tr3y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.3 end print line 3 below the plot explainations
 
 
 # 9.4 print line 4 below the plot explainations
 # 9.4 print line 4 below the plot explainations
-# 9.4.2 print line 4 plot55_population_on marker="s"
-if plot55_population_on == 4:
-   line1 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
+# 9.4.3_ print line 3 red Glen data below the figure
+if plot3_Glen_CO2 == 4: # print in line 3
+   line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="s", markersize=5, color="green", linewidth=2)
-   fig.add_artist(line1)
-   plt.text(tr2x, tr4y, green55_text, color="green", fontname="Arial", fontsize=trs,
+   marker="o", markersize=3, color=c3, linewidth=2)
+   # 9.4.3 draw bue line as legend
+   fig.add_artist(line4)
+   # 9.4.3 write blue text
+   text_plot3_Glen=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
+   # 9.4.3 plot the blue text
+   plt.text(tr2x, tr4y, text_plot3_Glen, color=c3, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-   # 9.4.52 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
-if plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
+elif plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
    marker="_", markersize=5, color="red", linewidth=8)
    # 9.2.3 draw bue line as legend
    fig.add_artist(line4)
    # 9.2.4 write blue text
-   text4="red bars: Mauna Loa yearly CO2 increase //see right larger ppm scaling"
+   text4="red bars: Mauna Loa yearly CO2 increase //see right larger ppm scaling 52"
    # 9.2.5 plot the blue text
    plt.text(tr2x, tr4y, text4, color="red", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.4.4 work_ print line 4 orange Glen data below the figure
-if plot53_CO2_orange2025 == 4: # print in line 3 up to 2025
+elif plot53_CO2_orange2025 == 4: # print in line 3 up to 2025
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color="orange", linewidth=2)
@@ -760,18 +768,15 @@ elif plot54_Glen_delta_on == 4: # print in line4
    # 9.2.5 plot the blue text
    plt.text(tr2x, tr4y, green_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-# 9.4.6_ print line 3 red Glen data below the figure
-elif plot3_Glen_CO2 == 4: # print in line 3
-   line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   # 9.4.2 print line 4 plot55_population_on marker="s"
+elif plot55_population_on == 4:
+   line1 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c3, linewidth=2)
-   # 9.2.3 draw bue line as legend
-   fig.add_artist(line4)
-   # 9.2.4 write blue text
-   text_plot3_Glen=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
-   # 9.2.5 plot the blue text
-   plt.text(tr2x, tr4y, text_plot3_Glen, color=c3, fontname="Arial", fontsize=trs,
+   marker="s", markersize=5, color="green", linewidth=2)
+   fig.add_artist(line1)
+   plt.text(tr2x, tr4y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+   # 9.4.52 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 elif plot71_temperature == 4:
    line7 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
