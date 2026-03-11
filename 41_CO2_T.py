@@ -1,4 +1,4 @@
-# 41v4_CO2_T.py 72 T
+# 41v5_CO2_T.py 72 T
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -390,19 +390,6 @@ if plot72_AESS_T > 0:
    ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
    ax72.tick_params(axis="y", labelcolor=c72)
    ax72.set_ylim(y_Tmin, y_Tmax) # scale
-# 7.2.5 plot7 Achse und Beschriftung if plot71_temperature > 0:
-if plot72_AESS_T > 0 and plot71_temperature < 1:
-   if plot54_Glen_delta_on > 2:
-      ax72.spines.right.set_position(("outward", 50))
-   else:
-      ax72.spines.right.set_position(("outward", 5))
-   ax72.set_ylabel (
-         "Δ Temperature calc72 in  °C ",
-         color=c72,
-         fontname="Arial",fontsize=20,
-         labelpad=10   # smaller = closer to y axis
-   )
-   ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
    # end 7.2 plot72_AESS_T
 
 
@@ -567,6 +554,19 @@ if plot71_temperature > 0:
          labelpad=10   # smaller = closer to y axis
    )
    ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
+# 7.2.5 plot7 Achse und Beschriftung if plot71_temperature > 0:
+elif plot72_AESS_T > 0 and plot71_temperature < 1:
+   if plot54_Glen_delta_on > 2:
+      ax72.spines.right.set_position(("outward", 50))
+   else:
+      ax72.spines.right.set_position(("outward", 5))
+   ax72.set_ylabel (
+         "Δ Temperature calc72 in  °C ",
+         color=c72,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+   )
+   ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
 
 elif plot73_ECS_T > 0:
    ax73 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
