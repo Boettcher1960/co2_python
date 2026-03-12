@@ -1,4 +1,4 @@
-# 41w4_CO2_T.py work on 52
+# 41w5_CO2_T.py work on 54
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -34,9 +34,9 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 8 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
-plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
+plot54_Glen_delta_on = 4 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0
@@ -275,7 +275,7 @@ if plot54_Glen_delta_on > 0:
    ax54 = ax1.twinx()
    ax54.bar(df53["Year"], df53["Difference"], color="green", alpha=0.4, label="Diff (Actual − Model)")
    ax54.set_ylabel(
-      "Difference Mauna Loa - Glen-parabol (ppm)  (plot 5)",
+      "Difference Mauna Loa - Glen-parabol (ppm)  (plot 54)",
       color="green",
       fontsize=14,
       labelpad=-4   # smaller = closer to axis
@@ -283,6 +283,7 @@ if plot54_Glen_delta_on > 0:
    ax54.tick_params(axis="y", labelcolor="green")
    #ax54.set_ylim(-1, 13) # scale
    ax54.set_ylim(-yr0, yr1) # scale
+   ax54.set_ylim(0, 4) # scale
    if plot54_Glen_delta_on > 2:
       ax54.spines.right.set_position(("axes", 1))
    # end 5.4
