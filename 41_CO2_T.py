@@ -34,9 +34,9 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 8 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
-plot54_Glen_delta_on = 4 #  4, 0 print row 4 # green Glen diff print in line 4
+plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0
@@ -654,7 +654,7 @@ else: # 9.2.2 draw bue line as legend
 # 9.2.3 draw bue line as legend
 fig.add_artist(line1)
 # 9.2.4 write blue text
-blue2_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
+blue2_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm )"
 # 9.2.5 plot the blue text
 plt.text(tr2x, tr2y, blue2_text, color="blue", fontname="Arial", fontsize=trs,
 transform=plt.gca().transAxes)
