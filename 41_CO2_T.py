@@ -1,4 +1,4 @@
-# 41x4_CO2_T.py 427.35 ppm 2025
+# 41x5_CO2_T.py 427.35 ppm 2025
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -34,14 +34,14 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 8 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 4,5, 0
-plot72_AESS_T= 5       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 6       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot71_temperature = 0 # 4,5, 0
+plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -56,15 +56,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 0 # 300 # min value 280
-y_max = 5000 # 1300 # min value 440 70
+y_min = 330 # 300 # min value 280
+y_max = 430 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 25 # 4 # max value C
+y_Tmax = 5 # 4 # max value C
 
-x_anf = 1800 # 1960 2000 
-x_end = 2500 # 2200 2026 
+x_anf = 2000 # 1960 2000 
+x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -243,7 +243,7 @@ data53 = {
 2005: 379.98, 2006: 382.09, 2007: 384.02, 2008: 385.83, 2009: 387.64,
 2010: 390.10, 2011: 391.85, 2012: 394.06, 2013: 396.74, 2014: 398.87,
 2015: 401.01, 2016: 404.41, 2017: 406.76, 2018: 408.72, 2019: 411.66, # 2025 = 427.35  ppm
-2020: 414.24, 2021: 417.41, 2022: 418.52, 2023: 421.24, 2024: 424.61 , 2025: 427.35 
+2020: 414.24, 2021: 416.41, 2022: 418.53, 2023: 421.08, 2024: 424.61 , 2025: 427.35 
 }
 years53 = np.array(list(data53.keys()))
 # 5.3.4
