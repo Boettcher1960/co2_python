@@ -1,4 +1,4 @@
-# 41x3_CO2_T.py 427.35 ppm 2025
+# 41x4_CO2_T.py 427.35 ppm 2025
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -34,14 +34,14 @@ c1 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 8 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 0 # 3 4 0 7 8 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0
-plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot71_temperature = 4 # 4,5, 0
+plot72_AESS_T= 5       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot73_ECS_T= 6       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -56,15 +56,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 390 # 300 # min value 280
-y_max = 430 # 1300 # min value 440 70
+y_min = 0 # 300 # min value 280
+y_max = 5000 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 6 # 4 # max value C
+y_Tmax = 25 # 4 # max value C
 
-x_anf = 2016 # 1960 2000 
-x_end = 2026 # 2200 2026 
+x_anf = 1800 # 1960 2000 
+x_end = 2500 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -470,6 +470,13 @@ elif y_max - y_min < 1100:
    y_mayor_ticks = 100
    y_minor_ticks = 20
    y_minor_grid  = 10
+elif y_max - y_min < 3100:
+   y_mayor_ticks = 500
+   y_minor_ticks = 100
+   y_minor_grid  = 10
+elif y_max - y_min < 5100:
+   y_mayor_ticks = 1000
+   y_minor_ticks = 200
 else: 
    y_mayor_ticks = 200 # Hauptstriche y axis
    y_minor_ticks = 50
@@ -603,6 +610,15 @@ elif x_end - x_anf < 70:
 elif x_end - x_anf < 120:
    x_mayor_ticks = 20
    x_minor_ticks = 5
+elif x_end - x_anf < 220:
+   x_mayor_ticks = 50
+   x_minor_ticks = 10
+elif x_end - x_anf < 520:
+   x_mayor_ticks = 100
+   x_minor_ticks = 50
+elif x_end - x_anf < 1020:
+   x_mayor_ticks = 200
+   x_minor_ticks = 20
 else:
    x_mayor_ticks = 50
    x_minor_ticks = 10
@@ -898,8 +914,8 @@ if parameter84_save_png > 0:
    filename = filename + "_"
    filename = filename + header_parameter
    filename = filename + str(x_end)
-   #path = f"/Users/thomasboettcher/Desktop/python/{filename}"
-   #fig.savefig(path, dpi=300, bbox_inches="tight")
+   path = f"/Users/thomasboettcher/Desktop/{filename}"
+   fig.savefig(path, dpi=300, bbox_inches="tight")
    path = f"/Users/thomasboettcher/documents/Python/4_Python_CO2/41_CO2_T.png"
    fig.savefig(path, dpi=300, bbox_inches="tight")
 # 9.9 close the plotted figure
