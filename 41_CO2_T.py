@@ -1,4 +1,4 @@
-# 41w5_CO2_T.py work on 54
+# 41x1_CO2_T.py 427.35 ppm 2025
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -157,11 +157,12 @@ co2_values1 = [
 418.53, # 2022
 421.08, # 2023 421.08
 424.61, # 2024
-428.26 # 2025 = 424.61 + 3.69 ppm
+427.35  # 2025 = 427.35  ppm
 ]
 # 2.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
-# 2.2.2 world data not found
-# https://gml.noaa.gov/ccgg/trends/global.html
+#  https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+# 2.2.2 Mauna_Loa 13.3.2026
+# plot1_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 # 2.3 subset skip the old years
 co2_values1_subset = co2_values1[start:end]
 df = pd.DataFrame({
@@ -241,8 +242,8 @@ data53 = {
 2000: 369.71, 2001: 371.32, 2002: 373.45, 2003: 375.98, 2004: 377.70,
 2005: 379.98, 2006: 382.09, 2007: 384.02, 2008: 385.83, 2009: 387.64,
 2010: 390.10, 2011: 391.85, 2012: 394.06, 2013: 396.74, 2014: 398.87,
-2015: 401.01, 2016: 404.41, 2017: 406.76, 2018: 408.72, 2019: 411.66, # 2025 = 424.61 + 3.69 ppm
-2020: 414.24, 2021: 417.41, 2022: 418.52, 2023: 421.24, 2024: 424.61 , 2025: 428.26
+2015: 401.01, 2016: 404.41, 2017: 406.76, 2018: 408.72, 2019: 411.66, # 2025 = 427.35  ppm
+2020: 414.24, 2021: 417.41, 2022: 418.52, 2023: 421.24, 2024: 424.61 , 2025: 427.35 
 }
 years53 = np.array(list(data53.keys()))
 # 5.3.4
@@ -976,6 +977,10 @@ if plot1_CO2_Mauna_Loa > 8:
 
 
 # Datenquellen:
+# 2.2.2 Mauna_Loa 13.3.2026
+# plot1_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
+
+
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
 # https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # ppm CO2 = 0.0132251t² - 51.0337t + 49,536.7
