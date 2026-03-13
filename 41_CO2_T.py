@@ -165,13 +165,13 @@ co2_values1 = [
 # plot1_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 # 2.3 subset skip the old years
 co2_values1_subset = co2_values1[start:end]
-df = pd.DataFrame({
+df2 = pd.DataFrame({
      "Jahr": years21_subset,
      "CO2": co2_values1_subset })
 # 2.4.1 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # 2.4.2 print blue Mauna Loa
-ax1.plot(df["Jahr"], df["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
+ax1.plot(df2["Jahr"], df2["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 # end part 2 Mauna Loa CO2 measurements
 
 
@@ -215,13 +215,26 @@ if plot3_Glen_CO2 > 0:
 # -----------------------------
 # part 5.2 plot52_delta_CO2_red_bars
 # 5.2.2 ΔCO₂ berechnen (per pandas) Balken
-# df["CO2"].diff() Calculates the difference between consecutive CO₂ values
+# df2["CO2"].diff() Calculates the difference between consecutive CO₂ values
 # -----------------------------
 if plot52_delta_CO2_red_bars > 0:
-   df["Delta_CO2"] = df["CO2"].diff().fillna(0)  # This line creates a new column in your DataFrame called Delta_CO2.
+   df2["Delta_CO2"] = df2["CO2"].diff().fillna(0)  # This line creates a new column in your DataFrame called Delta_CO2.
    ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax52.spines.right.set_position(("outward", 20))
-
+# growth data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt
+#  2020        2.30        0.11
+#  2021        2.35        0.11
+#  2022        1.87        0.11
+#  2023        3.32        0.11
+#  2024        3.33        0.11
+#  2025        2.23        0.11
+# anual mean data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+#  2020   414.21     0.12
+#  2021   416.41     0.12
+#  2022   418.53     0.12
+#  2023   421.08     0.12
+#  2024   424.61     0.12
+#  2025   427.35     0.12
 
 # part 5.3 plot53_CO2_orange2025
 # part 5.3.1 -- Quadratic model function
@@ -566,8 +579,8 @@ elif plot73_ECS_T > 0:
          labelpad=10   # smaller = closer to y axis
        )
 elif plot52_delta_CO2_red_bars > 0:
-   bars = ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
-   ax52.bar(df["Jahr"], df["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   bars = ax52.bar(df2["Jahr"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   ax52.bar(df2["Jahr"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
    ax52.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
    ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
    #ax52.set_ylim(-yr0, yr1) # scale y axis3 right red
@@ -944,14 +957,14 @@ tempsT79 = np.array(list(dataT79.values()))
 """
 # Load the annual GISTEMP data
 url = "https://datahub.io/core/global-temp/r/annual.csv"
-df = pd.read_csv(url)
+df2 = pd.read_csv(url)
 
 # Inspect the first rows
-print(df.head())
+print(df2.head())
 
 # Plot
 plt.figure(figsize=(10,5))
-plt.plot(df["Year"], df["Mean"], marker="o")
+plt.plot(df2["Year"], df2["Mean"], marker="o")
 plt.title("Global Annual Temperature Anomalies (GISTEMP)")
 plt.xlabel("Year")
 plt.ylabel("Temperature Anomaly (°C)")
