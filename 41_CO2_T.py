@@ -63,7 +63,7 @@ y_max = 430 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = 2000 # 1960 2000 
+x_anf = 2016 # 1960 2000 
 x_end = 2026 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -218,23 +218,24 @@ if plot3_Glen_CO2 > 0:
 # df2["CO2"].diff() Calculates the difference between consecutive CO₂ values
 # -----------------------------
 if plot52_delta_CO2_red_bars > 0:
-   df2["Delta_CO2"] = df2["CO2"].diff().fillna(0)  # This line creates a new column in your DataFrame called Delta_CO2.
+   df2["Delta_CO2"] = df2["CO2"].diff().fillna(0)  
+   # This line creates a new column in your DataFrame called Delta_CO2.
    ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   # ax52.spines.right.set_position(("outward", 20))
 # growth data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt
 #  2020        2.30        0.11
 #  2021        2.35        0.11
 #  2022        1.87        0.11
-#  2023        3.32        0.11
-#  2024        3.33        0.11
-#  2025        2.23        0.11
+#  2023        3.32   2,55     0.11
+#  2024        3.33   3,53     0.11
+#  2025        2.23   2.74     0.11
 # anual mean data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
-#  2020   414.21     0.12
-#  2021   416.41     0.12
-#  2022   418.53     0.12
-#  2023   421.08     0.12
-#  2024   424.61     0.12
-#  2025   427.35     0.12
+#  year   noa     my.py  noa  
+#  2020   414.21   2,58  2.30
+#  2021   416.41   2,17  2.35
+#  2022   418.53   2,12  1.87
+#  2023   421.08   2,55  3.32
+#  2024   424.61   3,53  3.33
+#  2025   427.35   2,74  2.23
 
 # part 5.3 plot53_CO2_orange2025
 # part 5.3.1 -- Quadratic model function
