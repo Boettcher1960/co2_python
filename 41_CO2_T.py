@@ -1,4 +1,4 @@
-# 41x5_CO2_T.py 427.35 ppm 2025
+# 41x6_CO2_T.py 427.35 ppm 2025
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
@@ -64,7 +64,7 @@ y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
 x_anf = 2000 # 1960 2000 
-x_end = 2030 # 2200 2026 
+x_end = 2026 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -220,7 +220,7 @@ if plot3_Glen_CO2 > 0:
 if plot52_delta_CO2_red_bars > 0:
    df2["Delta_CO2"] = df2["CO2"].diff().fillna(0)  # This line creates a new column in your DataFrame called Delta_CO2.
    ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax52.spines.right.set_position(("outward", 20))
+   # ax52.spines.right.set_position(("outward", 20))
 # growth data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt
 #  2020        2.30        0.11
 #  2021        2.35        0.11
@@ -579,12 +579,12 @@ elif plot73_ECS_T > 0:
          labelpad=10   # smaller = closer to y axis
        )
 elif plot52_delta_CO2_red_bars > 0:
+   ax52.spines.right.set_position(("outward", 20))
    bars = ax52.bar(df2["Jahr"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
    ax52.bar(df2["Jahr"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
    ax52.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
    ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
-   #ax52.set_ylim(-yr0, yr1) # scale y axis3 right red
-   ax52.set_ylim(0, 4) # scale y axis3 right red   
+   ax52.set_ylim(y_Tmin, y_Tmax) # scale y axis3 right red   
    # 5.2.8 Add numbers on top of delta CO2 bars
    if plot52_delta_CO2_red_bars > 6:
       ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
