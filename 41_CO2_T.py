@@ -1,4 +1,4 @@
-# 41x2_CO2_T.py 427.35 ppm 2025
+# 41x3_CO2_T.py 427.35 ppm 2025
 # Thomas Boettcher
 # part 1 configure 
 # part 2 plot CO2 Mauna Loa
