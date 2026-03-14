@@ -1,7 +1,7 @@
 Links to github
 
 # Garvin Schmidt (follow up of James Hansen)
-# ‪@climateofgavin.bsky.social‬ recommends
+# climateofgavin.bsky.social recommends
 https://github.com/Climate-REF
 https://dashboard.climate-ref.org/
 
@@ -12,7 +12,8 @@ https://github.com/zmlabe
 
 # Datenquellen:
 # 2.2.2 Mauna_Loa 13.3.2026
-# plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
+# plot22_CO2_Mauna_Loa 
+https://gml.noaa.gov/ccgg/trends/global.html
 
 
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
