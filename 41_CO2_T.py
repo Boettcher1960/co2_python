@@ -1,8 +1,8 @@
-# 41x6_CO2_T.py 427.35 ppm 2025
+# 41x7_CO2_T.py 427.35 ppm 2025
 # Thomas Boettcher
 # part 1 configure 
-# part 2 plot CO2 Mauna Loa
-# part 3 plot3_Glen_CO2 = 3
+# part 2.2 plot CO2 Mauna Loa
+# part 2.3 plot3_Glen_CO2 = 3
 #
 # part 5.2 plot52_delta_CO2_red_bars
 # part 5.3 plot53_CO2_orange2025
@@ -29,8 +29,8 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot1_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
-c1 = "blue" # plot1 color
+plot22_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+c22 = "blue" # plot1 color
 plot3_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
@@ -110,7 +110,7 @@ yr1=4
 yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
 # 1.9 Parameter strig
-header_parameter = f"{plot1_CO2_Mauna_Loa}" # 1960 number inside string
+header_parameter = f"{plot22_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot3_Glen_CO2} " # plot55_population_on number inside string
 
 header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
@@ -126,26 +126,27 @@ header_parameter = header_parameter + f"{plot73_ECS_T} "
 
 
 # -----------------------------
-#  part 2 plot CO2 Mauna Loa
+#  part 2   plot CO2 
+#  part 2.2 plot CO2 Mauna Loa
 # -----------------------------
-# 2.1 years 1960–2025
-years21 = list(range(1960, x_end))
+# 2.2.1 years 1960–2025
+years22 = list(range(1960, x_end))
 
-# 2.1.2 Select only 2018–2025
+# 2.2.2 Select only 2018–2025
 if x_anf < 1960:
-   start = years21.index(1960)
+   start = years22.index(1960)
 else:
-   start = years21.index(x_anf)    
-end = years21.index(2025) + 1
-years21_subset = years21[start:end]
+   start = years22.index(x_anf)    
+end = years22.index(2025) + 1
+years22_subset = years22[start:end]
 
 
 # -----------------------------
-# 2.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+# 2.2.3 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # https://gml.noaa.gov/ccgg/trends/mlo.html
 # https://gml.noaa.gov/ccgg/trends/global.html
 # -----------------------------
-co2_values1 = [
+co2_values22 = [
 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.38, 322.16, 323.04, 324.62, # 1960–1969
 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41, 336.84, # 1970–1979
 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69, 353.20, # 1980–1989
@@ -155,24 +156,26 @@ co2_values1 = [
 414.24, # 2020
 416.41, # 2021
 418.53, # 2022
-421.08, # 2023 421.08
+421.08, # 2023
 424.61, # 2024
 427.35  # 2025 = 427.35  ppm
 ]
-# 2.2 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
+# 2.2.4 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
 #  https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
-# 2.2.2 Mauna_Loa 13.3.2026
-# plot1_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
-# 2.3 subset skip the old years
-co2_values1_subset = co2_values1[start:end]
+# 2.2.4 Mauna_Loa 13.3.2026
+# plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
+# 2.2.5 subset skip the old years
+co2_values22_subset = co2_values22[start:end]
 df2 = pd.DataFrame({
-     "Jahr": years21_subset,
-     "CO2": co2_values1_subset })
-# 2.4.1 add more space below plot
+     "Jahr": years22_subset,
+     "CO2": co2_values22_subset })
+# 2.2.6 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
-# 2.4.2 print blue Mauna Loa
+# 2.2.7 print blue Mauna Loa
 ax1.plot(df2["Jahr"], df2["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 # end part 2 Mauna Loa CO2 measurements
+
+
 
 
 # -----------------------------
@@ -458,9 +461,9 @@ else:
 
 # 8.3 print the left y axis 
 # 8.3.1 write "CO₂ in ppm" left Axis upwards
-ax1.set_ylabel("CO₂ in ppm", color=c1, fontsize=20) # y achse links
+ax1.set_ylabel("CO₂ in ppm", color=c22, fontsize=20) # y achse links
 # 8.3.2 write the numbers left of plot field
-ax1.tick_params(axis="y", labelcolor=c1, labelsize=20) # Achsenbeschriftung
+ax1.tick_params(axis="y", labelcolor=c22, labelsize=20) # Achsenbeschriftung
 # 8.3.3 scale the left Y axis
 if y_max - y_min < 11:
    y_mayor_ticks = 2
@@ -675,11 +678,11 @@ plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
 
 # 9.2 print line 1 blue Mauna Loa data below the figure
 # 9.2 print line 2 below the plot explainations
-if plot1_CO2_Mauna_Loa == 3: #  legende world data plot1_CO2_Mauna_Loa
+if plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color="blue", fontname="Arial", fontsize=18,
    transform=plt.gca().transAxes)
-   # elif plot1_CO2_Mauna_Loa == 1:
+   # elif plot22_CO2_Mauna_Loa == 1:
 else: # 9.2.2 draw bue line as legend
    line1 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
@@ -742,7 +745,7 @@ elif plot54_Glen_delta_on == 3: # print in line4
    transform=plt.gca().transAxes)
    # 9.3.6_ print line 3 red Glen data below the figure
 # 9.3.7 print line 3 plot55_population_on marker="s"
-elif plot55_population_on == 3: #  legende world data plot1_CO2_Mauna_Loa
+elif plot55_population_on == 3: #  legende world data plot22_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -843,7 +846,7 @@ elif plot73_ECS_T == 4:
    transform=plt.gca().transAxes)
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
-if plot55_population_on == 5: #  legende world data plot1_CO2_Mauna_Loa
+if plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
    line1 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
@@ -972,37 +975,37 @@ plt.ylabel("Temperature Anomaly (°C)")
 plt.grid(True)
 plt.show()
 """
-# 8.4 legende Mauna Loa blau plot1_CO2_Mauna_Loa
-if plot1_CO2_Mauna_Loa > 6: # 8.15.1 legende world data plot1_CO2_Mauna_Loa
+# 8.4 legende Mauna Loa blau plot22_CO2_Mauna_Loa
+if plot22_CO2_Mauna_Loa > 6: # 8.15.1 legende world data plot22_CO2_Mauna_Loa
    K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
    plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
    transform=plt.gca().transAxes)
    ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
 # 8.15 plot55_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
-if plot1_CO2_Mauna_Loa > 8:
+if plot22_CO2_Mauna_Loa > 8:
    if plot55_population_on > 0:
       plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
 # 8.16 legende
-if plot1_CO2_Mauna_Loa > 8:
+if plot22_CO2_Mauna_Loa > 8:
    if plot52_delta_CO2_red_bars > 0:
       plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -21, y_max -21], marker="_", markersize=5, color="red", linewidth=8)
 # 8.7 legende '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
-if plot1_CO2_Mauna_Loa > 8:
+if plot22_CO2_Mauna_Loa > 8:
    if plot53_CO2_orange2025 > 0:
       plt.text(0.02, 0.80," orange: Glen formula ppm = 0.0132 t² - 51 t + 49,536 ", color="orange", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -30.5, y_max -30.5], marker="_", markersize=5, color="orange", linewidth=3)
 # 8.8 legend in the plot
-if plot1_CO2_Mauna_Loa > 8:
+if plot22_CO2_Mauna_Loa > 8:
    if plot54_Glen_delta_on > 0:
       plt.text(0.02, 0.29," green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling", color="green", fontname="Arial", fontsize=14,
       transform=plt.gca().transAxes)
       ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
 # 8.9 legend in the plot
-if plot1_CO2_Mauna_Loa > 8:
+if plot22_CO2_Mauna_Loa > 8:
    if plot3_Glen_CO2 > 0:
       plt.text(0.02, 0.85," Red: Glen formula ppm = 0.0132251t² - 51.0337t + 49,536", color="red", fontname="Arial", fontsize=16,
       transform=plt.gca().transAxes)
@@ -1011,7 +1014,7 @@ if plot1_CO2_Mauna_Loa > 8:
 
 # Datenquellen:
 # 2.2.2 Mauna_Loa 13.3.2026
-# plot1_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
+# plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 
 
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
