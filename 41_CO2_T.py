@@ -1,4 +1,4 @@
-# 41x8_CO2_T.py 2.3 plot23_Glen_CO2 = 3
+# 41x9_CO2_T.py 2.3 plot23_Glen_CO2 = 3
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -34,14 +34,14 @@ c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c3 = "#4554A8C6"   # c3 = "#4B3FD1"
 # no part 4
-plot52_delta_CO2_red_bars = 8 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
+plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0
+plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 4       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -56,15 +56,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 330 # 300 # min value 280
-y_max = 430 # 1300 # min value 440 70
+y_min = 280 # 300 # min value 280
+y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 5 # 4 # max value C
+y_Tmax = 4 # 4 # max value C
 
-x_anf = 2016 # 1960 2000 
-x_end = 2026 # 2200 2026 
+x_anf = 1960 # 1960 2000 
+x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -99,17 +99,9 @@ elif scale_mode == 10:
 else:
    fig, ax1 = plt.subplots(figsize=(13, 7))
 
-# 1.8 old scaling items to be deleted
-# 1.8 scale the right y axis
-ydiff = (y_max - y_min) / 10 # for y axis scale print
-xdiff = (x_end - x_anf) / 10 # for legend print
-yr0=ydiff/8
-yr0 = int(yr0+0.49) # cast to integer result = 2 (int)
-yr1=ydiff-yr0
-yr1=4
-yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
+# yr1 = int(yr1+0.49) # cast to integer result = 2 (int)
 
-# 1.9 Parameter strig
+# 1.8 Parameter strig
 header_parameter = f"{plot22_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot23_Glen_CO2} " # plot55_population_on number inside string
 
@@ -128,6 +120,7 @@ header_parameter = header_parameter + f"{plot73_ECS_T} "
 # -----------------------------
 #  part 2   plot CO2 
 #  part 2.2 plot CO2 Mauna Loa
+blue22_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm )"
 # -----------------------------
 # 2.2.1 years 1960–2025
 years22 = list(range(1960, x_end))
@@ -170,6 +163,7 @@ df2 = pd.DataFrame({
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # 2.2.7 print blue Mauna Loa
 ax1.plot(df2["Jahr"], df2["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
+
 # end part 2 Mauna Loa CO2 measurements
 
 
@@ -676,24 +670,27 @@ text_below1 = text_below1 + filename
 plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
          transform=plt.gca().transAxes)
 
-# 9.2 print line 1 blue Mauna Loa data below the figure
-# 9.2 print line 2 below the plot explainations
-if plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
+# 9.2 print line 2 blue Mauna Loa data below the figure
+# 9.2.2 print line 2 below the plot explainations
+if plot22_CO2_Mauna_Loa == 2: #  legende world data plot22_CO2_Mauna_Loa
+   line1 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="o", markersize=5, color="blue", linewidth=2)
+   # 9.2.2.5 plot the blue text
+   plt.text(tr2x, tr2y, blue22_text, color="blue", fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+
+elif plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color="blue", fontname="Arial", fontsize=18,
    transform=plt.gca().transAxes)
-   # elif plot22_CO2_Mauna_Loa == 1:
 else: # 9.2.2 draw bue line as legend
    line1 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="o", markersize=5, color="blue", linewidth=2)
 # 9.2.3 draw bue line as legend
 fig.add_artist(line1)
-# 9.2.4 write blue text
-blue2_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm )"
-# 9.2.5 plot the blue text
-plt.text(tr2x, tr2y, blue2_text, color="blue", fontname="Arial", fontsize=trs,
-transform=plt.gca().transAxes)
+
 
 # 9.3 print line 3 below the plot explainations
 # 9.3.3  print line red Glen 
