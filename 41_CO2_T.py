@@ -1,4 +1,4 @@
-# 41x10_CO2_T.py 
+# 41x12_CO2_T.py work no line 22 Mauna Loa
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -29,10 +29,10 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 0 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 3 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
-c3 = "#4554A8C6"   # c3 = "#4B3FD1"
+plot23_Glen_CO2 = 2 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -41,7 +41,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 4       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 3       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -193,7 +193,7 @@ if plot23_Glen_CO2 > 0:
    ax23.tick_params(right=False, labelright=False) # remove Zahlen
 # 2.3.5
 if plot23_Glen_CO2 > 0:
-   ax23.plot(df23["Year3"], df23["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c3, linewidth=3)
+   ax23.plot(df23["Year3"], df23["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c23, linewidth=3)
    ax23.tick_params(axis="y", labelcolor="green")
    ax23.set_ylim(y_min, y_max) # scale
    ax23.spines.right.set_position(("outward", 60))
@@ -440,7 +440,7 @@ if plot71_temperature > 0: # one temperature active
      color="blue", fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
    plt.text(0.24, 1.05,
      f"- - CO2 quadratic",
-     color=c3, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
+     color=c23, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
    plt.text(0.48, 1.05,
      f"--> Δ Temperature calculated °C year {x_end}",
     color=c71, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
@@ -516,9 +516,9 @@ ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
 # 8.4 print the vertical lines CO2=constant
 # 8.4.1 horizontal line at 1120 ppm
-ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c3, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
+ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c23, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
 # 8.4.2 horizontal line at 560 ppm
-ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c3, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
+ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c23, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
 # 8.4.3 horizontal major grid all 50ppm
 for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
@@ -655,8 +655,8 @@ ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work ver
 # 8.7.3 vertical line at year 2026
 ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
 # 8.7.4
-ax1.axvspan(2065, 2066, color=c3, alpha=0.4, zorder=0) # vertical bar'
-ax1.axvspan(2174, 2175, color=c3, alpha=0.25, zorder=0) # vertical bar'
+ax1.axvspan(2065, 2066, color=c23, alpha=0.4, zorder=0) # vertical bar'
+ax1.axvspan(2174, 2175, color=c23, alpha=0.25, zorder=0) # vertical bar'
 # end part 8
 
 
@@ -674,37 +674,47 @@ plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
          transform=plt.gca().transAxes)
 
 # 9.2 print line 2 blue Mauna Loa data below the figure
-# 9.2.2 print line 2 below the plot explainations
+# 9.2.2 print line 22 below the plot explainations
 if plot22_CO2_Mauna_Loa == 2: #  legende world data plot22_CO2_Mauna_Loa
-   line1 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
+   line22 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="o", markersize=5, color="blue", linewidth=2)
    # 9.2.2.5 plot the blue text
    plt.text(tr2x, tr2y, blue22_text, color="blue", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-
+   fig.add_artist(line22)
+# 9.2.3 print line 23 below the plot explainations
+if plot23_Glen_CO2 == 2: # print in line 3
+   line23 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c23, linewidth=2)
+   fig.add_artist(line23)
+   plt.text(tr2x, tr2y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line23)
 elif plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color="blue", fontname="Arial", fontsize=18,
    transform=plt.gca().transAxes)
+   fig.add_artist(line22)
 else: # 9.2.2 draw bue line as legend
-   line1 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
+   line22 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="o", markersize=5, color="blue", linewidth=2)
-# 9.2.3 draw bue line as legend
-fig.add_artist(line1)
-
+   # 9.2.3 draw bue line as legend
+   fig.add_artist(line22)
+# end line 2
 
 # 9.3 print line 3 below the plot explainations
 # 9.3.3  print line red Glen 
 if plot23_Glen_CO2 == 3: # print in line 3
-   line6 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   line23 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c3, linewidth=2)
+   marker="o", markersize=3, color=c23, linewidth=2)
    # 9.3.3 draw bue line as legend
-   fig.add_artist(line6)
+   fig.add_artist(line23)
    # 9.3.3 write blue text
-   plt.text(tr2x, tr3y, text_plot23_Glen, color=c3, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr3y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.3.4 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
@@ -746,14 +756,26 @@ elif plot54_Glen_delta_on == 3: # print in line4
    # 9.3.6_ print line 3 red Glen data below the figure
 # 9.3.7 print line 3 plot55_population_on marker="s"
 elif plot55_population_on == 3: #  legende world data plot22_CO2_Mauna_Loa
-   line1 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
+   line55 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
    # 9.3.7 draw bue line as legend
-   fig.add_artist(line1)
+   fig.add_artist(line55)
    # 9.3.7 write green text
    plt.text(tr2x, tr3y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+elif plot73_ECS_T == 3:
+   line73 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c73, linewidth=2)
+   # 9.5.8 draw line72 as legend
+   fig.add_artist(line73)
+   # 9.5.8 write  text         
+   red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0) 73"
+   plt.text(tr2x, tr3y, red73_text, color=c73, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+
+
    # 9.3 end print line 3 below the plot explainations
 
 
@@ -763,13 +785,13 @@ elif plot55_population_on == 3: #  legende world data plot22_CO2_Mauna_Loa
 if plot23_Glen_CO2 == 4: # print in line 3
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c3, linewidth=2)
+   marker="o", markersize=3, color=c23, linewidth=2)
    # 9.4.3 draw bue line as legend
    fig.add_artist(line4)
    # 9.4.3 write blue text
    text_plot23_Glen=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
    # 9.4.3 plot the blue text
-   plt.text(tr2x, tr4y, text_plot23_Glen, color=c3, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
@@ -808,10 +830,10 @@ elif plot54_Glen_delta_on == 4: # print in line4
    transform=plt.gca().transAxes)
    # 9.4.2 print line 4 plot55_population_on marker="s"
 elif plot55_population_on == 4:
-   line1 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
+   line55 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
-   fig.add_artist(line1)
+   fig.add_artist(line55)
    plt.text(tr2x, tr4y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.4.52 print line 4 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
@@ -847,11 +869,11 @@ elif plot73_ECS_T == 4:
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
 if plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
-   line1 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
+   line55 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
    # 9.5.2 draw bue line as legend
-   fig.add_artist(line1)
+   fig.add_artist(line55)
    # 9.5.4 write green text
    plt.text(tr2x, tr5y, green55_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
