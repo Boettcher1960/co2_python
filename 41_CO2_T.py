@@ -1,4 +1,4 @@
-# 41x12_CO2_T.py work no line 22 Mauna Loa
+# 41x13_CO2_T.py work no line 22 Mauna Loa
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -161,12 +161,8 @@ df2 = pd.DataFrame({
      "CO2": co2_values22_subset })
 # 2.2.6 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
-# 2.2.7 print blue Mauna Loa
-ax1.plot(df2["Jahr"], df2["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 
-# end part 2 Mauna Loa CO2 measurements
-
-
+# end part 2.2 Mauna Loa CO2 measurements
 
 
 # -----------------------------
@@ -185,13 +181,18 @@ df23 = pd.DataFrame({
       "Year3": years23,
       "Modeled3": co23_values
        })
-# 2.3.4
+# 2.3.4 assign ax1  
+if plot22_CO2_Mauna_Loa > 0:
+   ax1.plot(df2["Jahr"], df2["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
+elif plot23_Glen_CO2 > 0:
+   ax1.plot(df23["Year3"], df23["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c23, linewidth=3)
+# 2.3.7
 if plot23_Glen_CO2 > 0:
    ax23 = ax1.twinx()
    ax23.spines.right.set_position(("outward", 90))
    ax23.spines["right"].set_visible(False) # remove right y-Achse
    ax23.tick_params(right=False, labelright=False) # remove Zahlen
-# 2.3.5
+# 2.3.8
 if plot23_Glen_CO2 > 0:
    ax23.plot(df23["Year3"], df23["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c23, linewidth=3)
    ax23.tick_params(axis="y", labelcolor="green")
