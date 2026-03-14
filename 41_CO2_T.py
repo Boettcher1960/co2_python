@@ -150,7 +150,7 @@ co2_values22 = [
 424.61, # 2024
 427.35  # 2025 = 427.35  ppm
 ]
-# 2.2.4 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt
+# 2.2.4 Kurve1 CO₂ 
 #  https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # 2.2.4 Mauna_Loa 13.3.2026
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
@@ -167,6 +167,8 @@ fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 
 # -----------------------------
 # 2.3 plot23_Glen_CO2 = 0.013t² - 51t + 49,536 in dark blue 
+# source a plot with the formula explained in a thread
+# source https://x.com/Gergyl/status/1810632238230589564
 # -----------------------------
 # text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
 text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t + 49,536"

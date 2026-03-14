@@ -10,10 +10,26 @@ https://wcrp-cmip.org/tools/model-benchmarking-and-evaluation-tools/
 # Zack Labe
 https://github.com/zmlabe
 
-# Datenquellen:
-# 2.2.2 Mauna_Loa 13.3.2026
-# plot22_CO2_Mauna_Loa 
-https://gml.noaa.gov/ccgg/trends/global.html
+# -----------------------------
+# 2.2 Mauna_Loa 13.3.2026
+# plot22_CO2_Mauna_Loa data
+values for part 2.2 plot22_CO2_Mauna_Loa 
+https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+
+( I deleted the https://gml.noaa.gov/ccgg/trends/global.html )
+( I deleted https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_clobal.txt )
+
+# -----------------------------
+# 2.3 plot23_Glen_CO2 = 0.013t² - 51t + 49,536 in dark blue 
+# https://x.com/Gergyl/status/1810632238230589564
+# -----------------------------
+# text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
+text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t + 49,536"
+
+
+
+
+
 
 
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
