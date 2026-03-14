@@ -1,4 +1,4 @@
-# 41x9_CO2_T.py 2.3 plot23_Glen_CO2 = 3
+# 41x10_CO2_T.py 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -532,6 +532,9 @@ if plot71_temperature > 0:
    ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 elif plot72_AESS_T > 0:
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
+elif plot73_ECS_T > 0:
+   ax73.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
+
 
 # 8.5 print the right y axis
 # 8.5.1 plot71 Achse und Beschriftung
