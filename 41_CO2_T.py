@@ -1,4 +1,4 @@
-# 41x13_CO2_T.py work no line 22 Mauna Loa
+# 41x14_CO2_T.py work no line 22 Mauna Loa
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -31,7 +31,7 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot22_CO2_Mauna_Loa = 0 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 2 # 3 print in line 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -41,7 +41,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 3       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 4       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -679,13 +679,13 @@ plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
 if plot22_CO2_Mauna_Loa == 2: #  legende world data plot22_CO2_Mauna_Loa
    line22 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
-   marker="o", markersize=5, color="blue", linewidth=2)
+   marker="o", markersize=5, color=c22, linewidth=2)
    # 9.2.2.5 plot the blue text
-   plt.text(tr2x, tr2y, blue22_text, color="blue", fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr2y, blue22_text, color=c22, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    fig.add_artist(line22)
 # 9.2.3 print line 23 below the plot explainations
-if plot23_Glen_CO2 == 2: # print in line 3
+elif plot23_Glen_CO2 == 2: # 
    line23 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c23, linewidth=2)
@@ -695,15 +695,17 @@ if plot23_Glen_CO2 == 2: # print in line 3
    fig.add_artist(line23)
 elif plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
    K1_text=" 2 new text )"
-   plt.text(tr2x, tr2y, K1_text, color="blue", fontname="Arial", fontsize=18,
+   plt.text(tr2x, tr2y, K1_text, color=c22, fontname="Arial", fontsize=18,
    transform=plt.gca().transAxes)
    fig.add_artist(line22)
 else: # 9.2.2 draw bue line as legend
    line22 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # x coords in figure space (0–1)
    transform=fig.transFigure,
-   marker="o", markersize=5, color="blue", linewidth=2)
+   marker="o", markersize=5, color=c22, linewidth=2)
    # 9.2.3 draw bue line as legend
    fig.add_artist(line22)
+   plt.text(tr2x, tr2y, "707 no item for line 2", color=c22, fontname="Arial", fontsize=18,
+            transform=plt.gca().transAxes)
 # end line 2
 
 # 9.3 print line 3 below the plot explainations
