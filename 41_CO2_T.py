@@ -35,7 +35,7 @@ c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot33_CO2_emission = 2
+plot34_CO2_emission = 2
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -206,6 +206,30 @@ if plot23_Glen_CO2 > 0:
 # end part 2.3 CO2
 
 
+# part 3.4 plot34_CO2_emission
+# co2_cumul.csv
+# https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&overlay=download-data
+# 3.4.2 Entity,Code,Year,Cumulat
+#       World,OWID_WRL,1750,9305937
+if plot34_CO2_emission > 0:
+   green34_text="Green line: Earth Population in billion"
+   pop_df34 = pd.read_csv("co2_cumul.csv")
+   cumul_co2_world = (
+         pop_df34[pop_df34["Entity"] == "World"][["Year", "Cumulat"]]
+         .query("1960 <= Year <= 2026")
+         .sort_values("Year")
+         .reset_index(drop=True)
+      )
+   cumul_co2_world_subset = cumul_co2_world[start:end]
+   # 3.4.4 in Mt CO2
+   cumul_co2_world["Cumulat"] = cumul_co2_world["Cumulat"] / 1e6
+# 3.4.5 plot55_population_on=1
+if plot34_CO2_emission > 0:
+   ax34 = ax1.twinx()
+   #end 3.4.
+
+
+
 
 # no part 3
 # no part 4
@@ -321,9 +345,9 @@ if plot54_Glen_delta_on > 0:
 # 5.5.3 read population1.csv
 if plot55_population_on > 0:
    green55_text="Green line: Earth Population in billion"
-   pop_df = pd.read_csv("population1.csv")
+   pop_df55 = pd.read_csv("population1.csv")
    pop_world = (
-         pop_df[pop_df["Entity"] == "World"][["Year", "Population"]]
+         pop_df55[pop_df55["Entity"] == "World"][["Year", "Population"]]
          .query("1960 <= Year <= 2026")
          .sort_values("Year")
          .reset_index(drop=True)
