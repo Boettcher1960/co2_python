@@ -214,9 +214,9 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text ="purple line: plot34_CO2_emission"
-   pop_df34 = pd.read_csv("co2_cumul.csv")
+   df34 = pd.read_csv("co2_cumul.csv")
    cumul_co2_world = (
-         pop_df34[pop_df34["Entity"] == "World"][["Year", "Cumulat"]]
+         df34[df34["Entity"] == "World"][["Year", "Cumulat"]]
          .query("1960 <= Year <= 2026")
          .sort_values("Year")
          .reset_index(drop=True)
@@ -227,6 +227,13 @@ if plot34_CO2_emission > 0:
 # 3.4.5 plot55_population_on=1
 if plot34_CO2_emission > 0:
    ax34 = ax1.twinx()
+   ax34.spines.right.set_position(("outward", 20))
+   ax34.spines["right"].set_visible(False) # remove right y-Achse
+   ax34.tick_params(right=False, labelright=False) # remove Zahlen
+   ax34.plot(df34["Year"], df34["Cumulat"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c34, linewidth=3)
+   ax34.tick_params(axis="y", labelcolor="green")
+   ax34.set_ylim(y_min, y_max) # scale
+   ax34.spines.right.set_position(("outward", 20))
    #end 3.4.
 
 
