@@ -9,6 +9,13 @@ https://wcrp-cmip.org/tools/model-benchmarking-and-evaluation-tools/
 
 # Zack Labe
 https://github.com/zmlabe
+Zachary Labe Climate Scientist 
+https://www.linkedin.com/in/zacharylabe/
+https://matplotlib.org/cmocean/
+https://chadagreene.com/CDT/CDT_Getting_Started.html
+https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/files/coord.m
+https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/202602
+
 
 # -----------------------------
 # 2.2 Mauna_Loa 13.3.2026
@@ -28,7 +35,7 @@ text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t 
 
 
 
-
+https://matplotlib.org/cmocean/
 
 
 
