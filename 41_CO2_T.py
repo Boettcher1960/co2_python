@@ -1,4 +1,4 @@
-# 41y8_CO2_T.py work no co2_cumul.csv
+# 41y9_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -216,23 +216,28 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text ="purple line: plot34_CO2_emission"
-   # df34 = pd.read_csv("co2_sum_world_2.csv")
-   df34 = pd.read_csv("co2_cumul.csv")
-   co2_sum_world = (
-         df34[df34["Entity"] == "World"][["Year34", "Cumulat"]]
+   plot34_CO2_emission_A = 0
+   if plot34_CO2_emission_A > 0:
+      df34a = pd.read_csv("co2_sum_world.csv")
+      print(df34a.head())
+   else:
+      df34b = pd.read_csv("co2_cumul.csv")
+      co2_sum_world = (
+         df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
          .sort_values("Year34")
          .reset_index(drop=True)
-      )
-   # 3.4.4 in Gt CO2
-   # co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
-   print(co2_sum_world.head(10))
-   #   Year34       Cumulat   GCumulat
-   # 0    1960  308396160000  308.39616
-   # 1    1961  317811160000  317.81116
-   # how to save co2_sum_world with column GCumulat as csv file
-   # save CSV
-   # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
+         )
+      print(co2_sum_world.head(10))
+      # 3.4.4 in Gt CO2
+      co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
+      print(co2_sum_world.head(10))
+      #   Year34       Cumulat   GCumulat
+      # 0    1960  308396160000  308.39616
+      # 1    1961  317811160000  317.81116
+      # how to save co2_sum_world with column GCumulat as csv file
+      # save CSV
+      # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
 
 # 3.4.5 plot34_CO2_emission
 if plot34_CO2_emission > 0:
@@ -616,7 +621,7 @@ elif plot34_CO2_emission > 0:
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
-   ax34.plot(df34["Year34"], df34["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+   ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
    ax34.tick_params(axis="y", labelcolor=c34)
    # ax34.set_ylim(0, 2000) #8
    ax34.set_ylim(-10, 2000000000000) #8
