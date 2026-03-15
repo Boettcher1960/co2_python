@@ -1,4 +1,4 @@
-# 41y1_CO2_T.py work no co2_cumul.csv
+# 41y2_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -35,7 +35,8 @@ c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 2
+plot34_CO2_emission = 2 # 2, 0 cumulative CO2 emissions 1750 to 2024
+c34 = "purple"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -212,7 +213,7 @@ if plot23_Glen_CO2 > 0:
 # 3.4.2 Entity,Code,Year,Cumulat
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
-   green34_text="Green line: Earth Population in billion"
+   print34_text ="purple line: plot34_CO2_emission"
    pop_df34 = pd.read_csv("co2_cumul.csv")
    cumul_co2_world = (
          pop_df34[pop_df34["Entity"] == "World"][["Year", "Cumulat"]]
@@ -229,9 +230,6 @@ if plot34_CO2_emission > 0:
    #end 3.4.
 
 
-
-
-# no part 3
 # no part 4
 
 # -----------------------------
@@ -722,6 +720,15 @@ elif plot23_Glen_CO2 == 2: #
    plt.text(tr2x, tr2y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    fig.add_artist(line23)
+elif plot34_CO2_emission == 2: # 
+   line34 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c34, linewidth=2)
+   fig.add_artist(line34)
+   plt.text(tr2x, tr2y, print34_text, color=c34, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line34)
+
 elif plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color=c22, fontname="Arial", fontsize=18,
