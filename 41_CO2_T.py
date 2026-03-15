@@ -1,4 +1,4 @@
-# 41y11_CO2_T.py work no co2_cumul.csv
+# 41y12_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -219,6 +219,7 @@ if plot34_CO2_emission > 0:
    plot34_CO2_emission_A = 0
    if plot34_CO2_emission_A > 0:
       df34a = pd.read_csv("co2_sum_world.csv")
+      print("plot34_CO2_emission_A 1  df34a")
       print(df34a.head())
    else:
       df34b = pd.read_csv("co2_cumul.csv")
@@ -228,10 +229,11 @@ if plot34_CO2_emission > 0:
          .sort_values("Year34")
          .reset_index(drop=True)
          )
-      print(co2_sum_world.head(10))
+      print("plot34_CO2_emission_A 0  df34b")
+      #print(co2_sum_world.head(10))
       # 3.4.4 in Gt CO2
       co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
-      print(co2_sum_world.head(10))
+      print(co2_sum_world.head(2))
       #   Year34       Cumulat   GCumulat
       # 0    1960  308396160000  308.39616
       # 1    1961  317811160000  317.81116
@@ -625,12 +627,10 @@ elif plot34_CO2_emission > 0:
       # df34a = pd.read_csv("co2_sum_world.csv")
       ax34.plot(df34a["Year34"], df34a["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2000) #8
    else:
       ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      # ax34.set_ylim(-10, 2000000000000) #8
-      # ax34.set_ylim(0, 2000) #8
+      #ax34.set_ylim(1, 2000000000000) #8
 # 8.5.9 
 if plot55_population_on > 0:
    ax55.spines.right.set_position(("outward", 80))
