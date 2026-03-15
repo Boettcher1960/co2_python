@@ -1,9 +1,11 @@
-# 41y13_CO2_T.py work no co2_cumul.csv
+# 41y15_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
 # part 2.3 plot23_Glen_CO2 = 3
+#
+# part 3.4 plot34_CO2_emission summed
 #
 # part 5.2 plot52_delta_CO2_red_bars
 # part 5.3 plot53_CO2_orange2025
@@ -35,14 +37,14 @@ c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 4 # 2, 0 cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 2 # 2, 0 cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "red"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot55_population_on = 5 # 4, 5 row 5 # 0=no print , 1 = population in green
+plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -126,7 +128,7 @@ header_parameter = header_parameter + f"{plot73_ECS_T} "
 # -----------------------------
 #  part 2   plot CO2 
 #  part 2.2 plot CO2 Mauna Loa
-blue22_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm )"
+blue22_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
 # -----------------------------
 # 2.2.1 years 1960–2025
 years22 = list(range(1960, x_end))
@@ -177,7 +179,7 @@ fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # source https://x.com/Gergyl/status/1810632238230589564
 # -----------------------------
 # text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
-text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t + 49,536"
+text_plot23_Glen="calculated CO2 dashed blue line 22 ppm = 0.0132251t² - 51.0337t + 49,536"
 # CO₂ function CO2 = 0.013t² - 51t + 49,536
 def co3_ppm(t):
    return 0.0132251 * t**2 - 51.0337 * t + 49536.7
@@ -209,13 +211,13 @@ if plot23_Glen_CO2 > 0:
 # end part 2.3 CO2
 
 
-# part 3.4 plot34_CO2_emission
+# part 3.4 plot34_CO2_emission summed
 # co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&overlay=download-data
 # 3.4.2 Entity,Code,Year,Cumulat
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
-   print34_text ="purple line: plot34_CO2_emission"
+   print34_text =" red dots: measured_cummulated CO2 emission Carbon Brief 34"
    plot34_CO2_emission_A = 1
    if plot34_CO2_emission_A > 0:
       df34a = pd.read_csv("co2_sum_world.csv")
