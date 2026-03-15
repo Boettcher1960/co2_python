@@ -46,6 +46,8 @@ https://matplotlib.org/cmocean/
 # https://github.com/zmlabe 
 
 
+co2_cumul.csv
+https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&overlay=download-data
 
 https://ourworldindata.org/grapher/cumulative-co-emissions
 
