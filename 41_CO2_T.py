@@ -224,22 +224,14 @@ if plot34_CO2_emission > 0:
       )
    #  1  1961  317811160000
    # 3.4.4 in Mt CO2
-   cumul_co2_world["Cumulat_G"] = cumul_co2_world["Cumulat"] / 1e9
-   print(cumul_co2_world.head(70))
-   #  Year    Cumulat
-   #    0  1960  308.39616
+   cumul_co2_world["Cumulat"] = cumul_co2_world["Cumulat"] / 1e9
+   # print(cumul_co2_world.head(70))
    #    1  1961  317.81116
    #   64  2024  1849.12390
 
 # 3.4.5 plot34_CO2_emission
 if plot34_CO2_emission > 0:
    ax34 = ax1.twinx()
-   # ax34.spines.right.set_position(("outward", 2))
-   # ax34.spines["right"].set_visible(False) # remove right y-Achse
-   # ax34.tick_params(right=False, labelright=False) # remove Zahlen
-   #ax34.plot(df34r["Year34"], df34r["Cumulat"], '--', label="plot34_CO2_emission", color=c34, linewidth=3)
-   #ax34.tick_params(axis="y", labelcolor=c34)
-   #ax34.set_ylim(0, 2000) # scale
    #end 3.4.
 # no part 4
 
@@ -632,10 +624,8 @@ elif plot34_CO2_emission > 0:
    ax34.spines.right.set_position(("outward", 4))
    ax34.set_ylabel("plot34_CO2_emission", color=c34,
                    fontname="Arial",fontsize=20,
-                   labelpad=10   # smaller = closer to y axis
+                   labelpad=1   # smaller = closer to y axis
                    )
-   # ax55.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
-  
    ax34.plot(df34r["Year34"], df34r["Cumulat"], marker="s", label="plot34_CO2_emission", color=c34, linewidth=3)
    ax34.tick_params(axis="y", labelcolor=c34)
    ax34.set_ylim(0, 2000) #8
@@ -890,6 +880,14 @@ elif plot54_Glen_delta_on == 4: # print in line4
    plt.text(tr2x, tr4y, green_text, color="green", fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    # 9.4.2 print line 4 plot55_population_on marker="s"
+elif plot34_CO2_emission == 4: # 
+   line34 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c34, linewidth=2)
+   fig.add_artist(line34)
+   plt.text(tr2x, tr4y, print34_text, color=c34, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line34)
 elif plot55_population_on == 4:
    line55 = Line2D([lr2x1, lr2x2], [lr4y, lr4y],
    transform=fig.transFigure,
