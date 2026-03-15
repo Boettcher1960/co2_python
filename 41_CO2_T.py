@@ -1,4 +1,4 @@
-# 41y6_CO2_T.py work no co2_cumul.csv
+# 41y7_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -108,7 +108,8 @@ else:
 
 # 1.8 Parameter strig
 header_parameter = f"{plot22_CO2_Mauna_Loa}" # 1960 number inside string
-header_parameter = header_parameter + f"{plot23_Glen_CO2} " # plot55_population_on number inside string
+header_parameter = header_parameter + f"{plot23_Glen_CO2}" # 
+header_parameter = header_parameter + f"{plot34_CO2_emission} " # 
 
 header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
@@ -215,19 +216,20 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text ="purple line: plot34_CO2_emission"
-   df34r = pd.read_csv("co2_cumul.csv")
-   cumul_co2_world = (
-         df34r[df34r["Entity"] == "World"][["Year34", "Cumulat"]]
+   df34 = pd.read_csv("co2_cumul.csv")
+   co2_sum_world = (
+         df34[df34["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
          .sort_values("Year34")
          .reset_index(drop=True)
       )
    #  1  1961  317811160000
    # 3.4.4 in Mt CO2
-   cumul_co2_world["Cumulat"] = cumul_co2_world["Cumulat"] / 1e9
-   # print(cumul_co2_world.head(70))
-   #    1  1961  317.81116
-   #   64  2024  1849.12390
+   co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
+   print(co2_sum_world.head(10))
+   #   Year34       Cumulat   GCumulat
+   # 0    1960  308396160000  308.39616
+   # 1    1961  317811160000  317.81116
 
 # 3.4.5 plot34_CO2_emission
 if plot34_CO2_emission > 0:
@@ -250,20 +252,6 @@ if plot52_delta_CO2_red_bars > 0:
    # This line creates a new column in your DataFrame called Delta_CO2.
    ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
 # growth data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt
-#  2020        2.30        0.11
-#  2021        2.35        0.11
-#  2022        1.87        0.11
-#  2023        3.32   2,55     0.11
-#  2024        3.33   3,53     0.11
-#  2025        2.23   2.74     0.11
-# anual mean data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
-#  year   noa     my.py  noa  
-#  2020   414.21   2,58  2.30
-#  2021   416.41   2,17  2.35
-#  2022   418.53   2,12  1.87
-#  2023   421.08   2,55  3.32
-#  2024   424.61   3,53  3.33
-#  2025   427.35   2,74  2.23
 
 # part 5.3 plot53_CO2_orange2025
 # part 5.3.1 -- Quadratic model function
@@ -284,7 +272,7 @@ data53 = {
 2000: 369.71, 2001: 371.32, 2002: 373.45, 2003: 375.98, 2004: 377.70,
 2005: 379.98, 2006: 382.09, 2007: 384.02, 2008: 385.83, 2009: 387.64,
 2010: 390.10, 2011: 391.85, 2012: 394.06, 2013: 396.74, 2014: 398.87,
-2015: 401.01, 2016: 404.41, 2017: 406.76, 2018: 408.72, 2019: 411.66, # 2025 = 427.35  ppm
+2015: 401.01, 2016: 404.41, 2017: 406.76, 2018: 408.72, 2019: 411.66, 
 2020: 414.24, 2021: 416.41, 2022: 418.53, 2023: 421.08, 2024: 424.61 , 2025: 427.35 
 }
 years53 = np.array(list(data53.keys()))
@@ -353,7 +341,6 @@ if plot55_population_on > 0:
          .sort_values("Year")
          .reset_index(drop=True)
       )
-   # pop_world_subset = pop_world[start:end]
    # 5.5.4 in Milliarden
    pop_world["Population_Mrd"] = pop_world["Population"] / 1e9
 # 5.5.5 plot55_population_on=1
@@ -626,10 +613,10 @@ elif plot34_CO2_emission > 0:
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
-   ax34.plot(df34r["Year34"], df34r["Cumulat"], marker="s", label="plot34_CO2_emission", color=c34, linewidth=3)
+   ax34.plot(df34["Year34"], df34["Cumulat"], marker="s",  color=c34, label="plot34_CO2_emission")
    ax34.tick_params(axis="y", labelcolor=c34)
    ax34.set_ylim(0, 2000) #8
-
+   ax34.set_ylim(0, 2000000000000) #8
 
 # 8.5.9 
 if plot55_population_on > 0:
