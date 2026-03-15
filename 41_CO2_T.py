@@ -613,10 +613,10 @@ elif plot34_CO2_emission > 0:
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
-   ax34.plot(df34["Year34"], df34["Cumulat"], marker="s",  color=c34, label="plot34_CO2_emission")
+   ax34.plot(df34["Year34"], df34["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
    ax34.tick_params(axis="y", labelcolor=c34)
-   ax34.set_ylim(0, 2000) #8
-   ax34.set_ylim(0, 2000000000000) #8
+   # ax34.set_ylim(0, 2000) #8
+   ax34.set_ylim(-10, 2000000000000) #8
 
 # 8.5.9 
 if plot55_population_on > 0:
