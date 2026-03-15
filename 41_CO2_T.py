@@ -1,4 +1,4 @@
-# 41y2_CO2_T.py work no co2_cumul.csv
+# 41y3_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -45,7 +45,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 4       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -231,8 +231,8 @@ if plot34_CO2_emission > 0:
    ax34.spines["right"].set_visible(False) # remove right y-Achse
    ax34.tick_params(right=False, labelright=False) # remove Zahlen
    ax34.plot(df34["Year"], df34["Cumulat"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c34, linewidth=3)
-   ax34.tick_params(axis="y", labelcolor="green")
-   ax34.set_ylim(y_min, y_max) # scale
+   ax34.tick_params(axis="y", labelcolor=c34)
+   ax34.set_ylim(0, 5000) # scale
    ax34.spines.right.set_position(("outward", 20))
    #end 3.4.
 
@@ -624,6 +624,15 @@ elif plot52_delta_CO2_red_bars > 0:
    # 5.2.8 Add numbers on top of delta CO2 bars
    if plot52_delta_CO2_red_bars > 6:
       ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
+elif plot34_CO2_emission > 0:
+   ax34.spines.right.set_position(("outward", 40))
+   ax34.plot(df34["Year"], df34["Cumulat"], '--', label="plot34_CO2_emission", color=c34, linewidth=3)
+   ax34.set_ylabel("plot34_CO2_emission", color=c34,
+                   fontname="Arial",fontsize=20,
+                   labelpad=10   # smaller = closer to y axis
+                   )
+   ax34.tick_params(axis="y", labelcolor=c34)
+   ax34.set_ylim(1, 5000) #8
 
 
 # 8.5.9 
