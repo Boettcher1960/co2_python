@@ -46,3 +46,9 @@ https://matplotlib.org/cmocean/
 # https://github.com/zmlabe 
 
 
+
+https://ourworldindata.org/grapher/cumulative-co-emissions
+
+https://globalcarbonbudget.org/gcb-2025/
+
+
