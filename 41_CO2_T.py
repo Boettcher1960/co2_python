@@ -1,4 +1,4 @@
-# 41y3_CO2_T.py work no co2_cumul.csv
+# 41y4_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -37,6 +37,7 @@ c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot34_CO2_emission = 2 # 2, 0 cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
+c34 = "red"
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -216,23 +217,34 @@ if plot34_CO2_emission > 0:
    print34_text ="purple line: plot34_CO2_emission"
    df34 = pd.read_csv("co2_cumul.csv")
    cumul_co2_world = (
-         df34[df34["Entity"] == "World"][["Year", "Cumulat"]]
-         .query("1960 <= Year <= 2026")
-         .sort_values("Year")
+         df34[df34["Entity"] == "World"][["Year34", "Cumulat"]]
+         .query("1960 <= Year34 <= 2026")
+         .sort_values("Year34")
          .reset_index(drop=True)
       )
+   
+   # print(cumul_co2_world.head(10))
+   # Year       Cumulat
+   #  0  1960  308396160000
+   #  1  1961  317811160000
    cumul_co2_world_subset = cumul_co2_world[start:end]
    # 3.4.4 in Mt CO2
-   cumul_co2_world["Cumulat"] = cumul_co2_world["Cumulat"] / 1e6
-# 3.4.5 plot55_population_on=1
+   cumul_co2_world["Cumulat"] = cumul_co2_world["Cumulat"] / 1e9
+   print(cumul_co2_world.head(10))
+   #  Year    Cumulat
+   #    0  1960  308.39616
+   #    1  1961  317.81116
+
+
+# 3.4.5 plot34_CO2_emission
 if plot34_CO2_emission > 0:
    ax34 = ax1.twinx()
    ax34.spines.right.set_position(("outward", 20))
    ax34.spines["right"].set_visible(False) # remove right y-Achse
    ax34.tick_params(right=False, labelright=False) # remove Zahlen
-   ax34.plot(df34["Year"], df34["Cumulat"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c34, linewidth=3)
+   ax34.plot(df34["Year34"], df34["Cumulat"], '--', label="plot34_CO2_emission", color=c34, linewidth=3)
    ax34.tick_params(axis="y", labelcolor=c34)
-   ax34.set_ylim(0, 5000) # scale
+   ax34.set_ylim(0, 500) # scale
    ax34.spines.right.set_position(("outward", 20))
    #end 3.4.
 
@@ -626,13 +638,15 @@ elif plot52_delta_CO2_red_bars > 0:
       ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
 elif plot34_CO2_emission > 0:
    ax34.spines.right.set_position(("outward", 40))
-   ax34.plot(df34["Year"], df34["Cumulat"], '--', label="plot34_CO2_emission", color=c34, linewidth=3)
    ax34.set_ylabel("plot34_CO2_emission", color=c34,
                    fontname="Arial",fontsize=20,
                    labelpad=10   # smaller = closer to y axis
                    )
+   # ax55.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
+  
+   ax34.plot(df34["Year34"], df34["Cumulat"], marker="s", label="plot34_CO2_emission", color=c34, linewidth=3)
    ax34.tick_params(axis="y", labelcolor=c34)
-   ax34.set_ylim(1, 5000) #8
+   ax34.set_ylim(0, 500) #8
 
 
 # 8.5.9 
