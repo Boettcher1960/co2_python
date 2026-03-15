@@ -1,4 +1,4 @@
-# 41y9_CO2_T.py work no co2_cumul.csv
+# 41y10_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -621,10 +621,15 @@ elif plot34_CO2_emission > 0:
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
-   ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
-   ax34.tick_params(axis="y", labelcolor=c34)
-   # ax34.set_ylim(0, 2000) #8
-   ax34.set_ylim(-10, 2000000000000) #8
+   if plot34_CO2_emission_A > 0:
+      # df34a = pd.read_csv("co2_sum_world.csv")
+      ax34.plot(df34a["Year34"], df34a["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      ax34.tick_params(axis="y", labelcolor=c34)
+      ax34.set_ylim(0, 2000) #8
+   else:
+      ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      ax34.tick_params(axis="y", labelcolor=c34)
+      ax34.set_ylim(-10, 2000000000000) #8
 
 # 8.5.9 
 if plot55_population_on > 0:
