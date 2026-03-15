@@ -1,4 +1,4 @@
-# 41y7_CO2_T.py work no co2_cumul.csv
+# 41y8_CO2_T.py work no co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -216,6 +216,7 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text ="purple line: plot34_CO2_emission"
+   # df34 = pd.read_csv("co2_sum_world_2.csv")
    df34 = pd.read_csv("co2_cumul.csv")
    co2_sum_world = (
          df34[df34["Entity"] == "World"][["Year34", "Cumulat"]]
@@ -223,13 +224,15 @@ if plot34_CO2_emission > 0:
          .sort_values("Year34")
          .reset_index(drop=True)
       )
-   #  1  1961  317811160000
-   # 3.4.4 in Mt CO2
-   co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
+   # 3.4.4 in Gt CO2
+   # co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
    print(co2_sum_world.head(10))
    #   Year34       Cumulat   GCumulat
    # 0    1960  308396160000  308.39616
    # 1    1961  317811160000  317.81116
+   # how to save co2_sum_world with column GCumulat as csv file
+   # save CSV
+   # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
 
 # 3.4.5 plot34_CO2_emission
 if plot34_CO2_emission > 0:
