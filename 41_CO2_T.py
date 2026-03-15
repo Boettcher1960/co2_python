@@ -1,4 +1,5 @@
-# 41x14_CO2_T.py work no line 22 Mauna Loa
+# 41y1_CO2_T.py work no co2_cumul.csv
+# https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -33,6 +34,8 @@ plot22_CO2_Mauna_Loa = 0 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa
 c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
+
+plot33_CO2_emission = 2
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
