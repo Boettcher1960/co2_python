@@ -1,5 +1,5 @@
-# 42a1_CO2_T.py ok co2_cumul.csv
-v = "42a2"
+# 42_CO2_T.py 
+v = "42a4"
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -76,7 +76,7 @@ x_end = 2050 # 2200 2026
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
-tr1y = -.16 # text row 1 y end value -.3...1 -.15
+tr1y = -.18 # text row 1 y end value -.3...1 -.15
 tr2x = 0.01 # text row 2 x value -.3...1 -0.08
 tr2y = -.24 # text row 2 y end value -.3...1 -.24
 
@@ -715,7 +715,7 @@ text_below1 = text_below1 + filename
 text_below1 = text_below1 + " v "
 text_below1 = text_below1 + v
 text_below1 = text_below1 + "  https://github.com/Boettcher1960/co2_python"
-plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
+plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=12,
          transform=plt.gca().transAxes)
 
 # 9.2 print line 2 blue Mauna Loa data below the figure
@@ -1019,7 +1019,7 @@ if parameter84_save_png > 0:
    filename = filename + str(x_end)
    path = f"/Users/thomasboettcher/Desktop/{filename}"
    fig.savefig(path, dpi=300, bbox_inches="tight")
-   path = f"/Users/thomasboettcher/documents/Python/4_Python_CO2/41_CO2_T.png"
+   path = f"/Users/thomasboettcher/documents/Python/4_Python_CO2/42_CO2_T.png"
    fig.savefig(path, dpi=300, bbox_inches="tight")
 # 9.9 close the plotted figure
 plt.close(fig)
