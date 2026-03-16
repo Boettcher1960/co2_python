@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a10"
+v = "42a12"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -44,7 +44,7 @@ c34 = "red"
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
+plot55_population_on = 4 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -218,15 +218,20 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
-   plot34_CO2_emission_A = 4
+   # plot34_CO2_emission_A = 1, read self made csv 2000 GtCO2
+   # plot34_CO2_emission_A = 2, read csv 2000 000 000 000 tCO2
+   # plot34_CO2_emission_A = 3, read csv 2000 GtCO2
+   # plot34_CO2_emission_A = 4, read csv 2000 GtCO2
+   # plot34_CO2_emission_A = 5
+   plot34_CO2_emission_A = 3
    # 3.4.1
    if plot34_CO2_emission_A == 1:
-      df34a = pd.read_csv("34a1_co2_world_generatged.csv") # processed file
+      df34a = pd.read_csv("csv_34a1_co2_world_generated.csv") # processed file
       # print("plot34_CO2_emission_A 1  df34a")
       # print(df34a.head(1))
    # 3.4.2
    elif plot34_CO2_emission_A == 2:
-      df34b = pd.read_csv("34a2_co2_sum.csv") # our world in data file
+      df34b = pd.read_csv("csv_34a2_co2_sum.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
@@ -239,7 +244,7 @@ if plot34_CO2_emission > 0:
       print(co2_sum_world.head(2))
    # 3.4.3
    elif plot34_CO2_emission_A == 3:
-      df34b = pd.read_csv("34a3_co2.csv") # our world in data file
+      df34b = pd.read_csv("csv_34a2_co2_sum.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
@@ -251,7 +256,7 @@ if plot34_CO2_emission > 0:
       x34years = df34b["Year34"]
       cumulative_gt = df34b["GCumulat"]
    elif plot34_CO2_emission_A == 4:
-      df34b = pd.read_csv("34a3_co2.csv") # our world in data file
+      df34b = pd.read_csv("csv_34a2_co2_sum.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
@@ -387,10 +392,10 @@ if plot54_Glen_delta_on > 0:
 # 2025	8,231,613,070	0.85%	69,640,498	55
 # 2024	8,161,972,572	0.87%	70,237,642	55
 # 2023	8,091,734,930	0.88%	70,327,738	54
-# 5.5.3 read population1.csv
+# 5.5.3 read csv_55_population.csv
 if plot55_population_on > 0:
    green55_text="Green line: Earth Population in billion"
-   df55 = pd.read_csv("population1.csv")
+   df55 = pd.read_csv("csv_55_population.csv")
    pop_world = (
          df55[df55["Entity"] == "World"][["Year", "Population"]]
          .query("1960 <= Year <= 2026")
