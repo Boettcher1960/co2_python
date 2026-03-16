@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a6"
+v = "42a7"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -664,27 +664,15 @@ elif plot34_CO2_emission > 0:
    if plot34_CO2_emission_A == 1:       # df34a = pd.read_csv("co2_sum_world.csv")
       ax34.plot(df34a["Year34"], df34a["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2000) #8 2000GtCO2
+      ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_A == 2:
       ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000000000000) #8
    elif plot34_CO2_emission_A == 3:
-      # print(df34b["Year34"].head(3))
-      # print(cumulative_gt.head())
-      #x34years = df34b["Year34"]
-      #cumulative_gt = df34b["GCumulat"]
-      ax34.plot(x34years, cumulative_gt, color=c34, linewidth=2)
-      # ax34.plot(cumulative_gt, color=c34, linewidth=2)
-      #ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2000) #8 2000GtCO2
-      ax34.set_ylim(0, 2000000000000) #8
-      # plot34_CO2_emission_A 1 and 2 work
-      # plot34_CO2_emission_A = 3 does not show a line
-      ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
-      ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2000000000000) #8
+      ax34.set_ylim(-10, 2000) # best scaling 2000 GtCO2
    else:
       ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
