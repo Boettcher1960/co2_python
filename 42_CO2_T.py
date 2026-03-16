@@ -1,6 +1,5 @@
 # 42_CO2_T.py 
 v = "42a4"
-# https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -219,8 +218,8 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
-   plot34_CO2_emission_A = 1
-   if plot34_CO2_emission_A > 0:
+   plot34_CO2_emission_A = 2
+   if plot34_CO2_emission_A == 1:
       df34a = pd.read_csv("co2_sum_world.csv") # processed file
       # print("plot34_CO2_emission_A 1  df34a")
       # print(df34a.head(1))
@@ -244,6 +243,8 @@ if plot34_CO2_emission > 0:
       # save CSV
       # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
       #end 3.4
+# years = df["Year34"]
+# cumulative_gt = df["GCumulat"]
 
 # no part 4
 
@@ -624,7 +625,7 @@ elif plot34_CO2_emission > 0:
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
-   if plot34_CO2_emission_A > 0:       # df34a = pd.read_csv("co2_sum_world.csv")
+   if plot34_CO2_emission_A == 1:       # df34a = pd.read_csv("co2_sum_world.csv")
       ax34.plot(df34a["Year34"], df34a["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000) #8 2000GtCO2
@@ -1103,9 +1104,12 @@ if plot22_CO2_Mauna_Loa > 8:
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 
 
-# CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
+# 2.1 CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
 # https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # ppm CO2 = 0.0132251t² - 51.0337t + 49,536.7
 #
+# 3.2 https://ourworldindata.org/grapher/cumulative-co-emissions
+
+
 # https://github.com/zmlabe 
 #
