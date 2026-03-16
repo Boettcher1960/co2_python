@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b3"
+v = "42b4"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -37,7 +37,7 @@ c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 2 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 4 # 2, 0 cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 3 # 4,3,2, 0 cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "red"
 # no part 4
@@ -75,10 +75,10 @@ x_end = 2050 # 2200 2026
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
-tr1y = -.17 # text row 1 y end value -.3...1 -.15
 tr2x = 0.01 # text row 2 x value -.3...1 -0.08
-tr2y = -.24 # text row 2 y end value -.3...1 -.24
 
+tr1y = -.19 # text row 1 y end value -.3...1 -.15
+tr2y = -.26 # text row 2 y end value -.3...1 -.24
 # 1.5 scale the text rows below the plot field
 tr3y = -.32 # text row 1 y end value -.3...1 -.32
 tr4y = -.40 # text row 1 y end value -.3...1 -.40
@@ -89,8 +89,8 @@ trs = 20 # trs = 16 # fontsize=14
 # 1.6 scale the legend lines below the plot field
 lr2x1 = 0.065 # line row 2 x value begin 0.065
 lr2x2 = 0.085 # line row 2 x value end 0.085
-lr1y = 0.263 # line row 2 y value begin 0.215
-lr2y = 0.223 # line row 2 y value begin 0.215
+lr1y = 0.248 # line row 1 y value begin 
+lr2y = 0.211 # line row 2 y value begin 0.215
 lr3y = 0.173 # line row 3 y value begin 0.17
 lr4y = 0.129 # line row 4 y value begin 0.124
 lr5y = 0.082 # line row 5 y value begin 0.08
@@ -852,6 +852,14 @@ if plot23_Glen_CO2 == 3: # print in line 3
    plt.text(tr2x, tr3y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 # 9.3.4 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
+elif plot34_CO2_emission == 3: # 
+   line34 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c34, linewidth=2)
+   fig.add_artist(line34)
+   plt.text(tr2x, tr3y, print34_text, color=c34, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line34)
 elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
    line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
