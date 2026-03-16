@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b8" # 34 and 73 curves
+v = "42c1" # 34 and 73 curves
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -663,8 +663,17 @@ elif plot52_delta_CO2_red_bars > 0:
       ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
 if plot34_CO2_emission > 0:
    ax34 = ax1.twinx()
-   ax34.spines.right.set_position(("outward", 4))
-   ax34.set_ylabel("CO2 cumulative emission in GtCO2  34", color=c34,
+
+   # Left axis 2: GtC
+   if plot73_ECS_T > 0:
+      ax34.spines["left"].set_position(("outward", 60))  # move outward from ax1
+      ax34.spines["left"].set_visible(True)
+      ax34.spines["right"].set_visible(False)
+      ax34.yaxis.set_label_position("left")
+      ax34.yaxis.tick_left()
+   else:
+      ax34.spines.right.set_position(("outward", 4))
+      ax34.set_ylabel("CO2 cumulative emission in GtCO2  34", color=c34,
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
