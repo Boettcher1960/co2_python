@@ -1,5 +1,5 @@
 # 42a1_CO2_T.py ok co2_cumul.csv
-v = " 42a1"
+v = "42a2"
 # https://ourworldindata.org/grapher/cumulative-co-emissions
 # Thomas Boettcher
 # part 1 configure 
@@ -712,7 +712,9 @@ text_below1 = ""
 # text_below1 = text_below1 + header_parameter
 text_below1 = text_below1 + "Figure from "
 text_below1 = text_below1 + filename
+text_below1 = text_below1 + " v "
 text_below1 = text_below1 + v
+text_below1 = text_below1 + "  https://github.com/Boettcher1960/co2_python"
 plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=trs,
          transform=plt.gca().transAxes)
 
