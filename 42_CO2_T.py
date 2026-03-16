@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b7" # 1900
+v = "42b8" # 34 and 73 curves
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -39,7 +39,7 @@ c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot34_CO2_emission = 34 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
-c34 = "red"
+c34 = "#942296C5" 
 # no part 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -48,7 +48,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0       # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 5       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -661,7 +661,7 @@ elif plot52_delta_CO2_red_bars > 0:
    # 5.2.8 Add numbers on top of delta CO2 bars
    if plot52_delta_CO2_red_bars > 6:
       ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
-elif plot34_CO2_emission > 0:
+if plot34_CO2_emission > 0:
    ax34 = ax1.twinx()
    ax34.spines.right.set_position(("outward", 4))
    ax34.set_ylabel("CO2 cumulative emission in GtCO2  34", color=c34,
