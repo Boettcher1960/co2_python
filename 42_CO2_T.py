@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a20"
+v = "42b1"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -32,12 +32,12 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 0 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 2 # 2, 0 cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 4 # 2, 0 cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "red"
 # no part 4
@@ -179,7 +179,7 @@ fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # source https://x.com/Gergyl/status/1810632238230589564
 # -----------------------------
 # text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
-text_plot23_Glen="calculated CO2 dashed blue line 22 ppm = 0.0132251t² - 51.0337t + 49,536"
+text_plot23_Glen="calculated CO2 dashed blue line = 0.0132251t² - 51.0337t + 49,536 ppm 23"
 # CO₂ function CO2 = 0.013t² - 51t + 49,536
 def co3_ppm(t):
    return 0.0132251 * t**2 - 51.0337 * t + 49536.7
