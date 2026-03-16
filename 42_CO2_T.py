@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a19"
+v = "42a20"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -63,14 +63,14 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 280 # 300 # min value 280
+y_min = 320 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 500 # 4 # max value C
 
-x_anf = 1850 # 1960 2000 
+x_anf = 2000 # 1960 2000 
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -695,6 +695,8 @@ elif plot34_CO2_emission > 0:
       ax34.plot(co2_sum_world["Year"], co2_sum_world["CCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 800) # best scaling 500 GtC
+      ax34.set_ylim(250, 550) # best scaling 500 GtC
+      
    else:
       ax34.plot(df34b["Year"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
