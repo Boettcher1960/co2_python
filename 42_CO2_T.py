@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a17"
+v = "42a18"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -223,7 +223,7 @@ if plot34_CO2_emission > 0:
    # plot34_CO2_emission_A = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv 1750 to 2024
    # plot34_CO2_emission_A = 4, read csv 2000 GtCO2
    # plot34_CO2_emission_A = 5
-   plot34_CO2_emission_A = 3
+   plot34_CO2_emission_A = 4
    # 3.4.1
    if plot34_CO2_emission_A == 1:
       df34a = pd.read_csv("csv_34a1_co2_world_generated.csv") # processed file
@@ -256,16 +256,16 @@ if plot34_CO2_emission > 0:
       x34years = df34b["Year"]
       cumulative_gt = co2_sum_world["GCumulat"]
    elif plot34_CO2_emission_A == 4:
-      df34b = pd.read_csv("csv_34a2_co2_sum.csv") # our world in data file
+      df34b = pd.read_csv("csv_34a3_cumulative-co-emissions.csv") # our world in data file
       co2_sum_world = (
-         df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
-         .query("1960 <= Year34 <= 2026")
-         .sort_values("Year34")
+         df34b[df34b["Entity"] == "World"][["Year", "Cumulat"]]
+         .query("1750 <= Year <= 2026")
+         .sort_values("Year")
          .reset_index(drop=True)
          )
       # 3.4.2 in Gt CO2    round GCumulat to integer
       co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
-      x34_year = df34b["Year34"]
+      x34_year = df34b["Year"]
       y_sum_gt = co2_sum_world["GCumulat"]
       print(y_sum_gt.head(2))
       print("co2_cumul.csv 3  df34b---4--")
@@ -691,12 +691,12 @@ elif plot34_CO2_emission > 0:
       #co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
       #x34_year = df34b["Year34"]
       #y_sum_gt = co2_sum_world["GCumulat"]
-      ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      ax34.plot(co2_sum_world["Year"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       #ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
    else:
-      ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      ax34.plot(df34b["Year"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000000000000) #8
 
@@ -1113,69 +1113,9 @@ tempsT79 = np.array(list(dataT79.values()))
 
 
 
-
-"""
-# Load the annual GISTEMP data
-url = "https://datahub.io/core/global-temp/r/annual.csv"
-df2 = pd.read_csv(url)
-
-# Inspect the first rows
-print(df2.head())
-
-# Plot
-plt.figure(figsize=(10,5))
-plt.plot(df2["Year"], df2["Mean"], marker="o")
-plt.title("Global Annual Temperature Anomalies (GISTEMP)")
-plt.xlabel("Year")
-plt.ylabel("Temperature Anomaly (°C)")
-plt.grid(True)
-plt.show()
-"""
-# 8.4 legende Mauna Loa blau plot22_CO2_Mauna_Loa
-if plot22_CO2_Mauna_Loa > 6: # 8.15.1 legende world data plot22_CO2_Mauna_Loa
-   K1_text=" Blue: CO2 measured at Mauna Loa ( 2025 = 424.61ppm + 3.69 ppm )"
-   plt.text(0.02, 0.95, K1_text, color="blue", fontname="Arial", fontsize=16,
-   transform=plt.gca().transAxes)
-   ax1.plot([x_anf+1, x_anf +2], [y_max -5, y_max -5], marker="o", markersize=5, color="blue", linewidth=2, label="short line")
-# 8.15 plot55_population_on = 1 # 0 keine Bevölkerung , 1 = Bevölkerung in grün
-if plot22_CO2_Mauna_Loa > 8:
-   if plot55_population_on > 0:
-      plt.text(0.02, 0.90,"green: Human Population in billion K2", color="green", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-# 8.16 legende
-if plot22_CO2_Mauna_Loa > 8:
-   if plot52_delta_CO2_red_bars > 0:
-      plt.text(0.02, 0.86," red bars: Mauna Loa yearly increase. //see right larger ppm scaling", color="red", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -21, y_max -21], marker="_", markersize=5, color="red", linewidth=8)
-# 8.7 legende '--', label="Glen *parabola* ( 0.0132t² - 51t + 49,536) K4", color="orange", linewidth=3)
-if plot22_CO2_Mauna_Loa > 8:
-   if plot53_CO2_orange2025 > 0:
-      plt.text(0.02, 0.80," orange: Glen formula ppm = 0.0132 t² - 51 t + 49,536 ", color="orange", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -30.5, y_max -30.5], marker="_", markersize=5, color="orange", linewidth=3)
-# 8.8 legend in the plot
-if plot22_CO2_Mauna_Loa > 8:
-   if plot54_Glen_delta_on > 0:
-      plt.text(0.02, 0.29," green bars: Difference Mauna Loa - Glen quadratic t² //see right larger ppm scaling", color="green", fontname="Arial", fontsize=14,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -52, y_max -52], marker="_", markersize=5, color="green", linewidth=8)
-# 8.9 legend in the plot
-if plot22_CO2_Mauna_Loa > 8:
-   if plot23_Glen_CO2 > 0:
-      plt.text(0.02, 0.85," Red: Glen formula ppm = 0.0132251t² - 51.0337t + 49,536", color="red", fontname="Arial", fontsize=16,
-      transform=plt.gca().transAxes)
-      ax1.plot([x_anf+1, x_anf +2], [y_max -12, y_max -12], marker="_", markersize=5, color="red", linewidth=3)
-
-
 # Datenquellen:
 # 2.2.2 Mauna_Loa 13.3.2026
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
-
-
-# 2.1 CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
-# https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
-# ppm CO2 = 0.0132251t² - 51.0337t + 49,536.7
 #
 # 3.2 https://ourworldindata.org/grapher/cumulative-co-emissions
 
