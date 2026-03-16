@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a9"
+v = "42a10"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -218,7 +218,7 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
-   plot34_CO2_emission_A = 4
+   plot34_CO2_emission_A = 3
    # 3.4.1
    if plot34_CO2_emission_A == 1:
       df34a = pd.read_csv("co2_sum_world.csv") # processed file
@@ -226,7 +226,7 @@ if plot34_CO2_emission > 0:
       # print(df34a.head(1))
    # 3.4.2
    elif plot34_CO2_emission_A == 2:
-      df34b = pd.read_csv("co2_cumul.csv") # our world in data file
+      df34b = pd.read_csv("34a2_co2_sum.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
@@ -239,7 +239,7 @@ if plot34_CO2_emission > 0:
       print(co2_sum_world.head(2))
    # 3.4.3
    elif plot34_CO2_emission_A == 3:
-      df34b = pd.read_csv("co2_cumul.csv") # our world in data file
+      df34b = pd.read_csv("34a3_co2.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
