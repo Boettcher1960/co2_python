@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a18"
+v = "42a19"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -263,10 +263,10 @@ if plot34_CO2_emission > 0:
          .sort_values("Year")
          .reset_index(drop=True)
          )
-      # 3.4.2 in Gt CO2    round GCumulat to integer
-      co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
+      # 3.4.4 in Gt C    round GCumulat to integer
+      co2_sum_world["CCumulat"] = (co2_sum_world["Cumulat"] / 1e9 * 12 / 44 )
       x34_year = df34b["Year"]
-      y_sum_gt = co2_sum_world["GCumulat"]
+      y_sum_gt = co2_sum_world["CCumulat"]
       print(y_sum_gt.head(2))
       print("co2_cumul.csv 3  df34b---4--")
       print(co2_sum_world.head(2))
@@ -688,13 +688,13 @@ elif plot34_CO2_emission > 0:
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_A == 4:
-      #co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
-      #x34_year = df34b["Year34"]
-      #y_sum_gt = co2_sum_world["GCumulat"]
-      ax34.plot(co2_sum_world["Year"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
-      #ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      ax34.set_ylabel("cumulative emission in GtC  34 mode 4", color=c34,
+                   fontname="Arial",fontsize=20,
+                   labelpad=1   # smaller = closer to y axis
+                   )
+      ax34.plot(co2_sum_world["Year"], co2_sum_world["CCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
+      ax34.set_ylim(0, 800) # best scaling 500 GtC
    else:
       ax34.plot(df34b["Year"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
