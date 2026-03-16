@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b2"
+v = "42b3"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -32,9 +32,9 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 2 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 3 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 2 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot34_CO2_emission = 4 # 2, 0 cumulative CO2 emissions 1750 to 2024
@@ -75,7 +75,7 @@ x_end = 2050 # 2200 2026
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
-tr1y = -.18 # text row 1 y end value -.3...1 -.15
+tr1y = -.17 # text row 1 y end value -.3...1 -.15
 tr2x = 0.01 # text row 2 x value -.3...1 -0.08
 tr2y = -.24 # text row 2 y end value -.3...1 -.24
 
@@ -89,6 +89,7 @@ trs = 20 # trs = 16 # fontsize=14
 # 1.6 scale the legend lines below the plot field
 lr2x1 = 0.065 # line row 2 x value begin 0.065
 lr2x2 = 0.085 # line row 2 x value end 0.085
+lr1y = 0.263 # line row 2 y value begin 0.215
 lr2y = 0.223 # line row 2 y value begin 0.215
 lr3y = 0.173 # line row 3 y value begin 0.17
 lr4y = 0.129 # line row 4 y value begin 0.124
@@ -775,16 +776,25 @@ ax1.axvspan(2174, 2175, color=c23, alpha=0.25, zorder=0) # vertical bar'
 # 9 part 9 print information below the plot field
 trs = 20
 # 9 part 9 print information below the plot field
-# 9.1 print line 1 the text below the figure tr1x = -0.09 # tr1y = -.16 
+# 9.1.1 print line 1 the text below the figure tr1x = -0.09 # tr1y = -.16 
 filename = os.path.basename(sys.argv[0])
-text_below1 = ""
-# text_below1 = text_below1 + header_parameter
-text_below1 = text_below1 + "Figure from "
-text_below1 = text_below1 + filename
-text_below1 = text_below1 + " v "
-text_below1 = text_below1 + v
-text_below1 = text_below1 + "  https://github.com/Boettcher1960/co2_python"
-plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=12,
+if plot22_CO2_Mauna_Loa == 1: #  legende world data plot22_CO2_Mauna_Loa
+   line22 = Line2D([lr2x1, lr2x2], [lr1y, lr1y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="o", markersize=5, color=c22, linewidth=2)
+   # 9.1.1 plot the blue text
+   plt.text(tr2x, tr1y, blue22_text, color=c22, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line22)
+else:
+   text_below1 = ""
+   # 9.1.2 text_below1 = text_below1 + header_parameter
+   text_below1 = text_below1 + "Figure from "
+   text_below1 = text_below1 + filename
+   text_below1 = text_below1 + " v "
+   text_below1 = text_below1 + v
+   text_below1 = text_below1 + "  https://github.com/Boettcher1960/co2_python"
+   plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=12,
          transform=plt.gca().transAxes)
 
 # 9.2 print line 2 blue Mauna Loa data below the figure
