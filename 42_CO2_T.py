@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a15"
+v = "42a16"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -70,7 +70,7 @@ y_max = 440 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 500 # 4 # max value C
 
-x_anf = 1990 # 1960 2000 
+x_anf = 1750 # 1960 2000 
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -220,7 +220,7 @@ if plot34_CO2_emission > 0:
    print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
    # plot34_CO2_emission_A = 1, read self made csv 2000 GtCO2
    # plot34_CO2_emission_A = 2, read csv 2000 000 000 000 tCO2
-   # plot34_CO2_emission_A = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv
+   # plot34_CO2_emission_A = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv 1750 to 2024
    # plot34_CO2_emission_A = 4, read csv 2000 GtCO2
    # plot34_CO2_emission_A = 5
    plot34_CO2_emission_A = 3
@@ -247,7 +247,7 @@ if plot34_CO2_emission > 0:
       df34b = pd.read_csv("csv_34a3_cumulative-co-emissions.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year", "Cumulat"]]
-         .query("1900 <= Year <= 2026")
+         .query("1750 <= Year <= 2026")
          .sort_values("Year")
          .reset_index(drop=True)
          )
