@@ -258,12 +258,11 @@ if plot34_CO2_emission > 0:
          .sort_values("Year34")
          .reset_index(drop=True)
          )
-      # 3.4.2 in Gt CO2
+      # 3.4.2 in Gt CO2    round GCumulat to integer
       co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
-      x34years = df34b["Year34"]
-      cumulative_gt = co2_sum_world["GCumulat"]
-      # round GCumulat to integer, no decimal numbers 
-      print(cumulative_gt.head())
+      x34_year = df34b["Year34"]
+      y_sum_gt = co2_sum_world["GCumulat"]
+      print(y_sum_gt.head(2))
       print("co2_cumul.csv 3  df34b---4--")
       print(co2_sum_world.head(2))
 # 3.4.8
@@ -684,9 +683,13 @@ elif plot34_CO2_emission > 0:
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(-10, 2100) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_A == 4:
+      #co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
+      #x34_year = df34b["Year34"]
+      #y_sum_gt = co2_sum_world["GCumulat"]
       ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
+      #ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(-10, 2000) # best scaling 2000 GtCO2
+      ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
    else:
       ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
