@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a7"
+v = "42a7b"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -63,7 +63,7 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 0 # 300 # min value 280
+y_min = 300 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
