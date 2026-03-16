@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b1"
+v = "42b2"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -217,13 +217,14 @@ if plot23_Glen_CO2 > 0:
 # 3.4.0 Entity,Code,Year,Cumulat
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
-   print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
+   print34_text ="red dots: cumulative CO2 emissions Carbon Brief 34 mode "
    # plot34_CO2_emission_A = 1, read self made csv 2000 GtCO2
    # plot34_CO2_emission_A = 2, read csv 2000 000 000 000 tCO2
    # plot34_CO2_emission_A = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv 1750 to 2024
    # plot34_CO2_emission_A = 4, read csv 2000 GtCO2
    # plot34_CO2_emission_A = 5
    plot34_CO2_emission_A = 4
+   print34_text = print34_text + str(plot34_CO2_emission_A)
    # 3.4.1
    if plot34_CO2_emission_A == 1:
       df34a = pd.read_csv("csv_34a1_co2_world_generated.csv") # processed file
@@ -291,10 +292,6 @@ if plot34_CO2_emission > 0:
       # save CSV
       # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
       #end 3.4
-# years = df["Year34"]
-# cumulative_gt = df["GCumulat"]
-
-
 
 # no part 4
 
