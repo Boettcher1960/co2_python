@@ -218,10 +218,10 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
-   plot34_CO2_emission_A = 3
+   plot34_CO2_emission_A = 4
    # 3.4.1
    if plot34_CO2_emission_A == 1:
-      df34a = pd.read_csv("co2_sum_world.csv") # processed file
+      df34a = pd.read_csv("34a1_co2_world_generatged.csv") # processed file
       # print("plot34_CO2_emission_A 1  df34a")
       # print(df34a.head(1))
    # 3.4.2
@@ -251,7 +251,7 @@ if plot34_CO2_emission > 0:
       x34years = df34b["Year34"]
       cumulative_gt = df34b["GCumulat"]
    elif plot34_CO2_emission_A == 4:
-      df34b = pd.read_csv("co2_cumul.csv") # our world in data file
+      df34b = pd.read_csv("34a3_co2.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
          .query("1960 <= Year34 <= 2026")
@@ -681,7 +681,7 @@ elif plot34_CO2_emission > 0:
    elif plot34_CO2_emission_A == 3:
       ax34.plot(co2_sum_world["Year34"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(-10, 2100) # best scaling 2000 GtCO2
+      ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_A == 4:
       #co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
       #x34_year = df34b["Year34"]
