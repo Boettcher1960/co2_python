@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b5"
+v = "42b6"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -32,12 +32,12 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 1 # 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 2 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 34 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 43 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "red"
 # no part 4
@@ -80,7 +80,7 @@ tr2x = 0.01 # text row 2 x value -.3...1 -0.08
 tr1y = -.19 # text row 1 y end value -.3...1 -.15
 tr2y = -.26 # text row 2 y end value -.3...1 -.24
 # 1.5 scale the text rows below the plot field
-tr3y = -.32 # text row 1 y end value -.3...1 -.32
+tr3y = -.33 # text row 1 y end value -.3...1 -.32
 tr4y = -.40 # text row 1 y end value -.3...1 -.40
 tr5y = -.48 # text row 1 y end value -.3...1 -.48
 tr6y = -.56 # text row 1 y end value -.3...1 -.56
@@ -91,7 +91,7 @@ lr2x1 = 0.065 # line row 2 x value begin 0.065
 lr2x2 = 0.085 # line row 2 x value end 0.085
 lr1y = 0.248 # line row 1 y value begin 
 lr2y = 0.211 # line row 2 y value begin 0.215
-lr3y = 0.173 # line row 3 y value begin 0.17
+lr3y = 0.168 # line row 3 y value begin 0.17
 lr4y = 0.129 # line row 4 y value begin 0.124
 lr5y = 0.082 # line row 5 y value begin 0.08
 lr6y = 0.034 # line row 6 y value begin 0.08
