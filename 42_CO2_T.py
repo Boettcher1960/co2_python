@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42b4"
+v = "42b5"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -37,7 +37,7 @@ c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 2 # 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 3 # 4,3,2, 0 cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 34 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "red"
 # no part 4
@@ -129,7 +129,7 @@ header_parameter = header_parameter + f"{plot73_ECS_T} "
 # -----------------------------
 #  part 2   plot CO2 
 #  part 2.2 plot CO2 Mauna Loa
-blue22_text="Blue line: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
+blue22_text="blue dots: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
 # -----------------------------
 # 2.2.1 years 1960–2025
 years22 = list(range(1960, x_end))
@@ -219,20 +219,20 @@ if plot23_Glen_CO2 > 0:
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
    print34_text ="red dots: cumulative CO2 emissions Carbon Brief 34 mode "
-   # plot34_CO2_emission_A = 1, read self made csv 2000 GtCO2
-   # plot34_CO2_emission_A = 2, read csv 2000 000 000 000 tCO2
-   # plot34_CO2_emission_A = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv 1750 to 2024
-   # plot34_CO2_emission_A = 4, read csv 2000 GtCO2
-   # plot34_CO2_emission_A = 5
-   plot34_CO2_emission_A = 4
-   print34_text = print34_text + str(plot34_CO2_emission_A)
-   # 3.4.1
-   if plot34_CO2_emission_A == 1:
+   # plot34_CO2_emission_mode = 1, read self made csv 2000 GtCO2
+   # plot34_CO2_emission_mode = 2, read csv 2000 000 000 000 tCO2
+   # plot34_CO2_emission_mode = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv 1750 to 2024
+   # plot34_CO2_emission_mode = 4, read csv 2000 GtCO2
+   # plot34_CO2_emission_mode = 5
+   first_digit = int(str(plot34_CO2_emission)[0]) # print in row
+   second_digit = int(str(plot34_CO2_emission)[1])
+   plot34_CO2_emission = first_digit
+   plot34_CO2_emission_mode = second_digit
+   print34_text = print34_text + str(plot34_CO2_emission_mode)
+   # 3.4.mode 1 
+   if plot34_CO2_emission_mode == 1:
       df34a = pd.read_csv("csv_34a1_co2_world_generated.csv") # processed file
-      # print("plot34_CO2_emission_A 1  df34a")
-      # print(df34a.head(1))
-   # 3.4.2
-   elif plot34_CO2_emission_A == 2:
+   elif plot34_CO2_emission_mode == 2:   # 3.4.mode 2
       df34b = pd.read_csv("csv_34a2_co2_sum.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
@@ -244,8 +244,7 @@ if plot34_CO2_emission > 0:
       co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
       print("co2_cumul 2  df34b")
       print(co2_sum_world.head(2))
-   # 3.4.3
-   elif plot34_CO2_emission_A == 3:
+   elif plot34_CO2_emission_mode == 3:  # 3.4.mode 3
       df34b = pd.read_csv("csv_34a3_cumulative-co-emissions.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year", "Cumulat"]]
@@ -257,7 +256,7 @@ if plot34_CO2_emission > 0:
       co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
       x34years = df34b["Year"]
       cumulative_gt = co2_sum_world["GCumulat"]
-   elif plot34_CO2_emission_A == 4:
+   elif plot34_CO2_emission_mode == 4:  # 3.4.mode 5
       df34b = pd.read_csv("csv_34a3_cumulative-co-emissions.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year", "Cumulat"]]
@@ -269,11 +268,7 @@ if plot34_CO2_emission > 0:
       co2_sum_world["CCumulat"] = (co2_sum_world["Cumulat"] / 1e9 * 12 / 44 )
       x34_year = df34b["Year"]
       y_sum_gt = co2_sum_world["CCumulat"]
-      print(y_sum_gt.head(2))
-      print("co2_cumul.csv 3  df34b---4--")
-      print(co2_sum_world.head(2))
-# 3.4.8
-   else:
+   else:  # 3.4.mode 9
       df34b = pd.read_csv("co2_cumul.csv") # our world in data file
       co2_sum_world = (
          df34b[df34b["Entity"] == "World"][["Year34", "Cumulat"]]
@@ -281,7 +276,7 @@ if plot34_CO2_emission > 0:
          .sort_values("Year34")
          .reset_index(drop=True)
          )
-      # print("plot34_CO2_emission_A 0  df34b")
+      # print("plot34_CO2_emission_mode 0  df34b")
       # print(co2_sum_world.head(10))
       # 3.4.4 in Gt CO2
       co2_sum_world["GCumulat"] = co2_sum_world["Cumulat"] / 1e9
@@ -673,19 +668,19 @@ elif plot34_CO2_emission > 0:
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
                    )
-   if plot34_CO2_emission_A == 1:       # df34a = pd.read_csv("co2_sum_world.csv")
+   if plot34_CO2_emission_mode == 1:       # df34a = pd.read_csv("co2_sum_world.csv")
       ax34.plot(df34a["Year34"], df34a["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
-   elif plot34_CO2_emission_A == 2:
+   elif plot34_CO2_emission_mode == 2:
       ax34.plot(df34b["Year34"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000000000000) #8
-   elif plot34_CO2_emission_A == 3:
+   elif plot34_CO2_emission_mode == 3:
       ax34.plot(co2_sum_world["Year"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
-   elif plot34_CO2_emission_A == 4:
+   elif plot34_CO2_emission_mode == 4:
       ax34.set_ylabel("cumulative emission in GtC  34 mode 4", color=c34,
                    fontname="Arial",fontsize=20,
                    labelpad=1   # smaller = closer to y axis
