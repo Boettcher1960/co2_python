@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42a8"
+v = "42a9"
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -246,16 +246,10 @@ if plot34_CO2_emission > 0:
          .sort_values("Year34")
          .reset_index(drop=True)
          )
-      # print("co2_cumul 0  df34b")
-      # print(co2_sum_world.head(10))
-      # 3.4.2 in Gt CO2
+      # 3.4.3 in Gt CO2
       co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
       x34years = df34b["Year34"]
       cumulative_gt = df34b["GCumulat"]
-      # round GCumulat to integer, no decimal numbers 
-      print("co2_cumul.csv 3  df34b---3--")
-      # print(cumulative_gt.head())
-      print(co2_sum_world.head(2))
    elif plot34_CO2_emission_A == 4:
       df34b = pd.read_csv("co2_cumul.csv") # our world in data file
       co2_sum_world = (
@@ -264,15 +258,13 @@ if plot34_CO2_emission > 0:
          .sort_values("Year34")
          .reset_index(drop=True)
          )
-      # print("co2_cumul 0  df34b")
-      # print(co2_sum_world.head(10))
       # 3.4.2 in Gt CO2
       co2_sum_world["GCumulat"] = (co2_sum_world["Cumulat"] / 1e9).astype(int)
       x34years = df34b["Year34"]
-      cumulative_gt = df34b["GCumulat"]
+      cumulative_gt = co2_sum_world["GCumulat"]
       # round GCumulat to integer, no decimal numbers 
-      print("co2_cumul.csv 3  df34b---4--")
       print(cumulative_gt.head())
+      print("co2_cumul.csv 3  df34b---4--")
       print(co2_sum_world.head(2))
 # 3.4.8
    else:
