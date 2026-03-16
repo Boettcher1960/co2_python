@@ -1,20 +1,21 @@
-Links to github
+# part 1 configure 
+# part 2.2 plot CO2 Mauna Loa
+# part 2.3 plot23_Glen_CO2 = 3
+#
+# part 3.4 plot34_CO2_emission summed
+#
+# part 5.2 plot52_delta_CO2_red_bars
+# part 5.3 plot53_CO2_orange2025
+# part 5.4 plot54_Glen_delta_on
+# part 5.5 plot55_population_on human earth population 
+#
+# part 71 plot temperature with right y axis
+# part 72 plot temperature ECS = 8°C with right y axis
+# part 73 plot temperature ECS = 4.5°C with right y axis
+#
+# part 8 print headline, axis numbers. around figue
+# part 9 print line 1 to 5 below the figure 
 
-# Garvin Schmidt (follow up of James Hansen)
-# climateofgavin.bsky.social recommends
-https://github.com/Climate-REF
-https://dashboard.climate-ref.org/
-
-https://wcrp-cmip.org/tools/model-benchmarking-and-evaluation-tools/
-
-# Zack Labe
-https://github.com/zmlabe
-Zachary Labe Climate Scientist 
-https://www.linkedin.com/in/zacharylabe/
-https://matplotlib.org/cmocean/
-https://chadagreene.com/CDT/CDT_Getting_Started.html
-https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/files/coord.m
-https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/202602
 
 
 # -----------------------------
@@ -32,6 +33,22 @@ https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # -----------------------------
 # text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
 text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t + 49,536"
+
+# part 3.4 plot34_CO2_emission summed
+# co2_cumul.csv
+# https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&overlay=download-data
+# 3.4.0 Entity,Code,Year,Cumulat
+#       World,OWID_WRL,1750,9305937
+if plot34_CO2_emission > 0:
+   print34_text =" red dots: measured cumulative CO2 emissions by Carbon Brief 34"
+   # plot34_CO2_emission_A = 1, read self made csv 2000 GtCO2
+   # plot34_CO2_emission_A = 2, read csv 2000 000 000 000 tCO2
+   # plot34_CO2_emission_A = 3, read csv 2000 GtCO2
+   # plot34_CO2_emission_A = 4, read csv 2000 GtCO2
+   # plot34_CO2_emission_A = 5
+
+
+
 
 
 # part 5.2 plot52_delta_CO2_red_bars
@@ -60,24 +77,40 @@ if plot52_delta_CO2_red_bars > 0:
 
 
 
+Links to github
+
+# Garvin Schmidt (follow up of James Hansen)
+# climateofgavin.bsky.social recommends
+https://github.com/Climate-REF
+https://dashboard.climate-ref.org/
+
+https://wcrp-cmip.org/tools/model-benchmarking-and-evaluation-tools/
+
+# Zack Labe
+https://github.com/zmlabe
+Zachary Labe Climate Scientist 
+https://www.linkedin.com/in/zacharylabe/
+https://matplotlib.org/cmocean/
+https://chadagreene.com/CDT/CDT_Getting_Started.html
+https://www.mathworks.com/matlabcentral/fileexchange/47638-antarctic-mapping-tools/files/coord.m
+https://www.ncei.noaa.gov/access/monitoring/monthly-report/global/202602
+
+
+
+
+
+
 
 
 https://matplotlib.org/cmocean/
 
-
-
 # CO₂: Mauna-Loa/NOAA Jahresmittel (bis 2023), 2024/2025 vorläufig/Schätzung wie zuvor verwendet.
 # https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # ppm CO2 = 0.0132251t² - 51.0337t + 49,536.7
-#
 # https://github.com/zmlabe 
-
 
 co2_cumul.csv
 https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&overlay=download-data
-
 https://ourworldindata.org/grapher/cumulative-co-emissions
-
 https://globalcarbonbudget.org/gcb-2025/
-
 
