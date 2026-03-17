@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c3" # 3 curves
+v = "42c4" # 3 curves
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -70,7 +70,7 @@ y_max = 480 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = 1900 # 1960 2000 
+x_anf = 1960 # 1960 2000 
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -218,7 +218,7 @@ if plot23_Glen_CO2 > 0:
 # 3.4.0 Entity,Code,Year,Cumulat
 #       World,OWID_WRL,1750,9305937
 if plot34_CO2_emission > 0:
-   print34_text ="red dots: cumulative CO2 emissions Carbon Brief 34 mode "
+   print34_text ="purple dots: cumulative CO2 emissions Carbon Brief 34 mode "
    # plot34_CO2_emission_mode = 1, read self made csv 2000 GtCO2
    # plot34_CO2_emission_mode = 2, read csv 2000 000 000 000 tCO2
    # plot34_CO2_emission_mode = 3, read csv 2000 GtCO2 csv_34a3_cumulative-co-emissions.csv 1750 to 2024
@@ -688,7 +688,7 @@ if plot34_CO2_emission > 0:
    elif plot34_CO2_emission_mode == 3:
       ax34.plot(co2_sum_world["Year"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2000) # best scaling 2000 GtCO2
+      ax34.set_ylim(0, 2500) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_mode == 4:
       ax34.set_ylabel("cumulative emission in GtC  34 mode 4", color=c34,
                    fontname="Arial",fontsize=20,
