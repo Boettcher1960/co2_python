@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c4" # 3 curves
+v = "42c5" # may be bug in scaling 3.4 plot34_CO2_emission summed
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -71,7 +71,7 @@ y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
 x_anf = 1960 # 1960 2000 
-x_end = 2050 # 2200 2026 
+x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -137,8 +137,11 @@ years22 = list(range(1960, x_end))
 if x_anf < 1960:
    start = years22.index(1960)
 else:
-   start = years22.index(x_anf)    
-end = years22.index(2025) + 1
+   start = years22.index(x_anf)   
+if x_end > 2024:
+   end = years22.index(2025) + 1
+else: end = 20
+
 years22_subset = years22[start:end]
 # -----------------------------
 # 2.2.3 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
@@ -688,7 +691,7 @@ if plot34_CO2_emission > 0:
    elif plot34_CO2_emission_mode == 3:
       ax34.plot(co2_sum_world["Year"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 2500) # best scaling 2000 GtCO2
+      ax34.set_ylim(0, 500) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_mode == 4:
       ax34.set_ylabel("cumulative emission in GtC  34 mode 4", color=c34,
                    fontname="Arial",fontsize=20,
