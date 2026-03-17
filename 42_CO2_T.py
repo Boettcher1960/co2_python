@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c2" # 6 curves
+v = "42c3" # 3 curves
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -32,12 +32,12 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 1 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 2 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot34_CO2_emission = 34 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 43 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
@@ -46,9 +46,9 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 4 # 4,5, 0 quadratic T
-plot72_AESS_T= 5      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 6       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot71_temperature = 0 # 4,5, 0 quadratic T
+plot72_AESS_T= 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
