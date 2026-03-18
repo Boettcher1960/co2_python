@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c13" # 1920 to 1970 
+v = "42c14" # 1920 to 2050 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -71,7 +71,7 @@ y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
 x_anf = 1920 # 1960 2000 
-x_end = 1970 # 2200 2026 
+x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -696,7 +696,7 @@ if plot34_CO2_emission > 0:
    elif plot34_CO2_emission_mode == 3:
       ax34.plot(co2_sum_world["Year"], co2_sum_world["GCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
-      ax34.set_ylim(0, 500) # best scaling 2000 GtCO2
+      ax34.set_ylim(0, 2500) # best scaling 2000 GtCO2
    elif plot34_CO2_emission_mode == 4:
       ax34.set_ylabel("cumulative emission in GtC  34 mode 4", color=c34,
                    fontname="Arial",fontsize=20,
@@ -705,7 +705,7 @@ if plot34_CO2_emission > 0:
       ax34.plot(co2_sum_world["Year"], co2_sum_world["CCumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 800) # best scaling 500 GtC
-      ax34.set_ylim(0, 500) # best scaling 500 GtC
+      ax34.set_ylim(0, 1000) # best scaling 500 GtC
       
    else:
       ax34.plot(df34b["Year"], df34b["Cumulat"], marker="o",  color=c34, label="plot34_CO2_emission")
