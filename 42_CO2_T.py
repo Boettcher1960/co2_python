@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c9" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
+v = "42c10" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -132,14 +132,14 @@ header_parameter = header_parameter + f"{plot73_ECS_T} "
 blue22_text="blue dots: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
 # -----------------------------
 # 2.2.1 years 1960–2025 years22 = [1960, 1961, 1962, ..., x_end - 1]
-years22 = list(range(1960, x_end+1))
+years22 = list(range(1960, x_end+1)) # list of years 1960...
 # 2.2.2 Select only 2018–2025
 if x_anf < 1960:
-   start = years22.index(1960)
+   start_of_x_index = years22.index(1960)
 else:
-   start = years22.index(x_anf)    
-end = years22.index(2025)
-years22_subset = years22[start:end]
+   start_of_x_index = years22.index(x_anf)    
+end_of_x_index = years22.index(2025)
+years22_subset = years22[start_of_x_index:end_of_x_index]
 # -----------------------------
 # 2.2.3 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # https://gml.noaa.gov/ccgg/trends/mlo.html
@@ -160,11 +160,11 @@ co2_values22 = [
 427.35  # 2025 = 427.35  ppm
 ]
 # 2.2.4 Kurve1 CO₂ 
-#  https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+#  https://gml.noaa.gov/webdata/ccgg/trend_of_x_indexs/co2/co2_annmean_mlo.txt
 # 2.2.4 Mauna_Loa 13.3.2026
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 # 2.2.5 subset skip the old years
-co2_values22_subset = co2_values22[start:end]
+co2_values22_subset = co2_values22[start_of_x_index:end_of_x_index]
 df2 = pd.DataFrame({  # make a DataFrame with two columns:"x_22_years" → years (x-axis) "y_22_CO2_ppm" → CO₂ values (y-axis)
      "x_22_years": years22_subset,
      "y_22_CO2_ppm": co2_values22_subset })
