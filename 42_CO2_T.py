@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c17" # 1720 to 2050 
+v = "42c18" # 720 to 2050 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -48,7 +48,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 5       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -70,7 +70,7 @@ y_max = 480 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = 1730 # 1960 2000 
+x_anf = 730 # 1960 2000 
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -759,6 +759,9 @@ elif x_end - x_anf < 520:
 elif x_end - x_anf < 1020:
    x_mayor_ticks = 200
    x_minor_ticks = 20
+elif x_end - x_anf < 2020:
+   x_mayor_ticks = 200
+   x_minor_ticks = 50
 else:
    x_mayor_ticks = 50
    x_minor_ticks = 10
