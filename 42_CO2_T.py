@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c8" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
+v = "42c9" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -165,9 +165,9 @@ co2_values22 = [
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 # 2.2.5 subset skip the old years
 co2_values22_subset = co2_values22[start:end]
-df2 = pd.DataFrame({  # make a DataFrame with two columns:"Jahr" → years (x-axis) "CO2" → CO₂ values (y-axis)
-     "Jahr": years22_subset,
-     "CO2": co2_values22_subset })
+df2 = pd.DataFrame({  # make a DataFrame with two columns:"x_22_years" → years (x-axis) "y_22_CO2_ppm" → CO₂ values (y-axis)
+     "x_22_years": years22_subset,
+     "y_22_CO2_ppm": co2_values22_subset })
 # 2.2.6 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 
@@ -194,7 +194,7 @@ df23 = pd.DataFrame({
        })
 # 2.3.4 assign ax1  
 if plot22_CO2_Mauna_Loa > 0:
-   ax1.plot(df2["Jahr"], df2["CO2"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
+   ax1.plot(df2["x_22_years"], df2["y_22_CO2_ppm"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
 elif plot23_Glen_CO2 > 0:
    ax1.plot(df23["Year3"], df23["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c23, linewidth=3)
 # 2.3.7
@@ -653,8 +653,8 @@ elif plot73_ECS_T > 0:
        )
 elif plot52_delta_CO2_red_bars > 0:
    ax52.spines.right.set_position(("outward", 20))
-   bars = ax52.bar(df2["Jahr"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
-   ax52.bar(df2["Jahr"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   bars = ax52.bar(df2["x_22_years"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
+   ax52.bar(df2["x_22_years"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
    ax52.set_ylabel("red bars Mauna Loa CO2 increase in ppm", color="red", fontname="Arial",fontsize=16) # fontweight="bold"
    ax52.tick_params(axis="y", labelcolor="red", labelsize=16)
    ax52.set_ylim(y_Tmin, y_Tmax) # scale y axis3 right red   
