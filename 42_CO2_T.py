@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c7" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
+v = "42c8" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -165,7 +165,7 @@ co2_values22 = [
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 # 2.2.5 subset skip the old years
 co2_values22_subset = co2_values22[start:end]
-df2 = pd.DataFrame({
+df2 = pd.DataFrame({  # make a DataFrame with two columns:"Jahr" → years (x-axis) "CO2" → CO₂ values (y-axis)
      "Jahr": years22_subset,
      "CO2": co2_values22_subset })
 # 2.2.6 add more space below plot
