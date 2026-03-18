@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c16" # 1920 to 2050 
+v = "42c17" # 1720 to 2050 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -70,7 +70,7 @@ y_max = 480 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = 2030 # 1960 2000 
+x_anf = 1730 # 1960 2000 
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -739,7 +739,7 @@ elif x_end - x_anf < 11:
    x_mayor_ticks = 1
    x_minor_ticks = 0.5
 elif x_end - x_anf < 21:
-   x_mayor_ticks = 1
+   x_mayor_ticks = 5
    x_minor_ticks = 1
 elif x_end - x_anf < 70:
    x_mayor_ticks = 10
