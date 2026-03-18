@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c5" # may be bug in scaling 3.4 plot34_CO2_emission summed
+v = "42c6" # may be bug in scaling 3.4 plot34_CO2_emission summed
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -71,7 +71,7 @@ y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
 x_anf = 1960 # 1960 2000 
-x_end = 2030 # 2200 2026 
+x_end = 2026 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -131,17 +131,14 @@ header_parameter = header_parameter + f"{plot73_ECS_T} "
 #  part 2.2 plot CO2 Mauna Loa
 blue22_text="blue dots: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
 # -----------------------------
-# 2.2.1 years 1960–2025
-years22 = list(range(1960, x_end))
+# 2.2.1 years 1960–2025 years22 = [1960, 1961, 1962, ..., x_end - 1]
+years22 = list(range(1960, x_end+1))
 # 2.2.2 Select only 2018–2025
 if x_anf < 1960:
    start = years22.index(1960)
 else:
-   start = years22.index(x_anf)   
-if x_end > 2024:
-   end = years22.index(2025) + 1
-else: end = 20
-
+   start = years22.index(x_anf)    
+end = years22.index(2025)
 years22_subset = years22[start:end]
 # -----------------------------
 # 2.2.3 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
