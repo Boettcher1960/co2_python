@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c12" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
+v = "42c13" # 1920 to 1970 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -71,7 +71,7 @@ y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
 x_anf = 1920 # 1960 2000 
-x_end = 1950 # 2200 2026 
+x_end = 1970 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -142,8 +142,11 @@ if x_anf < 1960:
    start_of_x_index = x_years_22_list.index(1960)
 else:
    start_of_x_index = x_years_22_list.index(x_anf)    
+if x_end > 2025:
+   end_of_x_index = x_years_22_list.index(2025)
+else:
+   end_of_x_index = x_years_22_list.index(x_end)
 
-end_of_x_index = x_years_22_list.index(2025)
 x_years_22_list_subset = x_years_22_list[start_of_x_index:end_of_x_index]
 # -----------------------------
 # 2.2.3 Kurve1 CO₂ Daten https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
