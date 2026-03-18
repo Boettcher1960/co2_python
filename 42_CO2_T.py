@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c7" # may be bug in scaling 3.4 plot34_CO2_emission summed
+v = "42c7" # 1920 to 1970 ok may be bug in scaling 3.4 plot34_CO2_emission summed
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -70,7 +70,7 @@ y_max = 480 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = 1960 # 1960 2000 
+x_anf = 1920 # 1960 2000 
 x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
