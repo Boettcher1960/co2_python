@@ -232,8 +232,15 @@ if plot23_Glen_CO2 > 0:
 # -----------------------------
 #  part 2.5 plot CO2 Mauna Loa
 blue25_text="blue: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
-
-
+if plot25_long_CO2 > 0:
+      df25 = pd.read_csv("csv_25_ppm_long.csv") # our world in data file
+      long_co25 = (
+         df25[df25["Entity"] == "World"][["Year25", "ppm25"]]
+         .query("-10 <= Year25 <= 2026")
+         .sort_values("Year25")
+         .reset_index(drop=True)
+         )
+print(long_co25.head(5))
 
 # part 3.4 plot34_CO2_emission summed
 # co2_cumul.csv

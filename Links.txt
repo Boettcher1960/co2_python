@@ -34,6 +34,16 @@ https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
 # text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
 text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t + 49,536"
 
+# plot25_long_CO2 = 3 # 2, 3 print -800 000 years ppm CO2 file
+# https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
+# Data sources: NOAA Global Monitoring Laboratory - Trends in Atmospheric Carbon Dioxide (2026)EPA 
+# based on various sources (2022) – with major processing by Our World in Data
+# -----------------------------
+#  part 2.5 plot CO2 Mauna Loa
+blue25_text="blue: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
+
+
+
 # part 3.4 plot34_CO2_emission summed
 # co2_cumul.csv
 # https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&overlay=download-data
