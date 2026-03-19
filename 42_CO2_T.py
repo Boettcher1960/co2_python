@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d4" # c25 long ppm plot25_long_CO2
+v = "42d5" # c25 long ppm plot25_long_CO2
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -34,10 +34,10 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 4 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
-plot25_long_CO2 = 3 # 2, 3 print -800 000 years ppm CO2 file
+plot25_long_CO2 = 4 #  3 4 print -800 000 years ppm CO2 file
 c25 = "#A8349DC5" 
 c25 = "green"
 # https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
@@ -1012,6 +1012,15 @@ if plot23_Glen_CO2 == 4: # print in line 3
    # 9.4.3 plot the blue text
    plt.text(tr2x, tr4y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+elif plot25_long_CO2 == 4: # 
+   line25 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c34, linewidth=2)
+   fig.add_artist(line25)
+   plt.text(tr2x, tr4y, blue25_text, color=c25, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line25)
+
 elif plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
