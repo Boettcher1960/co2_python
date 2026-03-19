@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d1" # 
+v = "42d2" # 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -51,7 +51,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 5       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -73,8 +73,8 @@ y_max = 480 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = 1750 # 1960 2000 -33000
-x_end = 3000 # 2200 2026 
+x_anf = -2000 # 1960 2000 -33000
+x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -223,6 +223,16 @@ if plot23_Glen_CO2 > 0:
    ax23.set_ylim(y_min, y_max) # scale
    ax23.spines.right.set_position(("outward", 60))
 # end part 2.3 CO2
+
+
+# plot25_long_CO2 = 3 # 2, 3 print -800 000 years ppm CO2 file
+# https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
+# Data sources: NOAA Global Monitoring Laboratory - Trends in Atmospheric Carbon Dioxide (2026)EPA 
+# based on various sources (2022) – with major processing by Our World in Data
+# -----------------------------
+#  part 2.5 plot CO2 Mauna Loa
+blue25_text="blue: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
+
 
 
 # part 3.4 plot34_CO2_emission summed
