@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42c20" # -33000 to 20050 
+v = "42d1" # 
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -36,6 +36,9 @@ plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa
 c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
+
+plot25_long_CO2 = 3 # 2, 3 print -800 000 years ppm CO2 file
+# https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
 
 plot34_CO2_emission = 43 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
