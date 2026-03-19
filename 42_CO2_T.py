@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d5" # c25 long ppm plot25_long_CO2
+v = "42d6" #  plot25_long_CO2 -400,000 years
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,14 +68,14 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 0 # 300 # min value 280
-y_max = 480 # 1300 # min value 440 70
+y_min = 150 # 300 # min value 280
+y_max = 450 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = -20000 # 1960 2000 -33000
+x_anf = -400000 # 1960 2000 -33000
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -117,6 +117,7 @@ else:
 # 1.8 Parameter strig
 header_parameter = f"{plot22_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot23_Glen_CO2}" # 
+header_parameter = header_parameter + f"{plot25_long_CO2}" # 
 header_parameter = header_parameter + f"{plot34_CO2_emission} " # 
 
 header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
@@ -812,9 +813,12 @@ elif x_end - x_anf < 50020:
 elif x_end - x_anf < 150020:
    x_mayor_ticks = 10000
    x_minor_ticks = 2000
+elif x_end - x_anf < 1000020:
+   x_mayor_ticks = 100000
+   x_minor_ticks = 20000
 else:
-   x_mayor_ticks = 50
-   x_minor_ticks = 10
+   x_mayor_ticks = 100000
+   x_minor_ticks = 20000
 # 8.6.8 scale the x axis major 20 years
 ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
 ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
