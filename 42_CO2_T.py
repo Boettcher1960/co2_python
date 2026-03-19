@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d2" # 
+v = "42d4" # c25 long ppm
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -38,6 +38,8 @@ plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t²
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 3 # 2, 3 print -800 000 years ppm CO2 file
+c25 = "#A8349DC5" 
+c25 = "green"
 # https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
 
 plot34_CO2_emission = 43 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
@@ -66,14 +68,14 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 280 # 300 # min value 280
+y_min = 0 # 300 # min value 280
 y_max = 480 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = -2000 # 1960 2000 -33000
+x_anf = -20000 # 1960 2000 -33000
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -240,7 +242,20 @@ if plot25_long_CO2 > 0:
          .sort_values("Year25")
          .reset_index(drop=True)
          )
+      ax25 = ax1.twinx()
+      ax25.spines.right.set_position(("outward", 90))
+      ax25.spines["right"].set_visible(False) # remove right y-Achse
+      ax25.tick_params(right=False, labelright=False) # remove Zahlen
+
+      ax25.plot(df25["Year25"], df25["ppm25"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c25, linewidth=3)
+      ax25.tick_params(axis="y", labelcolor=c25)
+      ax25.set_ylim(y_min, y_max) # scale
+      ax25.spines.right.set_position(("outward", 60))
+
+
 print(long_co25.head(5))
+
+
 
 # part 3.4 plot34_CO2_emission summed
 # co2_cumul.csv
