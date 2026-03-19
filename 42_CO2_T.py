@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d4" # c25 long ppm
+v = "42d4" # c25 long ppm plot25_long_CO2
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -34,7 +34,7 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 4 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 3 # 2, 3 print -800 000 years ppm CO2 file
@@ -42,7 +42,7 @@ c25 = "#A8349DC5"
 c25 = "green"
 # https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
 
-plot34_CO2_emission = 43 # 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 0 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
@@ -918,6 +918,15 @@ if plot23_Glen_CO2 == 3: # print in line 3
    # 9.3.3 write blue text
    plt.text(tr2x, tr3y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+elif plot25_long_CO2 == 3: # 
+   line25 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c34, linewidth=2)
+   fig.add_artist(line25)
+   plt.text(tr2x, tr3y, blue25_text, color=c25, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line25)
+
 # 9.3.4 print line 3 green Glen data below the figure marker="_", markersize=5, color="green", linewidth=8)
 elif plot34_CO2_emission == 3: # 
    line34 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
