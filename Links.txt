@@ -172,3 +172,14 @@ https://ourworldindata.org/grapher/cumulative-co-emissions?country=~OWID_WRL&ove
 https://ourworldindata.org/grapher/cumulative-co-emissions
 https://globalcarbonbudget.org/gcb-2025/
 
+
+Title	Temperature Vostok and GISP2
+Reference	Alley, R.B..  (2004) GISP2 Ice Core Temperature and Accumulation Data
+Reference	Jouzel et al. (1987, 1993 and 1996)
+Source	
+http://www.ncdc.noaa.gov/paleo/indexice.html
+File	gisp2_temp_accum_alley2000.txt
+File	vostok_deld.txt
+Age	Vostok
+http://www.climatedata.info/proxies/data-downloads/
+https://www.ncei.noaa.gov/products/paleoclimatology
