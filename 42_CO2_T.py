@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d6" #  plot25_long_CO2 -400,000 years
+v = "42d7" #  plot25_long_CO2 -800,000 years
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -75,7 +75,7 @@ y_max = 450 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 5 # 4 # max value C
 
-x_anf = -400000 # 1960 2000 -33000
+x_anf = -800000 # 1960 2000 -33000
 x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -234,7 +234,7 @@ if plot23_Glen_CO2 > 0:
 # based on various sources (2022) – with major processing by Our World in Data
 # -----------------------------
 #  part 2.5 plot CO2 Mauna Loa
-blue25_text="blue: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
+blue25_text="green: CO2 NOAA 800_000 year ice data 25"
 if plot25_long_CO2 > 0:
       df25 = pd.read_csv("csv_25_ppm_long.csv") # our world in data file
       long_co25 = (
