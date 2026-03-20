@@ -38,6 +38,7 @@ text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t 
 # https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
 # Data sources: NOAA Global Monitoring Laboratory - Trends in Atmospheric Carbon Dioxide (2026)EPA 
 # based on various sources (2022) – with major processing by Our World in Data
+# Retrieved from https://gml.noaa.gov/ccgg/trends/gl_data.html
 # -----------------------------
 #  part 2.5 plot CO2 Mauna Loa
 blue25_text="blue: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
