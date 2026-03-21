@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42h4" #  Hansen 2015 .41°C linear fit
+v = "42h5" #  Hansen 2015 .41°C linear fit
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
