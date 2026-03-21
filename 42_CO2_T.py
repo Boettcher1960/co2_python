@@ -141,7 +141,7 @@ y_left_axis = 2 # y_left_axis = 2 left Y axis is in ppm CO2
                      # y_left_axis = 23 left Y axis is in GtCO2
                      # y_left_axis = 71 # left Y axis in °C for plot71_temperature
 y_left_axis = 74 # 1.9.4 left Y axis in °C for plot74_GIS_T
-y_left_axis = 22
+#y_left_axis = 22
 # end part 1
 
 
@@ -694,11 +694,11 @@ else:   # 8.5 left Y axis in °C for plot74_GIS_T
    # 8.4.5 write the numbers left of plot field
    ax1.tick_params(axis="y", labelcolor=c74, labelsize=20) # Achsenbeschriftung
    # 8.4.7 scale the Y axis 1°C main items
-   y_Tmayor_ticks = 20
+   # y_Tmayor_ticks = 1
    ax1.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # y axis ticks
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    # 8.4.8 scale the Y axis 10ppm minor items
-   y_Tminor_ticks = 4
+   # y_Tminor_ticks = 0.2
    ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # end 8.5 left Y axis in °C 
