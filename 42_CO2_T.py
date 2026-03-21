@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42d7" #  plot25_long_CO2 -800,000 years
+v = "42e1" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -12,7 +12,7 @@ v = "42d7" #  plot25_long_CO2 -800,000 years
 # part 5.4 plot54_Glen_delta_on
 # part 5.5 plot55_population_on human earth population 
 #
-# part 71 plot temperature with right y axis
+# part 71 plot quadratic temperature with right y axis
 # part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
 # part 74 plot NASA GIS temperature
@@ -55,6 +55,8 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot74_GIS_T = 4 #
+
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -529,6 +531,25 @@ if plot73_ECS_T > 0:
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
    
+
+# part part 74 plot NASA GIS temperature
+# csv_74_gis_temperature.csv
+# https://data.giss.nasa.gov/gistemp/zonal_means/
+# https://data.giss.nasa.gov/tmp/gistemp/ltmap/tmp.4_ob4LOTI_E5_12_1880_2027_1951_1980-0/global.txt
+# 7.4.2 Year74,GIS_temp
+if plot74_GIS_T > 0:
+   print74_text ="purple dots: data.giss.nasa.gov/gistemp/ 74"
+   # 3.4.mode 1 
+   df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
+   #T_74 = (
+   #      df74[df74["Entity"] == "World"][["Year74", "GIS_temp"]]
+   #      .query("1960 <= Year34 <= 2026")
+   #      .sort_values("Year34")
+   #      .reset_index(drop=True)
+   #      )
+      #      print("co2_cumul 2  df34b")
+   print(df74.head(2))
+
 
 # part 8
 # 8.1 scale the plot area
