@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e4" #  74 plot NASA GIS temperature
+v = "42e5" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -78,8 +78,8 @@ y_max = 350 # 1300 # min value 440 70
 y_Tmin = -1 # min value °C
 y_Tmax = 2 # 4 # max value C
 
-x_anf = 1960 # 1960 2000 -33000
-x_end = 1980 # 2200 2026 
+x_anf = 1880 # 1960 2000 -33000
+x_end = 2027 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
