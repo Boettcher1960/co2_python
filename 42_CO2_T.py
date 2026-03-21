@@ -65,8 +65,10 @@ plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 3 #
+c74                  = "#E8125984" # plot73 color
 linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
-c74 = "#E8125984" # plot73 color
+c75                 = "#371EA484" # plot73 color
+
 
 parameter84_save_png = 8 # save png
 
@@ -566,6 +568,16 @@ if plot74_GIS_T > 0:
    ax74.tick_params(axis="y", labelcolor=c74)
    ax74.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.4 part 74 plot NASA GIS temperature
+
+# part 75 plot 2015 .41°C linear fit
+# linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
+# https://www.columbia.edu/~jeh1/mailings/2026/ElNino.2026.02.06.pdf
+# 7.5.2 Year75,GIS_temp
+if linear_41_75 > 0:
+   print75_text ="Hansen linear fit from 2015 +0.41°C     75"
+
+
+
 
 
 # part 8
@@ -1231,8 +1243,14 @@ elif plot74_GIS_T == 4:
    # 9.4.8 write  text         
    plt.text(tr2x, tr4y, print74_text, color=c74, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-
-
+elif linear_41_75 == 4:
+   # print75_text ="Hansen linear fit from 2015 +0.41°C     75"
+   line75 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c75, linewidth=2)
+   fig.add_artist(line75)
+   plt.text(tr2x, tr4y, print75_text, color=c75, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
 
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
