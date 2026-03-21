@@ -726,6 +726,21 @@ elif plot73_ECS_T > 0:
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
        )
+elif plot74_GIS_T > 0:
+   # ax74.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
+   ax74.tick_params(axis="y", labelcolor=c73)
+   ax74.set_ylim(y_Tmin, y_Tmax) # scale
+   if plot71_temperature < 1: # make y axis right only if not exist
+      #ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+      #ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+      ax74.minorticks_off()
+      ax74.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
+      ax74.set_ylabel (
+         "Δ GIS Temperature in °C 74",
+         color=c71,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+       )      
 elif plot52_delta_CO2_red_bars > 0:
    ax52.spines.right.set_position(("outward", 20))
    bars = ax52.bar(df2["x_22_years"], df2["Delta_CO2"], width=0.7, alpha=0.5, color="red")
