@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e1" #  74 plot NASA GIS temperature
+v = "42e2" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -15,7 +15,7 @@ v = "42e1" #  74 plot NASA GIS temperature
 # part 71 plot quadratic temperature with right y axis
 # part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
-# part 74 plot NASA GIS temperature
+# part 74 plot NASA GIS temperature 1880 2027
 #
 # part 8 print headline, axis numbers. around figue
 # part 9 print line 1 to 5 below the figure 
@@ -1128,6 +1128,18 @@ elif plot73_ECS_T == 4:
    red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0) 73"
    plt.text(tr2x, tr4y, red73_text, color=c73, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+elif plot74_GIS_T == 4:
+   line74 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c73, linewidth=2)
+   # 9.4.8 draw line72 as legend
+   fig.add_artist(line74)
+   # 9.4.8 write  text         
+   plt.text(tr2x, tr4y, print74_text, color=c73, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+
+
+
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
 if plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
