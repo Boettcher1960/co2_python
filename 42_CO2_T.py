@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e7" #  74 plot NASA GIS temperature
+v = "42e8" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -540,7 +540,7 @@ if plot73_ECS_T > 0:
 # https://data.giss.nasa.gov/tmp/gistemp/ltmap/tmp.4_ob4LOTI_E5_12_1880_2027_1951_1980-0/global.txt
 # 7.4.2 Year74,GIS_temp
 if plot74_GIS_T > 0:
-   print74_text ="purple dots: data.giss.nasa.gov/gistemp/ 74"
+   print74_text ="redish: data.giss.nasa.gov/gistemp/ Hansen 74"
    # 3.4.mode 1 
    df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
    #T_74 = (
@@ -640,8 +640,12 @@ else:
    y_minor_ticks = 50
 # 8.3.5  scale the right Y axis
 if y_Tmax - y_Tmin < 1:
-   y_Tmayor_ticks = 2
+   y_Tmayor_ticks = 0.1
+elif y_Tmax - y_Tmin < 2.1:
    y_Tminor_ticks = 0.2
+   y_Tminor_ticks = 0.2
+elif y_Tmax - y_Tmin < 5.1:
+   y_Tmayor_ticks = 0.5
 elif y_Tmax - y_Tmin < 7:
    y_Tmayor_ticks = 1
    y_Tminor_ticks = 0.2
@@ -731,9 +735,11 @@ elif plot74_GIS_T > 0:
    ax74.tick_params(axis="y", labelcolor=c73)
    ax74.set_ylim(y_Tmin, y_Tmax) # scale
    if plot71_temperature < 1: # make y axis right only if not exist
-      #ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
-      #ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
-      ax74.minorticks_off()
+      y_Tmayor_ticks = 0.5
+      y_Tminor_ticks = 0.1
+      ax74.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+      ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+      #ax74.minorticks_off()
       ax74.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax74.set_ylabel (
          "Δ GIS Temperature in °C 74",
