@@ -215,4 +215,11 @@ https://data.giss.nasa.gov/gistemp/zonal_means/
 /4_PYTHON/csv_save/nasa_giss_global.csv
 https://data.giss.nasa.gov/tmp/gistemp/ltmap/tmp.4_ob4LOTI_E5_12_1880_2027_1951_1980-0/global.txt
 /4_PYTHON/csv_save/csv_74_giss_temperature.txt
+https://www.columbia.edu/~jeh1/mailings/2026/ElNino.2026.02.06.pdf 
+Hansen adds 0.3K to GIS Temperature in https://www.columbia.edu/~jeh1/mailings/2026/ElNino.2026.02.06.pdf
+line ax74.plot(df74["Year74"], df74["GIS_temp"]+0.3, '-', label="T GIS  K74", color=c74, linewidth=3)
+# part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax74.plot(df74["Year74"], df74["GIS_temp"]+0.3, '-', label="T GIS  K74", color=c74, linewidth=3)
 /4_PYTHON/csv_save/74_GIS_temperature/
+
+

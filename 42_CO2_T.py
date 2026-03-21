@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e9" #  74 plot NASA GIS temperature
+v = "42e12" #  74 plot NASA GIS temperature df74["GIS_temp"]+0.3
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -76,8 +76,8 @@ y_min = 280 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 0.5 # min value °C
-y_Tmax = 1.5 # 4 # max value C
+y_Tmin = 1 # min value °C
+y_Tmax = 2 # 4 # max value C
 
 x_anf = 2015 # 1960 2000 -33000
 x_end = 2026 # 2200 2026 
@@ -552,7 +552,8 @@ if plot74_GIS_T > 0:
       #      print("co2_cumul 2  df34b")
    print(df74.head(2))
    ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax74.plot(df74["Year74"], df74["GIS_temp"], '-', label="T GIS  K74", color=c74, linewidth=3)
+   # part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax74.plot(df74["Year74"], df74["GIS_temp"]+0.3, '-', label="T GIS  K74", color=c74, linewidth=3)
    ax74.tick_params(axis="y", labelcolor=c74)
    ax74.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.4 part 74 plot NASA GIS temperature
@@ -639,11 +640,17 @@ else:
    y_mayor_ticks = 200 # Hauptstriche y axis
    y_minor_ticks = 50
 # 8.3.5  scale the right Y axis
-if y_Tmax - y_Tmin < 1:
-   y_Tmayor_ticks = 0.1
+y_Tmayor_ticks = 5
+y_Tminor_ticks = 1
+if y_Tmax - y_Tmin < 0.5:
+   y_Tmayor_ticks = 0.2
+   y_Tminor_ticks = 0.1
+elif y_Tmax - y_Tmin < 1.1:
+   y_Tmayor_ticks = 0.2
+   y_Tminor_ticks = 0.05
 elif y_Tmax - y_Tmin < 2.1:
-   y_Tminor_ticks = 0.2
-   y_Tminor_ticks = 0.2
+   y_Tmayor_ticks = 0.2
+   y_Tminor_ticks = 0.1
 elif y_Tmax - y_Tmin < 5.1:
    y_Tmayor_ticks = 0.5
 elif y_Tmax - y_Tmin < 7:
@@ -653,11 +660,11 @@ elif y_Tmax - y_Tmin < 11:
    y_Tmayor_ticks = 2
    y_Tminor_ticks = 0.2
 elif y_Tmax - y_Tmin < 21:
-   y_Tmayor_ticks = 2
-   y_Tminor_ticks = 0.5
+   y_Tmayor_ticks = 5
+   y_Tminor_ticks = 1
 else:
-   y_Tmayor_ticks = 2
-   y_Tminor_ticks = 0.2
+   y_Tmayor_ticks = 20
+   y_Tminor_ticks = 10
 # 8.3.8 scale the Y axis 50ppm main items
 ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
 ax1.tick_params(axis='y', which='major', length=12, width=1.5)
@@ -722,7 +729,7 @@ elif plot73_ECS_T > 0:
    if plot71_temperature < 1: # make y axis right only if not exist
       #ax73.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
       #ax73.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
-      ax73.minorticks_off()
+      # ax73.minorticks_off()
       ax73.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax73.set_ylabel (
          "Δ Temperature in °C (ECS = 4.5°C)73",
@@ -735,8 +742,8 @@ elif plot74_GIS_T > 0:
    ax74.tick_params(axis="y", labelcolor=c73)
    ax74.set_ylim(y_Tmin, y_Tmax) # scale
    if plot71_temperature < 1: # make y axis right only if not exist
-      y_Tmayor_ticks = 0.5
-      y_Tminor_ticks = 0.1
+      #y_Tmayor_ticks = 0.5
+      #y_Tminor_ticks = 0.05
       ax74.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
       ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
       #ax74.minorticks_off()
