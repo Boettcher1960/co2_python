@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g5" #  left y axis is T
+v = "42g6" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -54,9 +54,9 @@ plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
-plot72_AESS_T= 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
-plot74_GIS_T = 4 #
+plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
+plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot74_GIS_T  = 2 #
 c74 = "#E8125984" # plot73 color
 
 parameter84_save_png = 8 # save png
@@ -726,6 +726,8 @@ elif plot72_AESS_T > 0:
    ax72.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 elif plot73_ECS_T > 0:
    ax73.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
+elif plot74_GIS_T > 0:
+   ax74.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 
 
 # 8.7 print the right y axis
@@ -931,6 +933,8 @@ ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
 # 8.9.4
 ax1.axvspan(2065, 2066, color=c23, alpha=0.4, zorder=0) # vertical bar'
 ax1.axvspan(2174, 2175, color=c23, alpha=0.25, zorder=0) # vertical bar'
+
+
 # end part 8
 
 
@@ -989,7 +993,13 @@ elif plot34_CO2_emission == 2: #
    plt.text(tr2x, tr2y, print34_text, color=c34, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    fig.add_artist(line34)
-
+elif plot74_GIS_T == 2:
+   line74 = Line2D([lr2x1, lr2x2], [lr2y, lr2y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c73, linewidth=2)
+   fig.add_artist(line74)        
+   plt.text(tr2x, tr2y, print74_text, color=c74, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
 elif plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
    K1_text=" 2 new text )"
    plt.text(tr2x, tr2y, K1_text, color=c22, fontname="Arial", fontsize=18,
