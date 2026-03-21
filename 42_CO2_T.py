@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e2" #  74 plot NASA GIS temperature
+v = "42e3" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -530,7 +530,8 @@ if plot73_ECS_T > 0:
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
    ax73.set_ylim(y_Tmin, y_Tmax) # scale
-   
+   # end 7.3
+
 
 # part part 74 plot NASA GIS temperature
 # csv_74_gis_temperature.csv
@@ -549,6 +550,11 @@ if plot74_GIS_T > 0:
    #      )
       #      print("co2_cumul 2  df34b")
    print(df74.head(2))
+   ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax74.plot(df74["Year74"], df74["GIS_temp"], '--', label="T GIS  K74", color=c72, linewidth=3)
+   ax74.tick_params(axis="y", labelcolor=c72)
+   ax74.set_ylim(y_Tmin, y_Tmax) # scale
+   # end 7.4 part 74 plot NASA GIS temperature
 
 
 # part 8
