@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e6" #  74 plot NASA GIS temperature
+v = "42e7" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -56,6 +56,7 @@ plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T= 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T= 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T = 4 #
+c74 = "#E8125984" # plot73 color
 
 parameter84_save_png = 8 # save png
 
@@ -78,7 +79,7 @@ y_max = 440 # 1300 # min value 440 70
 y_Tmin = -0.5 # min value °C
 y_Tmax = 1.5 # 4 # max value C
 
-x_anf = 1880 # 1960 2000 -33000
+x_anf = 1960 # 1960 2000 -33000
 x_end = 2027 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -551,8 +552,8 @@ if plot74_GIS_T > 0:
       #      print("co2_cumul 2  df34b")
    print(df74.head(2))
    ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax74.plot(df74["Year74"], df74["GIS_temp"], '--', label="T GIS  K74", color=c72, linewidth=3)
-   ax74.tick_params(axis="y", labelcolor=c72)
+   ax74.plot(df74["Year74"], df74["GIS_temp"], '-', label="T GIS  K74", color=c74, linewidth=3)
+   ax74.tick_params(axis="y", labelcolor=c74)
    ax74.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.4 part 74 plot NASA GIS temperature
 
@@ -1141,7 +1142,7 @@ elif plot74_GIS_T == 4:
    # 9.4.8 draw line72 as legend
    fig.add_artist(line74)
    # 9.4.8 write  text         
-   plt.text(tr2x, tr4y, print74_text, color=c73, fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr4y, print74_text, color=c74, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 
 
