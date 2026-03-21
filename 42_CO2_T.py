@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g10" #  left y axis is T
+v = "42g11" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -62,7 +62,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 5 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T  = 6       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
 c74 = "#E8125984" # plot73 color
 
@@ -80,15 +80,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 300 # 300 # min value 280
-y_max = 700 # 1300 # min value 440 70
+y_min = 340 # 300 # min value 280
+y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 0 # min value °C
-y_Tmax = 4 # 4 # max value C
+y_Tmin = 0.6 # min value °C
+y_Tmax = 1.6 # 4 # max value C
 
-x_anf = 1950 # 1960 2000 -33000
-x_end = 2100 # 2200 2026 
+x_anf = 1990 # 1960 2000 -33000
+x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -470,7 +470,7 @@ if plot55_population_on > 0:
 
 # 7 part 1
 # red71_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
-red71_text="red quadratic Temperature = 0.000618t² - 2.459 t + 2446.0579 in °C"
+red71_text="red quadratic Temperature = 0.000618t² - 2.459 t + 2446.0579 in °C  71"
 # 7.1 plot71_temperature @reescatophuls.bsky.social
 # https://parisagreementtemperatureindex.com/gwfs-2-quadratic/
 # (0.000617965091650558 * date*date) – (2.45858656778789*date) + 2446.05792853123
@@ -493,7 +493,7 @@ if plot71_temperature > 0:
 
 
 # plot72_AESS_T= 4 # apparent Earth system sensitivity (AESS=7.7°C)
-red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0)"
+red72_text="AESS_T Apparent Earth System Sensitivity = 8°C * log2(CO2/C0) 72"
 # 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
 # AESS=7.7°C  # (Judd 2024)
 # https://www.science.org/doi/10.1126/science.adk3705) 
@@ -1217,7 +1217,7 @@ elif plot73_ECS_T == 4:
 elif plot74_GIS_T == 4:
    line74 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c73, linewidth=2)
+   marker="o", markersize=3, color=c74, linewidth=2)
    # 9.4.8 draw line72 as legend
    fig.add_artist(line74)
    # 9.4.8 write  text         
@@ -1243,9 +1243,6 @@ elif plot71_temperature == 5:
    marker="o", markersize=3, color=c71, linewidth=2)
    # 9.5.7 draw bue line as legend
    fig.add_artist(line7)
-   # 9.5.7 write  text  0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-   red71_text="red @reescatophuls.bsky :  Temperature = 0.000618t² - 2.459 t + 2446.0579"
-   # 9.5.7 plot the blue text
    plt.text(tr2x, tr5y, red71_text, color=c71, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot72_AESS_T == 5:
