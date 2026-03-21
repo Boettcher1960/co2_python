@@ -141,7 +141,7 @@ y_left_axis = 2 # y_left_axis = 2 left Y axis is in ppm CO2
                      # y_left_axis = 23 left Y axis is in GtCO2
                      # y_left_axis = 71 # left Y axis in °C for plot71_temperature
 y_left_axis = 74 # 1.9.4 left Y axis in °C for plot74_GIS_T
-#y_left_axis = 22
+# y_left_axis = 22
 # end part 1
 
 
@@ -547,7 +547,7 @@ if plot73_ECS_T > 0:
 # https://data.giss.nasa.gov/tmp/gistemp/ltmap/tmp.4_ob4LOTI_E5_12_1880_2027_1951_1980-0/global.txt
 # 7.4.2 Year74,GIS_temp
 if plot74_GIS_T > 0:
-   print74_text ="redish: data.giss.nasa.gov/gistemp/ Hansen 74"
+   print74_text ="Temperature in °C giss.nasa.gov Hansen+0.3°C 74"
    # 3.4.mode 1 
    df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
    #T_74 = (
@@ -578,8 +578,6 @@ if plot74_GIS_T > 0:
 # 8.1 scale the plot area
 # 8.1.2 scale the x axis
 plt.xlim(x_anf, x_end)
-# 8.1.3 scale the Y axis
-ax1.set_ylim(y_min, y_max)
 # 8.1.4 enable grid
 ax1.grid(True)
 
