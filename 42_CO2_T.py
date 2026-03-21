@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42h3" #  Hansen 2015 .41°C linear fit
+v = "42h4" #  Hansen 2015 .41°C linear fit
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -528,14 +528,12 @@ if plot72_AESS_T > 0:
 
 # plot73_ECS_T Earth Climate sensitivity 
 # 7.3  dT=ECS*log2(C/C0) # T560ppm=ECS*log2(560/280) 
-# 
 def T_model73(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
    log2_value = np.log2(CO2/C280)
    ECS = 4.5
    temp73 = ECS * log2_value
    return temp73
-
 # 7.3.2 years scale x axis
 years73 = np.arange(x_anf, x_end + 1 )
 T_73values = T_model73(years73)
@@ -578,10 +576,10 @@ if linear_41_75 > 0:
    print(df75.head(2))
    ax75 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
-   ax75.plot(df75["Year75"], df75["temp"]+0.1, '-', label="T GIS  K75", color=c75, linewidth=2)
+   ax75.plot(df75["Year75"], df75["temp"]+0.1, '--', label="T GIS  K75", color=c75, linewidth=2)
    ax75.tick_params(axis="y", labelcolor=c75)
    ax75.set_ylim(y_Tmin, y_Tmax) # scale
-
+   # end 7.5
 
 
 
