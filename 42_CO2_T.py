@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g6" #  left y axis is T
+v = "42g7" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -19,6 +19,13 @@ v = "42g6" #  left y axis is T
 # part 74 plot Hansen GIS temperature 1880 2027
 #
 # part 8 print headline, axis numbers. around figue
+# 8.2 print the headline above the plot
+# 8.3 print the left y axis 
+# 8.6 print the vertical lines CO2=constant
+# 8.7 print the right y axis
+# 8.8 print the x axis 
+# 8.9 print the horizontal lines year 2026
+
 # part 9 print line 1 to 5 below the figure 
 
 # -----------------------------
@@ -34,9 +41,9 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 0 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 0 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 0 #  3 4 print -800 000 years ppm CO2 file
@@ -56,7 +63,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
-plot74_GIS_T  = 2 #
+plot74_GIS_T  = 4 #
 c74 = "#E8125984" # plot73 color
 
 parameter84_save_png = 8 # save png
@@ -65,7 +72,7 @@ c71 = "red" # plot71 color c71 = "green"
 if plot71_temperature < 1:    c72 = "red" # plot72 color
 else:                         c72 = "#DD3646A3" # plot72 color
 if plot71_temperature < 1 and plot72_AESS_T < 1:
-   c73 = "red" # plot73 color
+   c73 = "red" # plot73 color 
 else:   
    c73 = "#B9184E84" # plot73 color
    c73 = "orange"
@@ -81,7 +88,7 @@ y_Tmin = 0 # min value °C
 y_Tmax = 2 # 4 # max value C
 
 x_anf = 1950 # 1960 2000 -33000
-x_end = 2026 # 2200 2026 
+x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -141,7 +148,7 @@ y_left_axis = 2 # y_left_axis = 2 left Y axis is in ppm CO2
                      # y_left_axis = 23 left Y axis is in GtCO2
                      # y_left_axis = 71 # left Y axis in °C for plot71_temperature
 y_left_axis = 74 # 1.9.4 left Y axis in °C for plot74_GIS_T
-# y_left_axis = 22
+y_left_axis = 22
 # end part 1
 
 
@@ -775,18 +782,15 @@ elif plot73_ECS_T > 0:
        )
 elif plot74_GIS_T > 0:
    # ax74.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
-   ax74.tick_params(axis="y", labelcolor=c73)
+   ax74.tick_params(axis="y", labelcolor=c74)
    ax74.set_ylim(y_Tmin, y_Tmax) # scale
    if plot71_temperature < 1: # make y axis right only if not exist
-      #y_Tmayor_ticks = 0.5
-      #y_Tminor_ticks = 0.05
       ax74.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
       ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
-      #ax74.minorticks_off()
       ax74.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax74.set_ylabel (
-         "Δ GIS Temperature in °C 74",
-         color=c71,
+         "Δ GIS Temperature in °C    74",
+         color=c74,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
        )      
