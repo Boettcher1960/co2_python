@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42h1" #  Hansen 2015 .41°C linear fit
+v = "42h2" #  Hansen 2015 .41°C linear fit
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -559,7 +559,6 @@ if plot73_ECS_T > 0:
 # 7.4.2 Year74,GIS_temp
 if plot74_GIS_T > 0:
    print74_text ="Temperature in °C giss.nasa.gov Hansen+0.3°C 74"
-   # 3.4.mode 1 
    df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
    # print(df74.head(2))
    ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
@@ -575,7 +574,8 @@ if plot74_GIS_T > 0:
 # 7.5.2 Year75,GIS_temp
 if linear_41_75 > 0:
    print75_text ="Hansen linear fit from 2015 +0.41°C     75"
-
+   df75 = pd.read_csv("csv_75_hansen.csv") # our world in data file
+   print(df75.head(2))
 
 
 
