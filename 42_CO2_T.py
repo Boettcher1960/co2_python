@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42h2" #  Hansen 2015 .41°C linear fit
+v = "42h3" #  Hansen 2015 .41°C linear fit
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -576,6 +576,11 @@ if linear_41_75 > 0:
    print75_text ="Hansen linear fit from 2015 +0.41°C     75"
    df75 = pd.read_csv("csv_75_hansen.csv") # our world in data file
    print(df75.head(2))
+   ax75 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   # part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax75.plot(df75["Year75"], df75["temp"]+0.1, '-', label="T GIS  K75", color=c75, linewidth=2)
+   ax75.tick_params(axis="y", labelcolor=c75)
+   ax75.set_ylim(y_Tmin, y_Tmax) # scale
 
 
 
