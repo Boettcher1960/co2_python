@@ -76,11 +76,11 @@ y_min = 280 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = -0.5 # min value °C
+y_Tmin = 0.5 # min value °C
 y_Tmax = 1.5 # 4 # max value C
 
-x_anf = 1950 # 1960 2000 -33000
-x_end = 2027 # 2200 2026 
+x_anf = 2015 # 1960 2000 -33000
+x_end = 2026 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
