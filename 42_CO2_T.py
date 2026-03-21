@@ -79,7 +79,7 @@ y_max = 440 # 1300 # min value 440 70
 y_Tmin = -0.5 # min value °C
 y_Tmax = 1.5 # 4 # max value C
 
-x_anf = 1960 # 1960 2000 -33000
+x_anf = 1950 # 1960 2000 -33000
 x_end = 2027 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
