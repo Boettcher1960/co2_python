@@ -15,6 +15,7 @@ v = "42d7" #  plot25_long_CO2 -800,000 years
 # part 71 plot temperature with right y axis
 # part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
+# part 74 plot NASA GIS temperature
 #
 # part 8 print headline, axis numbers. around figue
 # part 9 print line 1 to 5 below the figure 

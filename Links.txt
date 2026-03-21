@@ -43,6 +43,12 @@ text_plot23_Glen="calculated CO2 dashed blue line ppm = 0.0132251t² - 51.0337t 
 #  part 2.5 plot CO2 Mauna Loa
 blue25_text="blue: CO2 measured at Mauna Loa ( 2025 = 427.35 ppm ) 22"
 
+Asynchrony between Antarctic temperature and CO2 associated with obliquity over the past 720,000 years
+Valérie Masson-Delmotte, csv temperature data
+https://www.nature.com/articles/s41467-018-03328-3
+https://www.ncei.noaa.gov/access/paleo-search/study/23371
+
+https://www.ncei.noaa.gov/pub/data/paleo/reconstructions/
 
 
 # part 3.4 plot34_CO2_emission summed
@@ -62,29 +68,9 @@ if plot34_CO2_emission > 0:
 
 
 
-# part 5.2 plot52_delta_CO2_red_bars
-# 5.2.2 ΔCO₂ berechnen (per pandas) Balken
-# df2["CO2"].diff() Calculates the difference between consecutive CO₂ values
-# -----------------------------
-if plot52_delta_CO2_red_bars > 0:
-   df2["Delta_CO2"] = df2["CO2"].diff().fillna(0)  
-   # This line creates a new column in your DataFrame called Delta_CO2.
-   ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-# growth data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt
-#  2020        2.30        0.11
-#  2021        2.35        0.11
-#  2022        1.87        0.11
-#  2023        3.32   2,55     0.11
-#  2024        3.33   3,53     0.11
-#  2025        2.23   2.74     0.11
-# anual mean data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
-#  year   noa     my.py  noa  
-#  2020   414.21   2,58  2.30
-#  2021   416.41   2,17  2.35
-#  2022   418.53   2,12  1.87
-#  2023   421.08   2,55  3.32
-#  2024   424.61   3,53  3.33
-#  2025   427.35   2,74  2.23
+
+
+
 
 
 """
@@ -194,3 +180,39 @@ File	vostok_deld.txt
 Age	Vostok
 http://www.climatedata.info/proxies/data-downloads/
 https://www.ncei.noaa.gov/products/paleoclimatology
+
+
+
+# part 5.2 plot52_delta_CO2_red_bars
+# 5.2.2 ΔCO₂ berechnen (per pandas) Balken
+# df2["CO2"].diff() Calculates the difference between consecutive CO₂ values
+# -----------------------------
+if plot52_delta_CO2_red_bars > 0:
+   df2["Delta_CO2"] = df2["CO2"].diff().fillna(0)  
+   # This line creates a new column in your DataFrame called Delta_CO2.
+   ax52 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+# growth data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.txt
+#  2020        2.30        0.11
+#  2021        2.35        0.11
+#  2022        1.87        0.11
+#  2023        3.32   2,55     0.11
+#  2024        3.33   3,53     0.11
+#  2025        2.23   2.74     0.11
+# anual mean data is different https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+#  year   noa     my.py  noa  
+#  2020   414.21   2,58  2.30
+#  2021   416.41   2,17  2.35
+#  2022   418.53   2,12  1.87
+#  2023   421.08   2,55  3.32
+#  2024   424.61   3,53  3.33
+#  2025   427.35   2,74  2.23
+
+
+
+# part 74 plot NASA GIS temperature
+https://data.giss.nasa.gov/gistemp/zonal_means/
+https://data.giss.nasa.gov/gistemp/zonal_means/
+/4_PYTHON/csv_save/nasa_giss_global.csv
+https://data.giss.nasa.gov/tmp/gistemp/ltmap/tmp.4_ob4LOTI_E5_12_1880_2027_1951_1980-0/global.txt
+/4_PYTHON/csv_save/csv_74_giss_temperature.txt
+/4_PYTHON/csv_save/74_GIS_temperature/
