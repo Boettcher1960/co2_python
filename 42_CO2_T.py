@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g3" #  left y axis is T
+v = "42g4" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -141,8 +141,9 @@ y_left_axis = 2 # y_left_axis = 2 left Y axis is in ppm CO2
                      # y_left_axis = 23 left Y axis is in GtCO2
                      # y_left_axis = 71 # left Y axis in °C for plot71_temperature
 y_left_axis = 74 # 1.9.4 left Y axis in °C for plot74_GIS_T
-
+y_left_axis = 22
 # end part 1
+
 
 
 # -----------------------------
@@ -199,7 +200,6 @@ df2 = pd.DataFrame({  # make a DataFrame with two columns:"x_22_years" → years
      "y_22_CO2_ppm": co2_values22_subset })
 # 2.2.6 add more space below plot
 fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
-
 # end part 2.2 Mauna Loa CO2 measurements
 
 
@@ -265,9 +265,7 @@ if plot25_long_CO2 > 0:
       ax25.tick_params(axis="y", labelcolor=c25)
       ax25.set_ylim(y_min, y_max) # scale
       ax25.spines.right.set_position(("outward", 60))
-
-
-# print(long_co25.head(5))
+      # print(long_co25.head(5))
 
 
 
@@ -675,33 +673,35 @@ else:
 
 # 8.4   y_left_axis = 2 left Y axis is in ppm CO2                   
 if ( y_left_axis < 70 ): # left Y axis is in ppm CO2 
-   # 8.4.1 write "CO₂ in ppm" left Axis upwards
+   # 8.5.1 scale the y axis
+   ax1.set_ylim(y_min, y_max)
+   # 8.4.4 write "CO₂ in ppm" left Axis upwards
    ax1.set_ylabel("CO₂ in ppm", color=c22, fontsize=20) # y achse links
-   # 8.4.2 write the numbers left of plot field
+   # 8.4.5 write the numbers left of plot field
    ax1.tick_params(axis="y", labelcolor=c22, labelsize=20) # Achsenbeschriftung
-   # 8.4.3 scale the Y axis 50ppm main items
+   # 8.4.7 scale the Y axis 50ppm main items
    ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 8.4.4 scale the Y axis 10ppm minor items
+   # 8.4.8 scale the Y axis 10ppm minor items
    ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
 else:   # 8.5 left Y axis in °C for plot74_GIS_T
-  # 8.5.1 write "Temperature in °C GIS " left Axis upwards
+   # 8.5.1 scale the y axis
+   ax1.set_ylim(y_Tmin, y_Tmax)
+   # 8.5.4 write "Temperature in °C GIS " left Axis upwards
    ax1.set_ylabel("Temperature in °C GIS", color=c74, fontsize=20) # y achse links
-   # 8.4.2 write the numbers left of plot field
+   # 8.4.5 write the numbers left of plot field
    ax1.tick_params(axis="y", labelcolor=c74, labelsize=20) # Achsenbeschriftung
-   # 8.4.3 scale the Y axis 1°C main items
+   # 8.4.7 scale the Y axis 1°C main items
    y_Tmayor_ticks = 20
    ax1.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # y axis ticks
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 8.4.4 scale the Y axis 10ppm minor items
+   # 8.4.8 scale the Y axis 10ppm minor items
    y_Tminor_ticks = 4
    ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-
-
-
+   # end 8.5 left Y axis in °C 
 
 
 # 8.6 print the vertical lines CO2=constant
