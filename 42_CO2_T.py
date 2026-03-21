@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g7" #  left y axis is T
+v = "42g10" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -60,9 +60,9 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0 quadratic T
+plot71_temperature = 5 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
-plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
+plot73_ECS_T  = 6       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
 c74 = "#E8125984" # plot73 color
 
@@ -80,15 +80,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 280 # 300 # min value 280
-y_max = 440 # 1300 # min value 440 70
+y_min = 300 # 300 # min value 280
+y_max = 700 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 2 # 4 # max value C
+y_Tmax = 4 # 4 # max value C
 
 x_anf = 1950 # 1960 2000 -33000
-x_end = 2030 # 2200 2026 
+x_end = 2100 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
