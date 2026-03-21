@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42e3" #  74 plot NASA GIS temperature
+v = "42e4" #  74 plot NASA GIS temperature
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -35,7 +35,7 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 0 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 0 #  3 4 print -800 000 years ppm CO2 file
@@ -43,7 +43,7 @@ c25 = "#A8349DC5"
 c25 = "green"
 # https://ourworldindata.org/grapher/co2-long-term-concentration?overlay=download-data
 
-plot34_CO2_emission = 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
+plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative CO2 emissions 1750 to 2024
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
@@ -75,8 +75,8 @@ y_min = 300 # 300 # min value 280
 y_max = 350 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 0 # min value °C
-y_Tmax = 5 # 4 # max value C
+y_Tmin = -1 # min value °C
+y_Tmax = 2 # 4 # max value C
 
 x_anf = 1960 # 1960 2000 -33000
 x_end = 1980 # 2200 2026 
