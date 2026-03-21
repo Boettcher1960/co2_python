@@ -1,9 +1,10 @@
 # 42_CO2_T.py 
-v = "42e12" #  74 plot NASA GIS temperature df74["GIS_temp"]+0.3
+v = "42g1" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
-# part 2.3 plot23_Glen_CO2 = 3
+# part 2.3 plot23_Glen_CO2 
+# part 2.5 plot25_long_CO2  -800 000 years ppm CO2 file
 #
 # part 3.4 plot34_CO2_emission summed
 #
@@ -15,7 +16,7 @@ v = "42e12" #  74 plot NASA GIS temperature df74["GIS_temp"]+0.3
 # part 71 plot quadratic temperature with right y axis
 # part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
-# part 74 plot NASA GIS temperature 1880 2027
+# part 74 plot Hansen GIS temperature 1880 2027
 #
 # part 8 print headline, axis numbers. around figue
 # part 9 print line 1 to 5 below the figure 
@@ -131,8 +132,16 @@ header_parameter = header_parameter + f"{plot55_population_on}" # plot55_populat
 
 header_parameter = header_parameter + f" 7({plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
-header_parameter = header_parameter + f"{plot73_ECS_T} " 
+header_parameter = header_parameter + f"{plot73_ECS_T}" 
+header_parameter = header_parameter + f"{plot74_GIS_T} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
+
+# 1.9 left Y axis is in ppm CO2 per default.
+y_left_axis = 2 # y_left_axis = 2 left Y axis is in ppm CO2
+                     # y_left_axis = 23 left Y axis is in GtCO2
+                     # y_left_axis = 71 # left Y axis in °C for plot71_temperature
+y_left_axis = 74 # 1.9.4 left Y axis in °C for plot74_GIS_T
+
 # end part 1
 
 
@@ -563,10 +572,10 @@ if plot74_GIS_T > 0:
 # 8.1 scale the plot area
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
-# 8.4 print the vertical lines CO2=constant
-# 8.5 print the right y axis
-# 8.6 print the x axis 
-# 8.7 print the horizontal lines year 2026
+# 8.6 print the vertical lines CO2=constant
+# 8.7 print the right y axis
+# 8.8 print the x axis 
+# 8.9 print the horizontal lines year 2026
 
 # 8.1 scale the plot area
 # 8.1.2 scale the x axis
@@ -639,7 +648,7 @@ elif y_max - y_min < 5100:
 else: 
    y_mayor_ticks = 200 # Hauptstriche y axis
    y_minor_ticks = 50
-# 8.3.5  scale the right Y axis
+# 8.3.5  scale the right Y axis for temperature 
 y_Tmayor_ticks = 5
 y_Tminor_ticks = 1
 if y_Tmax - y_Tmin < 0.5:
@@ -672,20 +681,25 @@ ax1.tick_params(axis='y', which='major', length=12, width=1.5)
 ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
 ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
-# 8.4 print the vertical lines CO2=constant
-# 8.4.1 horizontal line at 1120 ppm
+
+
+
+
+
+# 8.6 print the vertical lines CO2=constant
+# 8.6.1 horizontal line at 1120 ppm
 ax1.axhspan(4 * C280 -2, 4 * C280 +2, color=c23, alpha=0.25, zorder=0)      # 1120 ppm horicontal stripe
-# 8.4.2 horizontal line at 560 ppm
+# 8.6.2 horizontal line at 560 ppm
 ax1.axhspan(2 * C280 -2, 2 * C280 +2, color=c23, alpha=0.3, zorder=0)        # 560 ppm horicontal stripe
-# 8.4.3 horizontal major grid all 50ppm
+# 8.6.3 horizontal major grid all 50ppm
 for line in ax1.get_ygridlines():    # horizontal lines
        line.set_color('blue')           # horizontal color
        line.set_alpha(0.5)
        line.set_linestyle('-')          # optional
        line.set_linewidth(1.1)   # <-- thickness
-# 8.4.4 horizontal minor grid all 10ppm
+# 8.6.4 horizontal minor grid all 10ppm
 ax1.grid(True, which="minor", axis="y", color="lightblue", alpha=0.94)   # horizontal
-# 8.4.5 draw blue 1.5°C bar
+# 8.6.5 draw blue 1.5°C bar
 if plot71_temperature > 0:
    ax71.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 elif plot72_AESS_T > 0:
@@ -694,8 +708,8 @@ elif plot73_ECS_T > 0:
    ax73.axhspan(1.5, 2.0, color="#B3D9FF", alpha=0.5, zorder=0) # color="lightblue" 2°C streifen
 
 
-# 8.5 print the right y axis
-# 8.5.1 plot71 Achse und Beschriftung
+# 8.7 print the right y axis
+# 8.7.1 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
       ax71.spines.right.set_position(("outward", 50))
@@ -708,7 +722,7 @@ if plot71_temperature > 0:
          labelpad=10   # smaller = closer to y axis
           )
    ax71.tick_params(axis="y", labelcolor=c71, labelsize=20)
-# 8.5.2 plot72
+# 8.7.2 plot72
 elif plot72_AESS_T > 0 and plot71_temperature < 1:
    if plot54_Glen_delta_on > 2:
       ax72.spines.right.set_position(("outward", 50))
@@ -721,7 +735,7 @@ elif plot72_AESS_T > 0 and plot71_temperature < 1:
          labelpad=10   # smaller = closer to y axis
          )
    ax72.tick_params(axis="y", labelcolor=c72, labelsize=20)
-# 8.5.3 plot73
+# 8.7.3 plot73
 elif plot73_ECS_T > 0:
    ax73.plot(df73["Year73"], df73["Modeled73"], '--', label="T formula CO2=  K73", color=c73, linewidth=3)
    ax73.tick_params(axis="y", labelcolor=c73)
@@ -807,7 +821,7 @@ if plot34_CO2_emission > 0:
       ax34.tick_params(axis="y", labelcolor=c34)
       ax34.set_ylim(0, 2000000000000) #8
 
-# 8.5.9 
+# 8.7.9 
 if plot55_population_on > 0:
    ax55.spines.right.set_position(("outward", 80))
    ax55.set_ylabel("Earth Population in Billion", color="green")
@@ -819,12 +833,12 @@ if plot55_population_on > 0:
    #end print_y2=1 - print population
 
 
-# 8.6 print the x axis 
-# 8.6.1 print year below the year numbers 
+# 8.8 print the x axis 
+# 8.8.1 print year below the year numbers 
 ax1.set_xlabel("year", fontsize=20 )
 plt.xticks(fontsize=20)
 ax1.tick_params(axis="x", labelcolor="black", labelsize=20) # 1960 2020 Achsenbeschriftung
-# 8.6.2 scale the x axis major 20 years
+# 8.8.2 scale the x axis major 20 years
 if x_end - x_anf < 5:
    x_mayor_ticks = 1
    x_minor_ticks = 0.5
@@ -876,28 +890,31 @@ elif x_end - x_anf < 1000020:
 else:
    x_mayor_ticks = 100000
    x_minor_ticks = 20000
-# 8.6.8 scale the x axis major 20 years
+# 8.8.8 scale the x axis major 20 years
 ax1.xaxis.set_major_locator(MultipleLocator(x_mayor_ticks))  # works
 ax1.tick_params(axis='x', which='major', length=10, width=2) # all 20 years
-# 8.6.9 scale the x axis minor 5 years
+# 8.8.9 scale the x axis minor 5 years
 ax1.xaxis.set_minor_locator(MultipleLocator(x_minor_ticks))   # no work
 ax1.tick_params(axis='x', which='minor', length=7,  width=1)
   
-# 8.7 print the horizontal lines year 2026
-# 8.7.1 vertical major grid all 20 years
+# 8.9 print the horizontal lines year 2026
+# 8.9.1 vertical major grid all 20 years
 for line in ax1.get_xgridlines():   # vertical lines
        line.set_color('black')          # vertical color
        line.set_alpha(0.5)
        line.set_linestyle('--')        # optional '--'
        line.set_linewidth(1.9)   # <-- thickness
-# 8.7.2 vertical minorlines all 5 years        
+# 8.9.2 vertical minorlines all 5 years        
 ax1.grid(True, which="minor", axis="x", color="purple", alpha=0.64)   # work vertical 5 years
-# 8.7.3 vertical line at year 2026
+# 8.9.3 vertical line at year 2026
 ax1.axvspan(2025, 2027, color="#B3D9FF", alpha=0.5, zorder=0) # vertical bar'
-# 8.7.4
+# 8.9.4
 ax1.axvspan(2065, 2066, color=c23, alpha=0.4, zorder=0) # vertical bar'
 ax1.axvspan(2174, 2175, color=c23, alpha=0.25, zorder=0) # vertical bar'
 # end part 8
+
+
+
 
 
 # 9 part 9 print information below the plot field
