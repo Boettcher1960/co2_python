@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g2" #  left y axis is T
+v = "42g3" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -687,15 +687,17 @@ if ( y_left_axis < 70 ): # left Y axis is in ppm CO2
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
 else:   # 8.5 left Y axis in °C for plot74_GIS_T
-  # 8.4.1 write "CO₂ in ppm" left Axis upwards
-   ax1.set_ylabel("CO₂ in ppm", color=c22, fontsize=20) # y achse links
+  # 8.5.1 write "Temperature in °C GIS " left Axis upwards
+   ax1.set_ylabel("Temperature in °C GIS", color=c74, fontsize=20) # y achse links
    # 8.4.2 write the numbers left of plot field
-   ax1.tick_params(axis="y", labelcolor=c22, labelsize=20) # Achsenbeschriftung
-   # 8.4.3 scale the Y axis 50ppm main items
-   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
+   ax1.tick_params(axis="y", labelcolor=c74, labelsize=20) # Achsenbeschriftung
+   # 8.4.3 scale the Y axis 1°C main items
+   y_Tmayor_ticks = 20
+   ax1.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # y axis ticks
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
    # 8.4.4 scale the Y axis 10ppm minor items
-   ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
+   y_Tminor_ticks = 4
+   ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
 
 
