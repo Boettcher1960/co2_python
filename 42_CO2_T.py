@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g4" #  left y axis is T
+v = "42g5" #  left y axis is T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -77,10 +77,10 @@ y_min = 280 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 1 # min value °C
+y_Tmin = 0 # min value °C
 y_Tmax = 2 # 4 # max value C
 
-x_anf = 2015 # 1960 2000 -33000
+x_anf = 1950 # 1960 2000 -33000
 x_end = 2026 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -550,14 +550,7 @@ if plot74_GIS_T > 0:
    print74_text ="Temperature in °C giss.nasa.gov Hansen+0.3°C 74"
    # 3.4.mode 1 
    df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
-   #T_74 = (
-   #      df74[df74["Entity"] == "World"][["Year74", "GIS_temp"]]
-   #      .query("1960 <= Year34 <= 2026")
-   #      .sort_values("Year34")
-   #      .reset_index(drop=True)
-   #      )
-      #      print("co2_cumul 2  df34b")
-   print(df74.head(2))
+   # print(df74.head(2))
    ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax74.plot(df74["Year74"], df74["GIS_temp"]+0.3, '-', label="T GIS  K74", color=c74, linewidth=3)
