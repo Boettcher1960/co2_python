@@ -577,8 +577,19 @@ ax1.grid(True)
 # 8.2 print the headline above the plot
 # 8.2.1 blue headline part
 trs = 20
+# if ( y_left_axis < 70 ): # left Y axis is in ppm CO2 
 # header_black = f"CO2 concentration in the atmosphere {x_anf}" # 1960 number inside string
-if plot71_temperature > 0: # one temperature active
+
+if ( y_left_axis > 70 ): # left Y axis is °C 
+   header = f"Temperature in °C  year {x_anf}" # 1960 number inside string
+   # header = header + f" Temperature in °C NASA GIS  " # 1960 number inside string
+   header = header + f" to year {x_end} " # 2026 number inside string
+   # 8.2.8 plot the headline
+   plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
+            transform=plt.gca().transAxes)
+
+
+elif plot71_temperature > 0: # one temperature active
    # 8.2.3 plot the headline
    # plt.text(-0.1, 1.05, header, color="blue", fontname="Arial", fontsize=18, transform=plt.gca().transAxes)
    plt.text(-0.1, 1.05,
