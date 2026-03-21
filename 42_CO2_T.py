@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42g11" #  left y axis is T
+v = "42h1" #  Hansen 2015 .41°C linear fit
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -17,6 +17,7 @@ v = "42g11" #  left y axis is T
 # part 72 plot temperature ECS = 8°C with right y axis
 # part 73 plot temperature ECS = 4.5°C with right y axis
 # part 74 plot Hansen GIS temperature 1880 2027
+# part 75      Hansen 2015 .41°C linear fit
 #
 # part 8 print headline, axis numbers. around figue
 # 8.2 print the headline above the plot
@@ -43,7 +44,7 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 0 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 0 #  3 4 print -800 000 years ppm CO2 file
@@ -60,10 +61,11 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 5 # 4,5, 0 quadratic T
+plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
-plot74_GIS_T  = 4 #
+plot74_GIS_T  = 3 #
+linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
 c74 = "#E8125984" # plot73 color
 
 parameter84_save_png = 8 # save png
@@ -1105,7 +1107,13 @@ elif plot73_ECS_T == 3:
    red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0) 73"
    plt.text(tr2x, tr3y, red73_text, color=c73, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
-
+elif plot74_GIS_T == 3:
+   line74 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c74, linewidth=2)
+   fig.add_artist(line74)    
+   plt.text(tr2x, tr3y, print74_text, color=c74, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
 
    # 9.3 end print line 3 below the plot explainations
 
