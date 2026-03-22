@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42k1" #  plot76_my_T
+v = "42k2" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -66,11 +66,11 @@ plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
-c74                  = "#E8125984" # plot73 color
+c74                  = "#E8125984" # plot74 color
 linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
-c75                 = "#371EA484" # plot73 color
+c75                 = "#371EA484" # plot75 color
 plot76_my_T  =  5 #
-c76                  = "#E8125984" # plot73 color
+c76                  = "#A8349DC5" # plot76 color
 
 parameter84_save_png = 8 # save png
 
@@ -148,6 +148,7 @@ header_parameter = header_parameter + f"{plot72_AESS_T}"
 header_parameter = header_parameter + f"{plot73_ECS_T}" 
 header_parameter = header_parameter + f"{plot74_GIS_T}"
 header_parameter = header_parameter + f"{linear_41_75} "
+header_parameter = header_parameter + f"{plot76_my_T} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
 
 # 1.9 left Y axis is in ppm CO2 per default.
@@ -1339,12 +1340,12 @@ elif plot73_ECS_T == 5:
 elif plot76_my_T == 5:
    line76 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
    transform=fig.transFigure,
-   marker="o", markersize=3, color=c73, linewidth=2)
+   marker="o", markersize=3, color=c76, linewidth=2)
    fig.add_artist(line76)
    # 9.5.8 write  text 
    if plot76_my_T == 5:
-      red76_text="plot76_my_T "
-      plt.text(0.71, tr5y, red76_text, color=c76, fontname="Arial", fontsize=trs,
+      red76_text=" new 42k.py   plot76_my_T "
+      plt.text(tr2x, tr5y, red76_text, color=c76, fontname="Arial", fontsize=trs,
       transform=plt.gca().transAxes)
    
 
