@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42h8" #  Hansen 2015 .41°C linear fit
+v = "42h9" #  Hansen 2015 .41°C linear fit
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -44,7 +44,7 @@ import sys
 # 1.2 Parameter decide which curves to plot
 plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 0 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 0 #  3 4 print -800 000 years ppm CO2 file
@@ -64,7 +64,7 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
-plot74_GIS_T  = 3 #
+plot74_GIS_T  = 4 #
 c74                  = "#E8125984" # plot73 color
 linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot73 color
@@ -144,7 +144,8 @@ header_parameter = header_parameter + f"{plot55_population_on}" # plot55_populat
 header_parameter = header_parameter + f" 7({plot71_temperature}" 
 header_parameter = header_parameter + f"{plot72_AESS_T}" 
 header_parameter = header_parameter + f"{plot73_ECS_T}" 
-header_parameter = header_parameter + f"{plot74_GIS_T} "
+header_parameter = header_parameter + f"{plot74_GIS_T}"
+header_parameter = header_parameter + f"{linear_41_75} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
 
 # 1.9 left Y axis is in ppm CO2 per default.
