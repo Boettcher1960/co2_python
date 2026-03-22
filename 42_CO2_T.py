@@ -93,7 +93,7 @@ y_max = 440 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 1.6 # 1.6 4 # max value C
 
-x_anf = 1990 # 1960 2000 -33000
+x_anf = 1950 # 1960 2000 -33000
 x_end = 2030 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
@@ -596,6 +596,7 @@ def T_model76(t):
    temp76= ( CO2 -340 ) / yppm
    # temp76= temp76 * ( yT +0.6 )
    temp76= temp76 * 1.6
+   temp76= temp76 -0.03
    return temp76
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
