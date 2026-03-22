@@ -93,8 +93,8 @@ y_max = 440 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 1.6 # 1.6 4 # max value C
 
-x_anf = 1950 # 1960 2000 -33000
-x_end = 2030 # 2200 2026 
+x_anf = 2023 # 1960 2000 -33000
+x_end = 2026 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -577,7 +577,7 @@ if plot74_GIS_T > 0:
 if linear_41_75 > 0:
    print75_text ="Hansen linear fit from 2015 +0.41°C     75"
    df75 = pd.read_csv("csv_75_hansen.csv") # our world in data file
-   print(df75.head(2))
+   #print(df75.head(2))
    ax75 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax75.plot(df75["Year75"], df75["temp"]+0.1, '--', label="T GIS  K75", color=c75, linewidth=2)
@@ -601,7 +601,7 @@ def T_model76(t):
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
-print(T_76values)
+#print(T_76values)
 # 7.6.3. Create DataFrame for convenience
 df76 = pd.DataFrame({
        "Year76":      years76,
