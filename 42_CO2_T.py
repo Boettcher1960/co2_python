@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42k3" #  plot76_my_T
+v = "42k4" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -67,11 +67,11 @@ plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
 c74                  = "#E8125984" # plot74 color
-linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
+linear_41_75  = 0 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot75 color
 plot76_my_T  =  5 #
 c76                  = "#A8349DC5" # plot76 color
-
+c76 = "green"
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -91,7 +91,7 @@ y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0.6 # min value °C
-y_Tmax = 1.6 # 4 # max value C
+y_Tmax = 3.6 # 1.6 4 # max value C
 
 x_anf = 1990 # 1960 2000 -33000
 x_end = 2030 # 2200 2026 
@@ -603,6 +603,7 @@ df76 = pd.DataFrame({
        "Year76":      years76,
        "Modeled76": T_76values })
 # 7.6.4 plot76_temperature
+print(df76.head(2))
 if plot76_my_T > 0:
    ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K72", color=c76, linewidth=3)
