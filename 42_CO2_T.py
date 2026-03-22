@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42h9" #  Hansen 2015 .41°C linear fit
+v = "42k1" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -18,6 +18,7 @@ v = "42h9" #  Hansen 2015 .41°C linear fit
 # part 73 plot temperature ECS = 4.5°C with right y axis
 # part 74 plot Hansen GIS temperature 1880 2027
 # part 75      Hansen 2015 .41°C linear fit
+# part 76  my  T 
 #
 # part 8 print headline, axis numbers. around figue
 # 8.2 print the headline above the plot
@@ -68,7 +69,8 @@ plot74_GIS_T  = 4 #
 c74                  = "#E8125984" # plot73 color
 linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot73 color
-
+plot76_my_T  =  5 #
+c76                  = "#E8125984" # plot73 color
 
 parameter84_save_png = 8 # save png
 
@@ -581,6 +583,37 @@ if linear_41_75 > 0:
    ax75.tick_params(axis="y", labelcolor=c75)
    ax75.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.5
+
+# plot76_my_T
+red76_text="my_T  76"
+# 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
+# AESS=7.7°C  # (Judd 2024)
+# https://www.science.org/doi/10.1126/science.adk3705) 
+# 2025
+# https://www.annualreviews.org/content/journals/10.1146/annurev-earth-032320-064209
+#
+def T_model72(t):
+   CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
+   log2_value = np.log2(CO2/C280)
+   AESS=8 # apparent Earth system sensitivity (AESS=7.7°C)
+   temp72=AESS * log2_value
+   return temp72
+# 7.6.2 years scale x axis
+years72 = np.arange(x_anf, x_end + 1 )
+T_72values = T_model72(years72)
+# 7.6.3. Create DataFrame for convenience
+df72 = pd.DataFrame({
+       "Year72":      years72,
+       "Modeled72": T_72values })
+# 7.6.4 plot76_temperature
+if plot76_my_T > 0:
+   ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
+   ax72.tick_params(axis="y", labelcolor=c72)
+   ax72.set_ylim(y_Tmin, y_Tmax) # scale
+   # end 7.6 plot72_AESS_T
+
+
 
 
 
@@ -1303,6 +1336,18 @@ elif plot73_ECS_T == 5:
        red73_text="ECS Earth Climate sensitivity= 4.5°C * log2(CO2/C0)"
        plt.text(tr2x, tr5y, red73_text, color=c73, fontname="Arial", fontsize=trs,
        transform=plt.gca().transAxes)
+elif plot76_my_T == 5:
+   line76 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # y from 0 to 1
+   transform=fig.transFigure,
+   marker="o", markersize=3, color=c73, linewidth=2)
+   fig.add_artist(line76)
+   # 9.5.8 write  text 
+   if plot76_my_T == 5:
+      red76_text="plot76_my_T "
+      plt.text(0.71, tr5y, red76_text, color=c76, fontname="Arial", fontsize=trs,
+      transform=plt.gca().transAxes)
+   
+
 # 9.5 end print line 5 
 
 # 9.6 print line 6 
