@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42k10" #  plot76_my_T
+v = "42k11" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -591,12 +591,11 @@ red76_text="my_T  76"
 #
 def T_model76(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   yppm = 440 -340   # scaling left y axis
-   yT   = 1.6 - 0.6  # scaling right y axis
-   temp76= ( CO2 -280 ) / yppm
-   # temp76= temp76 * ( yT +0.6 )
-   temp76= temp76 * 1.6
-   temp76= temp76 -0.03
+   #yppm = 440 -340   # scaling left y axis
+   #yT   = 1.6 - 0.6  # scaling right y axis
+   # scale 1.5°C at 410 ppm 2022: 418.53, 418-280 = 138
+   temp76= ( CO2 -280 ) / 99
+   temp76= temp76 +0.02
    return temp76
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
