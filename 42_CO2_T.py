@@ -177,7 +177,7 @@ if x_anf < 1960:
    start_of_x_index = x_years_22_list.index(1960)
 else:
    start_of_x_index = x_years_22_list.index(x_anf)    
-if x_end > 2025:
+if x_end > 2026:
    end_of_x_index = x_years_22_list.index(2025)
 elif x_end < 1960:
    end_of_x_index = 1
