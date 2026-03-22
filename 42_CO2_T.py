@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42k2" #  plot76_my_T
+v = "42k3" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -587,31 +587,27 @@ if linear_41_75 > 0:
 
 # plot76_my_T
 red76_text="my_T  76"
-# 7.2 plot72_AESS_T # dT=ECS*log2(C/C0) # T560ppm=AESS*log2(560/280) 
-# AESS=7.7°C  # (Judd 2024)
-# https://www.science.org/doi/10.1126/science.adk3705) 
-# 2025
-# https://www.annualreviews.org/content/journals/10.1146/annurev-earth-032320-064209
+# 7.6 
 #
-def T_model72(t):
+def T_model76(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
    log2_value = np.log2(CO2/C280)
    AESS=8 # apparent Earth system sensitivity (AESS=7.7°C)
-   temp72=AESS * log2_value
-   return temp72
+   temp76=AESS * log2_value
+   return temp76
 # 7.6.2 years scale x axis
-years72 = np.arange(x_anf, x_end + 1 )
-T_72values = T_model72(years72)
+years76 = np.arange(x_anf, x_end + 1 )
+T_76values = T_model76(years76)
 # 7.6.3. Create DataFrame for convenience
-df72 = pd.DataFrame({
-       "Year72":      years72,
-       "Modeled72": T_72values })
+df76 = pd.DataFrame({
+       "Year76":      years76,
+       "Modeled76": T_76values })
 # 7.6.4 plot76_temperature
 if plot76_my_T > 0:
-   ax72 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax72.plot(df72["Year72"], df72["Modeled72"], '--', label="T formula CO2=  K72", color=c72, linewidth=3)
-   ax72.tick_params(axis="y", labelcolor=c72)
-   ax72.set_ylim(y_Tmin, y_Tmax) # scale
+   ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K72", color=c76, linewidth=3)
+   ax76.tick_params(axis="y", labelcolor=c76)
+   ax76.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.6 plot72_AESS_T
 
 
