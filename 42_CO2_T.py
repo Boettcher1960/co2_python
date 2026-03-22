@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42k4" #  plot76_my_T
+v = "42k5" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -90,8 +90,8 @@ y_min = 340 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 0.6 # min value °C
-y_Tmax = 3.6 # 1.6 4 # max value C
+y_Tmin = 3 # min value °C
+y_Tmax = 5.6 # 1.6 4 # max value C
 
 x_anf = 1990 # 1960 2000 -33000
 x_end = 2030 # 2200 2026 
@@ -591,13 +591,14 @@ red76_text="my_T  76"
 #
 def T_model76(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   log2_value = np.log2(CO2/C280)
-   AESS=8 # apparent Earth system sensitivity (AESS=7.7°C)
-   temp76=AESS * log2_value
+   yppm = 440 -340   # scaling left y axis
+   yT   = 1.6 - 0.6  # scaling right y axis
+   temp76= ( CO2 * yT ) / yppm
    return temp76
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
+print(T_76values)
 # 7.6.3. Create DataFrame for convenience
 df76 = pd.DataFrame({
        "Year76":      years76,
