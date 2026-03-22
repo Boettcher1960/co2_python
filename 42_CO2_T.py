@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42k7" #  plot76_my_T
+v = "42k8" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -67,7 +67,7 @@ plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
 c74                  = "#E8125984" # plot74 color
-linear_41_75  = 0 # part 75    Hansen 2015 .41°C linear fit
+linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot75 color
 plot76_my_T  =  5 #
 c76                  = "#A8349DC5" # plot76 color
@@ -86,7 +86,7 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 340 # 300 # min value 280
+y_min = 280 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
