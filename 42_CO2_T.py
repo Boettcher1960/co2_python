@@ -87,7 +87,7 @@ C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
 y_min = 280 # 300 # min value 280
-y_max = 440 # 1300 # min value 440 70
+y_max = 680 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
