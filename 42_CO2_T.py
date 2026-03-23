@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m6" #  plot76_my_T
+v = "42m7" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -62,7 +62,7 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 5 # 4,5, 0 quadratic T
+plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
@@ -587,16 +587,10 @@ if linear_41_75 > 0:
 
 # plot76_my_T
 red76_text="my_T  76"
-# 7.6.1
-def T_model76m1(t):
-    x = t - 2000
-    return 0.00017 * x**2 + 0.022 * x + 0.85
-def T_model76m2(t):
-    x = t - 2000
-    return 0.00016 * x**2 + 0.0207 * x + 0.85
-def T_model76m3(t):
-    x = t - 2000
-    return 0.00016 * x**2 + 0.021 * x + 0.85
+# 7.6.1 0.125   1950
+# 1.16954   2013
+# 1.45214   2023
+# 1.5431599999999999   2026
 def T_model76m4(t):
     x = t - 2000
     return 0.00016 * x**2 + 0.0225 * x + 0.85

@@ -311,3 +311,15 @@ def T_model76m(t):
    temp76= ( CO2 -280 ) / 99
    temp76= temp76 +0.02
    return temp76   
+def T_model76m1(t):
+    x = t - 2000
+    return 0.00017 * x**2 + 0.022 * x + 0.85
+def T_model76m2(t):
+    x = t - 2000
+    return 0.00016 * x**2 + 0.0207 * x + 0.85
+def T_model76m3(t):
+    x = t - 2000
+    return 0.00016 * x**2 + 0.021 * x + 0.85
+def T_model76m4(t):
+    x = t - 2000
+    return 0.00016 * x**2 + 0.0225 * x + 0.85
