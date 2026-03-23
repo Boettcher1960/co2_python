@@ -591,12 +591,15 @@ my76_text="guessed quadratic temperature  my_T   76 "
 # 1.06686   2013
 # 1.42726   2023
 # 1.54864   2026
-def T_model76m10(t):
+def T_model76n2(t):
     x = t - 2000
-    return 0.00034 * x**2 + 0.0238 * x + 0.7
+    return 0.00034 * x**2 + 0.0238 * x + 0.74
+def T_model76n1(t):
+    x = t - 2000
+    return 0.00033 * x**2 + 0.0238 * x + 0.77
 def T_model76(t):
     x = t - 2000
-    return 0.00033 * x**2 + 0.0238 * x + 0.7
+    return 0.00034 * x**2 + 0.0238 * x + 0.74
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
