@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m5" #  plot76_my_T
+v = "42m6" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -93,8 +93,8 @@ y_max = 550 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 3 # 1.6 4 # max value C
 
-x_anf = 1950 # 1960 2000 -33000
-x_end = 2050 # 2200 2026 
+x_anf = 1900 # 1960 2000 -33000
+x_end = 2100 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -609,10 +609,21 @@ def T_model76f(t):
 def T_model76g(t):
     x = t - 2000
     return 0.0005 * x**2 + 0.02 * x + 0.7
+def T_model76h(t):
+    x = t - 2000
+    return 0.00035 * x**2 + 0.02 * x + 0.5
+def T_model76h2(t):
+    x = t - 2000
+    return 0.00027 * x**2 + 0.025 * x + 0.6
+def T_model76h3(t):
+    x = t - 2000
+    return 0.00023 * x**2 + 0.027 * x + 0.8
 def T_model76(t):
     x = t - 2000
-    return 0.0005 * x**2 + 0.02 * x + 0.7
-
+    return 0.00021 * x**2 + 0.028 * x + 0.95
+def T_model76h4(t):
+    x = t - 2000
+    return 0.00022 * x**2 + 0.028 * x + 0.95
 
 
 # 7.6.2 years scale x axis
