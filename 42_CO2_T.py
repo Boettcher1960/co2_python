@@ -587,45 +587,16 @@ if linear_41_75 > 0:
 
 # plot76_my_T
 red76_text="my_T  76"
-# 7.6 
-#
-def T_model76a(t):
-   CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
-   #yppm = 440 -340   # scaling left y axis
-   #yT   = 1.6 - 0.6  # scaling right y axis
-   # scale 1.5°C at 410 ppm 2022: 418.53, 418-280 = 138
-   temp76= ( CO2 -280 ) / 99
-   temp76= temp76 +0.02
-   return temp76
-#can you make a quadatic function like the below T_model71(t)
-# which returns 0.2 for t = 1950
-# which returns 1.0 for t = 2013
-# which returns 1.5 for t = 2023
-def T_model71d(t):
-   return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-def T_model76f(t):
+# 7.6.1
+def T_model76m1(t):
     x = t - 2000
-    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.7
-def T_model76g(t):
+    return 0.00017 * x**2 + 0.022 * x + 0.85
+def T_model76m2(t):
     x = t - 2000
-    return 0.0005 * x**2 + 0.02 * x + 0.7
-def T_model76h(t):
-    x = t - 2000
-    return 0.00035 * x**2 + 0.02 * x + 0.5
-def T_model76h2(t):
-    x = t - 2000
-    return 0.00027 * x**2 + 0.025 * x + 0.6
-def T_model76h3(t):
-    x = t - 2000
-    return 0.00023 * x**2 + 0.027 * x + 0.8
+    return 0.00016 * x**2 + 0.0207 * x + 0.85
 def T_model76(t):
     x = t - 2000
-    return 0.00021 * x**2 + 0.028 * x + 0.95
-def T_model76h4(t):
-    x = t - 2000
-    return 0.00022 * x**2 + 0.028 * x + 0.95
-
-
+    return 0.00016 * x**2 + 0.0207 * x + 0.85
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)

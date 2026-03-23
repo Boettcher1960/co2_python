@@ -274,3 +274,40 @@ def T_model76g(t):
 def T_model76(t):
     x = t - 2000
     return 0.0005 * x**2 + 0.02 * x + 0.7
+def T_model76f(t):
+    x = t - 2000
+    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.7
+def T_model76g(t):
+    x = t - 2000
+    return 0.0005 * x**2 + 0.02 * x + 0.7
+def T_model76h(t):
+    x = t - 2000
+    return 0.00035 * x**2 + 0.02 * x + 0.5
+def T_model76h2(t):
+    x = t - 2000
+    return 0.00027 * x**2 + 0.025 * x + 0.6
+def T_model76h3(t):
+    x = t - 2000
+    return 0.00023 * x**2 + 0.027 * x + 0.8
+def T_model76h4(t):
+    x = t - 2000
+    return 0.00021 * x**2 + 0.028 * x + 0.95
+def T_model76k(t):
+    x = t - 2000
+    return 0.00018 * x**2 + 0.025 * x + 0.95
+#can you make a quadatic function like the below T_model71(t)
+# which returns 0.2 for t = 1950
+# which returns 1.0 for t = 2013
+# which returns 1.5 for t = 2023
+def T_model76m(t):
+    x = t - 2000
+    return 0.00017 * x**2 + 0.022 * x + 0.85
+
+ def T_model76a(t):
+   CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
+   #yppm = 440 -340   # scaling left y axis
+   #yT   = 1.6 - 0.6  # scaling right y axis
+   # scale 1.5°C at 410 ppm 2022: 418.53, 418-280 = 138
+   temp76= ( CO2 -280 ) / 99
+   temp76= temp76 +0.02
+   return temp76   
