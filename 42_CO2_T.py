@@ -594,9 +594,15 @@ def T_model76m1(t):
 def T_model76m2(t):
     x = t - 2000
     return 0.00016 * x**2 + 0.0207 * x + 0.85
+def T_model76m3(t):
+    x = t - 2000
+    return 0.00016 * x**2 + 0.021 * x + 0.85
+def T_model76m4(t):
+    x = t - 2000
+    return 0.00016 * x**2 + 0.0225 * x + 0.85
 def T_model76(t):
     x = t - 2000
-    return 0.00016 * x**2 + 0.0207 * x + 0.85
+    return 0.00016 * x**2 + 0.0225 * x + 0.85
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
@@ -606,7 +612,7 @@ df76 = pd.DataFrame({
        "Year76":      years76,
        "Modeled76": T_76values })
 # 7.6.4 plot76_temperature
-print(df76.head(2))
+# print(df76.head(2))
 print(T_model76(1950) ,"  1950")  # 0.2
 print(T_model76(2013) ,"  2013")  # 1.0
 print(T_model76(2023) ,"  2023")
