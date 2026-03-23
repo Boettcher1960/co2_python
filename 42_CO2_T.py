@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42n1" #  plot76_my_T
+v = "42n3" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -86,14 +86,14 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 250 # 300 # min value 280
-y_max = 450 # 1300 # min value 440 70
+y_min = 380 # 300 # min value 280
+y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 0 # min value °C
-y_Tmax = 2 # 1.6 4 # max value C
+y_Tmin = 0.85 # min value °C
+y_Tmax = 1.85 # 1.6 4 # max value C
 
-x_anf = 1970 # 1960 2000 -33000
+x_anf = 2010 # 1960 2000 -33000
 x_end = 2040 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
