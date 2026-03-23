@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m4" #  plot76_my_T
+v = "42m5" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -601,26 +601,17 @@ def T_model76a(t):
 # which returns 0.2 for t = 1950
 # which returns 1.0 for t = 2013
 # which returns 1.5 for t = 2023
-def T_model76b(t):
-    return 0.00052537 * t**2 - 2.071 * t + 2040.65
-def T_model76c(t):
-    return (
-        0.000525368248010184 * t**2
-        - 2.07099741100324 * t
-        + 2040.64663023679
-    )
-def T_model76d(t):
-    x = t - 2000
-    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.9027
 def T_model71d(t):
    return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
-# 
-def T_model76e(t):
+def T_model76f(t):
     x = t - 2000
     return 0.000525368248010184 * x**2 + 0.030377 * x + 0.7
+def T_model76g(t):
+    x = t - 2000
+    return 0.0005 * x**2 + 0.02 * x + 0.7
 def T_model76(t):
     x = t - 2000
-    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.7
+    return 0.0005 * x**2 + 0.02 * x + 0.7
 
 
 
