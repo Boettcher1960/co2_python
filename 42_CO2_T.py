@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m7" #  plot76_my_T
+v = "42m9" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -70,8 +70,8 @@ c74                  = "#E8125984" # plot74 color
 linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot75 color
 plot76_my_T  =  5 #
-c76                  = "#A8349DC5" # plot76 color
-c76 = "green"
+c76                  = "#CB4949C5" # plot76 color
+c76 = "red"
 parameter84_save_png = 8 # save png
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -93,8 +93,8 @@ y_max = 550 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 3 # 1.6 4 # max value C
 
-x_anf = 1900 # 1960 2000 -33000
-x_end = 2100 # 2200 2026 
+x_anf = 1950 # 1960 2000 -33000
+x_end = 2060 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -586,7 +586,9 @@ if linear_41_75 > 0:
    # end 7.5
 
 # plot76_my_T
-red76_text="my_T  76"
+my76_text=" 0.00016 * x**2 + 0.0225 * x + 0.85 plot76_my_T "
+my76_text="guessed quadratic temperature  my_T   76 "
+   
 # 7.6.1 0.125   1950
 # 1.16954   2013
 # 1.45214   2023
@@ -614,7 +616,7 @@ print(T_model76(2026) ,"  2026")  # 1.5
 
 if plot76_my_T > 0:
    ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K72", color=c76, linewidth=3)
+   ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K76", color=c76, linewidth=3)
    ax76.tick_params(axis="y", labelcolor=c76)
    ax76.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.6 plot76_my_T
@@ -1349,8 +1351,7 @@ elif plot76_my_T == 5:
    fig.add_artist(line76)
    # 9.5.8 write  text 
    if plot76_my_T == 5:
-      red76_text=" new 42k.py   plot76_my_T "
-      plt.text(tr2x, tr5y, red76_text, color=c76, fontname="Arial", fontsize=trs,
+      plt.text(tr2x, tr5y, my76_text, color=c76, fontname="Arial", fontsize=trs,
       transform=plt.gca().transAxes)
    
 
