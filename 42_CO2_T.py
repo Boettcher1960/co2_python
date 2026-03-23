@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m11" #  plot76_my_T
+v = "42m12" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -586,9 +586,7 @@ if linear_41_75 > 0:
    # end 7.5
 
 # plot76_my_T
-my76_text=" 0.00016 * x**2 + 0.0225 * x + 0.85 plot76_my_T "
 my76_text="guessed quadratic temperature  my_T   76 "
-   
 # 7.6.1 0.125   1950
 # 1.16954   2013
 # 1.45214   2023
@@ -596,9 +594,21 @@ my76_text="guessed quadratic temperature  my_T   76 "
 def T_model76m6(t):
     x = t - 2000
     return 0.00018 * x**2 + 0.0233 * x + 0.85
-def T_model76(t):
+def T_model76m7(t):
     x = t - 2000
     return 0.00023 * x**2 + 0.0233 * x + 0.8
+def T_model76m8(t):
+    x = t - 2000
+    return 0.00025 * x**2 + 0.0233 * x + 0.8
+def T_model76m9(t):
+    x = t - 2000
+    return 0.00033 * x**2 + 0.0236 * x + 0.7
+def T_model76m10(t):
+    x = t - 2000
+    return 0.00034 * x**2 + 0.0238 * x + 0.7
+def T_model76(t):
+    x = t - 2000
+    return 0.00034 * x**2 + 0.0238 * x + 0.7
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
