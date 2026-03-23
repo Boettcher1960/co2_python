@@ -323,3 +323,9 @@ def T_model76m3(t):
 def T_model76m4(t):
     x = t - 2000
     return 0.00016 * x**2 + 0.0225 * x + 0.85
+    def T_model76m4(t):
+    x = t - 2000
+    return 0.00016 * x**2 + 0.0225 * x + 0.85
+def T_model76m5(t):
+    x = t - 2000
+    return 0.00017 * x**2 + 0.0233 * x + 0.85
