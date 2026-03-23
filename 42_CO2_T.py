@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m13" #  plot76_my_T
+v = "42n1" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -93,8 +93,8 @@ y_max = 450 # 1300 # min value 440 70
 y_Tmin = 0 # min value °C
 y_Tmax = 2 # 1.6 4 # max value C
 
-x_anf = 1950 # 1960 2000 -33000
-x_end = 2060 # 2200 2026 
+x_anf = 1970 # 1960 2000 -33000
+x_end = 2040 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
@@ -105,8 +105,8 @@ tr2y = -.26 # text row 2 y end value -.3...1 -.24
 # 1.5 scale the text rows below the plot field
 tr3y = -.33 # text row 1 y end value -.3...1 -.32
 tr4y = -.40 # text row 1 y end value -.3...1 -.40
-tr5y = -.48 # text row 1 y end value -.3...1 -.48
-tr6y = -.56 # text row 1 y end value -.3...1 -.56
+tr5y = -.46 # text row 1 y end value -.3...1 -.48
+tr6y = -.57 # text row 1 y end value -.3...1 -.56
 trs = 20 # trs = 16 # fontsize=14
 
 # 1.6 scale the legend lines below the plot field
@@ -116,7 +116,7 @@ lr1y = 0.248 # line row 1 y value begin
 lr2y = 0.211 # line row 2 y value begin 0.215
 lr3y = 0.168 # line row 3 y value begin 0.17
 lr4y = 0.129 # line row 4 y value begin 0.124
-lr5y = 0.082 # line row 5 y value begin 0.08
+lr5y = 0.095 # line row 5 y value begin 0.08
 lr6y = 0.034 # line row 6 y value begin 0.08
 
 # 1.7 Plot (x-width, y-width) Size of the figure in inches
@@ -596,7 +596,7 @@ def T_model76m10(t):
     return 0.00034 * x**2 + 0.0238 * x + 0.7
 def T_model76(t):
     x = t - 2000
-    return 0.00033 * x**2 + 0.0239 * x + 0.7
+    return 0.00033 * x**2 + 0.0238 * x + 0.7
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
@@ -611,7 +611,7 @@ print(T_model76(1950) ,"  1950")  # 0.2
 print(T_model76(2013) ,"  2013")  # 1.0
 print(T_model76(2023) ,"  2023")
 print(T_model76(2026) ,"  2026")  # 1.5
-
+print(T_model76(2028) ,"  2028")  # 1.5
 if plot76_my_T > 0:
    ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K76", color=c76, linewidth=3)
