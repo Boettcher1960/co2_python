@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m1" #  plot76_my_T
+v = "42m2" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -62,7 +62,7 @@ plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
 plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
-plot71_temperature = 0 # 4,5, 0 quadratic T
+plot71_temperature = 5 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 4 #
@@ -86,8 +86,8 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 280 # 300 # min value 280
-y_max = 580 # 1300 # min value 440 70
+y_min = 250 # 300 # min value 280
+y_max = 550 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
@@ -661,7 +661,7 @@ elif plot71_temperature > 0: # one temperature active
      f"--> Δ Temperature calculated °C year {x_end}",
     color=c71, fontname="Arial", fontsize=trs, transform=plt.gca().transAxes )
 else:   
-   header = f"CO2 measured at Mauna Loa up to 2024. Print {x_anf}" # 1960 number inside string
+   header = f"CO2 measured at Mauna Loa up to 2025. Print {x_anf}" # 1960 number inside string
    header = header + f" to {x_end} " # 2026 number inside string
    # 8.2.8 plot the headline
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=18,
