@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m12" #  plot76_my_T
+v = "42m13" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -87,11 +87,11 @@ C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
 y_min = 250 # 300 # min value 280
-y_max = 550 # 1300 # min value 440 70
+y_max = 450 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 3 # 1.6 4 # max value C
+y_Tmax = 2 # 1.6 4 # max value C
 
 x_anf = 1950 # 1960 2000 -33000
 x_end = 2060 # 2200 2026 
@@ -587,28 +587,16 @@ if linear_41_75 > 0:
 
 # plot76_my_T
 my76_text="guessed quadratic temperature  my_T   76 "
-# 7.6.1 0.125   1950
-# 1.16954   2013
-# 1.45214   2023
-# 1.5431599999999999   2026
-def T_model76m6(t):
-    x = t - 2000
-    return 0.00018 * x**2 + 0.0233 * x + 0.85
-def T_model76m7(t):
-    x = t - 2000
-    return 0.00023 * x**2 + 0.0233 * x + 0.8
-def T_model76m8(t):
-    x = t - 2000
-    return 0.00025 * x**2 + 0.0233 * x + 0.8
-def T_model76m9(t):
-    x = t - 2000
-    return 0.00033 * x**2 + 0.0236 * x + 0.7
+# 7.6.1 0.3599999999999999   1950
+# 1.06686   2013
+# 1.42726   2023
+# 1.54864   2026
 def T_model76m10(t):
     x = t - 2000
     return 0.00034 * x**2 + 0.0238 * x + 0.7
 def T_model76(t):
     x = t - 2000
-    return 0.00034 * x**2 + 0.0238 * x + 0.7
+    return 0.00033 * x**2 + 0.0239 * x + 0.7
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
