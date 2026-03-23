@@ -603,10 +603,26 @@ def T_model76a(t):
 # which returns 1.5 for t = 2023
 def T_model76b(t):
     return 0.00052537 * t**2 - 2.071 * t + 2040.65
-
-def T_model76(t):
+def T_model76c(t):
+    return (
+        0.000525368248010184 * t**2
+        - 2.07099741100324 * t
+        + 2040.64663023679
+    )
+def T_model76d(t):
     x = t - 2000
     return 0.000525368248010184 * x**2 + 0.030377 * x + 0.9027
+def T_model71d(t):
+   return 0.000617965091650558 * t**2 - 2.45858656778789 * t + 2446.05792853123
+# 
+def T_model76e(t):
+    x = t - 2000
+    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.7
+def T_model76(t):
+    x = t - 2000
+    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.7
+
+
 
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
@@ -618,9 +634,11 @@ df76 = pd.DataFrame({
        "Modeled76": T_76values })
 # 7.6.4 plot76_temperature
 print(df76.head(2))
-print(T_model76(1950))  # 0.2
-print(T_model76(2013))  # 1.0
-print(T_model76(2023))  # 1.5
+print(T_model76(1950) ,"  1950")  # 0.2
+print(T_model76(2013) ,"  2013")  # 1.0
+print(T_model76(2023) ,"  2023")
+print(T_model76(2026) ,"  2026")  # 1.5
+
 if plot76_my_T > 0:
    ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K72", color=c76, linewidth=3)
