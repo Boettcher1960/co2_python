@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m2" #  plot76_my_T
+v = "42m4" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -589,7 +589,7 @@ if linear_41_75 > 0:
 red76_text="my_T  76"
 # 7.6 
 #
-def T_model76(t):
+def T_model76a(t):
    CO2= 0.0132251 * t**2 - 51.0337 * t + 49536.7 # Glen formula
    #yppm = 440 -340   # scaling left y axis
    #yT   = 1.6 - 0.6  # scaling right y axis
@@ -597,6 +597,17 @@ def T_model76(t):
    temp76= ( CO2 -280 ) / 99
    temp76= temp76 +0.02
    return temp76
+#can you make a quadatic function like the below T_model71(t)
+# which returns 0.2 for t = 1950
+# which returns 1.0 for t = 2013
+# which returns 1.5 for t = 2023
+def T_model76b(t):
+    return 0.00052537 * t**2 - 2.071 * t + 2040.65
+
+def T_model76(t):
+    x = t - 2000
+    return 0.000525368248010184 * x**2 + 0.030377 * x + 0.9027
+
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
@@ -607,6 +618,9 @@ df76 = pd.DataFrame({
        "Modeled76": T_76values })
 # 7.6.4 plot76_temperature
 print(df76.head(2))
+print(T_model76(1950))  # 0.2
+print(T_model76(2013))  # 1.0
+print(T_model76(2023))  # 1.5
 if plot76_my_T > 0:
    ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K72", color=c76, linewidth=3)
