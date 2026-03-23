@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42m9" #  plot76_my_T
+v = "42m10" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -596,9 +596,12 @@ my76_text="guessed quadratic temperature  my_T   76 "
 def T_model76m4(t):
     x = t - 2000
     return 0.00016 * x**2 + 0.0225 * x + 0.85
+def T_model76m5(t):
+    x = t - 2000
+    return 0.00017 * x**2 + 0.0233 * x + 0.85
 def T_model76(t):
     x = t - 2000
-    return 0.00016 * x**2 + 0.0225 * x + 0.85
+    return 0.00018 * x**2 + 0.0233 * x + 0.85
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)
