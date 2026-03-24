@@ -97,8 +97,8 @@ y_min = 280 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
-y_Tmin = 0.85 # min value °C
-y_Tmax = 1.85 # 1.6 4 # max value C
+y_Tmin = 0 # min value °C
+y_Tmax = 3 # 1.6 4 # max value C
 
 x_anf = 1950 # 1960 2000 -33000
 x_end = 2040 # 2200 2026 
@@ -611,7 +611,8 @@ def T_model76n2(t): # my best try
 def T_model76(t):
     # https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
     # Define the three points
-    t1, y1 = 1950, 0.2
+    #t1, y1 = 1980, 0.5  # 
+    t1, y1 = 1950, 0.2 
     t2, y2 = 2013, 1.0
     t3, y3 = 2023, 1.5
     # Lagrange interpolation
