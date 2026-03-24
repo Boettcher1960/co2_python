@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42p2" #  plot76_my_T
+v = "42p3" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -594,21 +594,16 @@ if linear_41_75 > 0:
 
 # plot76_my_T
 my76_text="guessed quadratic temperature  my_T   76 "
-# 7.6.1 0.3599999999999999   1950
-# 1.06686   2013
-# 1.42726   2023
-# 1.54864   2026
-def T_model76n2(t):
-    x = t - 2000
-    return 0.00034 * x**2 + 0.0238 * x + 0.74
-def T_model76n1(t):
-    x = t - 2000
-    return 0.00033 * x**2 + 0.0238 * x + 0.77
-def T_model76n2(t): # my best try
+# 7.6.1 0.3999999999999999   1950
+# 1.10686   2013
+# 1.46726   2023
+# 1.58864   2026
+# 1.6729600000000002   2028
+def T_model76(t): # my best try
     x = t - 2000
     return 0.00034 * x**2 + 0.0238 * x + 0.74
 
-def T_model76(t):
+def T_model77(t):
     # https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
     # Define the three points
     #t1, y1 = 1980, 0.5  # 
