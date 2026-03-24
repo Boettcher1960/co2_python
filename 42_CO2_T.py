@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42p1" #  plot76_my_T
+v = "42p2" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -19,6 +19,7 @@ v = "42p1" #  plot76_my_T
 # part 74 plot Hansen GIS temperature 1880 2027
 # part 75      Hansen 2015 .41°C linear fit
 # part 76  my  T 
+# part 77 deepseek.com 
 #
 # part 8 print headline, axis numbers. around figue
 # 8.2 print the headline above the plot
@@ -27,6 +28,12 @@ v = "42p1" #  plot76_my_T
 # 8.7 print the right y axis
 # 8.8 print the x axis 
 # 8.9 print the horizontal lines year 2026
+
+# yl_mode = 2 ppm CO2 y axis left mode
+# yl_mode = 3 Gt CO2 y axis left mode
+# yl_mode = 4 EEI in W/m2 y axis left mode
+# yl_mode = 5 delta ppm CO2 y axis left mode
+# yl_mode = 7 Temperature in °C y axis left mode
 
 # part 9 print line 1 to 5 below the figure 
 
@@ -86,14 +93,14 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 380 # 300 # min value 280
+y_min = 280 # 300 # min value 280
 y_max = 440 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0.85 # min value °C
 y_Tmax = 1.85 # 1.6 4 # max value C
 
-x_anf = 2010 # 1960 2000 -33000
+x_anf = 1950 # 1960 2000 -33000
 x_end = 2040 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
