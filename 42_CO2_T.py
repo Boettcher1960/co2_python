@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42n3" #  plot76_my_T
+v = "42p1" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -597,9 +597,26 @@ def T_model76n2(t):
 def T_model76n1(t):
     x = t - 2000
     return 0.00033 * x**2 + 0.0238 * x + 0.77
-def T_model76(t):
+def T_model76n2(t): # my best try
     x = t - 2000
     return 0.00034 * x**2 + 0.0238 * x + 0.74
+
+def T_model76(t):
+    # https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
+    # Define the three points
+    t1, y1 = 1950, 0.2
+    t2, y2 = 2013, 1.0
+    t3, y3 = 2023, 1.5
+    # Lagrange interpolation
+    term1 = y1 * ((t - t2) * (t - t3)) / ((t1 - t2) * (t1 - t3))
+    term2 = y2 * ((t - t1) * (t - t3)) / ((t2 - t1) * (t2 - t3))
+    term3 = y3 * ((t - t1) * (t - t2)) / ((t3 - t1) * (t3 - t2))
+    
+    return term1 + term2 + term3
+
+
+
+
 # 7.6.2 years scale x axis
 years76 = np.arange(x_anf, x_end + 1 )
 T_76values = T_model76(years76)

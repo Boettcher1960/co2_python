@@ -16,6 +16,9 @@
 # part 8 print headline, axis numbers. around figue
 # part 9 print line 1 to 5 below the figure 
 
+yl_mode = 2 # y axis left, mode =2 CO2 in ppm
+yl_mode = 4 # y axis left, mode =4 EEI in W/m2
+yl_mode = 7 # y axis left, mode =7 Temperature in °C
 
 
 # -----------------------------
@@ -233,7 +236,7 @@ which returns 1.5 for t = 2023
 def T_model76(t):
     return 0.00052537 * t**2 - 2.071 * t + 2040.65
 
-#can you make a quadatic function like the below T_model71(t)
+#can you make a quadatic function like the below T_model71(t) in python
 # which returns 0.2 for t = 1950
 # which returns 1.0 for t = 2013
 # which returns 1.5 for t = 2023
@@ -347,3 +350,51 @@ def T_model76m10(t):
 def T_model76(t):
     x = t - 2000
     return 0.00034 * x**2 + 0.0238 * x + 0.7
+
+https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
+
+def T_model76(t):
+    """
+    Alternative formulation using polynomial coefficients directly
+    (same as above but without solving the system each time)
+    """
+    # Pre-calculated coefficients (solve once)
+    # These were computed by solving the system of equations
+    a = 0.00188034188034188
+    b = -7.31623931623932
+    c = 7130.73076923077
+   
+    return a * t**2 + b * t + c
+homasboettcher@MacBookAir 4_Python_CO2 % /usr/local/bin/python3 /Users/thomasboettcher/Documents/Python/4_Python_CO2/42_CO2_T.py
+14.064102564095265   1950
+22.604102564096138   2013
+25.332307692299764   2023
+26.22410256409603    2026
+26.837435897428804   2028
+print(T_model76(1950) ,"  1950")  # 0.2
+print(T_model76(2013) ,"  2013")  # 1.0
+print(T_model76(2023) ,"  2023")
+print(T_model76(2026) ,"  2026")  # 1.5
+print(T_model76(2028) ,"  2028")  # 1.5
+
+correct the formula 
+#can you make a quadatic function like the below T_model71(t) in python
+# which returns 0.2 for t = 1950
+# which returns 1.0 for t = 2013
+# which returns 1.5 for t = 2023
+
+
+
+
+https://x.com/rahmstorf/status/2036000186967769338
+
+https://www.jkclimate.fr/InteractiveDashboard2025/dashboard.html
+
+https://library.wmo.int/viewer/69807/download?file=WMO-1391-2025_en.pdf&type=pdf&navigator=1
+
+https://wmo.int/publication-series/state-of-global-climate/state-of-global-climate-2025
+
+
+https://substack.com/@jimehansen
+
+
