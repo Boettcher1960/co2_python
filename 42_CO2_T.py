@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42p4" #  plot76_my_T
+v = "42p5" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -766,23 +766,8 @@ else:
    # yl_mode = 7 Temperature in °C y axis left mode
 
 # 8.4   y_left_axis = 2 left Y axis is in ppm CO2                   
-if ( y_left_axis == 2 ): # left Y axis is in ppm CO2 
-   # 8.5.1 scale the y axis
-   ax1.set_ylim(y_min, y_max)
-   # 8.4.4 write "CO₂ in ppm" left Axis upwards
-   ax1.set_ylabel("CO₂ in ppm", color=c22, fontsize=20) # y achse links
-   # 8.4.5 write the numbers left of plot field
-   ax1.tick_params(axis="y", labelcolor=c22, labelsize=20) # Achsenbeschriftung
-   # 8.4.7 scale the Y axis 50ppm main items
-   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
-   ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 8.4.8 scale the Y axis 10ppm minor items
-   ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
-   ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-
 # yl_mode = 7 Temperature in °C y axis left mode
-else:
-#elif ( y_left_axis == 7 ):   # 8.5 left Y axis in °C for plot74_GIS_T elif
+if ( yl_mode == 7 ):   # 8.5 left Y axis in °C for plot74_GIS_T elif
    # 8.5.1 scale the y axis
    ax1.set_ylim(y_Tmin, y_Tmax)
    # 8.5.4 write "Temperature in °C GIS " left Axis upwards
@@ -798,6 +783,23 @@ else:
    ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # end 8.5 left Y axis in °C 
+#if ( y_left_axis == 2 ): # left Y axis is in ppm CO2 
+else:
+   # 8.5.1 scale the y axis
+   ax1.set_ylim(y_min, y_max)
+   # 8.4.4 write "CO₂ in ppm" left Axis upwards
+   ax1.set_ylabel("CO₂ in ppm", color=c22, fontsize=20) # y achse links
+   # 8.4.5 write the numbers left of plot field
+   ax1.tick_params(axis="y", labelcolor=c22, labelsize=20) # Achsenbeschriftung
+   # 8.4.7 scale the Y axis 50ppm main items
+   ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
+   ax1.tick_params(axis='y', which='major', length=12, width=1.5)
+   # 8.4.8 scale the Y axis 10ppm minor items
+   ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
+   ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
+
+
+
 
 
 
