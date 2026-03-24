@@ -81,7 +81,6 @@ c76                  = "#CB4949C5" # plot76 color
 c76 = "red"
 plot_T_77 = 0
 parameter84_save_png = 8 # save png
-yl_mode = 7 # Temperature in °C y axis left mode
 
 
 c71 = "red" # plot71 color c71 = "green" 
@@ -162,11 +161,11 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
 
 # 1.9 left Y axis is in ppm CO2 per default.
-y_left_axis = 2 # y_left_axis = 2 left Y axis is in ppm CO2
-                     # y_left_axis = 23 left Y axis is in GtCO2
-                     # y_left_axis = 71 # left Y axis in °C for plot71_temperature
-y_left_axis = 74 # 1.9.4 left Y axis in °C for plot74_GIS_T
-y_left_axis = 22
+yl_mode = 2 # ppm CO2 y axis left mode
+# yl_mode = 3 Gt CO2 y axis left mode
+# yl_mode = 4 EEI in W/m2 y axis left mode
+# yl_mode = 5 delta ppm CO2 y axis left mode
+yl_mode = 7 # Temperature in °C y axis left mode
 # end part 1
 
 
@@ -667,7 +666,6 @@ ax1.grid(True)
 # 8.2 print the headline above the plot
 # 8.2.1 blue headline part
 trs = 20
-# if ( y_left_axis < 70 ): # left Y axis is in ppm CO2 
 # header_black = f"CO2 concentration in the atmosphere {x_anf}" # 1960 number inside string
 
 # yl_mode = 7 Temperature in °C y axis left mode
@@ -765,12 +763,12 @@ else:
    y_Tminor_ticks = 10
    # yl_mode = 7 Temperature in °C y axis left mode
 
-# 8.4   y_left_axis = 2 left Y axis is in ppm CO2                   
+# 8.4                
 # yl_mode = 7 Temperature in °C y axis left mode
-if ( yl_mode == 7 ):   # 8.5 left Y axis in °C for plot74_GIS_T elif
-   # 8.5.1 scale the y axis
+if ( yl_mode == 7 ):   # 8.4 left Y axis in °C for plot74_GIS_T elif
+   # 8.4.1 scale the y axis
    ax1.set_ylim(y_Tmin, y_Tmax)
-   # 8.5.4 write "Temperature in °C GIS " left Axis upwards
+   # 8.4.4 write "Temperature in °C GIS " left Axis upwards
    ax1.set_ylabel("Temperature in °C GIS", color=c74, fontsize=20) # y achse links
    # 8.4.5 write the numbers left of plot field
    ax1.tick_params(axis="y", labelcolor=c74, labelsize=20) # Achsenbeschriftung
@@ -783,7 +781,7 @@ if ( yl_mode == 7 ):   # 8.5 left Y axis in °C for plot74_GIS_T elif
    ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # end 8.5 left Y axis in °C 
-#if ( y_left_axis == 2 ): # left Y axis is in ppm CO2 
+#elif ( yl_mode  == 2 ): # yl_mode = 2 ppm CO2 y axis left mode
 else:
    # 8.5.1 scale the y axis
    ax1.set_ylim(y_min, y_max)
