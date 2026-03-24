@@ -397,4 +397,11 @@ https://wmo.int/publication-series/state-of-global-climate/state-of-global-clima
 
 https://substack.com/@jimehansen
 
+linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
+
+# yl_mode = 2 ppm CO2 y axis left mode
+# yl_mode = 3 Gt CO2 y axis left mode
+# yl_mode = 4 EEI in W/m2 y axis left mode
+# yl_mode = 5 delta ppm CO2 y axis left mode
+# yl_mode = 7 Temperature in °C y axis left mode
 

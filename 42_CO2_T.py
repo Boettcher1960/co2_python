@@ -50,7 +50,7 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 2 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 0 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
 plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
@@ -72,14 +72,17 @@ plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
-plot74_GIS_T  = 4 #
+plot74_GIS_T  = 2 #
 c74                  = "#E8125984" # plot74 color
-linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
+linear_41_75  = 0 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot75 color
-plot76_my_T  =  5 #
+plot76_my_T  =  0 #
 c76                  = "#CB4949C5" # plot76 color
 c76 = "red"
+plot_T_77 = 0
 parameter84_save_png = 8 # save png
+yl_mode = 7 # Temperature in °C y axis left mode
+
 
 c71 = "red" # plot71 color c71 = "green" 
 if plot71_temperature < 1:    c72 = "red" # plot72 color
@@ -667,15 +670,14 @@ trs = 20
 # if ( y_left_axis < 70 ): # left Y axis is in ppm CO2 
 # header_black = f"CO2 concentration in the atmosphere {x_anf}" # 1960 number inside string
 
-if ( y_left_axis > 70 ): # left Y axis is °C 
+# yl_mode = 7 Temperature in °C y axis left mode
+if ( yl_mode == 7 ): # left Y axis is °C 
    header = f"Temperature in °C  year {x_anf}" # 1960 number inside string
    # header = header + f" Temperature in °C NASA GIS  " # 1960 number inside string
    header = header + f" to year {x_end} " # 2026 number inside string
    # 8.2.8 plot the headline
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
             transform=plt.gca().transAxes)
-
-
 elif plot71_temperature > 0: # one temperature active
    # 8.2.3 plot the headline
    # plt.text(-0.1, 1.05, header, color="blue", fontname="Arial", fontsize=18, transform=plt.gca().transAxes)
@@ -699,6 +701,7 @@ else:
 
 # 8.3 print the left y axis 
 # 8.3.1 scale the Y axis for 280 ppm CO2
+# yl_mode = 2 ppm CO2 y axis left mode
 if y_max - y_min < 11:
    y_mayor_ticks = 2
    y_minor_ticks = 0.2
@@ -731,8 +734,10 @@ elif y_max - y_min < 5100:
 else: 
    y_mayor_ticks = 200 # Hauptstriche y axis
    y_minor_ticks = 50
+   # yl_mode = 2 ppm CO2 y axis left mode
 
 # 8.3.5 scale the Y axis for -10°C to 1°C  temperature 
+# yl_mode = 7 Temperature in °C y axis left mode
 y_Tmayor_ticks = 5
 y_Tminor_ticks = 1
 if y_Tmax - y_Tmin < 0.5:
@@ -758,7 +763,7 @@ elif y_Tmax - y_Tmin < 21:
 else:
    y_Tmayor_ticks = 20
    y_Tminor_ticks = 10
-
+   # yl_mode = 7 Temperature in °C y axis left mode
 
 # 8.4   y_left_axis = 2 left Y axis is in ppm CO2                   
 if ( y_left_axis < 70 ): # left Y axis is in ppm CO2 
