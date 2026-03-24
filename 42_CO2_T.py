@@ -93,15 +93,15 @@ else:
 C280=280 # CO2 concentration 1750 275 ppm
 
 # 1.3.1 scale the left Y axis
-y_min = 280 # 300 # min value 280
-y_max = 440 # 1300 # min value 440 70
+y_min = 250 # 300 # min value 280
+y_max = 500 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 3 # 1.6 4 # max value C
+y_Tmax = 2.5 # 1.6 4 # max value C
 
 x_anf = 1950 # 1960 2000 -33000
-x_end = 2040 # 2200 2026 
+x_end = 2050 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
 tr1x = -0.09 # text row 1 x value -.3...1 -0.12
