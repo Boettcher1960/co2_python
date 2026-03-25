@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42p5" #  plot76_my_T
+v = "42p6" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -24,6 +24,7 @@ v = "42p5" #  plot76_my_T
 # part 8 print headline, axis numbers. around figue
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
+# 8.4 configure the left y axis legend  
 # 8.6 print the vertical lines CO2=constant
 # 8.7 print the right y axis
 # 8.8 print the x axis 
@@ -162,6 +163,7 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 
 # 1.9 left Y axis is in ppm CO2 per default.
 yl_mode = 2 # ppm CO2 y axis left mode
+yr_mode = 2 # ppm CO2 y axis left mode
 # yl_mode = 3 Gt CO2 y axis left mode
 # yl_mode = 4 EEI in W/m2 y axis left mode
 # yl_mode = 5 delta ppm CO2 y axis left mode
@@ -652,6 +654,8 @@ if plot76_my_T > 0:
 # 8.1 scale the plot area
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
+# 8.4 configure the left y axis legend  
+# 8.5 
 # 8.6 print the vertical lines CO2=constant
 # 8.7 print the right y axis
 # 8.8 print the x axis 
@@ -747,6 +751,9 @@ elif y_Tmax - y_Tmin < 1.1:
 elif y_Tmax - y_Tmin < 2.1:
    y_Tmayor_ticks = 0.2
    y_Tminor_ticks = 0.1
+elif y_Tmax - y_Tmin < 3.1:
+   y_Tmayor_ticks = 0.5
+   y_Tminor_ticks = 0.1
 elif y_Tmax - y_Tmin < 5.1:
    y_Tmayor_ticks = 0.5
 elif y_Tmax - y_Tmin < 7:
@@ -763,39 +770,38 @@ else:
    y_Tminor_ticks = 10
    # yl_mode = 7 Temperature in °C y axis left mode
 
-# 8.4                
+# 8.4 configure the left y axis legend             
 # yl_mode = 7 Temperature in °C y axis left mode
-if ( yl_mode == 7 ):   # 8.4 left Y axis in °C for plot74_GIS_T elif
-   # 8.4.1 scale the y axis
+if ( yl_mode == 7 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
+   # 8.4.7.1 scale the y axis temperature
    ax1.set_ylim(y_Tmin, y_Tmax)
-   # 8.4.4 write "Temperature in °C GIS " left Axis upwards
-   ax1.set_ylabel("Temperature in °C GIS", color=c74, fontsize=20) # y achse links
-   # 8.4.5 write the numbers left of plot field
-   ax1.tick_params(axis="y", labelcolor=c74, labelsize=20) # Achsenbeschriftung
-   # 8.4.7 scale the Y axis 1°C main items
-   # y_Tmayor_ticks = 1
+   cyl = "red" # color y axis left
+   # 8.4.7.2 "Temperature in °C GIS " left Axis upwards
+   ax1.set_ylabel("Temperature in °C GIS", color=cyl, fontsize=20) # y achse links
+   # 8.4.7.3 write the numbers left of plot field
+   ax1.tick_params(axis="y", labelcolor=cyl, labelsize=20) # Achsenbeschriftung
+   # 8.4.7.4 scale the Y axis 1°C main items
    ax1.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # y axis ticks
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 8.4.8 scale the Y axis 10ppm minor items
-   # y_Tminor_ticks = 0.2
+   # 8.4.7.5 scale the Y axis 10ppm minor items
    ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-   # end 8.5 left Y axis in °C 
-#elif ( yl_mode  == 2 ): # yl_mode = 2 ppm CO2 y axis left mode
-else:
-   # 8.5.1 scale the y axis
+   # end 8.4.7. left Y axis in °C 
+#elif ( yl_mode  == 2 ): # yl_mode = 2 ppm CO2 y axis left 
+else: # 8.4.2 configure the left y axis for ppm CO2 
+   # 8.4.2.1 scale the y axis for ppm CO2
    ax1.set_ylim(y_min, y_max)
-   # 8.4.4 write "CO₂ in ppm" left Axis upwards
+   # 8.4.2.2 write "CO₂ in ppm" left Axis upwards
    ax1.set_ylabel("CO₂ in ppm", color=c22, fontsize=20) # y achse links
-   # 8.4.5 write the numbers left of plot field
+   # 8.4.2.3 write the numbers left of plot field
    ax1.tick_params(axis="y", labelcolor=c22, labelsize=20) # Achsenbeschriftung
-   # 8.4.7 scale the Y axis 50ppm main items
+   # 8.4.2.4 scale the Y axis 50ppm main items
    ax1.yaxis.set_major_locator(MultipleLocator(y_mayor_ticks))   # 50 Hauptstriche
    ax1.tick_params(axis='y', which='major', length=12, width=1.5)
-   # 8.4.8 scale the Y axis 10ppm minor items
+   # 8.4.2.5 scale the Y axis 10ppm minor items
    ax1.yaxis.set_minor_locator(MultipleLocator(y_minor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
-
+   # end 8.4.2 
 
 
 
