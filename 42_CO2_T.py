@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42p7" #  plot76_my_T
+v = "42q1" #  CERES data
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -7,6 +7,8 @@ v = "42p7" #  plot76_my_T
 # part 2.5 plot25_long_CO2  -800 000 years ppm CO2 file
 #
 # part 3.4 plot34_CO2_emission summed
+#
+# part 4 EEI CERES data
 #
 # part 5.2 plot52_delta_CO2_red_bars
 # part 5.3 plot53_CO2_orange2025
@@ -374,7 +376,70 @@ if plot34_CO2_emission > 0:
       # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
       #end 3.4
 
-# no part 4
+# part 4 EEI CERES data
+# #8T44 2 download asci file TOA flux
+# CERES_EBAF-TOA_Ed4.2.1 - Global Data Charts
+# csv41_CERES_TOA_FluxtoJanuary-2026.txt
+# https://ceres-tool.larc.nasa.gov/ord-tool/jsp/EBAFTOA421Selection.jsp
+# https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
+# https://bsky.app/profile/thomas-boettcher.bsky.social/post/3mhuowkhfq22h
+# save file as csv41_CERES_TOA_FluxtoJanuary-2026.txt
+# csv41_CERES_TOA_Flux.txt
+def convert_ceres_to_csv(input_file, output_file):
+    """
+    Convert CERES TOA flux ASCII file to CSV format
+    
+    Parameters:
+    input_file (str): Path to input ASCII file
+    output_file (str): Path to output CSV file
+    """
+    
+    # Read the data
+    data = []
+    
+    with open(input_file, 'r') as f:
+        lines = f.readlines()
+        
+        # Skip header lines (lines starting with # or empty lines)
+        for line in lines:
+            line = line.strip()
+            if not line or line.startswith('#') or line.startswith('CERES'):
+                continue
+            
+            # Parse each data line
+            parts = line.split()
+            if len(parts) >= 3:
+                try:
+                    year = int(parts[0])
+                    month = int(parts[1])
+                    flux = float(parts[2])
+                    data.append([year, month, flux])
+                except ValueError:
+                    # Skip lines that don't parse correctly
+                    continue
+    
+    # Create DataFrame
+    df = pd.DataFrame(data, columns=['year', 'month', 'toa_net_flux_w_m2'])
+    
+    # Add date column for easier analysis
+    df['date'] = pd.to_datetime(df['year'].astype(str) + '-' + df['month'].astype(str) + '-01')
+    
+    # Reorder columns
+    df = df[['date', 'year', 'month', 'toa_net_flux_w_m2']]
+    
+    # Save to CSV
+    df.to_csv(output_file, index=False)
+    
+    print(f"Successfully converted {len(df)} records to {output_file}")
+    print(f"Data range: {df['date'].min()} to {df['date'].max()}")
+    print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
+    
+    return df
+
+
+
+df41 = convert_ceres_to_csv('csv41_CERES_TOA_Flux.txt', 'csv_out_ceres_toa_flux.csv')
+
 
 # -----------------------------
 # part 5.2 plot52_delta_CO2_red_bars
