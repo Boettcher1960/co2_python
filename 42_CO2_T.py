@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r4" #  CERES data if stored in csv41e_ceres.csv
+v = "42r5" #  CERES data if stored in csv41e_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 5 # 11 convert txt to csv
+part41_ceres_eei = 12 # 11 convert txt to csv
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -393,7 +393,71 @@ if plot34_CO2_emission > 0:
 
 # 4.1 convert CERES txt to csv 
 # https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
+# add column 5 as decimal year 2000.08  2000.16
+# calculation: decimal_year = year + (month - 0.5) / 12
 def convert_ceres_to_csv(input_file, output_file):
+    """
+    Convert CERES TOA flux ASCII file to CSV format
+    
+    Parameters:
+    input_file (str): Path to input ASCII file
+    output_file (str): Path to output CSV file
+    """
+    # 4.1.1 Read the data
+    data = []
+    with open(input_file, 'r') as f:
+        lines = f.readlines()
+        # Skip header lines (lines starting with # or empty lines)
+        for line in lines:
+            line = line.strip()
+            if not line or line.startswith('#') or line.startswith('CERES'):
+                continue
+            # Parse each data line
+            parts = line.split()
+            if len(parts) >= 3:
+                try:
+                    year = int(parts[0])
+                    month = int(parts[1])
+                    flux = float(parts[2])
+                    data.append([year, month, flux])
+                except ValueError:
+                    # Skip lines that don't parse correctly
+                    continue
+    
+    # 4.1.2 Create DataFrame
+    df = pd.DataFrame(data, columns=['year', 'month', 'toa_net_flux_w_m2'])
+    
+    # 4.1.3 Add date column for easier analysis
+    df['date'] = pd.to_datetime(df['year'].astype(str) + '-' + df['month'].astype(str) + '-01')
+    
+    # 4.1.4 Add decimal year (column 5)
+    # Convert month to decimal fraction of year
+    # Using the middle of each month (e.g., Jan = 0.0417, Feb = 0.125, etc.)
+    # Formula: decimal_year = year + (month - 0.5) / 12
+    df['decimal_year'] = df['year'] + (df['month'] - 0.5) / 12
+    
+    # 4.1.5 Reorder columns with decimal_year as column 5
+    df = df[['date', 'year', 'month', 'toa_net_flux_w_m2', 'decimal_year']]
+    
+    # 4.1.6 Save to CSV
+    df.to_csv(output_file, index=False, float_format='%.6f')
+    
+    print(f"part 4.1.1 Successfully converted {len(df)} records to {output_file}")
+    print(f"Data range: {df['date'].min()} to {df['date'].max()}")
+    print(f"Decimal year range: {df['decimal_year'].min():.4f} to {df['decimal_year'].max():.4f}")
+    print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
+    
+    # Show first few rows to verify decimal year calculation
+    print("\nFirst 10 rows of the converted data:")
+    print(df.head(10))
+    
+    return df
+
+
+
+
+
+def convert_ceres_to_csv1(input_file, output_file):
     """
     Convert CERES TOA flux ASCII file to CSV format
     Parameters:
@@ -433,6 +497,13 @@ def convert_ceres_to_csv(input_file, output_file):
     print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
     return df
     # end 4.1.5 CERES function 1
+    # add column 5 as decimal year 2000.08  2000.16
+
+
+
+
+
+
 
 # 4.1.6 CERES function 2
 def add_running_12month_average(df):
