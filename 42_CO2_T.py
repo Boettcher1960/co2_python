@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s12" #  50ok, csv41g12_ceres.csv
+v = "42s13" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -161,7 +161,8 @@ header_parameter = header_parameter + f"{plot23_Glen_CO2}" #
 header_parameter = header_parameter + f"{plot25_long_CO2}" # 
 header_parameter = header_parameter + f"{plot34_CO2_emission} " # 
 
-header_parameter = header_parameter + f"{part41_ceres_eei} " # 
+header_parameter = header_parameter + f"4({part41_ceres_eei}" # 
+header_parameter = header_parameter + f"{part42_ceres_eei} " # 
 
 header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
@@ -177,7 +178,8 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
 
 # 1.9 left Y axis is in ppm CO2 per default.
-yl_mode = 4 # ppm CO2 y axis left mode
+yl_mode = 4 # 4 EEI in W/m2 y axis left mode
+# 2 ppm CO2 y axis left mode
 yr_mode = 7 # ppm CO2 y axis right mode
 # yl_mode = 3 Gt CO2 y axis left mode
 # yl_mode = 4 EEI in W/m2 y axis left mode
@@ -1236,6 +1238,7 @@ trs = 20
 # header_black = f"CO2 concentration in the atmosphere {x_anf}" # 1960 number inside string
 
 # yl_mode = 7 Temperature in °C y axis left mode
+# yl_mode = 4 # 4 EEI in W/m2 y axis left mode
 if ( yl_mode == 7 ): # left Y axis is °C 
    header = f"Temperature in °C  year {x_anf}" # 1960 number inside string
    # header = header + f" Temperature in °C NASA GIS  " # 1960 number inside string
@@ -1243,6 +1246,14 @@ if ( yl_mode == 7 ): # left Y axis is °C
    # 8.2.8 plot the headline
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
             transform=plt.gca().transAxes)
+elif ( yl_mode == 4 ): # yl_mode = 4 # 4 EEI in W/m2 y axis left mode
+   header = f"Earth Energy Balance CERES_EBAF-TOA_Ed4.2.1 Jan.2026 data  {x_anf}" # 1960 number inside string
+   # header = header + f" Temperature in °C NASA GIS  " # 1960 number inside string
+   header = header + f" to year {x_end} " # 2026 number inside string
+   # 8.2.8 plot the headline
+   plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
+            transform=plt.gca().transAxes)
+
 elif plot71_temperature > 0: # one temperature active
    # 8.2.3 plot the headline
    # plt.text(-0.1, 1.05, header, color="blue", fontname="Arial", fontsize=18, transform=plt.gca().transAxes)
@@ -2027,7 +2038,19 @@ elif plot76_my_T == 5:
 # 9.5 end print line 5 
 
 # 9.6 print line 6 
-if plot73_ECS_T < 6:
+if ( yl_mode == 4 ): 
+   text6 = f" Temperature {y_Tmin}°C " # y_max number inside string
+   text6 = text6 + f"...{y_Tmax} °C." # y_max number inside string
+   text6 = text6 + f" EEI={y_Emin}W/m²" # y_max number inside string
+   text6 = text6 + f" EEI_max={y_Emax}W/m² Parameter=" # y_max number inside string
+   text6 = text6 + header_parameter
+   # 9.6.2 plot line 6
+   plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
+       transform=plt.gca().transAxes)
+   fig.tight_layout()
+   plt.tight_layout()
+
+elif plot73_ECS_T < 6:
    text6 = f" CO2_min= {y_min}ppm " # y_max number inside string
    text6 = text6 + f" CO2_max= {y_max} " # y_max number inside string
    text6 = text6 + f"  T_max= {y_Tmax}°C    Parameter=" # y_max number inside string
