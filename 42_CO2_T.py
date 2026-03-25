@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s1" #  CERES data if stored in csv41g_ceres.csv
+v = "42s1" #  CERES data if stored in csv41g48_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 3 # 12 convert txt to csv
+part41_ceres_eei = 48 # 12 convert txt to csv
 c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -400,7 +400,7 @@ if plot34_CO2_emission > 0:
 # 4.1 convert CERES txt to csv 
 # https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
 # add column 5 as decimal year 2000.08  2000.16
-# calculation: decimal_year = year + (month - 0.5) / 12
+# 4.1.1 calculation: decimal_year = year + (month - 0.5) / 12
 def convert_ceres_to_csv(input_file, output_file):
     """
     Convert CERES TOA flux ASCII file to CSV format
@@ -462,7 +462,7 @@ def convert_ceres_to_csv(input_file, output_file):
     # add column 5 as decimal year 2000.08  2000.16
 
 
-# 4.1.6 CERES function 2
+# 4.1.2 CERES function 2 add_running_12month_average
 def add_running_12month_average(df):
     """
     Add a column with 12-month running average to the DataFrame
@@ -491,6 +491,36 @@ def add_running_12month_average(df):
     return df_with_avg
     # end 4.1.6 CERES function 2
 
+# 4.1.3 CERES function 2 add_running_48month_average
+def add_running_48month_average(df):
+    """
+    Add a column with 12-month running average to the DataFrame
+    Parameters:
+    df (DataFrame): DataFrame with columns 'date' and 'toa_net_flux_w_m2'
+    Returns:
+    DataFrame: Original DataFrame with added 'running_12month_avg' column
+    """
+    # 4.1.7 Create a copy to avoid modifying the original
+    df_with_avg = df.copy()
+    # 4.1.8 Sort by date to ensure correct order
+    df_with_avg = df_with_avg.sort_values('date')
+    # 4.1.9 Calculate 48-month running average (centered)
+    # Using rolling window with center=True gives centered average
+    if (part41_ceres_eei == 1): # end_no_good
+       df_with_avg['running_12month_avg'] = df_with_avg['toa_net_flux_w_m2'].rolling(
+           window=48, 
+           center=True,
+           min_periods=6  # Allow partial windows at the edges
+       ).mean()
+    else:  #  if (part41_ceres_eei == 2): # For trailing 12-month average (uncentered)
+       df_with_avg['running_12month_avg'] = df_with_avg['toa_net_flux_w_m2'].rolling(
+          window=48, 
+          min_periods=12
+       ).mean()
+    return df_with_avg
+    # end 4.1.6 CERES function 2
+
+
 # 4.1.12 CERES function 3
 # save the CERES data to a csv file with running 12 month average
 def save_with_12month_average(df, input_filename, output_filename):
@@ -518,6 +548,33 @@ def save_with_12month_average(df, input_filename, output_filename):
     return df_with_avg
     # end 4.1.12 CERES function 3
 
+# 4.1.4 CERES function 4
+# save the CERES data to a csv file with running 12 month average
+def save_with_48month_average(df, input_filename, output_filename):
+    """
+    Save CERES data with 12-month running average to CSV
+    Parameters:
+    df (DataFrame): Original DataFrame
+    input_filename (str): Original input filename for reference
+    output_filename (str): Output CSV filename
+    """
+    # 4.1.13 Add running average
+    df_with_avg = add_running_48month_average(df)
+    
+    # 4.1.14 Save to CSV
+    df_with_avg.to_csv(output_filename, index=False)
+    
+    # 4.1.15 Print summary statistics
+    print(f"\n4.1.15 Saved to {output_filename}")
+    print(f"Total records: {len(df_with_avg)}")
+    print(f"Records with valid 12-month average: {df_with_avg['running_12month_avg'].notna().sum()}")
+    print(f"\nRunning 12-month average statistics:")
+    print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
+    print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
+    print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
+    return df_with_avg
+    # end 4.1.12 CERES function 3
+
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
 # copy to csv/csv41/csv41a_in_CERES.txt
 # step 3 convert to csv
@@ -529,7 +586,13 @@ if part41_ceres_eei == 12:
    df_with_avg = save_with_12month_average(
        df41a, 
        'csv41a_in_CERES.txt', 
-       'csv/csv41/csv41d_ceres.csv'
+       'csv/csv41/csv41d12_ceres.csv'
+)
+if part41_ceres_eei == 48:   
+   df_with_avg = save_with_48month_average(
+       df41a, 
+       'csv41a_in_CERES.txt', 
+       'csv/csv41/csv41d48_ceres.csv'
 )
 
 # 4.3
