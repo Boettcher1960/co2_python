@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q5" #  CERES data
+v = "42q6" #  CERES data
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -505,12 +505,12 @@ def save_with_12month_average(df, input_filename, output_filename):
     # end 4.1.12 CERES function 3
 
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
-# csv41a_in_CERES_TOA_Flux.txt 
-df41 = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
-# works fine 
-# Method 1: Using the existing DataFrame from your conversion
+# copy to csv/csv41/csv41a_in_CERES.txt
+# step 3 convert to csv
+df41a = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
+# step 4 add 12 running mean convert to csv
 df_with_avg = save_with_12month_average(
-    df41, 
+    df41a, 
     'csv41a_in_CERES.txt', 
     'csv/csv41/csv41d_ceres.csv'
 )
