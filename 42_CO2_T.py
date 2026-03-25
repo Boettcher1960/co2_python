@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r8" #  CERES data if stored in csv41g_ceres.csv
+v = "42r10" #  CERES data if stored in csv41g_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -54,9 +54,9 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 3 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 0 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 4 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 0 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 0 #  3 4 print -800 000 years ppm CO2 file
@@ -68,8 +68,8 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 5 # 12 convert txt to csv
-c41                 = "#14931A84" # plot41 color
+part41_ceres_eei = 3 # 12 convert txt to csv
+c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -108,6 +108,10 @@ y_max = 500 # 1300 # min value 440 70
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
 y_Tmax = 2.5 # 1.6 4 # max value C
+
+# 1.3.3 scale the right Y axis
+y_Emin = 0 # min value W/m² 
+y_Emax = 2 # 1.6 4 # max value  W/m² 
 
 x_anf = 2000 # 1960 2000 -33000
 x_end = 2027 # 2200 2026 
@@ -153,6 +157,8 @@ header_parameter = f"{plot22_CO2_Mauna_Loa}" # 1960 number inside string
 header_parameter = header_parameter + f"{plot23_Glen_CO2}" # 
 header_parameter = header_parameter + f"{plot25_long_CO2}" # 
 header_parameter = header_parameter + f"{plot34_CO2_emission} " # 
+
+header_parameter = header_parameter + f"{part41_ceres_eei} " # 
 
 header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
@@ -241,7 +247,6 @@ fig.subplots_adjust(bottom=0.30) # 0.25 = 25% margin at bottom
 # source a plot with the formula explained in a thread
 # source https://x.com/Gergyl/status/1810632238230589564
 # -----------------------------
-# text_plot23_Glen="blue dashed @gergyl.bsky atmosphere ppm = 0.0132251t² - 51.0337t + 49,536"
 text_plot23_Glen="calculated CO2 dashed blue line = 0.0132251t² - 51.0337t + 49,536 ppm 23"
 # CO₂ function CO2 = 0.013t² - 51t + 49,536
 def co3_ppm(t):
@@ -528,15 +533,15 @@ if part41_ceres_eei == 12:
 )
 
 # 4.3
-if part41_ceres_eei == 5:
-   p41_text ="CERES EEI data moving average 12 month    41"
+if part41_ceres_eei > 0:
+   p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
    df41 = pd.read_csv("csv/csv41/csv41g_ceres.csv") # 
    # print(df41.head(22))
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax41.plot(df41["year41"], df41["EEI"], '-', label="EEI  K41", color=c41, linewidth=2)
    ax41.tick_params(axis="y", labelcolor=c41)
-   ax41.set_ylim(0, 2) # scale
+   ax41.set_ylim(y_Emin, y_Emax) # scale
    # end 4.3
 
 
@@ -800,19 +805,17 @@ df76 = pd.DataFrame({
        "Modeled76": T_76values })
 # 7.6.4 plot76_temperature
 # print(df76.head(2))
-print(T_model76(1950) ,"  1950")  # 0.2
-print(T_model76(2013) ,"  2013")  # 1.0
-print(T_model76(2023) ,"  2023")
-print(T_model76(2026) ,"  2026")  # 1.5
-print(T_model76(2028) ,"  2028")  # 1.5
+#print(T_model76(1950) ,"  1950")  # 0.2
+#print(T_model76(2013) ,"  2013")  # 1.0
+#print(T_model76(2023) ,"  2023")
+#print(T_model76(2026) ,"  2026")  # 1.5
+#print(T_model76(2028) ,"  2028")  # 1.5
 if plot76_my_T > 0:
    ax76 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax76.plot(df76["Year76"], df76["Modeled76"], '--', label="T formula CO2=  K76", color=c76, linewidth=3)
    ax76.tick_params(axis="y", labelcolor=c76)
    ax76.set_ylim(y_Tmin, y_Tmax) # scale
    # end 7.6 plot76_my_T
-
-
 
 
 
@@ -956,9 +959,9 @@ if ( yl_mode == 7 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
    # end 8.4.7. left Y axis in °C 
 if ( yl_mode == 4 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
    # 8.4.7.1 scale the y axis temperature
-   ax1.set_ylim(y_Tmin, y_Tmax)
+   ax1.set_ylim(y_Emin, y_Emax)
    ###ax1.set_ylim(y_min, y_max)
-   cyl = "red" # color y axis left
+   cyl = c41 # color y axis left
    # 8.4.7.2 "Temperature in °C GIS " left Axis upwards
    ax1.set_ylabel("Earth Energy Imbalance in  W/m² ", color=cyl, fontsize=20) # y achse links
    # 8.4.7.3 write the numbers left of plot field
@@ -1343,6 +1346,15 @@ elif plot34_CO2_emission == 3: #
    plt.text(tr2x, tr3y, print34_text, color=c34, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    fig.add_artist(line34)
+elif part41_ceres_eei == 3: #  legende world data plot22_CO2_Mauna_Loa
+   line41 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="s", markersize=5, color=c41, linewidth=2)
+   # 9.5.2 draw bue line as legend
+   fig.add_artist(line41)
+   # 9.5.4 write green text
+   plt.text(tr2x, tr3y, p41_text, color=c41, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
 elif plot52_delta_CO2_red_bars == 3 or plot52_delta_CO2_red_bars == 7:
    line4 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
@@ -1420,9 +1432,6 @@ if plot23_Glen_CO2 == 4: # print in line 3
    marker="o", markersize=3, color=c23, linewidth=2)
    # 9.4.3 draw bue line as legend
    fig.add_artist(line4)
-   # 9.4.3 write blue text
-   text_plot23_Glen=" dashed line: Glen parabol formula ppm = 0.0132251t² - 51.0337t + 49,536"
-   # 9.4.3 plot the blue text
    plt.text(tr2x, tr4y, text_plot23_Glen, color=c23, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot25_long_CO2 == 4: # 
@@ -1542,7 +1551,7 @@ if part41_ceres_eei == 5: #  legende world data plot22_CO2_Mauna_Loa
    # 9.5.2 draw bue line as legend
    fig.add_artist(line41)
    # 9.5.4 write green text
-   plt.text(tr2x, tr5y, p41_text, color="green", fontname="Arial", fontsize=trs,
+   plt.text(tr2x, tr5y, p41_text, color=c41, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
 elif plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
    line55 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
