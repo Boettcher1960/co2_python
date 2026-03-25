@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s7" #  48bug, csv41g12_ceres.csv
+v = "42s8" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 3 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 3 # 3,5,12,47,48,50 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -766,7 +766,9 @@ def calculate_48month_average(input_csv, output_csv):
     return df_48month_avg
     # end 4.1.7 works
 
-# 4.1.8 works
+# 4.1.8 works well in the middle
+# 4.1.8 has big sinus at the beginning
+# 4.1.8 has big sinus at the end
 def create_simple_48month_average(input_csv, output_csv):
     """
     Simplified version - creates a CSV with just date and 48-month average
@@ -796,6 +798,78 @@ def create_simple_48month_average(input_csv, output_csv):
     
     return df_simple
     # end 4.1.8
+# make above function with parameter 3, the number of month 12..48
+
+# 4.1.9
+def create_running_average_advanced(input_csv, output_csv, window_months=48, 
+                                    min_periods=None, center=True, keep_original=True):
+    """
+    Advanced version with more control over the running average calculation
+    
+    Parameters:
+    input_csv (str): Path to input CSV file
+    output_csv (str): Path to output CSV file
+    window_months (int): Number of months for running average
+    min_periods (int): Minimum number of observations required (default: window_months//2)
+    center (bool): Whether to center the window (True) or use trailing (False)
+    keep_original (bool): Whether to keep original flux column in output
+    """
+    # Read the data
+    df = pd.read_csv(input_csv)
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    
+    # Set default min_periods if not specified
+    if min_periods is None:
+        min_periods = window_months // 2
+    
+    # Calculate running average
+    df[f'{window_months}month_avg'] = df['toa_net_flux_w_m2'].rolling(
+        window=window_months, 
+        center=center,
+        min_periods=min_periods
+    ).mean()
+    
+    # Select columns for output
+    output_columns = ['date', 'year', 'month', 'decimal_year']
+    if keep_original:
+        output_columns.append('toa_net_flux_w_m2')
+    output_columns.append(f'{window_months}month_avg')
+    
+    df_output = df[output_columns].copy()
+    
+    # Save to CSV
+    df_output.to_csv(output_csv, index=False, float_format='%.6f')
+    
+    # Calculate valid records
+    valid_records = df_output[f'{window_months}month_avg'].notna().sum()
+    
+    # Print summary
+    print(f"\n{'='*60}")
+    print(f"{window_months}-MONTH RUNNING AVERAGE")
+    print(f"{'='*60}")
+    print(f"Window: {window_months} months ({window_months//12} years)")
+    print(f"Centered: {center}")
+    print(f"Min periods: {min_periods}")
+    print(f"Output file: {output_csv}")
+    print(f"Valid records: {valid_records} out of {len(df_output)}")
+    
+    # Show first few valid values
+    valid_data = df_output[df_output[f'{window_months}month_avg'].notna()]
+    if len(valid_data) > 0:
+        print(f"\nFirst 5 valid values:")
+        for idx, row in valid_data.head(5).iterrows():
+            print(f"  {row['date'].strftime('%Y-%m')}: {row[f'{window_months}month_avg']:.3f} W/m²")
+        
+        print(f"\nLast 5 valid values:")
+        for idx, row in valid_data.tail(5).iterrows():
+            print(f"  {row['date'].strftime('%Y-%m')}: {row[f'{window_months}month_avg']:.3f} W/m²")
+    
+    return df_output
+    # end 4.1.9
+
+
+
 
 
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
@@ -821,13 +895,26 @@ if part41_ceres_eei == 48:   # works
        'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d48_ceres.csv'
       )
+if part41_ceres_eei == 50:   # works
+   df_with_48avg = create_running_average_advanced(
+       'csv/csv41/csv41b_ceres.csv', 
+       'csv/csv41/csv41d50_ceres.csv',
+       window_months=48 ,
+       min_periods=30 ,
+       center=False ,
+       keep_original=True
+      )
+   
+
+
 
 # 4.3 plot_48month_running_average in df41
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
    # eckig df41 = pd.read_csv("csv/csv41/csv41f46_ceres.csv") # 
    # ok df41 = pd.read_csv("csv/csv41/csv41f47_ceres.csv") 
-   df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   # correct df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   df41 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
