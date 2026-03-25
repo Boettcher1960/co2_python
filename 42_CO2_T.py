@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s3" #  CERES data if stored in csv41g12_ceres.csv
+v = "42s4" #  48bug, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 48 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 12 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -605,18 +605,69 @@ def add_48month_running_average_to_csv(input_csv, output_csv):
     return df_with_avg
     # 4.1.5 end CERES function 5
 
+
+# 4.1.6 CERES function 6
+def add_48month_running_average_to_csv(input_csv, output_csv):
+    """
+    Read CSV, add 48-month running average, and save to new CSV
+    
+    Parameters:
+    input_csv (str): Path to input CSV file
+    output_csv (str): Path to output CSV file
+    """
+    # Read the CSV file
+    df = pd.read_csv(input_csv)
+    
+    # Ensure date column exists and is datetime
+    if 'date' not in df.columns:
+        print("Error: CSV must contain a 'date' column")
+        return None
+    
+    df['date'] = pd.to_datetime(df['date'])
+    
+    # Calculate 48-month running average
+    df_with_avg = calculate_48month_running_average(df)
+    
+    # Save to CSV
+    df_with_avg.to_csv(output_csv, index=False, float_format='%.6f')
+    
+    # Print summary statistics
+    print(f"\n{'='*60}")
+    print(f"48-MONTH RUNNING AVERAGE SUMMARY")
+    print(f"{'='*60}")
+    print(f"Input file: {input_csv}")
+    print(f"Output file: {output_csv}")
+    print(f"Total records: {len(df_with_avg)}")
+    print(f"Records with valid 48-month avg: {df_with_avg['running_48month_avg'].notna().sum()}")
+    print(f"\nOriginal flux range: {df_with_avg['toa_net_flux_w_m2'].min():.2f} to {df_with_avg['toa_net_flux_w_m2'].max():.2f} W/m²")
+    print(f"48-month avg range: {df_with_avg['running_48month_avg'].min():.2f} to {df_with_avg['running_48month_avg'].max():.2f} W/m²")
+    print(f"48-month avg mean: {df_with_avg['running_48month_avg'].mean():.2f} W/m²")
+    print(f"48-month avg std: {df_with_avg['running_48month_avg'].std():.2f} W/m²")
+    
+    # Show first and last few rows
+    print(f"\nFirst 10 rows:")
+    print(df_with_avg[['date', 'year', 'month', 'toa_net_flux_w_m2', 'running_48month_avg']].head(10))
+    
+    print(f"\nLast 10 rows:")
+    print(df_with_avg[['date', 'year', 'month', 'toa_net_flux_w_m2', 'running_48month_avg']].tail(10))
+    
+    return df_with_avg
+
+
+
+
 # 4.1.6 CERES function 6
 # save the CERES data to a csv file with running 12 month average
-def save_with_48month_average(df, input_filename, output_filename):
+def save_with_48month_average_bug(df, input_filename, output_filename):
     """
-    Save CERES data with 12-month running average to CSV
+    Save CERES data with 48-month running average to CSV
     Parameters:
     df (DataFrame): Original DataFrame
     input_filename (str): Original input filename for reference
     output_filename (str): Output CSV filename
     """
     # 4.1.6.2 Add running average
-    df_with_avg = add_running_12month_average(df)
+    df_with_avg = add_running_48month_average(df)
     
     # 4.1.6.3 Save to CSV
     df_with_avg.to_csv(output_filename, index=False)
@@ -624,8 +675,8 @@ def save_with_48month_average(df, input_filename, output_filename):
     # 4.1.6.4 Print summary statistics
     print(f"\n4.1.6.4 Saved to {output_filename}")
     print(f"Total records: {len(df_with_avg)}")
-    print(f"Records with valid 12-month average: {df_with_avg['running_12month_avg'].notna().sum()}")
-    print(f"\nRunning 12-month average statistics:")
+    print(f"Records with valid 48-month average: {df_with_avg['running_48month_avg'].notna().sum()}")
+    print(f"\nRunning 48-month average statistics:")
     print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
     print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
     print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
@@ -641,22 +692,21 @@ if part41_ceres_eei > 10:
    df41a = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
    # step 4 add 12 running mean convert to csv
 if part41_ceres_eei == 12:   
-   df_with_avg = save_with_12month_average(
+   df_with_12avg = save_with_12month_average(
        df41a, 
        'csv41a_in_CERES.txt', 
        'csv/csv41/csv41d12_ceres.csv'
 )
 if part41_ceres_eei == 48:   
-   df_with_avg = save_with_48month_average(
-       df41a, 
+   df_with_48avg = add_48month_running_average_to_csv(
        'csv41a_in_CERES.txt', 
        'csv/csv41/csv41d48_ceres.csv'
 )
 
-# 4.3
+# 4.3 add_48month_running_average_to_csv
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
-   #df41 = pd.read_csv("csv/csv41/csv41g48_ceres.csv") # 
+   #df41 = pd.read_csv("csv/csv41/csv41f48_ceres.csv") # 
    df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
