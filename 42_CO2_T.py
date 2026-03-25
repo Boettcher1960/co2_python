@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r2" #  CERES data if stored in csv41e_ceres.csv
+v = "42r3" #  CERES data if stored in csv41e_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 4 # 11 convert txt to csv
+part41_ceres_eei = 5 # 11 convert txt to csv
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -504,6 +504,16 @@ if part41_ceres_eei == 12:
        'csv/csv41/csv41d_ceres.csv'
 )
 
+# 4.3
+if part41_ceres_eei == 5:
+   print41_text ="CERES EEI data moving average 12 month    41"
+   df41 = pd.read_csv("csv/csv41/csv41e_ceres.csv") # 
+   print(df41.head(2))
+   ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   # part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax41.plot(df41["Year41"], df41["EEI"]+0.1, '--', label="EEI  K41", color=c75, linewidth=2)
+   ax41.tick_params(axis="y", labelcolor=c75)
+   ax41.set_ylim(0, 2) # scale
 
 
 # -----------------------------
