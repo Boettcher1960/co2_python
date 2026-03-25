@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q9" #  CERES data
+v = "42q10" #  CERES data moved csv files
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -73,7 +73,7 @@ part41_ceres_eei = 4
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
+plot55_population_on = 5 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -599,7 +599,7 @@ if plot54_Glen_delta_on > 0:
 # 5.5.3 read csv_55_population.csv
 if plot55_population_on > 0:
    green55_text="Green line: Earth Population in billion"
-   df55 = pd.read_csv("csv_55_population.csv")
+   df55 = pd.read_csv("csv/csv55/csv_55_population.csv")
    pop_world = (
          df55[df55["Entity"] == "World"][["Year", "Population"]]
          .query("1960 <= Year <= 2026")
@@ -715,7 +715,7 @@ if plot74_GIS_T > 0:
 # 7.5.2 Year75,GIS_temp
 if linear_41_75 > 0:
    print75_text ="Hansen linear fit from 2015 +0.41°C     75"
-   df75 = pd.read_csv("csv/csv_75_hansen.csv") # our world in data file
+   df75 = pd.read_csv("csv/csv7/csv_75_hansen.csv") # our world in data file
    #print(df75.head(2))
    ax75 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
