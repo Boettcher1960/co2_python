@@ -1,4 +1,4 @@
-date,year,month,toa_net_flux_w_m2,running_12month_avg_trailing
+date,year,month,toa_net_flux_w_m2,running_12month_avg
 2000-03-01,2000,3,5.96,
 2000-04-01,2000,4,1.93,
 2000-05-01,2000,5,-5.93,

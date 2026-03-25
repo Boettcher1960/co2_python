@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q7" #  CERES data
+v = "42q9" #  CERES data
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 2
+part41_ceres_eei = 4
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -80,7 +80,7 @@ plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 2 #
 c74                  = "#E8125984" # plot74 color
-linear_41_75  = 0 # part 75    Hansen 2015 .41°C linear fit
+linear_41_75  = 3 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot75 color
 plot76_my_T  =  0 #
 c76                  = "#CB4949C5" # plot76 color
@@ -446,23 +446,17 @@ def add_running_12month_average(df):
     df_with_avg = df_with_avg.sort_values('date')
     # 4.1.9 Calculate 12-month running average (centered)
     # Using rolling window with center=True gives centered average
-    if (part41_ceres_eei == 2): # For trailing 12-month average (uncentered)
-       df_with_avg['running_12month_avg_trailing'] = df_with_avg['toa_net_flux_w_m2'].rolling(
-          window=12, 
-          min_periods=12
-       ).mean()
-    else: # elif (part41_ceres_eei == 1):
+    if (part41_ceres_eei == 1): # end_no_good
        df_with_avg['running_12month_avg'] = df_with_avg['toa_net_flux_w_m2'].rolling(
            window=12, 
            center=True,
            min_periods=6  # Allow partial windows at the edges
        ).mean()
-    # Alternative: For trailing 12-month average (uncentered)
-    # df_with_avg['running_12month_avg_trailing'] = df_with_avg['toa_net_flux_w_m2'].rolling(
-    #     window=12, 
-    #     min_periods=12
-    # ).mean()
-    
+    else:  #  if (part41_ceres_eei == 2): # For trailing 12-month average (uncentered)
+       df_with_avg['running_12month_avg'] = df_with_avg['toa_net_flux_w_m2'].rolling(
+          window=12, 
+          min_periods=12
+       ).mean()
     return df_with_avg
     # end 4.1.6 CERES function 2
 
@@ -486,11 +480,11 @@ def save_with_12month_average(df, input_filename, output_filename):
     # 4.1.15 Print summary statistics
     print(f"\n4.1.15 Saved to {output_filename}")
     print(f"Total records: {len(df_with_avg)}")
-    # print(f"Records with valid 12-month average: {df_with_avg['running_12month_avg'].notna().sum()}")
+    print(f"Records with valid 12-month average: {df_with_avg['running_12month_avg'].notna().sum()}")
     print(f"\nRunning 12-month average statistics:")
-    # print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
-    # print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
-    # print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
+    print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
+    print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
+    print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
     
     return df_with_avg
     # end 4.1.12 CERES function 3
@@ -721,7 +715,7 @@ if plot74_GIS_T > 0:
 # 7.5.2 Year75,GIS_temp
 if linear_41_75 > 0:
    print75_text ="Hansen linear fit from 2015 +0.41°C     75"
-   df75 = pd.read_csv("csv_75_hansen.csv") # our world in data file
+   df75 = pd.read_csv("csv/csv_75_hansen.csv") # our world in data file
    #print(df75.head(2))
    ax75 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
