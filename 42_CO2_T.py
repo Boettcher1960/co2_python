@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s11" #  50ok, csv41g12_ceres.csv
+v = "42s12" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -83,6 +83,7 @@ plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
 plot73_ECS_T  = 0       # 6,5 #  Earth Climate sensitivity (ECS=4.5°C)
 plot74_GIS_T  = 2 #
 c74                  = "#E8125984" # plot74 color
+c74 = "red"
 linear_41_75  = 3 # part 75    Hansen 2015 .41°C linear fit
 c75                 = "#371EA484" # plot75 color
 plot76_my_T  =  0 #
