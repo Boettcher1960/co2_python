@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s1" #  CERES data if stored in csv41g48_ceres.csv
+v = "42s2" #  CERES data if stored in csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 48 # 12 convert txt to csv
+part41_ceres_eei = 3 # 12 convert txt to csv
 c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -430,22 +430,22 @@ def convert_ceres_to_csv(input_file, output_file):
                     # Skip lines that don't parse correctly
                     continue
     
-    # 4.1.2 Create DataFrame
+    # 4.1.1.2 Create DataFrame
     df = pd.DataFrame(data, columns=['year', 'month', 'toa_net_flux_w_m2'])
     
-    # 4.1.3 Add date column for easier analysis
+    # 4.1.1.3 Add date column for easier analysis
     df['date'] = pd.to_datetime(df['year'].astype(str) + '-' + df['month'].astype(str) + '-01')
     
-    # 4.1.4 Add decimal year (column 5)
+    # 4.1.1.4 Add decimal year (column 5)
     # Convert month to decimal fraction of year
     # Using the middle of each month (e.g., Jan = 0.0417, Feb = 0.125, etc.)
     # Formula: decimal_year = year + (month - 0.5) / 12
     df['decimal_year'] = df['year'] + (df['month'] - 0.5) / 12
     
-    # 4.1.5 Reorder columns with decimal_year as column 5
+    # 4.1.1.5 Reorder columns with decimal_year as column 5
     df = df[['date', 'year', 'month', 'toa_net_flux_w_m2', 'decimal_year']]
     
-    # 4.1.6 Save to CSV
+    # 4.1.1.6 Save to CSV
     df.to_csv(output_file, index=False, float_format='%.6f')
     
     print(f"part 4.1.1 Successfully converted {len(df)} records to {output_file}")
@@ -458,7 +458,7 @@ def convert_ceres_to_csv(input_file, output_file):
     print(df.head(10))
     
     return df
-    # end 4.1.5 CERES function 1
+    # end 4.1.1 CERES function 1
     # add column 5 as decimal year 2000.08  2000.16
 
 
@@ -471,11 +471,11 @@ def add_running_12month_average(df):
     Returns:
     DataFrame: Original DataFrame with added 'running_12month_avg' column
     """
-    # 4.1.7 Create a copy to avoid modifying the original
+    # 4.1.2.7 Create a copy to avoid modifying the original
     df_with_avg = df.copy()
-    # 4.1.8 Sort by date to ensure correct order
+    # 4.1.2.8 Sort by date to ensure correct order
     df_with_avg = df_with_avg.sort_values('date')
-    # 4.1.9 Calculate 12-month running average (centered)
+    # 4.1.2.9 Calculate 12-month running average (centered)
     # Using rolling window with center=True gives centered average
     if (part41_ceres_eei == 1): # end_no_good
        df_with_avg['running_12month_avg'] = df_with_avg['toa_net_flux_w_m2'].rolling(
@@ -489,10 +489,17 @@ def add_running_12month_average(df):
           min_periods=12
        ).mean()
     return df_with_avg
-    # end 4.1.6 CERES function 2
+    # end 4.1.2 CERES function 2
+
+
+
 
 # 4.1.3 CERES function 2 add_running_48month_average
-def add_running_48month_average(df):
+
+
+
+
+def add_running_47month_average(df):
     """
     Add a column with 12-month running average to the DataFrame
     Parameters:
@@ -598,8 +605,9 @@ if part41_ceres_eei == 48:
 # 4.3
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
-   df41 = pd.read_csv("csv/csv41/csv41g_ceres.csv") # 
-   # print(df41.head(22))
+   #df41 = pd.read_csv("csv/csv41/csv41g48_ceres.csv") # 
+   df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax41.plot(df41["year41"], df41["EEI"], '-', label="EEI  K41", color=c41, linewidth=2)
