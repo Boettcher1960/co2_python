@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s15" #  50ok, csv41g12_ceres.csv
+v = "42t1" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -116,7 +116,7 @@ y_Tmax = 2.5 # 1.6 4 # max value C
 y_Emin = 0 # min value W/m² 
 y_Emax = 2 # 1.6 4 # max value  W/m² 
 
-x_anf = 2000 # 1960 2000 -33000
+x_anf = 2005 # 1960 2000 -33000
 x_end = 2027 # 2200 2026 
 
 # 1.4.5 scale the text rows below the plot field
