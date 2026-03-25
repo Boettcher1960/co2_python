@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s6" #  48OK, csv41g12_ceres.csv
+v = "42s7" #  48bug, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 48 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 3 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -791,8 +791,8 @@ if part41_ceres_eei == 48:
 # 4.3 plot_48month_running_average in df41
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
-   #df41 = pd.read_csv("csv/csv41/csv41f48_ceres.csv") # 
-   df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   df41 = pd.read_csv("csv/csv41/csv41g48_ceres.csv") # 
+   #df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
