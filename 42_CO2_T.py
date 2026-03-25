@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r7" #  CERES data if stored in csv41g_ceres.csv
+v = "42r8" #  CERES data if stored in csv41g_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -168,7 +168,7 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
 
 # 1.9 left Y axis is in ppm CO2 per default.
-yl_mode = 7 # ppm CO2 y axis left mode
+yl_mode = 4 # ppm CO2 y axis left mode
 yr_mode = 2 # ppm CO2 y axis right mode
 # yl_mode = 3 Gt CO2 y axis left mode
 # yl_mode = 4 EEI in W/m2 y axis left mode
@@ -954,6 +954,25 @@ if ( yl_mode == 7 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
    ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # end 8.4.7. left Y axis in °C 
+if ( yl_mode == 4 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
+   # 8.4.7.1 scale the y axis temperature
+   ax1.set_ylim(y_Tmin, y_Tmax)
+   ###ax1.set_ylim(y_min, y_max)
+   cyl = "red" # color y axis left
+   # 8.4.7.2 "Temperature in °C GIS " left Axis upwards
+   ax1.set_ylabel("Earth Energy Imbalance in  W/m² ", color=cyl, fontsize=20) # y achse links
+   # 8.4.7.3 write the numbers left of plot field
+   ax1.tick_params(axis="y", labelcolor=cyl, labelsize=20) # Achsenbeschriftung
+   # 8.4.7.4 scale the Y axis 1°C main items
+   ax1.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # y axis ticks
+   ax1.tick_params(axis='y', which='major', length=12, width=1.5)
+   # 8.4.7.5 scale the Y axis 10ppm minor items
+   ax1.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # 10 Nebenstriche
+   ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
+   # end 8.4.7. left Y axis in °C 
+
+
+
 #elif ( yl_mode  == 2 ): # yl_mode = 2 ppm CO2 y axis left 
 else: # 8.4.2 configure the left y axis for ppm CO2 
    # 8.4.2.1 scale the y axis for ppm CO2
