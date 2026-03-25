@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q1" #  CERES data
+v = "42q2" #  CERES data
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -385,6 +385,9 @@ if plot34_CO2_emission > 0:
 # https://bsky.app/profile/thomas-boettcher.bsky.social/post/3mhuowkhfq22h
 # save file as csv41_CERES_TOA_FluxtoJanuary-2026.txt
 # csv41_CERES_TOA_Flux.txt
+
+# 4.1 convert CERES txt to csv 
+# https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
 def convert_ceres_to_csv(input_file, output_file):
     """
     Convert CERES TOA flux ASCII file to CSV format
@@ -394,7 +397,7 @@ def convert_ceres_to_csv(input_file, output_file):
     output_file (str): Path to output CSV file
     """
     
-    # Read the data
+    # 4.1.1 Read the data
     data = []
     
     with open(input_file, 'r') as f:
@@ -418,27 +421,94 @@ def convert_ceres_to_csv(input_file, output_file):
                     # Skip lines that don't parse correctly
                     continue
     
-    # Create DataFrame
+    # 4.1.2 Create DataFrame
     df = pd.DataFrame(data, columns=['year', 'month', 'toa_net_flux_w_m2'])
     
-    # Add date column for easier analysis
+    # 4.1.3 Add date column for easier analysis
     df['date'] = pd.to_datetime(df['year'].astype(str) + '-' + df['month'].astype(str) + '-01')
     
-    # Reorder columns
+    # 4.1.4 Reorder columns
     df = df[['date', 'year', 'month', 'toa_net_flux_w_m2']]
     
-    # Save to CSV
+    # 4.1.5 Save to CSV
     df.to_csv(output_file, index=False)
     
-    print(f"Successfully converted {len(df)} records to {output_file}")
+    print(f"part 4.1.1 Successfully converted {len(df)} records to {output_file}")
     print(f"Data range: {df['date'].min()} to {df['date'].max()}")
     print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
-    
     return df
 
+# 4.1.6
+def add_running_12month_average(df):
+    """
+    Add a column with 12-month running average to the DataFrame
+    
+    Parameters:
+    df (DataFrame): DataFrame with columns 'date' and 'toa_net_flux_w_m2'
+    
+    Returns:
+    DataFrame: Original DataFrame with added 'running_12month_avg' column
+    """
+    # 4.1.7 Create a copy to avoid modifying the original
+    df_with_avg = df.copy()
+    
+    # 4.1.8 Sort by date to ensure correct order
+    df_with_avg = df_with_avg.sort_values('date')
+    
+    # 4.1.9 Calculate 12-month running average (centered)
+    # Using rolling window with center=True gives centered average
+    df_with_avg['running_12month_avg'] = df_with_avg['toa_net_flux_w_m2'].rolling(
+        window=12, 
+        center=True,
+        min_periods=6  # Allow partial windows at the edges
+    ).mean()
+    
+    # Alternative: For trailing 12-month average (uncentered)
+    # df_with_avg['running_12month_avg_trailing'] = df_with_avg['toa_net_flux_w_m2'].rolling(
+    #     window=12, 
+    #     min_periods=12
+    # ).mean()
+    
+    return df_with_avg
+
+
+# 4.1.12 save the CERES data to a csv file with running 12 month average
+def save_with_12month_average(df, input_filename, output_filename):
+    """
+    Save CERES data with 12-month running average to CSV
+    
+    Parameters:
+    df (DataFrame): Original DataFrame
+    input_filename (str): Original input filename for reference
+    output_filename (str): Output CSV filename
+    """
+    # 4.1.13 Add running average
+    df_with_avg = add_running_12month_average(df)
+    
+    # 4.1.14 Save to CSV
+    df_with_avg.to_csv(output_filename, index=False)
+    
+    # 4.1.15 Print summary statistics
+    print(f"\n4.1.15 Saved to {output_filename}")
+    print(f"Total records: {len(df_with_avg)}")
+    print(f"Records with valid 12-month average: {df_with_avg['running_12month_avg'].notna().sum()}")
+    print(f"\nRunning 12-month average statistics:")
+    print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
+    print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
+    print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
+    
+    return df_with_avg
 
 
 df41 = convert_ceres_to_csv('csv41_CERES_TOA_Flux.txt', 'csv_out_ceres_toa_flux.csv')
+# works fine 
+# Method 1: Using the existing DataFrame from your conversion
+df_with_avg = save_with_12month_average(
+    df41, 
+    'csv41_CERES_TOA_Flux.txt', 
+    'ceres_toa_flux_with_12month_avg.csv'
+)
+
 
 
 # -----------------------------
