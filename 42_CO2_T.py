@@ -686,7 +686,7 @@ def save_with_48month_average(df, input_filename, output_filename):
     return df_with_avg
     # end 4.1.6 CERES function 3
 
-# 4.2.48
+# 4.1.7 works
 def calculate_48month_average(input_csv, output_csv):
     """
     Calculate 48-month running average and save to CSV file
@@ -764,9 +764,38 @@ def calculate_48month_average(input_csv, output_csv):
     print(df_48month_avg.tail(10).to_string())
     
     return df_48month_avg
+    # end 4.1.7 works
 
-
-
+# 4.1.8 works
+def create_simple_48month_average(input_csv, output_csv):
+    """
+    Simplified version - creates a CSV with just date and 48-month average
+    """
+    # Read the data
+    df = pd.read_csv(input_csv)
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    
+    # Calculate 48-month average
+    df['48month_avg'] = df['toa_net_flux_w_m2'].rolling(
+        window=48, 
+        center=True,
+        min_periods=24
+    ).mean()
+    
+    # Create simplified output with only essential columns
+    df_simple = df[['date', 'year', 'month', 'decimal_year', '48month_avg']].copy()
+    df_simple = df_simple.dropna()  # Remove rows without 48-month average
+    
+    # Save to CSV
+    df_simple.to_csv(output_csv, index=False, float_format='%.6f')
+    
+    print(f"\nSimplified 48-month average file created: {output_csv}")
+    print(f"Records with valid 48-month average: {len(df_simple)}")
+    print(f"Date range: {df_simple['date'].min()} to {df_simple['date'].max()}")
+    
+    return df_simple
+    # end 4.1.8
 
 
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
@@ -782,7 +811,12 @@ if part41_ceres_eei == 12:
        'csv41a_in_CERES.txt', 
        'csv/csv41/csv41d12_ceres.csv'
 )
-if part41_ceres_eei == 48:   
+if part41_ceres_eei == 47:   
+   df_with_48avg = create_simple_48month_average(
+       'csv/csv41/csv41b_ceres.csv', 
+       'csv/csv41/csv41d47_ceres.csv'
+      )
+if part41_ceres_eei == 48:   # works
    df_with_48avg = calculate_48month_average(
        'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d48_ceres.csv'
@@ -791,8 +825,9 @@ if part41_ceres_eei == 48:
 # 4.3 plot_48month_running_average in df41
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
-   df41 = pd.read_csv("csv/csv41/csv41g48_ceres.csv") # 
-   #df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   # eckig df41 = pd.read_csv("csv/csv41/csv41f46_ceres.csv") # 
+   # ok df41 = pd.read_csv("csv/csv41/csv41f47_ceres.csv") 
+   df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
