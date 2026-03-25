@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q2" #  CERES data
+v = "42q3" #  CERES data
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,6 +68,8 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
+part41_ceres_eei = 4
+
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
@@ -376,7 +378,7 @@ if plot34_CO2_emission > 0:
       # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
       #end 3.4
 
-# part 4 EEI CERES data
+# part 4 EEI CERES data part41_ceres_eei = 1
 # #8T44 2 download asci file TOA flux
 # CERES_EBAF-TOA_Ed4.2.1 - Global Data Charts
 # csv41_CERES_TOA_FluxtoJanuary-2026.txt
@@ -500,7 +502,7 @@ def save_with_12month_average(df, input_filename, output_filename):
     return df_with_avg
 
 
-df41 = convert_ceres_to_csv('csv41_CERES_TOA_Flux.txt', 'csv_out_ceres_toa_flux.csv')
+df41 = convert_ceres_to_csv('csv41_CERES_TOA_Flux.txt', 'csv/csv_out_ceres_toa_flux.csv')
 # works fine 
 # Method 1: Using the existing DataFrame from your conversion
 df_with_avg = save_with_12month_average(
