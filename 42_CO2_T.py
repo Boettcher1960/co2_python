@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s13" #  50ok, csv41g12_ceres.csv
+v = "42s14" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -564,133 +564,6 @@ def calculate_48month_running_average(df, value_column='toa_net_flux_w_m2'):
     return df_avg
     # end 4.1.4 CERES function 4 add_running_48month_average
 
-
-# 4.1.5 CERES function 5
-def add_48month_running_average_to_csv(input_csv, output_csv):
-    """
-    Read CSV, add 48-month running average, and save to new CSV
-    
-    Parameters:
-    input_csv (str): Path to input CSV file
-    output_csv (str): Path to output CSV file
-    """
-    # Read the CSV file
-    df = pd.read_csv(input_csv)
-    
-    # Ensure date column exists and is datetime
-    if 'date' not in df.columns:
-        print("Error: CSV must contain a 'date' column")
-        return None
-    
-    df['date'] = pd.to_datetime(df['date'])
-    
-    # Calculate 48-month running average
-    df_with_avg = calculate_48month_running_average(df)
-    
-    # Save to CSV
-    df_with_avg.to_csv(output_csv, index=False, float_format='%.6f')
-    
-    # Print summary statistics
-    print(f"\n{'='*60}")
-    print(f"48-MONTH RUNNING AVERAGE SUMMARY")
-    print(f"{'='*60}")
-    print(f"Input file: {input_csv}")
-    print(f"Output file: {output_csv}")
-    print(f"Total records: {len(df_with_avg)}")
-    print(f"Records with valid 48-month avg: {df_with_avg['running_48month_avg'].notna().sum()}")
-    print(f"\nOriginal flux range: {df_with_avg['toa_net_flux_w_m2'].min():.2f} to {df_with_avg['toa_net_flux_w_m2'].max():.2f} W/m²")
-    print(f"48-month avg range: {df_with_avg['running_48month_avg'].min():.2f} to {df_with_avg['running_48month_avg'].max():.2f} W/m²")
-    print(f"48-month avg mean: {df_with_avg['running_48month_avg'].mean():.2f} W/m²")
-    print(f"48-month avg std: {df_with_avg['running_48month_avg'].std():.2f} W/m²")
-    
-    # Show first and last few rows
-    print(f"\nFirst 10 rows:")
-    print(df_with_avg[['date', 'year', 'month', 'toa_net_flux_w_m2', 'running_48month_avg']].head(10))
-    
-    print(f"\nLast 10 rows:")
-    print(df_with_avg[['date', 'year', 'month', 'toa_net_flux_w_m2', 'running_48month_avg']].tail(10))
-    
-    return df_with_avg
-    # 4.1.5 end CERES function 5
-
-
-# 4.1.6 CERES function 6
-def add_48month_running_average_to_csv(input_csv, output_csv):
-    """
-    Read CSV, add 48-month running average, and save to new CSV
-    
-    Parameters:
-    input_csv (str): Path to input CSV file
-    output_csv (str): Path to output CSV file
-    """
-    # Read the CSV file
-    df = pd.read_csv(input_csv)
-    
-    # Ensure date column exists and is datetime
-    if 'date' not in df.columns:
-        print("Error: CSV must contain a 'date' column")
-        return None
-    
-    df['date'] = pd.to_datetime(df['date'])
-    
-    # Calculate 48-month running average
-    df_with_avg = calculate_48month_running_average(df)
-    
-    # Save to CSV
-    df_with_avg.to_csv(output_csv, index=False, float_format='%.6f')
-    
-    # Print summary statistics
-    print(f"\n{'='*60}")
-    print(f"48-MONTH RUNNING AVERAGE SUMMARY")
-    print(f"{'='*60}")
-    print(f"Input file: {input_csv}")
-    print(f"Output file: {output_csv}")
-    print(f"Total records: {len(df_with_avg)}")
-    print(f"Records with valid 48-month avg: {df_with_avg['running_48month_avg'].notna().sum()}")
-    print(f"\nOriginal flux range: {df_with_avg['toa_net_flux_w_m2'].min():.2f} to {df_with_avg['toa_net_flux_w_m2'].max():.2f} W/m²")
-    print(f"48-month avg range: {df_with_avg['running_48month_avg'].min():.2f} to {df_with_avg['running_48month_avg'].max():.2f} W/m²")
-    print(f"48-month avg mean: {df_with_avg['running_48month_avg'].mean():.2f} W/m²")
-    print(f"48-month avg std: {df_with_avg['running_48month_avg'].std():.2f} W/m²")
-    
-    # Show first and last few rows
-    print(f"\nFirst 10 rows:")
-    print(df_with_avg[['date', 'year', 'month', 'toa_net_flux_w_m2', 'running_48month_avg']].head(10))
-    
-    print(f"\nLast 10 rows:")
-    print(df_with_avg[['date', 'year', 'month', 'toa_net_flux_w_m2', 'running_48month_avg']].tail(10))
-    
-    return df_with_avg
-
-
-
-
-# 4.1.6 CERES function 6
-# save the CERES data to a csv file with running 12 month average
-def save_with_48month_average(df, input_filename, output_filename):
-    """
-    Save CERES data with 48-month running average to CSV
-    Parameters:
-    df (DataFrame): Original DataFrame
-    input_filename (str): Original input filename for reference
-    output_filename (str): Output CSV filename
-    """
-    # 4.1.6.2 Add running average
-    df_with_avg = add_48month_running_average_to_csv(df)
-    
-    # 4.1.6.3 Save to CSV
-    df_with_avg.to_csv(output_filename, index=False)
-    
-    # 4.1.6.4 Print summary statistics
-    print(f"\n4.1.6.4 Saved to {output_filename}")
-    print(f"Total records: {len(df_with_avg)}")
-    print(f"Records with valid 48-month average: {df_with_avg['running_48month_avg'].notna().sum()}")
-    print(f"\nRunning 48-month average statistics:")
-    print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
-    print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
-    print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
-    return df_with_avg
-    # end 4.1.6 CERES function 3
-
 # 4.1.7 works
 def calculate_48month_average(input_csv, output_csv):
     """
@@ -1247,9 +1120,9 @@ if ( yl_mode == 7 ): # left Y axis is °C
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
             transform=plt.gca().transAxes)
 elif ( yl_mode == 4 ): # yl_mode = 4 # 4 EEI in W/m2 y axis left mode
-   header = f"Earth Energy Balance CERES_EBAF-TOA_Ed4.2.1 Jan.2026 data  {x_anf}" # 1960 number inside string
+   header = f"Earth Energy Balance CERES_EBAF-TOA_Ed4.2.1 Jan.2026 data. Plot {x_anf}" # 1960 number inside string
    # header = header + f" Temperature in °C NASA GIS  " # 1960 number inside string
-   header = header + f" to year {x_end} " # 2026 number inside string
+   header = header + f" to {x_end}." # 2026 number inside string
    # 8.2.8 plot the headline
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
             transform=plt.gca().transAxes)
@@ -1442,7 +1315,7 @@ if yr_mode == 7: # Temperature
       ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
       ax74.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax74.set_ylabel (
-         "Δ GIS Temperature in °C  1040  74 ",
+         "Δ GIS Temperature in °C   74 ",
          color=c74,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
@@ -2039,10 +1912,12 @@ elif plot76_my_T == 5:
 
 # 9.6 print line 6 
 if ( yl_mode == 4 ): 
-   text6 = f" Temperature {y_Tmin}°C " # y_max number inside string
-   text6 = text6 + f"...{y_Tmax} °C." # y_max number inside string
+   text6 = f"Left Y axis" # 
    text6 = text6 + f" EEI={y_Emin}W/m²" # y_max number inside string
-   text6 = text6 + f" EEI_max={y_Emax}W/m² Parameter=" # y_max number inside string
+   text6 = text6 + f"..{y_Emax}W/m²" # y_max number inside string
+   text6 = text6 + f"   Right {y_Tmin} °C" # y_max number inside string
+   text6 = text6 + f"..{y_Tmax} °C" # y_max number inside string
+   text6 = text6 + f"  Par=" # y_max number inside string
    text6 = text6 + header_parameter
    # 9.6.2 plot line 6
    plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
