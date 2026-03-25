@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r6" #  CERES data if stored in csv41g_ceres.csv
+v = "42r7" #  CERES data if stored in csv41g_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -453,57 +453,8 @@ def convert_ceres_to_csv(input_file, output_file):
     print(df.head(10))
     
     return df
-
-
-
-
-
-def convert_ceres_to_csv1(input_file, output_file):
-    """
-    Convert CERES TOA flux ASCII file to CSV format
-    Parameters:
-    input_file (str): Path to input ASCII file
-    output_file (str): Path to output CSV file
-    """
-    # 4.1.1 Read the data
-    data = []
-    with open(input_file, 'r') as f:
-        lines = f.readlines()
-        # Skip header lines (lines starting with # or empty lines)
-        for line in lines:
-            line = line.strip()
-            if not line or line.startswith('#') or line.startswith('CERES'):
-                continue
-            # Parse each data line
-            parts = line.split()
-            if len(parts) >= 3:
-                try:
-                    year = int(parts[0])
-                    month = int(parts[1])
-                    flux = float(parts[2])
-                    data.append([year, month, flux])
-                except ValueError:
-                    # Skip lines that don't parse correctly
-                    continue
-    # 4.1.2 Create DataFrame
-    df = pd.DataFrame(data, columns=['year', 'month', 'toa_net_flux_w_m2'])
-    # 4.1.3 Add date column for easier analysis
-    df['date'] = pd.to_datetime(df['year'].astype(str) + '-' + df['month'].astype(str) + '-01')
-    # 4.1.4 Reorder columns
-    df = df[['date', 'year', 'month', 'toa_net_flux_w_m2']]
-    # 4.1.5 Save to CSV
-    df.to_csv(output_file, index=False)
-    print(f"part 4.1.1 Successfully converted {len(df)} records to {output_file}")
-    print(f"Data range: {df['date'].min()} to {df['date'].max()}")
-    print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
-    return df
     # end 4.1.5 CERES function 1
     # add column 5 as decimal year 2000.08  2000.16
-
-
-
-
-
 
 
 # 4.1.6 CERES function 2
@@ -578,14 +529,15 @@ if part41_ceres_eei == 12:
 
 # 4.3
 if part41_ceres_eei == 5:
-   print41_text ="CERES EEI data moving average 12 month    41"
+   p41_text ="CERES EEI data moving average 12 month    41"
    df41 = pd.read_csv("csv/csv41/csv41g_ceres.csv") # 
-   print(df41.head(22))
+   # print(df41.head(22))
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax41.plot(df41["year41"], df41["EEI"], '-', label="EEI  K41", color=c41, linewidth=2)
    ax41.tick_params(axis="y", labelcolor=c41)
    ax41.set_ylim(0, 2) # scale
+   # end 4.3
 
 
 # -----------------------------
@@ -1564,7 +1516,16 @@ elif linear_41_75 == 4:
 
 
 # 9.5.2 print line 5 plot55_population_on marker="s"
-if plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
+if part41_ceres_eei == 5: #  legende world data plot22_CO2_Mauna_Loa
+   line41 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="s", markersize=5, color=c41, linewidth=2)
+   # 9.5.2 draw bue line as legend
+   fig.add_artist(line41)
+   # 9.5.4 write green text
+   plt.text(tr2x, tr5y, p41_text, color="green", fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+elif plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
    line55 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
    marker="s", markersize=5, color="green", linewidth=2)
