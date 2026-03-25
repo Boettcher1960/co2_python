@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r11" #  CERES data if stored in csv41g_ceres.csv
+v = "42s1" #  CERES data if stored in csv41g_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
