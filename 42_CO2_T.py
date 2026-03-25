@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q10" #  CERES data moved csv files
+v = "42r2" #  CERES data if stored in csv41e_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -54,9 +54,9 @@ import os
 import sys
 
 # 1.2 Parameter decide which curves to plot
-plot22_CO2_Mauna_Loa = 0 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
+plot22_CO2_Mauna_Loa = 3 # 1, 2 print in line 2 # 0 no plot CO2 # 1 Mauna Loa 
 c22 = "blue" # plot1 color
-plot23_Glen_CO2 = 3 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
+plot23_Glen_CO2 = 4 # 2, 3 print in line 2, 3, 0 keine Kurve Glen , 1 = 0.013t² - 51t + 49,536 in dark blue  
 c23 = "#4554A8C6"   # c23 = "#4B3FD1"
 
 plot25_long_CO2 = 0 #  3 4 print -800 000 years ppm CO2 file
@@ -68,12 +68,12 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 4
+part41_ceres_eei = 4 # 11 convert txt to csv
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
 plot54_Glen_delta_on = 0 #  4, 0 print row 4 # green Glen diff print in line 4
-plot55_population_on = 5 # 4, 5 row 5 # 0=no print , 1 = population in green
+plot55_population_on = 0 # 4, 5 row 5 # 0=no print , 1 = population in green
 # no part 6
 plot71_temperature = 0 # 4,5, 0 quadratic T
 plot72_AESS_T = 0      # 4,5,0 apparent Earth system sensitivity (AESS=7.7°C)
@@ -167,8 +167,8 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 # header_parameter = header_parameter + f"{parameter84_save_png} " 
 
 # 1.9 left Y axis is in ppm CO2 per default.
-yl_mode = 2 # ppm CO2 y axis left mode
-yr_mode = 7 # ppm CO2 y axis right mode
+yl_mode = 7 # ppm CO2 y axis left mode
+yr_mode = 2 # ppm CO2 y axis right mode
 # yl_mode = 3 Gt CO2 y axis left mode
 # yl_mode = 4 EEI in W/m2 y axis left mode
 # yl_mode = 5 delta ppm CO2 y axis left mode
@@ -256,6 +256,8 @@ df23 = pd.DataFrame({
 # 2.3.4 assign ax1  
 if plot22_CO2_Mauna_Loa > 0:
    ax1.plot(df2["x_22_years"], df2["y_22_CO2_ppm"], marker="o", markersize=5, color="blue", linewidth=2, label=" ")
+   print("line 260 plot22_CO2_Mauna_Loa does not show ")
+   ax1.set_ylim(y_min, y_max) # scale
 elif plot23_Glen_CO2 > 0:
    ax1.plot(df23["Year3"], df23["Modeled3"], '--', label="Glen formula CO2= 0.0132t² - 51t + 49,536 K6", color=c23, linewidth=3)
 # 2.3.7
@@ -378,7 +380,8 @@ if plot34_CO2_emission > 0:
       # co2_sum_world.to_csv("co2_sum_world.csv", index=False)
       #end 3.4
 
-# part 4 EEI CERES data part41_ceres_eei = 1
+# part 4 EEI CERES data 
+# part41_ceres_eei = 4 # 11 convert txt to csv
 # #8T44 2 download asci file TOA flux
 # CERES_EBAF-TOA_Ed4.2.1 - Global Data Charts
 # csv41_CERES_TOA_FluxtoJanuary-2026.txt
@@ -465,7 +468,6 @@ def add_running_12month_average(df):
 def save_with_12month_average(df, input_filename, output_filename):
     """
     Save CERES data with 12-month running average to CSV
-    
     Parameters:
     df (DataFrame): Original DataFrame
     input_filename (str): Original input filename for reference
@@ -485,19 +487,21 @@ def save_with_12month_average(df, input_filename, output_filename):
     print(f"Min: {df_with_avg['running_12month_avg'].min():.2f} W/m²")
     print(f"Max: {df_with_avg['running_12month_avg'].max():.2f} W/m²")
     print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
-    
     return df_with_avg
     # end 4.1.12 CERES function 3
 
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
 # copy to csv/csv41/csv41a_in_CERES.txt
 # step 3 convert to csv
-df41a = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
-# step 4 add 12 running mean convert to csv
-df_with_avg = save_with_12month_average(
-    df41a, 
-    'csv41a_in_CERES.txt', 
-    'csv/csv41/csv41d_ceres.csv'
+# 4.2 convert txt to csv
+if part41_ceres_eei > 10:
+   df41a = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
+   # step 4 add 12 running mean convert to csv
+if part41_ceres_eei == 12:   
+   df_with_avg = save_with_12month_average(
+       df41a, 
+       'csv41a_in_CERES.txt', 
+       'csv/csv41/csv41d_ceres.csv'
 )
 
 
@@ -903,6 +907,7 @@ else:
 if ( yl_mode == 7 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
    # 8.4.7.1 scale the y axis temperature
    ax1.set_ylim(y_Tmin, y_Tmax)
+   ###ax1.set_ylim(y_min, y_max)
    cyl = "red" # color y axis left
    # 8.4.7.2 "Temperature in °C GIS " left Axis upwards
    ax1.set_ylabel("Temperature in °C GIS", color=cyl, fontsize=20) # y achse links
@@ -1250,7 +1255,15 @@ else: # 9.2.2 draw bue line as legend
 
 # 9.3 print line 3 below the plot explainations
 # 9.3.3  print line red Glen 
-if plot23_Glen_CO2 == 3: # print in line 3
+if plot22_CO2_Mauna_Loa == 3: #  legende world data plot22_CO2_Mauna_Loa
+   line22 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="o", markersize=5, color=c22, linewidth=2)
+   # 9.2.2.5 plot the blue text
+   plt.text(tr2x, tr3y, blue22_text, color=c22, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+   fig.add_artist(line22)
+elif plot23_Glen_CO2 == 3: # print in line 3
    line23 = Line2D([lr2x1, lr2x2], [lr3y, lr3y], # y from 0 to 1
    transform=fig.transFigure,
    marker="o", markersize=3, color=c23, linewidth=2)
