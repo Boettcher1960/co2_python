@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42r10" #  CERES data if stored in csv41g_ceres.csv
+v = "42r11" #  CERES data if stored in csv41g_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -175,7 +175,7 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 
 # 1.9 left Y axis is in ppm CO2 per default.
 yl_mode = 4 # ppm CO2 y axis left mode
-yr_mode = 2 # ppm CO2 y axis right mode
+yr_mode = 7 # ppm CO2 y axis right mode
 # yl_mode = 3 Gt CO2 y axis left mode
 # yl_mode = 4 EEI in W/m2 y axis left mode
 # yl_mode = 5 delta ppm CO2 y axis left mode
@@ -742,7 +742,7 @@ if plot73_ECS_T > 0:
 # https://data.giss.nasa.gov/tmp/gistemp/ltmap/tmp.4_ob4LOTI_E5_12_1880_2027_1951_1980-0/global.txt
 # 7.4.2 Year74,GIS_temp
 if plot74_GIS_T > 0:
-   print74_text ="Temperature in °C giss.nasa.gov Hansen+0.3°C 74"
+   print74_text ="Temperature in °C giss.nasa.gov Hansen+0.3°C 74 n"
    df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
    # print(df74.head(2))
    ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
@@ -1029,7 +1029,20 @@ elif plot74_GIS_T > 0:
 # yr_mode = 7 # Temperature in °C y axis right mode
 
 # 8.7.1 plot71 Achse und Beschriftung
-if plot71_temperature > 0:
+if yr_mode == 7: # Temperature
+   ax74.tick_params(axis="y", labelcolor=c74)
+   ax74.set_ylim(y_Tmin, y_Tmax) # scale
+   if plot71_temperature < 1: # make y axis right only if not exist
+      ax74.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))   # Hauptstriche
+      ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
+      ax74.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
+      ax74.set_ylabel (
+         "Δ GIS Temperature in °C  1040  74 ",
+         color=c74,
+         fontname="Arial",fontsize=20,
+         labelpad=10   # smaller = closer to y axis
+       )      
+elif plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
       ax71.spines.right.set_position(("outward", 50))
    else:
@@ -1079,7 +1092,7 @@ elif plot74_GIS_T > 0:
       ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))   # Nebenstriche
       ax74.tick_params(axis='y', labelsize=20) # numbers on right y axis size 20
       ax74.set_ylabel (
-         "Δ GIS Temperature in °C    74",
+         "Δ GIS Temperature in °C  1095  74",
          color=c74,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
@@ -1094,7 +1107,7 @@ elif plot52_delta_CO2_red_bars > 0:
    # 5.2.8 Add numbers on top of delta CO2 bars
    if plot52_delta_CO2_red_bars > 6:
       ax52.bar_label(bars, fontsize=8, fontname="Arial",padding=1, color="black")
-if plot34_CO2_emission > 0:
+elif plot34_CO2_emission > 0:
    ax34 = ax1.twinx()
 
    # Left axis 2: GtC
@@ -1138,7 +1151,7 @@ if plot34_CO2_emission > 0:
       ax34.set_ylim(0, 2000000000000) #8
 
 # 8.7.9 
-if plot55_population_on > 0:
+elif plot55_population_on > 0:
    ax55.spines.right.set_position(("outward", 80))
    ax55.set_ylabel("Earth Population in Billion", color="green")
    ax55.plot(pop_world["Year"], pop_world["Population_Mrd"], marker="s", color="green", label="Earth Population in Billion K2")
