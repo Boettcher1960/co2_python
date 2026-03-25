@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s14" #  50ok, csv41g12_ceres.csv
+v = "42s15" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -1120,7 +1120,7 @@ if ( yl_mode == 7 ): # left Y axis is °C
    plt.text(-0.1, 1.05, header, color="black", fontname="Arial", fontsize=20,
             transform=plt.gca().transAxes)
 elif ( yl_mode == 4 ): # yl_mode = 4 # 4 EEI in W/m2 y axis left mode
-   header = f"Earth Energy Balance CERES_EBAF-TOA_Ed4.2.1 Jan.2026 data. Plot {x_anf}" # 1960 number inside string
+   header = f"Earth Energy Imbalance     CERES_EBAF-TOA_Ed4.2.1   Jan. 2026 data.   Plot {x_anf}" # 1960 number inside string
    # header = header + f" Temperature in °C NASA GIS  " # 1960 number inside string
    header = header + f" to {x_end}." # 2026 number inside string
    # 8.2.8 plot the headline
@@ -1239,7 +1239,7 @@ if ( yl_mode == 4 ):   # 8.4.7 left Y axis in °C for plot74_GIS_T elif
    # 8.4.7.1 scale the y axis temperature
    ax1.set_ylim(y_Emin, y_Emax)
    ###ax1.set_ylim(y_min, y_max)
-   cyl = c41 # color y axis left
+   cyl = c42 # color y axis left
    # 8.4.7.2 "Temperature in °C GIS " left Axis upwards
    ax1.set_ylabel("Earth Energy Imbalance in  W/m² ", color=cyl, fontsize=20) # y achse links
    # 8.4.7.3 write the numbers left of plot field
@@ -1547,7 +1547,8 @@ else:
    text_below1 = text_below1 + filename
    text_below1 = text_below1 + " v "
    text_below1 = text_below1 + v
-   text_below1 = text_below1 + "  https://github.com/Boettcher1960/co2_python"
+   text_below1 = text_below1 + "  https://github.com/Boettcher1960/co2_python       Parameter "
+   text_below1 = text_below1 + header_parameter
    plt.text(-0.1, tr1y, text_below1, color="black", fontname="Arial", fontsize=12,
          transform=plt.gca().transAxes)
 
@@ -1912,16 +1913,19 @@ elif plot76_my_T == 5:
 
 # 9.6 print line 6 
 if ( yl_mode == 4 ): 
-   text6 = f"Left Y axis" # 
-   text6 = text6 + f" EEI={y_Emin}W/m²" # y_max number inside string
-   text6 = text6 + f"..{y_Emax}W/m²" # y_max number inside string
-   text6 = text6 + f"   Right {y_Tmin} °C" # y_max number inside string
-   text6 = text6 + f"..{y_Tmax} °C" # y_max number inside string
-   text6 = text6 + f"  Par=" # y_max number inside string
-   text6 = text6 + header_parameter
-   # 9.6.2 plot line 6
-   plt.text(-0.12, -.56, text6 , color="black", fontname="Arial", fontsize=trs,
+   text6 = f"Left Y axis is the " # 
+   text6 = text6 + f"EEI = {y_Emin} W/m²" # y_max number inside string
+   text6 = text6 + f"....{y_Emax} W/m²" # y_max number inside string
+   plt.text(-0.12, -.56, text6 , color=c42, fontname="Arial", fontsize=trs,
        transform=plt.gca().transAxes)
+   text6 = f"    Right Y axis is the" # 
+   text6 = text6 + f" Temperature = {y_Tmin} °C" # y_max number inside string
+   text6 = text6 + f"....{y_Tmax} °C" # y_max number inside string
+   
+   # text6 = text6 + header_parameter
+   # 9.6.2 plot line 6
+   plt.text(0.42, -.56, text6 , color="red", fontname="Arial", fontsize=trs,
+      transform=plt.gca().transAxes)
    fig.tight_layout()
    plt.tight_layout()
 
