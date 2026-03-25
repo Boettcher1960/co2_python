@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s4" #  48bug, csv41g12_ceres.csv
+v = "42s6" #  48OK, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 12 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 48 # 3,5,12,48 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -454,8 +454,8 @@ def convert_ceres_to_csv(input_file, output_file):
     print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
     
     # Show first few rows to verify decimal year calculation
-    print("\nFirst 10 rows of the converted data:")
-    print(df.head(10))
+    print("\n4.1.1 First 3 rows of the converted data:")
+    print(df.head(3))
     
     return df
     # end 4.1.1 CERES function 1
@@ -519,6 +519,9 @@ def save_with_12month_average(df, input_filename, output_filename):
     print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
     return df_with_avg
     # end 4.1.3 CERES function 3
+
+
+
 
 
 # 4.1.4 CERES function 4 add_running_48month_average
@@ -658,7 +661,7 @@ def add_48month_running_average_to_csv(input_csv, output_csv):
 
 # 4.1.6 CERES function 6
 # save the CERES data to a csv file with running 12 month average
-def save_with_48month_average_bug(df, input_filename, output_filename):
+def save_with_48month_average(df, input_filename, output_filename):
     """
     Save CERES data with 48-month running average to CSV
     Parameters:
@@ -667,7 +670,7 @@ def save_with_48month_average_bug(df, input_filename, output_filename):
     output_filename (str): Output CSV filename
     """
     # 4.1.6.2 Add running average
-    df_with_avg = add_running_48month_average(df)
+    df_with_avg = add_48month_running_average_to_csv(df)
     
     # 4.1.6.3 Save to CSV
     df_with_avg.to_csv(output_filename, index=False)
@@ -682,6 +685,88 @@ def save_with_48month_average_bug(df, input_filename, output_filename):
     print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
     return df_with_avg
     # end 4.1.6 CERES function 3
+
+# 4.2.48
+def calculate_48month_average(input_csv, output_csv):
+    """
+    Calculate 48-month running average and save to CSV file
+    
+    Parameters:
+    input_csv (str): Path to input CSV file with CERES data
+    output_csv (str): Path to output CSV file with 48-month average
+    """
+    
+    # Read the input CSV file
+    print(f"Reading data from: {input_csv}")
+    df = pd.read_csv(input_csv)
+    
+    # Display basic information about the data
+    print(f"Total records: {len(df)}")
+    print(f"Columns: {list(df.columns)}")
+    
+    # Ensure date column is in datetime format
+    if 'date' in df.columns:
+        df['date'] = pd.to_datetime(df['date'])
+    else:
+        print("Error: No 'date' column found in the CSV file")
+        return None
+    
+    # Sort by date to ensure correct order
+    df = df.sort_values('date').reset_index(drop=True)
+    
+    # Calculate 48-month (4-year) running average
+    # Using center=True for centered average
+    df['running_48month_avg'] = df['toa_net_flux_w_m2'].rolling(
+        window=48, 
+        center=True,
+        min_periods=24  # Allow partial windows at the beginning and end
+    ).mean()
+    
+    # Also calculate trailing 48-month average (optional)
+    df['running_48month_avg_trailing'] = df['toa_net_flux_w_m2'].rolling(
+        window=48, 
+        min_periods=48
+    ).mean()
+    
+    # Create a separate DataFrame with only the 48-month average values
+    df_48month_avg = df[['date', 'year', 'month', 'decimal_year', 
+                          'toa_net_flux_w_m2', 'running_48month_avg']].copy()
+    
+    # Save to CSV file
+    df_48month_avg.to_csv(output_csv, index=False, float_format='%.6f')
+    
+    # Print summary statistics
+    print(f"\n{'='*60}")
+    print(f"48-MONTH AVERAGE CALCULATION COMPLETE")
+    print(f"{'='*60}")
+    print(f"Output file: {output_csv}")
+    print(f"Total records: {len(df_48month_avg)}")
+    print(f"Records with valid 48-month avg: {df_48month_avg['running_48month_avg'].notna().sum()}")
+    
+    print(f"\nOriginal TOA Net Flux (W/m²):")
+    print(f"  Min: {df_48month_avg['toa_net_flux_w_m2'].min():.2f}")
+    print(f"  Max: {df_48month_avg['toa_net_flux_w_m2'].max():.2f}")
+    print(f"  Mean: {df_48month_avg['toa_net_flux_w_m2'].mean():.2f}")
+    print(f"  Std: {df_48month_avg['toa_net_flux_w_m2'].std():.2f}")
+    
+    print(f"\n48-Month Running Average (W/m²):")
+    print(f"  Min: {df_48month_avg['running_48month_avg'].min():.2f}")
+    print(f"  Max: {df_48month_avg['running_48month_avg'].max():.2f}")
+    print(f"  Mean: {df_48month_avg['running_48month_avg'].mean():.2f}")
+    print(f"  Std: {df_48month_avg['running_48month_avg'].std():.2f}")
+    
+    # Show first few rows
+    print(f"\nFirst 10 rows of the output file:")
+    print(df_48month_avg.head(10).to_string())
+    
+    # Show last few rows
+    print(f"\nLast 10 rows of the output file:")
+    print(df_48month_avg.tail(10).to_string())
+    
+    return df_48month_avg
+
+
+
 
 
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
@@ -698,12 +783,12 @@ if part41_ceres_eei == 12:
        'csv/csv41/csv41d12_ceres.csv'
 )
 if part41_ceres_eei == 48:   
-   df_with_48avg = add_48month_running_average_to_csv(
-       'csv41a_in_CERES.txt', 
+   df_with_48avg = calculate_48month_average(
+       'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d48_ceres.csv'
-)
+      )
 
-# 4.3 add_48month_running_average_to_csv
+# 4.3 plot_48month_running_average in df41
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
    #df41 = pd.read_csv("csv/csv41/csv41f48_ceres.csv") # 
