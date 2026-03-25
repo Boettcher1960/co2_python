@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42p6" #  plot76_my_T
+v = "42p7" #  plot76_my_T
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -24,7 +24,8 @@ v = "42p6" #  plot76_my_T
 # part 8 print headline, axis numbers. around figue
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
-# 8.4 configure the left y axis legend  
+# 8.4 
+# 8.5 configure the right y axis legend  
 # 8.6 print the vertical lines CO2=constant
 # 8.7 print the right y axis
 # 8.8 print the x axis 
@@ -163,11 +164,12 @@ header_parameter = header_parameter + f"{plot76_my_T} "
 
 # 1.9 left Y axis is in ppm CO2 per default.
 yl_mode = 2 # ppm CO2 y axis left mode
-yr_mode = 2 # ppm CO2 y axis left mode
+yr_mode = 7 # ppm CO2 y axis right mode
 # yl_mode = 3 Gt CO2 y axis left mode
 # yl_mode = 4 EEI in W/m2 y axis left mode
 # yl_mode = 5 delta ppm CO2 y axis left mode
-yl_mode = 7 # Temperature in °C y axis left mode
+# yl_mode = 7 # Temperature in °C y axis left mode
+# yr_mode = 7 # Temperature in °C y axis right mode
 # end part 1
 
 
@@ -655,7 +657,7 @@ if plot76_my_T > 0:
 # 8.2 print the headline above the plot
 # 8.3 print the left y axis 
 # 8.4 configure the left y axis legend  
-# 8.5 
+# 8.5 configure the right y axis legend  
 # 8.6 print the vertical lines CO2=constant
 # 8.7 print the right y axis
 # 8.8 print the x axis 
@@ -803,7 +805,7 @@ else: # 8.4.2 configure the left y axis for ppm CO2
    ax1.tick_params(axis='y', which='minor', length=6,  width=1, color='blue')
    # end 8.4.2 
 
-
+# 8.5 configure the right y axis legend  
 
 
 
@@ -832,6 +834,13 @@ elif plot74_GIS_T > 0:
 
 
 # 8.7 print the right y axis
+# yr_mode = 2 # ppm CO2 y axis right mode
+# yl_mode = 3 Gt CO2 y axis left mode
+# yl_mode = 4 EEI in W/m2 y axis left mode
+# yl_mode = 5 delta ppm CO2 y axis left mode
+# yl_mode = 7 # Temperature in °C y axis left mode
+# yr_mode = 7 # Temperature in °C y axis right mode
+
 # 8.7.1 plot71 Achse und Beschriftung
 if plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
