@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s9" #  50ok, csv41g12_ceres.csv
+v = "42s11" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -70,6 +70,8 @@ c34 = "#942296C5"
 # no part 4
 part41_ceres_eei = 3 # 3,5,12,47,48,50 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
+part42_ceres_eei = 4 
+c42 = "purple"
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -913,8 +915,8 @@ if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
    # eckig df41 = pd.read_csv("csv/csv41/csv41f46_ceres.csv") # 
    # ok df41 = pd.read_csv("csv/csv41/csv41f47_ceres.csv") 
-   # correct df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
-   df41 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
+   df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   # df41 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
@@ -922,6 +924,18 @@ if part41_ceres_eei > 0:
    ax41.tick_params(axis="y", labelcolor=c41)
    ax41.set_ylim(y_Emin, y_Emax) # scale
    # end 4.3
+
+if part42_ceres_eei > 0:
+   p42_text ="Earth Energy Imbalance  W/m² moving average 48 month 42"
+   df42 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
+   # print(df41.head(22)) csv41g48_ceres
+   ax42 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   # part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax42.plot(df42["year41"], df42["EEI"], '-', label="EEI  K42", color=c42, linewidth=2)
+   ax42.tick_params(axis="y", labelcolor=c42)
+   ax42.set_ylim(y_Emin, y_Emax) # scale
+
+
 
 
 # -----------------------------
@@ -1834,7 +1848,15 @@ elif plot25_long_CO2 == 4: #
    plt.text(tr2x, tr4y, blue25_text, color=c25, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
    fig.add_artist(line25)
-
+elif part42_ceres_eei == 4: #  legende world data plot22_CO2_Mauna_Loa
+   line42 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="s", markersize=5, color=c42, linewidth=2)
+   # 9.5.2 draw bue line as legend
+   fig.add_artist(line42)
+   # 9.5.4 write green text
+   plt.text(tr2x, tr4y, p42_text, color=c42, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
 elif plot52_delta_CO2_red_bars == 4 or plot52_delta_CO2_red_bars == 8:
    line4 = Line2D([lr2x1, lr2x2], [lr4y, lr4y], # y from 0 to 1
    transform=fig.transFigure,
