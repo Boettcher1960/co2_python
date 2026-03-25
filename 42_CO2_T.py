@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42q4" #  CERES data
+v = "42q5" #  CERES data
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -439,8 +439,9 @@ def convert_ceres_to_csv(input_file, output_file):
     print(f"Data range: {df['date'].min()} to {df['date'].max()}")
     print(f"Flux range: {df['toa_net_flux_w_m2'].min():.2f} to {df['toa_net_flux_w_m2'].max():.2f} W/m²")
     return df
+    # end 4.1.5 CERES function 1
 
-# 4.1.6
+# 4.1.6 CERES function 2
 def add_running_12month_average(df):
     """
     Add a column with 12-month running average to the DataFrame
@@ -472,9 +473,10 @@ def add_running_12month_average(df):
     # ).mean()
     
     return df_with_avg
+    # end 4.1.6 CERES function 2
 
-
-# 4.1.12 save the CERES data to a csv file with running 12 month average
+# 4.1.12 CERES function 3
+# save the CERES data to a csv file with running 12 month average
 def save_with_12month_average(df, input_filename, output_filename):
     """
     Save CERES data with 12-month running average to CSV
@@ -500,16 +502,17 @@ def save_with_12month_average(df, input_filename, output_filename):
     print(f"Mean: {df_with_avg['running_12month_avg'].mean():.2f} W/m²")
     
     return df_with_avg
+    # end 4.1.12 CERES function 3
 
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
 # csv41a_in_CERES_TOA_Flux.txt 
-df41 = convert_ceres_to_csv('csv41a_in_CERES_TOA_Flux.txt', 'csv/csv41b_out_ceres_toa_flux.csv')
+df41 = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
 # works fine 
 # Method 1: Using the existing DataFrame from your conversion
 df_with_avg = save_with_12month_average(
     df41, 
-    'csv41_CERES_TOA_Flux.txt', 
-    'csv41d_ceres_toa_flux_with_12month_avg.csv'
+    'csv41a_in_CERES.txt', 
+    'csv/csv41/csv41d_ceres.csv'
 )
 
 
