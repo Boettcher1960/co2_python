@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42s8" #  50ok, csv41g12_ceres.csv
+v = "42s9" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
