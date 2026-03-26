@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t11" #  part 43 120 month average EEI
+v = "42t12" #  part 43 120 month average EEI
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 60 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 44 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
@@ -672,9 +672,9 @@ def create_simple_48month_average(input_csv, output_csv):
     # end 4.1.8
 # make above function with parameter 3, the number of month 12..48
 
-# make a function to return the 84 month average
+# make a function to append a column named EEE isnstead of running_33month_avg
 # 4.1.9 run with part41_ceres_eei = 50
-def create_running_average_advanced(input_csv, output_csv, window_months=48, 
+def create_running_average_advanced(input_csv, output_csv, window_months, 
                                     min_periods=None, center=True, keep_original=True):
     """
     Advanced version with more control over the running average calculation
@@ -741,7 +741,78 @@ def create_running_average_advanced(input_csv, output_csv, window_months=48,
     
     return df_output
     # end 4.1.9 run with part41_ceres_eei = 50
-    # make a function to return the 84 month average
+    # make a function to append a column named EEE isnstead of running_33month_avg
+
+# 4.1.11
+def create_running_average(input_csv, output_csv, window_months, 
+                                    min_periods=None, center=True, keep_original=True,
+                                    column_name='EEI'):
+    """
+    Advanced version with more control over the running average calculation
+    
+    Parameters:
+    input_csv (str): Path to input CSV file
+    output_csv (str): Path to output CSV file
+    window_months (int): Number of months for running average
+    min_periods (int): Minimum number of observations required (default: window_months//2)
+    center (bool): Whether to center the window (True) or use trailing (False)
+    keep_original (bool): Whether to keep original flux column in output
+    column_name (str): Name of the output column (default: 'EEI')
+    """
+    # Read the data
+    df = pd.read_csv(input_csv)
+    df['date'] = pd.to_datetime(df['date'])
+    df = df.sort_values('date').reset_index(drop=True)
+    
+    # Set default min_periods if not specified
+    if min_periods is None:
+        min_periods = window_months // 2
+    
+    # Calculate running average and store in EEI column
+    df[column_name] = df['toa_net_flux_w_m2'].rolling(
+        window=window_months, 
+        center=center,
+        min_periods=min_periods
+    ).mean()
+    
+    # Select columns for output (only EEI, not the window-specific name)
+    output_columns = ['date', 'year', 'month', 'decimal_year']
+    if keep_original:
+        output_columns.append('toa_net_flux_w_m2')
+    output_columns.append(column_name)
+    
+    df_output = df[output_columns].copy()
+    
+    # Save to CSV
+    df_output.to_csv(output_csv, index=False, float_format='%.6f')
+    
+    # Calculate valid records
+    valid_records = df_output[column_name].notna().sum()
+    
+    # Print summary
+    print(f"4.1.9\n{'='*60}")
+    print(f"{window_months}-MONTH RUNNING AVERAGE (saved as '{column_name}')")
+    print(f"{'='*60}")
+    print(f"Window: {window_months} months ({window_months//12} years)")
+    print(f"Centered: {center}")
+    print(f"Min periods: {min_periods}")
+    print(f"Output file: {output_csv}")
+    print(f"Valid records: {valid_records} out of {len(df_output)}")
+    print(f"Column name: {column_name}")
+    
+    # Show first few valid values
+    valid_data = df_output[df_output[column_name].notna()]
+    if len(valid_data) > 0:
+        print(f"\nFirst 5 valid values:")
+        for idx, row in valid_data.head(5).iterrows():
+            print(f"  {row['date'].strftime('%Y-%m')}: {row[column_name]:.3f} W/m²")
+        
+        print(f"\n4.1.9 Last 5 valid values:")
+        for idx, row in valid_data.tail(5).iterrows():
+            print(f"  {row['date'].strftime('%Y-%m')}: {row[column_name]:.3f} W/m²")
+    
+    return df_output
+    # end 4.1.11
 
 
 
@@ -788,7 +859,7 @@ elif part41_ceres_eei == 84:   # works
        center=False ,
        keep_original=True
       )
-elif part41_ceres_eei > 33:   # 
+elif part41_ceres_eei == 17:   # 
    out = f"csv/csv41/csv41d_ceres_{part41_ceres_eei}month.csv"
    
    df_with_48avg = create_running_average_advanced(
@@ -799,7 +870,17 @@ elif part41_ceres_eei > 33:   #
        center=False ,
        keep_original=True
       )
-
+if part41_ceres_eei > 23:
+    out = f"csv/csv41/csv41d_ceres_{part41_ceres_eei}.csv"
+    df_with_avg = create_running_average(
+        'csv/csv41/csv41b_ceres.csv', 
+        out,
+        window_months=120,
+        min_periods=30,
+        center=False,
+        keep_original=True,
+        column_name='EEI'  # This will create a column named 'EEI'
+    )
 
 # 4.1.30 plot_48month_running_average in df41
 if part41_ceres_eei > 0:
