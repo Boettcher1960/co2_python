@@ -1011,7 +1011,7 @@ if plot73_ECS_T > 0:
 # 7.4.2 Year74,GIS_temp
 if plot74_GIS_T > 0:
    print74_text ="Temperature in °C giss.nasa.gov Hansen+0.3°C 74 n"
-   df74 = pd.read_csv("csv_74_gis_temperature.csv") # our world in data file
+   df74 = pd.read_csv("csv/csv7/csv_74_gis_temperature.csv") # our world in data file
    # print(df74.head(2))
    ax74 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
