@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t13" #  part 43 120 month average EEI
+v = "42t14" #  save to csv41d_out.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -786,6 +786,9 @@ def create_running_average(input_csv, output_csv, window_months,
     # Save to CSV
     df_output.to_csv(output_csv, index=False, float_format='%.6f')
     
+    # Save to same CSV
+    output_csv2 = "csv/csv41/csv41d_out.csv"
+    df_output.to_csv(output_csv2, index=False, float_format='%.6f')
     # Calculate valid records
     valid_records = df_output[column_name].notna().sum()
     
