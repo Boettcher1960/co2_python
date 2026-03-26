@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u8" #  plot 44 displays 77month(input) run mean average
+v = "42u9" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -79,7 +79,7 @@ c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 
-part44_ceres_eei = 11 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+part44_ceres_eei = 12 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
                       #  48 =>Centered: True 
                       #  47 =>Centered: False with 48 moving average
 c44 =   "#6513DF84" # plot41 color
@@ -945,7 +945,9 @@ if part44_ceres_eei > 0:    # call 4.1.1 convert_ceres_to_csv
    # how to put integer part44_ceres_eei in the middle center=False,center=True
 if part44_ceres_eei > 0:
     out = f"csv/csv44/csv44d_EEI_{part44_ceres_eei}_month.csv"
-    
+    # out not used as csv44d_out.csv is needed for display
+    output_csv2 = "csv/csv44/csv44d_out.csv"
+
     # Configure based on even/odd
     if part44_ceres_eei % 2 == 0:
         # Even: Centered average with standard min_periods
@@ -961,7 +963,7 @@ if part44_ceres_eei > 0:
     
     df_with_avg = create_running_average(
         'csv/csv44/csv44b_ceres.csv', 
-        out,
+        "csv/csv44/csv44d_out.csv",
         window_months=part44_ceres_eei,
         min_periods=min_periods,
         center=use_center,
@@ -976,7 +978,7 @@ if part44_ceres_eei > 0:
 
 if part44_ceres_eei > 0:
    p44_text = f"Earth Energy Imbalance -{part44_ceres_eei}-month moving average 44"
-   df44 = pd.read_csv("csv/csv44/csv41d_out.csv") 
+   df44 = pd.read_csv("csv/csv44/csv44d_out.csv") 
    # print(df44.head(22)) csv41g48_ceres
    ax44 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    ax44.plot(df44["decimal_year"], df44["EEI"], '-', label="EEI  K44", color=c44, linewidth=2)
