@@ -940,7 +940,7 @@ if part43_ceres_eei > 0:
 if part44_ceres_eei > 10:    # call 4.1.1 convert_ceres_to_csv
    df44a = convert_ceres_to_csv('csv/csv44/csv44a_in_CERES.txt', 'csv/csv44/csv44b_ceres.csv')
    # step 4 add 12 running mean convert to csv
-   # how to put integer part44_ceres_eei in the middle 
+   # how to put integer part44_ceres_eei in the middle center=False,center=True
 if part44_ceres_eei > 13:
     out = f"csv/csv44/csv44d_EEI_{part44_ceres_eei}_month.csv"
     df_with_avg = create_running_average(
