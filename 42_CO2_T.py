@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t7" #  part 43 84 month average EEI
+v = "42t9" #  part 43 120 month average EEI
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 120 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 90 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
@@ -787,11 +787,13 @@ elif part41_ceres_eei == 84:   # works
        center=False ,
        keep_original=True
       )
-elif part41_ceres_eei == 120:   # 
+elif part41_ceres_eei > 33:   # 
+   out = f"csv/csv41/csv41d_ceres_{part41_ceres_eei}month.csv"
+   
    df_with_48avg = create_running_average_advanced(
        'csv/csv41/csv41b_ceres.csv', 
-       'csv/csv41/csv41d_ceres.csv',
-       window_months=120 ,
+       out,
+       window_months=part41_ceres_eei ,
        min_periods=30 ,
        center=False ,
        keep_original=True
@@ -826,7 +828,7 @@ if part42_ceres_eei > 0:
 # 4.3 plot_84 month_running_average in df43
 if part43_ceres_eei > 0:
    p43_text ="Earth Energy Imbalance  W/m² moving average 84 month 43"
-   df43 = pd.read_csv("csv/csv41/csv41g84_ceres.csv") 
+   df43 = pd.read_csv("csv/csv41/csv43g.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax43 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
