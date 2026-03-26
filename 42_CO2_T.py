@@ -79,7 +79,7 @@ c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 
-part44_ceres_eei = 47 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+part44_ceres_eei = 11 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
                       #  48 =>Centered: True 
                       #  47 =>Centered: False with 48 moving average
 c44 =   "#6513DF84" # plot41 color
@@ -939,11 +939,11 @@ if part43_ceres_eei > 0:
 # copy to csv/csv44/csv44a_in_CERES.txt
 # step 3 convert to csv
 # 4.1.20 convert txt to csv
-if part44_ceres_eei > 10:    # call 4.1.1 convert_ceres_to_csv
+if part44_ceres_eei > 0:    # call 4.1.1 convert_ceres_to_csv
    df44a = convert_ceres_to_csv('csv/csv44/csv44a_in_CERES.txt', 'csv/csv44/csv44b_ceres.csv')
    # step 4 add 12 running mean convert to csv
    # how to put integer part44_ceres_eei in the middle center=False,center=True
-if part44_ceres_eei > 13:
+if part44_ceres_eei > 0:
     out = f"csv/csv44/csv44d_EEI_{part44_ceres_eei}_month.csv"
     
     # Configure based on even/odd
