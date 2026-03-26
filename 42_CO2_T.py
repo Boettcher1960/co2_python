@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t14" #  save to csv41d_out.csv
+v = "42t15" #  plot 43  csv41d_out.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -913,11 +913,13 @@ if part42_ceres_eei > 0:
 # 4.3 plot_84 month_running_average in df43
 if part43_ceres_eei > 0:
    p43_text ="Earth Energy Imbalance  W/m² moving average 84 month 43"
-   df43 = pd.read_csv("csv/csv41/csv43g.csv") 
+   # df43 = pd.read_csv("csv/csv41/csv43g.csv") 
+   df43 = pd.read_csv("csv/csv41/csv41d_out.csv") 
+   
    # print(df41.head(22)) csv41g48_ceres
    ax43 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
-   ax43.plot(df43["year41"], df43["EEI"], '-', label="EEI  K43", color=c43, linewidth=2)
+   ax43.plot(df43["decimal_year"], df43["EEI"], '-', label="EEI  K43", color=c43, linewidth=2)
    ax43.tick_params(axis="y", labelcolor=c42)
    ax43.set_ylim(y_Emin, y_Emax) # scale
 
