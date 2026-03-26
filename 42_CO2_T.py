@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t15" #  plot 43  csv41d_out.csv
+v = "42u1" #  plot 44 shall display also  csv41d_out.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -9,6 +9,7 @@ v = "42t15" #  plot 43  csv41d_out.csv
 # part 3.4 plot34_CO2_emission summed
 #
 # part 4 EEI CERES data
+# 
 #
 # part 5.2 plot52_delta_CO2_red_bars
 # part 5.3 plot53_CO2_orange2025
@@ -68,13 +69,17 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 72 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 3 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
-part43_ceres_eei = 5 
+part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 c43 = "blue"
+part44_ceres_eei = 5 
+c44 =   "#6513DF84" # plot41 color
+
+
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -920,8 +925,18 @@ if part43_ceres_eei > 0:
    ax43 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax43.plot(df43["decimal_year"], df43["EEI"], '-', label="EEI  K43", color=c43, linewidth=2)
-   ax43.tick_params(axis="y", labelcolor=c42)
+   ax43.tick_params(axis="y", labelcolor=c43)
    ax43.set_ylim(y_Emin, y_Emax) # scale
+
+if part44_ceres_eei > 0:
+   p44_text ="Earth Energy Imbalance  W/m² moving average 84 month 43"
+   df44 = pd.read_csv("csv/csv44/csv41d_out.csv") 
+   # print(df44.head(22)) csv41g48_ceres
+   ax44 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   # part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax44.plot(df44["decimal_year"], df44["EEI"], '-', label="EEI  K44", color=c44, linewidth=2)
+   ax44.tick_params(axis="y", labelcolor=c42)
+   ax44.set_ylim(y_Emin, y_Emax) # scale
 
 
 # -----------------------------
@@ -1437,7 +1452,10 @@ if yr_mode == 7: # Temperature
       ax42.tick_params(right=False, labelright=False)  
    if part43_ceres_eei > 0: # delete second y axis
       ax43.spines["right"].set_visible(False)
-      ax43.tick_params(right=False, labelright=False)    
+      ax43.tick_params(right=False, labelright=False)   
+   if part44_ceres_eei > 0: # delete second y axis
+      ax44.spines["right"].set_visible(False)
+      ax44.tick_params(right=False, labelright=False)   
    if linear_41_75 > 0: # delete second y axis
       ax75.spines["right"].set_visible(False)
       ax75.tick_params(right=False, labelright=False)  
