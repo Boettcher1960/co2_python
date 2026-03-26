@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 111 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 72 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
@@ -873,7 +873,7 @@ elif part41_ceres_eei == 17:   #
        center=False ,
        keep_original=True
       )
-if part41_ceres_eei > 23:
+if part41_ceres_eei > 13:
     out = f"csv/csv41/csv41d_EEI_{part41_ceres_eei}_month.csv"
     df_with_avg = create_running_average(
         'csv/csv41/csv41b_ceres.csv', 
