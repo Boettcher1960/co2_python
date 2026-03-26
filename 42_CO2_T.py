@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t12" #  part 43 120 month average EEI
+v = "42t13" #  part 43 120 month average EEI
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 44 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 111 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
@@ -790,7 +790,7 @@ def create_running_average(input_csv, output_csv, window_months,
     valid_records = df_output[column_name].notna().sum()
     
     # Print summary
-    print(f"4.1.9\n{'='*60}")
+    print(f"4.1.11\n{'='*60}")
     print(f"{window_months}-MONTH RUNNING AVERAGE (saved as '{column_name}')")
     print(f"{'='*60}")
     print(f"Window: {window_months} months ({window_months//12} years)")
@@ -807,7 +807,7 @@ def create_running_average(input_csv, output_csv, window_months,
         for idx, row in valid_data.head(5).iterrows():
             print(f"  {row['date'].strftime('%Y-%m')}: {row[column_name]:.3f} W/m²")
         
-        print(f"\n4.1.9 Last 5 valid values:")
+        print(f"\n4.1.11 Last 5 valid values:")
         for idx, row in valid_data.tail(5).iterrows():
             print(f"  {row['date'].strftime('%Y-%m')}: {row[column_name]:.3f} W/m²")
     
@@ -871,11 +871,11 @@ elif part41_ceres_eei == 17:   #
        keep_original=True
       )
 if part41_ceres_eei > 23:
-    out = f"csv/csv41/csv41d_ceres_{part41_ceres_eei}.csv"
+    out = f"csv/csv41/csv41d_EEI_{part41_ceres_eei}_month.csv"
     df_with_avg = create_running_average(
         'csv/csv41/csv41b_ceres.csv', 
         out,
-        window_months=120,
+        window_months=part41_ceres_eei,
         min_periods=30,
         center=False,
         keep_original=True,
