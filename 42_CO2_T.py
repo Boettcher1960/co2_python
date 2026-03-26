@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u5" #  plot 44 displays inpt run mean average
+v = "42u6" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -78,10 +78,10 @@ part42_ceres_eei = 4 # print EEI 12 month running mean
 c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
-c43 = "blue"
+
 part44_ceres_eei = 77 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
 c44 =   "#6513DF84" # plot41 color
-
+c44 = "blue"
 
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
@@ -2027,7 +2027,7 @@ elif part43_ceres_eei == 5: #  legende
 elif part44_ceres_eei > 3: #  legende world data plot22_CO2_Mauna_Loa
    line44 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
-   marker="s", markersize=5, color=c42, linewidth=2)
+   marker="s", markersize=5, color=c44, linewidth=2)
    fig.add_artist(line44)
    plt.text(tr2x, tr5y, p44_text, color=c44, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
