@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u4" #  plot 44 shall display also  csv41d_out.csv
+v = "42u5" #  plot 44 displays inpt run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -9,7 +9,9 @@ v = "42u4" #  plot 44 shall display also  csv41d_out.csv
 # part 3.4 plot34_CO2_emission summed
 #
 # part 4 EEI CERES data
-# 
+# part41_ceres_eei = 3 # print EEI 12 month running mean. Info in line 3 below the plot
+# part42_ceres_eei = 4 # print EEI 48 month running mean. Info in line 4 below the plot
+# part44_ceres_eei = 77 #  print EEI 77 month running mean. Info in line 5 below the plot
 #
 # part 5.2 plot52_delta_CO2_red_bars
 # part 5.3 plot53_CO2_orange2025
@@ -69,14 +71,15 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 3 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 3 # print EEI 12 month running mean
+     # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
-part42_ceres_eei = 4 
+part42_ceres_eei = 4 # print EEI 12 month running mean
 c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 c43 = "blue"
-part44_ceres_eei = 48 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+part44_ceres_eei = 77 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
 c44 =   "#6513DF84" # plot41 color
 
 
@@ -170,7 +173,9 @@ header_parameter = header_parameter + f"{plot25_long_CO2}" #
 header_parameter = header_parameter + f"{plot34_CO2_emission} " # 
 
 header_parameter = header_parameter + f"4({part41_ceres_eei}" # 
-header_parameter = header_parameter + f"{part42_ceres_eei} " # 
+header_parameter = header_parameter + f"{part42_ceres_eei}" # 
+header_parameter = header_parameter + f"{part43_ceres_eei}" # 
+header_parameter = header_parameter + f"{part44_ceres_eei} " # 
 
 header_parameter = header_parameter + f"5({plot52_delta_CO2_red_bars}" # plot52_delta_CO2_red_bars number inside string
 header_parameter = header_parameter + f"{plot53_CO2_orange2025}" # plot53_CO2_orange2025 number inside string
@@ -895,7 +900,7 @@ if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
    # eckig df41 = pd.read_csv("csv/csv41/csv41f46_ceres.csv") # 
    # ok df41 = pd.read_csv("csv/csv41/csv41f47_ceres.csv") 
-   df41 = pd.read_csv("csv/csv41/csv41g12_ceres.csv") 
+   df41 = pd.read_csv("csv/csv44/_plot_41_41g12.csv") 
    # df41 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax41 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
@@ -908,7 +913,7 @@ if part41_ceres_eei > 0:
 # 4.2 plot_48month_running_average in df41
 if part42_ceres_eei > 0:
    p42_text ="Earth Energy Imbalance  W/m² moving average 48 month 42"
-   df42 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
+   df42 = pd.read_csv("csv/csv44/_plot_42_41g50.csv") 
    # print(df41.head(22)) csv41g48_ceres
    ax42 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
    # part 7.4.6 add 0.3°C same as Hansen to GIS
