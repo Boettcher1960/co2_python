@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u1" #  plot 44 shall display also  csv41d_out.csv
+v = "42u2" #  plot 44 shall display also  csv41d_out.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -413,7 +413,7 @@ if plot34_CO2_emission > 0:
 # 4.1 convert CERES txt to csv 
 # https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
 # add column 5 as decimal year 2000.08  2000.16
-# 4.1.1 calculation: decimal_year = year + (month - 0.5) / 12
+# 4.1.1 convert_ceres_to_csv calculation: decimal_year = year + (month - 0.5) / 12
 def convert_ceres_to_csv(input_file, output_file):
     """
     Convert CERES TOA flux ASCII file to CSV format
@@ -928,14 +928,20 @@ if part43_ceres_eei > 0:
    ax43.tick_params(axis="y", labelcolor=c43)
    ax43.set_ylim(y_Emin, y_Emax) # scale
 
+# step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
+# copy to csv/csv44/csv44a_in_CERES.txt
+# step 3 convert to csv
+# 4.1.20 convert txt to csv
+if part44_ceres_eei > 10:    # call 4.1.1 convert_ceres_to_csv
+   df44a = convert_ceres_to_csv('csv/csv44/csv44a_in_CERES.txt', 'csv/csv44/csv44b_ceres.csv')
+   # step 4 add 12 running mean convert to csv
 if part44_ceres_eei > 0:
    p44_text ="Earth Energy Imbalance  W/m² moving average 84 month 43"
    df44 = pd.read_csv("csv/csv44/csv41d_out.csv") 
    # print(df44.head(22)) csv41g48_ceres
    ax44 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
-   # part 7.4.6 add 0.3°C same as Hansen to GIS
    ax44.plot(df44["decimal_year"], df44["EEI"], '-', label="EEI  K44", color=c44, linewidth=2)
-   ax44.tick_params(axis="y", labelcolor=c42)
+   ax44.tick_params(axis="y", labelcolor=c44)
    ax44.set_ylim(y_Emin, y_Emax) # scale
 
 
@@ -2001,6 +2007,14 @@ elif part43_ceres_eei == 5: #  legende
    # 9.5.4 write green text
    plt.text(tr2x, tr5y, p43_text, color=c43, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)   
+elif part44_ceres_eei > 3: #  legende world data plot22_CO2_Mauna_Loa
+   line44 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="s", markersize=5, color=c42, linewidth=2)
+   fig.add_artist(line44)
+   plt.text(tr2x, tr5y, p44_text, color=c44, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)
+
 elif plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
    line55 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,
