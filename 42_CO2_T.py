@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u10" #  plot 44 displays 77month(input) run mean average
+v = "42u11" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -79,7 +79,7 @@ c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 
-part44_ceres_eei = 11 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+part44_ceres_eei = 24 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
                       #  48 =>Centered: True 
                       #  47 =>Centered: False with 48 moving average
 c44 =   "#6513DF84" # plot41 color
@@ -123,11 +123,11 @@ y_max = 500 # 1300 # min value 440 70
 
 # 1.3.2 scale the right Y axis
 y_Tmin = 0 # min value °C
-y_Tmax = 2.5 # 1.6 4 # max value C
+y_Tmax = 2.5 # 2.5.1.6 4 # max value C
 
 # 1.3.3 scale the right Y axis
-y_Emin = 0 # min value W/m² 
-y_Emax = 2 # 1.6 4 # max value  W/m² 
+y_Emin = 0 # 0 min value W/m² 
+y_Emax = 2 # 5, 1.6 4 # max value  W/m² 
 
 x_anf = 2005 # 1960 2000 -33000
 x_end = 2027 # 2200 2026 
@@ -1356,7 +1356,7 @@ else:
    y_minor_ticks = 50
    # yl_mode = 2 ppm CO2 y axis left mode
 
-# 8.3.5 scale the Y axis for -10°C to 1°C  temperature 
+# 8.3.2 scale the Y axis for -10°C to 1°C  temperature 
 # yl_mode = 7 Temperature in °C y axis left mode
 y_Tmayor_ticks = 5
 y_Tminor_ticks = 1
@@ -1387,6 +1387,9 @@ else:
    y_Tmayor_ticks = 20
    y_Tminor_ticks = 10
    # yl_mode = 7 Temperature in °C y axis left mode
+
+
+
 
 # 8.4 configure the left y axis legend             
 # yl_mode = 7 Temperature in °C y axis left mode
