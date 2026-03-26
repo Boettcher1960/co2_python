@@ -405,3 +405,102 @@ linear_41_75  = 4 # part 75    Hansen 2015 .41°C linear fit
 # yl_mode = 5 delta ppm CO2 y axis left mode
 # yl_mode = 7 Temperature in °C y axis left mode
 
+which python command makes the scaling on the right y axis?
+(note: I have 3 scalings on the right y axis)
+https://chat.deepseek.com/a/chat/s/d9a11bdb-f2ce-4c34-b14e-492b673e0a4e
+
+1. Creating Multiple Right Y-Axes (twinx())
+python
+# Each of these creates a new right y-axis
+ax71 = ax1.twinx()  # First right y-axis
+ax72 = ax1.twinx()  # Second right y-axis (overlays on right)
+ax73 = ax1.twinx()  # Third right y-axis (overlays on right)
+2. Positioning Multiple Right Y-Axes
+python
+# To avoid overlapping, you can offset them:
+ax71.spines.right.set_position(("outward", 0))    # Default position
+ax72.spines.right.set_position(("outward", 60))   # Offset outward by 60 points
+ax73.spines.right.set_position(("outward", 120))  # Offset outward by 120 points
+
+3. Setting Y-Axis Limits (Scaling)
+python
+# Set the min/max values for each right y-axis
+ax71.set_ylim(y_Tmin, y_Tmax)  # e.g., 0 to 2.5°C
+ax72.set_ylim(y_Tmin, y_Tmax)  # e.g., 0 to 2.5°C
+ax73.set_ylim(y_Tmin, y_Tmax)  # e.g., 0 to 2.5°C
+
+4. Setting Tick Locations (Scale Intervals)
+python
+# Control the major and minor tick spacing
+ax71.yaxis.set_major_locator(MultipleLocator(0.5))  # Major ticks every 0.5°C
+ax71.yaxis.set_minor_locator(MultipleLocator(0.1))  # Minor ticks every 0.1°C
+
+ax72.yaxis.set_major_locator(MultipleLocator(0.5))
+ax72.yaxis.set_minor_locator(MultipleLocator(0.1))
+
+ax73.yaxis.set_major_locator(MultipleLocator(0.5))
+ax73.yaxis.set_minor_locator(MultipleLocator(0.1))
+
+5. Setting Tick Label Size
+python
+ax71.tick_params(axis="y", labelsize=20)
+ax72.tick_params(axis="y", labelsize=20)
+ax73.tick_params(axis="y", labelsize=20)
+
+6. Setting Y-Axis Labels
+python
+ax71.set_ylabel("Δ Temperature in °C 71", color="red", fontsize=20)
+ax72.set_ylabel("Δ Temperature calc72 in °C", color="red", fontsize=20)
+ax73.set_ylabel("Δ Temperature in °C (ECS = 4.5°C)", color="red", fontsize=20)
+
+7. Controlling Which Axis is Visible
+python
+# Hide the spine of some axes to avoid clutter
+ax72.spines["right"].set_visible(False)
+ax72.tick_params(right=False, labelright=False)
+# Or only show labels on the outermost axis
+ax73.tick_params(axis="y", labelcolor="red", labelsize=20)
+
+Complete Example from Your Code
+In your script, the right y-axes are configured in section 8.7:
+
+python
+# 8.7 print the right y axis
+if yr_mode == 7:  # Temperature mode
+    ax74.tick_params(axis="y", labelcolor=c74)
+    ax74.set_ylim(y_Tmin, y_Tmax)
+    ax74.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))
+    ax74.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))
+    
+elif plot71_temperature > 0:
+    ax71.set_ylim(y_Tmin, y_Tmax)
+    ax71.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))
+    ax71.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))
+    
+elif plot72_AESS_T > 0:
+    ax72.set_ylim(y_Tmin, y_Tmax)
+    ax72.yaxis.set_major_locator(MultipleLocator(y_Tmayor_ticks))
+    ax72.yaxis.set_minor_locator(MultipleLocator(y_Tminor_ticks))
+Key Points for Multiple Right Y-Axes:
+Each ax.twinx() creates a new independent y-axis
+
+Use spines.right.set_position() to offset them horizontally
+
+Set ylim() independently for each axis
+
+Use set_major_locator() and set_minor_locator() to control tick spacing
+
+Hide unnecessary axes with set_visible(False) to avoid clutter
+
+The scaling commands that directly control the y-axis range are:
+
+set_ylim(y_min, y_max) - Sets the min/max values
+
+set_major_locator() - Sets the major tick spacing
+
+set_minor_locator() - Sets the minor tick spacing
+
+tick_params() - Controls tick appearance and size
+
+
+

@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t1" #  50ok, csv41g12_ceres.csv
+v = "42t2" #  50ok, csv41g12_ceres.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -890,7 +890,6 @@ if plot54_Glen_delta_on > 0:
       )
    ax54.tick_params(axis="y", labelcolor="green")
    #ax54.set_ylim(-1, 13) # scale
-   ax54.set_ylim(-yr0, yr1) # scale
    ax54.set_ylim(0, 4) # scale
    if plot54_Glen_delta_on > 2:
       ax54.spines.right.set_position(("axes", 1))
@@ -1319,7 +1318,12 @@ if yr_mode == 7: # Temperature
          color=c74,
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
-       )      
+       )
+   ax41.spines["right"].set_visible(False)
+   ax41.tick_params(right=False, labelright=False)    
+   ax42.spines["right"].set_visible(False)
+   ax42.tick_params(right=False, labelright=False)    
+      
 elif plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
       ax71.spines.right.set_position(("outward", 50))
@@ -1914,13 +1918,13 @@ elif plot76_my_T == 5:
 # 9.6 print line 6 
 if ( yl_mode == 4 ): 
    text6 = f"Left Y axis is the " # 
-   text6 = text6 + f"EEI = {y_Emin} W/m²" # y_max number inside string
-   text6 = text6 + f"....{y_Emax} W/m²" # y_max number inside string
+   text6 = text6 + f"EEI = {y_Emin}" # y_max number inside string
+   text6 = text6 + f" ... {y_Emax} W/m²" # y_max number inside string
    plt.text(-0.12, -.56, text6 , color=c42, fontname="Arial", fontsize=trs,
        transform=plt.gca().transAxes)
    text6 = f"    Right Y axis is the" # 
-   text6 = text6 + f" Temperature = {y_Tmin} °C" # y_max number inside string
-   text6 = text6 + f"....{y_Tmax} °C" # y_max number inside string
+   text6 = text6 + f" Temperature = {y_Tmin}" # y_max number inside string
+   text6 = text6 + f" ... {y_Tmax} °C" # y_max number inside string
    
    # text6 = text6 + header_parameter
    # 9.6.2 plot line 6
