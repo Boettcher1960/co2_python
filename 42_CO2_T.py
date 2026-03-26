@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t3" #  deleted right y axis double items
+v = "42t5" #  part 43 84 month average EEI
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,10 +68,13 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 3 # 3,5,12,47,48,50 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 3 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
+part43_ceres_eei = 5 
+c43 =   "#13DF2F84" # plot41 color
+c43 = "blue"
 
 plot52_delta_CO2_red_bars = 0 # 8 0 7 4 keine delta_CO2 , 1 = delta_CO2 in rot , 7,8 mit Beschriftung   
 plot53_CO2_orange2025 = 0 # 3, 4, 0 orange Glen , 1 = 0.013t² - 51t + 49,536 in rot 3 works plot53_CO2_orange2025
@@ -573,25 +576,20 @@ def calculate_48month_average(input_csv, output_csv):
     input_csv (str): Path to input CSV file with CERES data
     output_csv (str): Path to output CSV file with 48-month average
     """
-    
     # Read the input CSV file
-    print(f"Reading data from: {input_csv}")
+    print(f"4.1.7 Reading data from: {input_csv}")
     df = pd.read_csv(input_csv)
-    
     # Display basic information about the data
     print(f"Total records: {len(df)}")
     print(f"Columns: {list(df.columns)}")
-    
     # Ensure date column is in datetime format
     if 'date' in df.columns:
         df['date'] = pd.to_datetime(df['date'])
     else:
         print("Error: No 'date' column found in the CSV file")
         return None
-    
     # Sort by date to ensure correct order
     df = df.sort_values('date').reset_index(drop=True)
-    
     # Calculate 48-month (4-year) running average
     # Using center=True for centered average
     df['running_48month_avg'] = df['toa_net_flux_w_m2'].rolling(
@@ -599,20 +597,16 @@ def calculate_48month_average(input_csv, output_csv):
         center=True,
         min_periods=24  # Allow partial windows at the beginning and end
     ).mean()
-    
     # Also calculate trailing 48-month average (optional)
     df['running_48month_avg_trailing'] = df['toa_net_flux_w_m2'].rolling(
         window=48, 
         min_periods=48
     ).mean()
-    
     # Create a separate DataFrame with only the 48-month average values
     df_48month_avg = df[['date', 'year', 'month', 'decimal_year', 
                           'toa_net_flux_w_m2', 'running_48month_avg']].copy()
-    
     # Save to CSV file
     df_48month_avg.to_csv(output_csv, index=False, float_format='%.6f')
-    
     # Print summary statistics
     print(f"\n{'='*60}")
     print(f"48-MONTH AVERAGE CALCULATION COMPLETE")
@@ -638,7 +632,7 @@ def calculate_48month_average(input_csv, output_csv):
     print(df_48month_avg.head(10).to_string())
     
     # Show last few rows
-    print(f"\nLast 10 rows of the output file:")
+    print(f"\n4.1.7 Last 10 rows of the output file:")
     print(df_48month_avg.tail(10).to_string())
     
     return df_48month_avg
@@ -678,7 +672,8 @@ def create_simple_48month_average(input_csv, output_csv):
     # end 4.1.8
 # make above function with parameter 3, the number of month 12..48
 
-# 4.1.9
+# make a function to return the 84 month average
+# 4.1.9 run with part41_ceres_eei = 50
 def create_running_average_advanced(input_csv, output_csv, window_months=48, 
                                     min_periods=None, center=True, keep_original=True):
     """
@@ -723,7 +718,7 @@ def create_running_average_advanced(input_csv, output_csv, window_months=48,
     valid_records = df_output[f'{window_months}month_avg'].notna().sum()
     
     # Print summary
-    print(f"\n{'='*60}")
+    print(f"4.1.9\n{'='*60}")
     print(f"{window_months}-MONTH RUNNING AVERAGE")
     print(f"{'='*60}")
     print(f"Window: {window_months} months ({window_months//12} years)")
@@ -739,12 +734,13 @@ def create_running_average_advanced(input_csv, output_csv, window_months=48,
         for idx, row in valid_data.head(5).iterrows():
             print(f"  {row['date'].strftime('%Y-%m')}: {row[f'{window_months}month_avg']:.3f} W/m²")
         
-        print(f"\nLast 5 valid values:")
+        print(f"\n4.1.9 Last 5 valid values:")
         for idx, row in valid_data.tail(5).iterrows():
             print(f"  {row['date'].strftime('%Y-%m')}: {row[f'{window_months}month_avg']:.3f} W/m²")
     
     return df_output
-    # end 4.1.9
+    # end 4.1.9 run with part41_ceres_eei = 50
+    # make a function to return the 84 month average
 
 
 
@@ -753,7 +749,7 @@ def create_running_average_advanced(input_csv, output_csv, window_months=48,
 # step1 download # https://ceres-tool.larc.nasa.gov/ord-tool/srbavg
 # copy to csv/csv41/csv41a_in_CERES.txt
 # step 3 convert to csv
-# 4.2 convert txt to csv
+# 4.1.20 convert txt to csv
 if part41_ceres_eei > 10:
    df41a = convert_ceres_to_csv('csv/csv41/csv41a_in_CERES.txt', 'csv/csv41/csv41b_ceres.csv')
    # step 4 add 12 running mean convert to csv
@@ -782,11 +778,19 @@ if part41_ceres_eei == 50:   # works
        center=False ,
        keep_original=True
       )
-   
+if part41_ceres_eei == 84:   # works
+   df_with_48avg = create_running_average_advanced(
+       'csv/csv41/csv41b_ceres.csv', 
+       'csv/csv41/csv41d84_ceres.csv',
+       window_months=84 ,
+       min_periods=30 ,
+       center=False ,
+       keep_original=True
+      )
 
 
 
-# 4.3 plot_48month_running_average in df41
+# 4.1.30 plot_48month_running_average in df41
 if part41_ceres_eei > 0:
    p41_text ="Earth Energy Imbalance  W/m² moving average 12 month 41"
    # eckig df41 = pd.read_csv("csv/csv41/csv41f46_ceres.csv") # 
@@ -799,8 +803,9 @@ if part41_ceres_eei > 0:
    ax41.plot(df41["year41"], df41["EEI"], '-', label="EEI  K41", color=c41, linewidth=2)
    ax41.tick_params(axis="y", labelcolor=c41)
    ax41.set_ylim(y_Emin, y_Emax) # scale
-   # end 4.3
+   # end 4.1.30
 
+# 4.2 plot_48month_running_average in df41
 if part42_ceres_eei > 0:
    p42_text ="Earth Energy Imbalance  W/m² moving average 48 month 42"
    df42 = pd.read_csv("csv/csv41/csv41g50_ceres.csv") 
@@ -810,8 +815,16 @@ if part42_ceres_eei > 0:
    ax42.plot(df42["year41"], df42["EEI"], '-', label="EEI  K42", color=c42, linewidth=2)
    ax42.tick_params(axis="y", labelcolor=c42)
    ax42.set_ylim(y_Emin, y_Emax) # scale
-
-
+# 4.3 plot_84 month_running_average in df43
+if part43_ceres_eei > 0:
+   p43_text ="Earth Energy Imbalance  W/m² moving average 84 month 43"
+   df43 = pd.read_csv("csv/csv41/csv41g84_ceres.csv") 
+   # print(df41.head(22)) csv41g48_ceres
+   ax43 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
+   # part 7.4.6 add 0.3°C same as Hansen to GIS
+   ax43.plot(df43["year41"], df43["EEI"], '-', label="EEI  K43", color=c43, linewidth=2)
+   ax43.tick_params(axis="y", labelcolor=c42)
+   ax43.set_ylim(y_Emin, y_Emax) # scale
 
 
 # -----------------------------
@@ -1324,7 +1337,10 @@ if yr_mode == 7: # Temperature
       ax41.tick_params(right=False, labelright=False)    
    if part42_ceres_eei > 0: # delete second y axis
       ax42.spines["right"].set_visible(False)
-      ax42.tick_params(right=False, labelright=False)    
+      ax42.tick_params(right=False, labelright=False)  
+   if part43_ceres_eei > 0: # delete second y axis
+      ax43.spines["right"].set_visible(False)
+      ax43.tick_params(right=False, labelright=False)    
    if linear_41_75 > 0: # delete second y axis
       ax75.spines["right"].set_visible(False)
       ax75.tick_params(right=False, labelright=False)  
@@ -1861,6 +1877,15 @@ if part41_ceres_eei == 5: #  legende world data plot22_CO2_Mauna_Loa
    # 9.5.4 write green text
    plt.text(tr2x, tr5y, p41_text, color=c41, fontname="Arial", fontsize=trs,
    transform=plt.gca().transAxes)
+elif part43_ceres_eei == 5: #  legende 
+   line43 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
+   transform=fig.transFigure,
+   marker="s", markersize=5, color=c43, linewidth=2)
+   # 9.5.2 draw bue line as legend
+   fig.add_artist(line43)
+   # 9.5.4 write green text
+   plt.text(tr2x, tr5y, p43_text, color=c43, fontname="Arial", fontsize=trs,
+   transform=plt.gca().transAxes)   
 elif plot55_population_on == 5: #  legende world data plot22_CO2_Mauna_Loa
    line55 = Line2D([lr2x1, lr2x2], [lr5y, lr5y], # x coords in figure space (0–1)
    transform=fig.transFigure,

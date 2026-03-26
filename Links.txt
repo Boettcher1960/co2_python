@@ -502,10 +502,73 @@ set_minor_locator() - Sets the minor tick spacing
 
 tick_params() - Controls tick appearance and size
 
-
+------------ 42t3 ------------- delete y axis left -----------
 part41_ceres_eei = 3 # 3,5,12,47,48,50 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 part42_ceres_eei = 4 
 plot74_GIS_T  = 2 #
 linear_41_75  = 3 # part 75    Hansen 2015 .41°C linear fit
 
+------------ 42t4 ------------- run with part41_ceres_eei = 50 -----------
+
+
+part 4.1.1 Successfully converted 311 records to csv/csv41/csv41b_ceres.csv
+Data range: 2000-03-01 00:00:00 to 2026-01-01 00:00:00
+Decimal year range: 2000.2083 to 2026.0417
+Flux range: -10.49 to 10.67 W/m²
+
+4.1.1 First 3 rows of the converted data:
+        date  year  month  toa_net_flux_w_m2  decimal_year
+0 2000-03-01  2000      3               5.96   2000.208333
+1 2000-04-01  2000      4               1.93   2000.291667
+2 2000-05-01  2000      5              -5.93   2000.375000
+4.1.9
+============================================================
+48-MONTH RUNNING AVERAGE
+============================================================
+Window: 48 months (4 years)
+Centered: False
+Min periods: 30
+Output file: csv/csv41/csv41d50_ceres.csv
+Valid records: 282 out of 311
+
+First 5 valid values:
+  2002-08: -0.471 W/m²
+  2002-09: -0.493 W/m²
+  2002-10: -0.397 W/m²
+  2002-11: -0.278 W/m²
+  2002-12: -0.092 W/m²
+
+4.1.9 Last 5 valid values:
+  2025-09: 1.386 W/m²
+  2025-10: 1.380 W/m²
+  2025-11: 1.373 W/m²
+  2025-12: 1.410 W/m²
+  2026-01: 1.421 W/m²
+thomasboettcher@MacBookAir 4_Python_CO2 % 
+
+------------ 42t5 ------------- run with part41_ceres_eei = 84 -----------
+
+4.1.9
+============================================================
+84-MONTH RUNNING AVERAGE
+============================================================
+Window: 84 months (7 years)
+Centered: False
+Min periods: 30
+Output file: csv/csv41/csv41d84_ceres.csv
+Valid records: 282 out of 311
+
+First 5 valid values:
+  2002-08: -0.471 W/m²
+  2002-09: -0.493 W/m²
+  2002-10: -0.397 W/m²
+  2002-11: -0.278 W/m²
+  2002-12: -0.092 W/m²
+
+4.1.9 Last 5 valid values:
+  2025-09: 1.326 W/m²
+  2025-10: 1.318 W/m²
+  2025-11: 1.312 W/m²
+  2025-12: 1.319 W/m²
+  2026-01: 1.332 W/m²
 
