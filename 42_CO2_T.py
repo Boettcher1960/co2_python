@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t9" #  part 43 120 month average EEI
+v = "42t10" #  part 43 120 month average EEI
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 90 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 60 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
@@ -704,11 +704,11 @@ def create_running_average_advanced(input_csv, output_csv, window_months=48,
     ).mean()
     
     # Select columns for output
-    output_columns = ['date', 'year', 'month', 'decimal_year']
+    output_columns = ['date', 'year', 'month', 'year41']
     if keep_original:
         output_columns.append('toa_net_flux_w_m2')
     output_columns.append(f'{window_months}month_avg')
-    
+    # output_columns.append(f'EEI')
     df_output = df[output_columns].copy()
     
     # Save to CSV
@@ -791,7 +791,7 @@ elif part41_ceres_eei > 33:   #
    out = f"csv/csv41/csv41d_ceres_{part41_ceres_eei}month.csv"
    
    df_with_48avg = create_running_average_advanced(
-       'csv/csv41/csv41b_ceres.csv', 
+       'csv/csv41/csv41c_ceres.csv', 
        out,
        window_months=part41_ceres_eei ,
        min_periods=30 ,
