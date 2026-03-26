@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u7" #  plot 44 displays 77month(input) run mean average
+v = "42u8" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -79,7 +79,9 @@ c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 
-part44_ceres_eei = 77 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+part44_ceres_eei = 47 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+                      #  48 =>Centered: True 
+                      #  47 =>Centered: False with 48 moving average
 c44 =   "#6513DF84" # plot41 color
 c44 = "blue"
 
@@ -807,7 +809,7 @@ def create_running_average(input_csv, output_csv, window_months,
     print(f"{window_months}-MONTH RUNNING AVERAGE (saved as '{column_name}')")
     print(f"{'='*60}")
     print(f"Window: {window_months} months ({window_months//12} years)")
-    print(f"Centered: {center}")
+    print(f"--44---Centered: {center}")
     print(f"Min periods: {min_periods}")
     print(f"Output file: {output_csv}")
     print(f"Valid records: {valid_records} out of {len(df_output)}")
@@ -943,15 +945,35 @@ if part44_ceres_eei > 10:    # call 4.1.1 convert_ceres_to_csv
    # how to put integer part44_ceres_eei in the middle center=False,center=True
 if part44_ceres_eei > 13:
     out = f"csv/csv44/csv44d_EEI_{part44_ceres_eei}_month.csv"
+    
+    # Configure based on even/odd
+    if part44_ceres_eei % 2 == 0:
+        # Even: Centered average with standard min_periods
+        use_center = True
+        min_periods = part44_ceres_eei // 2  # Use half the window size
+        avg_type = "CENTERED"
+    else:
+        # Odd: Trailing average with full window requirement
+        use_center = False
+        part44_ceres_eei = part44_ceres_eei + 1 # 47 will be 48
+        min_periods = part44_ceres_eei  # Require full window for trailing
+        avg_type = "TRAILING"
+    
     df_with_avg = create_running_average(
         'csv/csv44/csv44b_ceres.csv', 
         out,
         window_months=part44_ceres_eei,
-        min_periods=30,
-        center=False,
+        min_periods=min_periods,
+        center=use_center,
         keep_original=True,
-        column_name='EEI'  # This will create a column named 'EEI'
+        column_name='EEI'
     )
+    
+    print(f"{avg_type} average for {part44_ceres_eei}-month window")
+    print(f"Min periods: {min_periods}")
+    print(f"Output: {out}")
+
+
 if part44_ceres_eei > 0:
    p44_text = f"Earth Energy Imbalance -{part44_ceres_eei}-month moving average 44"
    df44 = pd.read_csv("csv/csv44/csv41d_out.csv") 

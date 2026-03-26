@@ -573,3 +573,29 @@ First 5 valid values:
   2026-01: 1.332 W/m²
 
 -------- v = "42t5" #  part 43 84 month average EEI -----------
+
+
+if part44_ceres_eei > 13:
+    out = f"csv/csv44/csv44d_EEI_{part44_ceres_eei}_month.csv"
+    df_with_avg = create_running_average(
+        'csv/csv44/csv44b_ceres.csv', 
+        out,
+        window_months=part44_ceres_eei,
+        min_periods=30,
+        center=True,
+        keep_original=True,
+        column_name='EEI'  # This will create a column named 'EEI'
+    )
+    # if part44_ceres_eei is even the above create_running_average call shall be done
+    # if part44_ceres_eei is odd the below create_running_average call shall be done
+    df_with_avg = create_running_average(
+        'csv/csv44/csv44b_ceres.csv', 
+        out,
+        window_months=part44_ceres_eei,
+        min_periods=30,
+        center=False,
+        keep_original=True,
+        column_name='EEI'  # This will create a column named 'EEI'
+    )
+
+
