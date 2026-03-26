@@ -572,3 +572,4 @@ First 5 valid values:
   2025-12: 1.319 W/m²
   2026-01: 1.332 W/m²
 
+-------- v = "42t5" #  part 43 84 month average EEI -----------

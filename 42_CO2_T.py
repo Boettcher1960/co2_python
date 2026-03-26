@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t5" #  part 43 84 month average EEI
+v = "42t7" #  part 43 84 month average EEI
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -68,7 +68,7 @@ plot34_CO2_emission = 0 # 33 # 43, 34 row3 mode 4, 42 row 4 mode 2   cumulative 
 c34 = "purple"
 c34 = "#942296C5" 
 # no part 4
-part41_ceres_eei = 3 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
+part41_ceres_eei = 120 # 3,5,12,47,48,50,84 convert txt to csv runnig 12 month avg , 48 convert txt to csv runnig 48 month avg
 c41                 = "#289C1684" # plot41 color
 part42_ceres_eei = 4 
 c42 = "purple"
@@ -759,17 +759,17 @@ if part41_ceres_eei == 12:
        'csv41a_in_CERES.txt', 
        'csv/csv41/csv41d12_ceres.csv'
 )
-if part41_ceres_eei == 47:   
+elif part41_ceres_eei == 47:   
    df_with_48avg = create_simple_48month_average(
        'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d47_ceres.csv'
       )
-if part41_ceres_eei == 48:   # works
+elif part41_ceres_eei == 48:   # works
    df_with_48avg = calculate_48month_average(
        'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d48_ceres.csv'
       )
-if part41_ceres_eei == 50:   # works
+elif part41_ceres_eei == 50:   # works
    df_with_48avg = create_running_average_advanced(
        'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d50_ceres.csv',
@@ -778,7 +778,7 @@ if part41_ceres_eei == 50:   # works
        center=False ,
        keep_original=True
       )
-if part41_ceres_eei == 84:   # works
+elif part41_ceres_eei == 84:   # works
    df_with_48avg = create_running_average_advanced(
        'csv/csv41/csv41b_ceres.csv', 
        'csv/csv41/csv41d84_ceres.csv',
@@ -787,7 +787,15 @@ if part41_ceres_eei == 84:   # works
        center=False ,
        keep_original=True
       )
-
+elif part41_ceres_eei == 120:   # 
+   df_with_48avg = create_running_average_advanced(
+       'csv/csv41/csv41b_ceres.csv', 
+       'csv/csv41/csv41d_ceres.csv',
+       window_months=120 ,
+       min_periods=30 ,
+       center=False ,
+       keep_original=True
+      )
 
 
 # 4.1.30 plot_48month_running_average in df41
