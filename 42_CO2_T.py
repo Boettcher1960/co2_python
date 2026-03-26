@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42t2" #  50ok, csv41g12_ceres.csv
+v = "42t3" #  deleted right y axis double items
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -1319,11 +1319,15 @@ if yr_mode == 7: # Temperature
          fontname="Arial",fontsize=20,
          labelpad=10   # smaller = closer to y axis
        )
-   ax41.spines["right"].set_visible(False)
-   ax41.tick_params(right=False, labelright=False)    
-   ax42.spines["right"].set_visible(False)
-   ax42.tick_params(right=False, labelright=False)    
-      
+   if part41_ceres_eei > 0: # delete second y axis
+      ax41.spines["right"].set_visible(False)
+      ax41.tick_params(right=False, labelright=False)    
+   if part42_ceres_eei > 0: # delete second y axis
+      ax42.spines["right"].set_visible(False)
+      ax42.tick_params(right=False, labelright=False)    
+   if linear_41_75 > 0: # delete second y axis
+      ax75.spines["right"].set_visible(False)
+      ax75.tick_params(right=False, labelright=False)  
 elif plot71_temperature > 0:
    if plot54_Glen_delta_on > 2:
       ax71.spines.right.set_position(("outward", 50))
