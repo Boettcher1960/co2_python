@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u2" #  plot 44 shall display also  csv41d_out.csv
+v = "42u3" #  plot 44 shall display also  csv41d_out.csv
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -76,7 +76,7 @@ c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 c43 = "blue"
-part44_ceres_eei = 5 
+part44_ceres_eei = 52 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
 c44 =   "#6513DF84" # plot41 color
 
 
@@ -792,7 +792,7 @@ def create_running_average(input_csv, output_csv, window_months,
     df_output.to_csv(output_csv, index=False, float_format='%.6f')
     
     # Save to same CSV
-    output_csv2 = "csv/csv41/csv41d_out.csv"
+    output_csv2 = "csv/csv44/csv44d_out.csv"
     df_output.to_csv(output_csv2, index=False, float_format='%.6f')
     # Calculate valid records
     valid_records = df_output[column_name].notna().sum()
@@ -935,8 +935,9 @@ if part43_ceres_eei > 0:
 if part44_ceres_eei > 10:    # call 4.1.1 convert_ceres_to_csv
    df44a = convert_ceres_to_csv('csv/csv44/csv44a_in_CERES.txt', 'csv/csv44/csv44b_ceres.csv')
    # step 4 add 12 running mean convert to csv
+   # how to put integer part44_ceres_eei in the middle 
 if part44_ceres_eei > 0:
-   p44_text ="Earth Energy Imbalance  W/m² moving average 84 month 43"
+   p44_text = f"Earth Energy Imbalance -{part44_ceres_eei}-month moving average 44"
    df44 = pd.read_csv("csv/csv44/csv41d_out.csv") 
    # print(df44.head(22)) csv41g48_ceres
    ax44 = ax1.twinx()  # twinx(): Shares the same x-axis Adds a new y-axis on the right
