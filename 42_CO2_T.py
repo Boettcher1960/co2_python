@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u6" #  plot 44 displays 77month(input) run mean average
+v = "42u7" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
