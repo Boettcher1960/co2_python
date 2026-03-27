@@ -1,3 +1,5 @@
+# split the file into several parts.
+# example main, part4 and part 9
 # 42_CO2_T.py 
 v = "42u13" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
@@ -2201,7 +2203,7 @@ tempsT79 = np.array(list(dataT79.values()))
 # plot22_CO2_Mauna_Loa https://gml.noaa.gov/ccgg/trends/global.html
 #
 # 3.2 https://ourworldindata.org/grapher/cumulative-co-emissions
-
-
 # https://github.com/zmlabe 
 #
+#  split the file into several parts.
+# example main, part4 and part 9
