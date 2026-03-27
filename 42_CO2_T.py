@@ -1,5 +1,5 @@
 # 42_CO2_T.py 
-v = "42u11" #  plot 44 displays 77month(input) run mean average
+v = "42u12" #  plot 44 displays 77month(input) run mean average
 # Thomas Boettcher
 # part 1 configure 
 # part 2.2 plot CO2 Mauna Loa
@@ -79,7 +79,7 @@ c42 = "purple"
 part43_ceres_eei = 0 
 c43 =   "#13DF2F84" # plot41 color
 
-part44_ceres_eei = 24 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
+part44_ceres_eei = 36 # 5,12,47,48,50,84 convert txt to csv runnig 12 month avg ,
                       #  48 =>Centered: True 
                       #  47 =>Centered: False with 48 moving average
 c44 =   "#6513DF84" # plot41 color
