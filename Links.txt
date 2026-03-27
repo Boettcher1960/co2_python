@@ -599,3 +599,10 @@ if part44_ceres_eei > 13:
     )
 
 
+delete 41 items 
+42 is EEI 12 window_months
+43 is EEI 48 months
+44 produces csv files and diplays 77 months in line 5
+45 new CERS cloud data David Ulrich
+
+
